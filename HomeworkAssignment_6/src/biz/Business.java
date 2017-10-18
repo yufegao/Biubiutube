@@ -6,7 +6,7 @@
 package biz;
 
 /**
- *
+ * Business Singleton
  * @author hezj
  */
 public class Business {

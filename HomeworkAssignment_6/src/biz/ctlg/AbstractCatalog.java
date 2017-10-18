@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
  public PersonCatalog extends AbstractCatalog<Person> {
      @Override
-     public Supplier createElement() {
+     public Person createElement() {
         return new Person("hezj");
      }
  }
