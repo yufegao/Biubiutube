@@ -11,7 +11,7 @@ import biz.Catalog.AbstractCatalog;
  *
  * @author royn
  */
-public class OrderDIrectory extends AbstractCatalog<Order>{    
+public class OrderDirectory extends AbstractCatalog<Order>{    
 
     @Override
     public Order createElement() {

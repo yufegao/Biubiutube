@@ -41,6 +41,16 @@ public abstract class AbstractCatalog<Element> implements CatalogInterface<Eleme
         return elementArrayList.remove(e);
     }
 
+    public ArrayList<Element> findElements(Finder<Element> finder) {
+        ArrayList<Element> result = new ArrayList<>();
+        for (Element e: elementArrayList) {
+            if (finder.find(e)) {
+                result.add(e);
+            }
+        } 
+        return result;
+    }
+    
     public Element findElement(Finder<Element> finder) {
         for (Element e: elementArrayList) {
             if (finder.find(e)) {

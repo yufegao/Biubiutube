@@ -27,7 +27,7 @@ public interface TablePopulatable<Element> {
 
     Object[] populateRow(Element element);
 
-    default Object getSelected() {
+    default Element getSelected() {
         JTable table = getTable();
         int selectedCount = table.getSelectedRowCount();
         if (selectedCount > 1) {
@@ -39,7 +39,7 @@ public interface TablePopulatable<Element> {
             return null;
         }
 
-        return table.getValueAt(table.getSelectedRow(), 0);
+        return (Element)table.getValueAt(table.getSelectedRow(), 0);
     }
 
     void populateTable();

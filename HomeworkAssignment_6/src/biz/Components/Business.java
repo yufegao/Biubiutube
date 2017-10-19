@@ -19,6 +19,7 @@ public class Business {
     private MarketCatalog marketCatalog;
     private SupplierCatalog supplierCatalog;
     private MarketOfferCatalog marketOfferCatalog;
+    private OrderDirectory orderDirectory;
 
     private Business() {
         this.accountCatalog = new AccountCatalog();
@@ -27,6 +28,7 @@ public class Business {
         this.marketCatalog = new MarketCatalog();
         this.supplierCatalog = new SupplierCatalog();
         this.marketOfferCatalog = new MarketOfferCatalog();
+        this.orderDirectory = new OrderDirectory();
     }
 
     public static Business getInstance() {
@@ -58,6 +60,10 @@ public class Business {
 
     public MarketOfferCatalog getMarketOfferCatalog() {
         return marketOfferCatalog;
+    }
+
+    public OrderDirectory getOrderDirectory() {
+        return orderDirectory;
     }
     
     public ArrayList<Customer> getAllCustomers() {
