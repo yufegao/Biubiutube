@@ -5,22 +5,29 @@
  */
 package UserInterface.Market;
 
+import UserInterface.Components.HasTitle;
+import UserInterface.Components.ParentUI;
 import UserInterface.Components.TablePopulatable;
 import biz.Components.Business;
+import biz.Components.Market;
 import biz.Components.MarketOffer;
+import biz.Components.OfferProduct;
 import javax.swing.JTable;
 
 /**
  *
  * @author Administrator
  */
-public class MarketOfferJPanel extends javax.swing.JPanel implements TablePopulatable<MarketOffer> {
-
+public class MarketOfferJPanel extends javax.swing.JPanel implements TablePopulatable<OfferProduct>,HasTitle {
+    private Market market;
+    private ParentUI parent;
     /**
      * Creates new form MarketOfferJPanel
      */
-    public MarketOfferJPanel() {
+    public MarketOfferJPanel(ParentUI pa,Market market) {
         initComponents();
+        this.market = market;
+        this.parent = pa;
     }
 
     /**
@@ -35,8 +42,8 @@ public class MarketOfferJPanel extends javax.swing.JPanel implements TablePopula
         jScrollPane1 = new javax.swing.JScrollPane();
         marketOfferTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        update = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -55,38 +62,45 @@ public class MarketOfferJPanel extends javax.swing.JPanel implements TablePopula
         jLabel1.setText("Market Offer Name");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 120, 20));
 
-        jButton3.setText("Update");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        update.setText("Update");
+        update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                updateActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, 150, -1));
+        add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, 150, -1));
 
-        jButton4.setText("<<Back");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        back.setText("<<Back");
+        back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                backActionPerformed(evt);
             }
         });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 150, -1));
+        add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        OfferProduct op = getSelected();
+        if(op == null){
+            return;
+        }
+        UpdateOfferProductJPanel uop = new UpdateOfferProductJPanel(parent,op);
+        parent.pushComponent(uop);
+    }//GEN-LAST:event_updateActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        
+    }//GEN-LAST:event_backActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable marketOfferTable;
+    private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -94,13 +108,19 @@ public class MarketOfferJPanel extends javax.swing.JPanel implements TablePopula
         return marketOfferTable;
     }
 
-    @Override
-    public Object[] populateRow(MarketOffer element) {
-        return new Object[]{element};
-    }
 
     @Override
     public void populateTable() {
-        populateTable(Business.getInstance().getMarketOfferCatalog().getElementArrayList());
+        populateTable(market.getMarketOffer().getElementArrayList());
+    }
+
+    @Override
+    public String getTitle() {
+        return "MarketOffer";
+    }
+
+    @Override
+    public Object[] populateRow(OfferProduct element) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

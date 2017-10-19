@@ -13,21 +13,31 @@ import java.util.ArrayList;
  * @author Administrator
  */
 public class MarketOffer extends AbstractCatalog<OfferProduct>{
-    public MarketOffer(Market market) {
+    private Market market;
+    public MarketOffer(Market ma) {
         elementArrayList = new ArrayList<>();
-        for (Product p: Business.getInstance().getAllProducts()) {
-            // init each offerProduct by marketValue
-            OfferProduct op = this.newElement();
-            op.setProduct(p);
-            double val = (1 + market.getMarketValue()) * p.getFactoryPrice();
-            op.setHighestPrice(val * 5);
-            op.setTargetPrice(val * 1.5);
-            op.setLowestPrice(val * 1);
-        }
     }
     
     @Override
     public OfferProduct createElement() {
         return new OfferProduct();
+    }
+
+    
+    @Override
+    public ArrayList<OfferProduct> getElementArrayList() {
+        for(Product product : Business.getInstance().getAllProducts()){
+            OfferProduct offerProduct = this.findElement(op -> op.getProduct().equals(product));
+            if(offerProduct != null){
+                continue;
+            }
+            OfferProduct op = this.newElement();
+            op.setProduct(product);
+            double val = (1 + market.getMarketValue()) * product.getFactoryPrice();
+            op.setHighestPrice(val * 5);
+            op.setTargetPrice(val * 1.5);
+            op.setLowestPrice(val * 1);        
+        }
+        return elementArrayList;
     }
 }

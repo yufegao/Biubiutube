@@ -6,6 +6,7 @@
 package UserInterface.Market;
 
 import UserInterface.Components.HasTitle;
+import UserInterface.Components.ParentUI;
 import UserInterface.Components.TablePopulatable;
 import biz.Components.Business;
 import biz.Components.Market;
@@ -16,12 +17,13 @@ import javax.swing.JTable;
  * @author Administrator
  */
 public class MarketJPanel extends javax.swing.JPanel implements TablePopulatable<Market>, HasTitle {
-
+    private ParentUI parent;
     /**
      * Creates new form MarketJPanel
      */
-    public MarketJPanel() {
+    public MarketJPanel(ParentUI parent) {
         initComponents();
+        this.parent = parent;
     }
 
     /**
@@ -102,6 +104,12 @@ public class MarketJPanel extends javax.swing.JPanel implements TablePopulatable
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        Market selected = getSelected();
+        if(selected == null){
+            return;
+        }
+        MarketOfferJPanel moj = new MarketOfferJPanel(parent,selected);
+        parent.pushComponent(moj);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -118,6 +126,7 @@ public class MarketJPanel extends javax.swing.JPanel implements TablePopulatable
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
