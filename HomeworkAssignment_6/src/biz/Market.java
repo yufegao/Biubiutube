@@ -5,13 +5,14 @@
  */
 package biz;
 
+import biz.ctlg.AbstractCatalog;
 import java.util.ArrayList;
 
 /**
  *
  * @author Administrator
  */
-public class Market {
+public class Market extends AbstractCatalog<Customer>{
     private ArrayList<Customer> customer;
     private String marketName;
     private MarketOffer marketOffer;
@@ -19,7 +20,10 @@ public class Market {
     public Market() {
         this.customer = new ArrayList<Customer>();
     }
-
+    @Override
+    public Customer createElement() {
+        return new Customer();
+    }
     public ArrayList<Customer> getCustomer() {
         return customer;
     }
@@ -32,9 +36,30 @@ public class Market {
         return marketName;
     }
 
+    public MarketOffer getMarketOffer() {
+        return marketOffer;
+    }
+
+    public void setMarketOffer(MarketOffer marketOffer) {
+        this.marketOffer = marketOffer;
+    }
+
     public void setMarketName(String marketName) {
         this.marketName = marketName;
     }
     
+    public Customer findCustomer(int i) throws Failed{
+        Customer cust = findElement(c -> c.getId() == i);
+        if(cust == null){
+            throw new Failed("Customer not exist");
+        }
+        return cust;
+    }
     
+    public class Failed extends Exception{
+        Failed(String message){
+        super(message);
+        }
+    }
+
 }

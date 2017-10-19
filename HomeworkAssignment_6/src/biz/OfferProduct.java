@@ -15,9 +15,11 @@ public class OfferProduct {
     private int highestPrice;
     private int targetPrice;
     private int lowestPrice;
+    private int id;
 
     public OfferProduct() {
         offerId++;
+        id = offerId;
     }
 
     
@@ -45,5 +47,10 @@ public class OfferProduct {
     public void setLowestPrice(int lowestPrice) {
         this.lowestPrice = lowestPrice;
     }
+
+    public int getId() {
+        return id;
+    }
+    
     
 }
