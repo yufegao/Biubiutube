@@ -34,16 +34,17 @@ public class MarketJPanel extends javax.swing.JPanel implements TablePopulatable
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        marketTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        marketTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -51,7 +52,7 @@ public class MarketJPanel extends javax.swing.JPanel implements TablePopulatable
                 "Market Name"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(marketTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 330, 240));
 
@@ -67,6 +68,11 @@ public class MarketJPanel extends javax.swing.JPanel implements TablePopulatable
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 310, 150, -1));
 
         jButton2.setText("Create ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, 150, -1));
 
         jButton3.setText("Update");
@@ -77,13 +83,21 @@ public class MarketJPanel extends javax.swing.JPanel implements TablePopulatable
         });
         add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 150, -1));
 
-        jButton4.setText("Delete");
+        jButton4.setText("<<Back");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, 150, -1));
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 350, 150, -1));
+
+        jButton5.setText("Delete");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -98,20 +112,29 @@ public class MarketJPanel extends javax.swing.JPanel implements TablePopulatable
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable marketTable;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public JTable getTable() {
-        return jTable1;
+        return marketTable;
     }
 
     @Override

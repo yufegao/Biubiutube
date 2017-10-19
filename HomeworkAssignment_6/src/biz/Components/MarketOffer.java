@@ -24,7 +24,9 @@ public class MarketOffer extends AbstractCatalog<OfferProduct>{
     public OfferProduct createElement() {
         return new OfferProduct();
     }
-
+    
+    
+    
     public ArrayList<OfferProduct> getOp() {
         return op;
     }

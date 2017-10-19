@@ -25,6 +25,10 @@ public class MarketCatalog extends AbstractCatalog<Market>{
     public Market createElement() {
         return new Market();      
     }
+    
+    public boolean addMaeket(Market market){
+        return this.getElementArrayList().add(market);
+    }
 
     public String getCatalogName() {
         return catalogName;
