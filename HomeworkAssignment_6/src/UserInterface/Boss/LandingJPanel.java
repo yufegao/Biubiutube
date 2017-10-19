@@ -33,26 +33,30 @@ public class LandingJPanel extends javax.swing.JPanel {
         btnSupplier = new javax.swing.JButton();
         brnProductCatalog = new javax.swing.JButton();
         btnSales = new javax.swing.JButton();
+        btnSalesPerformance1 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnAccountCatalog.setText("Account Catalog");
-        add(btnAccountCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 250, 80));
+        add(btnAccountCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 230, 70));
 
         btnOrderCatalog.setText("Order Catalog");
-        add(btnOrderCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 250, 80));
+        add(btnOrderCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 230, 70));
 
-        btnSalesPerformance.setText("Sales Performance");
-        add(btnSalesPerformance, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 370, 250, 80));
+        btnSalesPerformance.setText("Market");
+        add(btnSalesPerformance, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 230, 70));
 
         btnSupplier.setText("Supplier");
-        add(btnSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 250, 80));
+        add(btnSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 230, 70));
 
         brnProductCatalog.setText("Product Catalog");
-        add(brnProductCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 250, 80));
+        add(brnProductCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 230, 70));
 
         btnSales.setText("Sales");
-        add(btnSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 220, 250, 80));
+        add(btnSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, 230, 70));
+
+        btnSalesPerformance1.setText("Sales Performance");
+        add(btnSalesPerformance1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 230, 70));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -62,6 +66,7 @@ public class LandingJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnOrderCatalog;
     private javax.swing.JButton btnSales;
     private javax.swing.JButton btnSalesPerformance;
+    private javax.swing.JButton btnSalesPerformance1;
     private javax.swing.JButton btnSupplier;
     // End of variables declaration//GEN-END:variables
 }
