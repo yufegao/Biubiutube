@@ -12,9 +12,11 @@ import biz.ctlg.AbstractCatalog;
  * @author royn
  */
 public class Order extends AbstractCatalog<OrderProduct>{
-    private String OrderNumber;
-//    private SalesPerson SoldBy;  TODO
-//    private Customer BoughtBy;
+    private String OrderCode;
+    private OrderProduct OrderProduct;
+    private int Number;
+    private SalesPerson SoldBy;
+    private Customer BoughtBy;
 
    
     
@@ -23,11 +25,47 @@ public class Order extends AbstractCatalog<OrderProduct>{
         return new OrderProduct();
     }
 
-    public String getOrderNumber() {
-        return OrderNumber;
+    public String getOrderCode() {
+        return OrderCode;
     }
 
-    public void setOrderNumber(String OrderNumber) {
-        this.OrderNumber = OrderNumber;
+    public void setOrderCode(String OrderCode) {
+        this.OrderCode = OrderCode;
     }
+
+    public int getNumber() {
+        return Number;
+    }
+
+    public void setNumber(int Number) {
+        this.Number = Number;
+    }
+
+
+
+    public SalesPerson getSoldBy() {
+        return SoldBy;
+    }
+
+    public void setSoldBy(SalesPerson SoldBy) {
+        this.SoldBy = SoldBy;
+    }
+
+    public Customer getBoughtBy() {
+        return BoughtBy;
+    }
+
+    public void setBoughtBy(Customer BoughtBy) {
+        this.BoughtBy = BoughtBy;
+    }
+
+    public OrderProduct getOrderProduct() {
+        return OrderProduct;
+    }
+
+    public void setOrderProduct(OrderProduct OrderProduct) {
+        this.OrderProduct = OrderProduct;
+    }
+    
+    
 }

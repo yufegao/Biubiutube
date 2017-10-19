@@ -10,7 +10,7 @@ package biz;
  * @author royn
  */
 public class OrderProduct {
-//    private OfferProduct offerProduct; TODO
+    private OfferProduct offerProduct;
     private int ActualPrice;
     private int Quantity;
 
