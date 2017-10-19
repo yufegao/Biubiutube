@@ -13,7 +13,6 @@ import biz.Catalog.AbstractCatalog;
  */
 public class Order extends AbstractCatalog<OrderProduct>{
     private String OrderCode;
-    private int Number;
     private SalesPerson SoldBy;
     private Customer BoughtBy;
     private String status = "init";
@@ -31,17 +30,7 @@ public class Order extends AbstractCatalog<OrderProduct>{
     public void setOrderCode(String OrderCode) {
         this.OrderCode = OrderCode;
     }
-
-    public int getNumber() {
-        return Number;
-    }
-
-    public void setNumber(int Number) {
-        this.Number = Number;
-    }
-
-
-
+    
     public SalesPerson getSoldBy() {
         return SoldBy;
     }
@@ -74,12 +63,17 @@ public class Order extends AbstractCatalog<OrderProduct>{
         return totalPrice;
     }
     
-    public double getRevenue() {
-        return 0; // TODO: calc revenue
+    public double getOrderReward() {
+        double reward = 0;
+        for (OrderProduct op: this.elementArrayList){
+            reward += (op.getActualPrice()-op.getOfferProduct().getLowestPrice())*0.05;
+        }
+        return reward;
     }
     
     @Override
     public String toString() {
         return OrderCode;
     }
+    
 }

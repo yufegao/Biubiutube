@@ -33,4 +33,8 @@ public class OrderProduct {
     public double getTotalPrice() {
         return (double) Quantity * ActualPrice;
     }
+
+    public OfferProduct getOfferProduct() {
+        return offerProduct;
+    }
 }

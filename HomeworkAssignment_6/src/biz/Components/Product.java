@@ -15,6 +15,7 @@ public class Product {
     private int FactoryPrice;
     private Supplier supplier;
     private boolean isAvailable;
+    private int stock = 0;
 
     public boolean isIsAvailable() {
         return isAvailable;
@@ -23,8 +24,7 @@ public class Product {
     public void setIsAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
     }
-    private int stock = 0;
-    
+
     public Product(Supplier supplier) {
         this.supplier = supplier;
     }

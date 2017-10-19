@@ -5,17 +5,25 @@
  */
 package UserInterface.Supplier;
 
+import UserInterface.Components.HasTitle;
+import UserInterface.Components.TablePopulatable;
+import biz.Components.Product;
+import biz.Components.ProductCatalog;
+import biz.Components.Supplier;
+import javax.swing.JTable;
+
 /**
  *
  * @author royn
  */
-public class ManageProductJPanel extends javax.swing.JPanel {
-
+public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle, TablePopulatable<Product>{
+    private Supplier supplier;
     /**
      * Creates new form LandingJPanel
      */
-    public ManageProductJPanel() {
+    public ManageProductJPanel(Supplier supplier) {
         initComponents();
+        this.supplier = supplier;
     }
 
     /**
@@ -38,17 +46,17 @@ public class ManageProductJPanel extends javax.swing.JPanel {
 
         tblProduct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Product Name", "Product Number", "Facotry Price"
+                "Product Name", "Product Number", "Facotry Price", "Stock"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -57,7 +65,7 @@ public class ManageProductJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblProduct);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 540, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 640, -1));
 
         btnSearch.setText("Search");
         add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 100, 40));
@@ -81,4 +89,25 @@ public class ManageProductJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblProduct;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String getTitle() {
+        return "View my products";
+    }
+
+    @Override
+    public JTable getTable() {
+        return tblProduct;
+    }
+
+    @Override
+    public Object[] populateRow(Product p) {
+        return new Object[] {p, p.getProductName(), p.getFactoryPrice(), p.getStock()};
+    }
+
+    @Override
+    public void populateTable() {
+        ProductCatalog pc= supplier.getProductCatalog();
+        populateTable(pc.getElementArrayList());
+    }
 }
