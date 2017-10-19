@@ -1,6 +1,6 @@
-package biz;
+package biz.Components;
 
-import biz.ctlg.AbstractCatalog;
+import biz.Catalog.AbstractCatalog;
 
 public class AccountCatalog extends AbstractCatalog<Account> {
 

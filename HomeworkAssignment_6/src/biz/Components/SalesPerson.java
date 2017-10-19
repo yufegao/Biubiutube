@@ -1,4 +1,4 @@
-package biz;
+package biz.Components;
 
 public class SalesPerson extends Account {
     private String firstName;

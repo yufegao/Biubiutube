@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.Boss.Sales;
+package UserInterface.Boss.Market;
 
 /**
  *
  * @author royn
  */
-public class ManageSalesPersonJPanel extends javax.swing.JPanel {
+public class ManageMarket extends javax.swing.JPanel {
 
     /**
-     * Creates new form ManageSalesPersonJPanel
+     * Creates new form ManageMarket
      */
-    public ManageSalesPersonJPanel() {
+    public ManageMarket() {
         initComponents();
     }
 
@@ -34,18 +34,26 @@ public class ManageSalesPersonJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Market Name", "Market Value"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 590, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 

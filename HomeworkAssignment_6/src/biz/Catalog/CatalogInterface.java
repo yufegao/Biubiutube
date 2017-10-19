@@ -1,4 +1,4 @@
-package biz.ctlg;
+package biz.Catalog;
 
 interface CatalogInterface<Element> {
     Element createElement();

@@ -7,9 +7,9 @@ package UserInterface.Login;
 
 import UserInterface.Components.MainJFrame;
 import UserInterface.Components.WorkAreaParent;
-import biz.Account;
-import biz.AccountCatalog;
-import biz.Business;
+import biz.Components.Account;
+import biz.Components.AccountCatalog;
+import biz.Components.Business;
 
 import javax.swing.*;
 

@@ -1,4 +1,4 @@
-package biz;
+package biz.Components;
 
 public class Supplier extends Account {
     protected String name;

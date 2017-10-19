@@ -1,4 +1,4 @@
-package biz.ctlg;
+package biz.Catalog;
 
 import java.util.ArrayList;
 

@@ -5,7 +5,7 @@
  */
 package UserInterface.Components;
 
-import biz.Account;
+import biz.Components.Account;
 
 import java.awt.*;
 import javax.swing.JPanel;

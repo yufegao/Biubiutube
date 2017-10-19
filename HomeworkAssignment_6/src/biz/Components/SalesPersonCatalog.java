@@ -1,6 +1,6 @@
-package biz;
+package biz.Components;
 
-import biz.ctlg.AbstractCatalog;
+import biz.Catalog.AbstractCatalog;
 
 public class SalesPersonCatalog extends AbstractCatalog<SalesPerson> {
     @Override
