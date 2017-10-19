@@ -6,7 +6,7 @@ public class Supplier extends Account {
     private ProductCatalog productCatalog;
 
     public Supplier() {
-        this.productCatalog = new ProductCatalog();
+        this.productCatalog = new ProductCatalog(this);
     }
 
     public String getName() {

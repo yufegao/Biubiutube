@@ -11,14 +11,14 @@ package biz.Components;
  */
 public class OrderProduct {
     private OfferProduct offerProduct;
-    private int ActualPrice;
+    private double ActualPrice;
     private int Quantity;
 
-    public int getActualPrice() {
+    public double getActualPrice() {
         return ActualPrice;
     }
 
-    public void setActualPrice(int ActualPrice) {
+    public void setActualPrice(double ActualPrice) {
         this.ActualPrice = ActualPrice;
     }
 
@@ -29,4 +29,8 @@ public class OrderProduct {
     public void setQuantity(int Quantity) {
         this.Quantity = Quantity;
     } 
+    
+    public double getTotalPrice() {
+        return (double) Quantity * ActualPrice;
+    }
 }

@@ -33,7 +33,7 @@ public class Market extends AbstractCatalog<Customer>{
 
     @Override
     public Customer createElement() {
-        return new Customer();
+        return new Customer(this);
     }
 
     public String getMarketName() {

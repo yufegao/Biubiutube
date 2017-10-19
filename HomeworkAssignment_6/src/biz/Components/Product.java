@@ -13,8 +13,22 @@ public class Product {
     private String ProductName;
     private String ProductNumber;
     private int FactoryPrice;
-    
+    private Supplier supplier;
+    private boolean isAvailable;
 
+    public boolean isIsAvailable() {
+        return isAvailable;
+    }
+
+    public void setIsAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
+    }
+    private int stock = 0;
+    
+    public Product(Supplier supplier) {
+        this.supplier = supplier;
+    }
+    
     public String getProductName() {
         return ProductName;
     }
@@ -38,5 +52,21 @@ public class Product {
     public void setFactoryPrice(int FactoryPrice) {
         this.FactoryPrice = FactoryPrice;
     }
-    
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    @Override
+    public String toString() {
+        return ProductName;
+    }
 }

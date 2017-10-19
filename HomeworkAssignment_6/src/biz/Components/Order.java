@@ -13,11 +13,10 @@ import biz.Catalog.AbstractCatalog;
  */
 public class Order extends AbstractCatalog<OrderProduct>{
     private String OrderCode;
-    private OrderProduct OrderProduct;
     private int Number;
     private SalesPerson SoldBy;
     private Customer BoughtBy;
-
+    private String status = "init";
    
     
     @Override
@@ -59,13 +58,28 @@ public class Order extends AbstractCatalog<OrderProduct>{
         this.BoughtBy = BoughtBy;
     }
 
-    public OrderProduct getOrderProduct() {
-        return OrderProduct;
-    }
-
-    public void setOrderProduct(OrderProduct OrderProduct) {
-        this.OrderProduct = OrderProduct;
+    public void setStatus(String status) {
+        this.status = status;
     }
     
+    public String getStatus() {
+        return status;
+    }
     
+    public double totalPrice() {
+        float totalPrice = 0;
+        for (OrderProduct op: this.elementArrayList) {
+            totalPrice += op.getTotalPrice();
+        }
+        return totalPrice;
+    }
+    
+    public double getRevenue() {
+        return 0; // TODO: calc revenue
+    }
+    
+    @Override
+    public String toString() {
+        return OrderCode;
+    }
 }

@@ -13,14 +13,19 @@ import java.util.ArrayList;
  * @author royn
  */
 public class ProductCatalog extends AbstractCatalog<Product>{
-
-    public ProductCatalog() {
+    private Supplier supplier;
+    
+    public ProductCatalog(Supplier supplier) {
+        this.supplier = supplier;
         elementArrayList = new ArrayList<>();
     }
     
     @Override
     public Product createElement() {
-        return new Product();
+        return new Product(this.supplier);
     }
-    
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
 }

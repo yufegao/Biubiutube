@@ -10,7 +10,6 @@ package biz.Components;
  * @author Administrator
  */
 public class OfferProduct {
-//    private Product product; TODO
     private static int offerId = 0;
     private double highestPrice;
     private double targetPrice;
@@ -22,9 +21,7 @@ public class OfferProduct {
         offerId++;
         id = offerId;
     }
-
     
-
     public double getHighestPrice() {
         return highestPrice;
     }
@@ -59,5 +56,10 @@ public class OfferProduct {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+    
+    @Override
+    public String toString() {
+        return product.toString();
     }
 }

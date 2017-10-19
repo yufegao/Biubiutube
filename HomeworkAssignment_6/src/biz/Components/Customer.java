@@ -15,7 +15,10 @@ public class Customer {
     private String name;
     private int id;
     private Market market;
-//    private Order order;    TODO
+    
+    public Customer(Market market) {
+        this.market = market;
+    }
 
     public String getName() {
         return name;
