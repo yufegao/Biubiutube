@@ -5,6 +5,8 @@
  */
 package biz.Components;
 
+import java.util.ArrayList;
+
 /**
  * Business Singleton
  * @author hezj
@@ -56,5 +58,13 @@ public class Business {
 
     public MarketOfferCatalog getMarketOfferCatalog() {
         return marketOfferCatalog;
+    }
+    
+    public ArrayList<Customer> getAllCustomers() {
+        ArrayList<Customer> result = new ArrayList<>();
+        for (Market m: marketCatalog.getElementArrayList()) {
+            result.addAll(m.getElementArrayList());
+        }
+        return result;
     }
 }

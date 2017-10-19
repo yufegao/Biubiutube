@@ -5,11 +5,17 @@
  */
 package UserInterface.SalesPerson.Customer;
 
+import UserInterface.Components.HasTitle;
+import UserInterface.Components.TablePopulatable;
+import biz.Components.Business;
+import biz.Components.Customer;
+import javax.swing.JTable;
+
 /**
  *
  * @author royn
  */
-public class ManageCustomerJPanel extends javax.swing.JPanel {
+public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle, TablePopulatable<Customer> {
 
     /**
      * Creates new form ManageCustomer
@@ -86,4 +92,24 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblCustomer;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String getTitle() {
+        return "Customer List";
+    }
+
+    @Override
+    public JTable getTable() {
+        return tblCustomer;
+    }
+
+    @Override
+    public Object[] populateRow(Customer c) {
+        return new Object[] {c, c.getId(), c.getMarket()};
+    }
+
+    @Override
+    public void populateTable() {
+        populateTable(Business.getInstance().getAllCustomers());
+    }
 }
