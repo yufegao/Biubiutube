@@ -1,9 +1,13 @@
 package biz;
 
 public class Supplier extends Account {
-    private String name;
+    protected String name;
     private String address;
-    // private ProductCatalog productCatalog;
+    private ProductCatalog productCatalog;
+
+    public Supplier() {
+        this.productCatalog = new ProductCatalog();
+    }
 
     public String getName() {
         return name;
@@ -24,5 +28,9 @@ public class Supplier extends Account {
     @Override
     public String toString() {
         return name;
+    }
+
+    public ProductCatalog getProductCatalog() {
+        return productCatalog;
     }
 }
