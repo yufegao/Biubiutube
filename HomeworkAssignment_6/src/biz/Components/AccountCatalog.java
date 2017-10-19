@@ -19,10 +19,6 @@ public class AccountCatalog extends AbstractCatalog<Account> {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public boolean addAccount(Account account) {
-        return this.getElementArrayList().add(account);
-    }
-
     public Account login(String username, char[] password) throws LoginFailed {
         Account account = findElement(a -> a.getUsername().equals(username));
         if (account == null) {

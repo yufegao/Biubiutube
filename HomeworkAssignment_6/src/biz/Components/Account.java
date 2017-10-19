@@ -5,6 +5,10 @@ public class Account {
     private String password;
     private boolean isActive;
 
+    public Account() {
+        this.isActive = true;
+    }
+    
     public String getUsername() {
         return username;
     }

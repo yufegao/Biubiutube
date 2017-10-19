@@ -63,4 +63,8 @@ public abstract class AbstractCatalog<Element> implements CatalogInterface<Eleme
         }
         return null;
     }
+    
+    public boolean addElement(Element e) {
+        return this.elementArrayList.add(e);
+    }
 }
