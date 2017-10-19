@@ -6,6 +6,7 @@
 package biz.Components;
 
 import biz.Catalog.AbstractCatalog;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,6 +14,10 @@ import biz.Catalog.AbstractCatalog;
  */
 public class ProductCatalog extends AbstractCatalog<Product>{
 
+    public ProductCatalog() {
+        elementArrayList = new ArrayList<>();
+    }
+    
     @Override
     public Product createElement() {
         return new Product();
