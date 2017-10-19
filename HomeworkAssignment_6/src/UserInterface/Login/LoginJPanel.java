@@ -5,8 +5,8 @@
  */
 package UserInterface.Login;
 
-import UserInterface.MainJFrame;
-import UserInterface.WorkAreaParent;
+import UserInterface.Components.MainJFrame;
+import UserInterface.Components.WorkAreaParent;
 import biz.Account;
 import biz.AccountCatalog;
 import biz.Business;
