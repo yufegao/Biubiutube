@@ -5,10 +5,40 @@
  */
 package biz;
 
+import biz.ctlg.AbstractCatalog;
+import java.util.ArrayList;
+
 /**
  *
  * @author Administrator
  */
-public class MarketOffer {
+public class MarketOffer extends AbstractCatalog<OfferProduct>{
+    private ArrayList<OfferProduct> op;
+    private String marketOfferName;
+
+    public MarketOffer() {
+        this.op = new ArrayList<OfferProduct>();
+    }
+    
+    @Override
+    public OfferProduct createElement() {
+        return new OfferProduct();
+    }
+
+    public ArrayList<OfferProduct> getOp() {
+        return op;
+    }
+
+    public void setOp(ArrayList<OfferProduct> op) {
+        this.op = op;
+    }
+
+    public String getMarketOfferName() {
+        return marketOfferName;
+    }
+
+    public void setMarketOfferName(String marketOfferName) {
+        this.marketOfferName = marketOfferName;
+    }
     
 }

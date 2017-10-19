@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/royn/AED_Group%20Assignments/aed_assignments/HomeworkAssignment_6/src/biz/Business.java</file>
-            <file>file:/Users/royn/AED_Group%20Assignments/aed_assignments/HomeworkAssignment_6/src/biz/OrderProduct.java</file>
-            <file>file:/Users/royn/AED_Group%20Assignments/aed_assignments/HomeworkAssignment_6/src/biz/Product.java</file>
-            <file>file:/Users/royn/AED_Group%20Assignments/aed_assignments/HomeworkAssignment_6/src/biz/OrderDIrectory.java</file>
-            <file>file:/Users/royn/AED_Group%20Assignments/aed_assignments/HomeworkAssignment_6/src/biz/Order.java</file>
-            <file>file:/Users/royn/AED_Group%20Assignments/aed_assignments/HomeworkAssignment_6/src/biz/ctlg/AbstractCatalog.java</file>
+            <file>file:/D:/OurGroup/aed_assignments/HomeworkAssignment_6/src/biz/OfferProduct.java</file>
+            <file>file:/D:/OurGroup/aed_assignments/HomeworkAssignment_6/src/biz/Market.java</file>
+            <file>file:/D:/OurGroup/aed_assignments/HomeworkAssignment_6/src/biz/MarketOfferCatalog.java</file>
+            <file>file:/D:/OurGroup/aed_assignments/HomeworkAssignment_6/src/biz/Customer.java</file>
+            <file>file:/D:/OurGroup/aed_assignments/HomeworkAssignment_6/src/biz/ctlg/AbstractCatalog.java</file>
+            <file>file:/D:/OurGroup/aed_assignments/HomeworkAssignment_6/src/biz/MarketOffer.java</file>
+            <file>file:/D:/OurGroup/aed_assignments/HomeworkAssignment_6/src/biz/MarketCatalog.java</file>
         </group>
     </open-files>
 </project-private>

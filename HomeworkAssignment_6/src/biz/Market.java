@@ -5,13 +5,14 @@
  */
 package biz;
 
+import biz.ctlg.AbstractCatalog;
 import java.util.ArrayList;
 
 /**
  *
  * @author Administrator
  */
-public class Market {
+public class Market extends AbstractCatalog<Customer>{
     private ArrayList<Customer> customer;
     private String marketName;
     private MarketOffer marketOffer;
@@ -19,7 +20,10 @@ public class Market {
     public Market() {
         this.customer = new ArrayList<Customer>();
     }
-
+    @Override
+    public Customer createElement() {
+        return new Customer();
+    }
     public ArrayList<Customer> getCustomer() {
         return customer;
     }
@@ -35,6 +39,8 @@ public class Market {
     public void setMarketName(String marketName) {
         this.marketName = marketName;
     }
+
+
     
     
 }
