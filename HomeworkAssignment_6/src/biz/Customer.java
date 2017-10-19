@@ -13,9 +13,7 @@ import java.util.Date;
  */
 public class Customer {
     private String name;
-    private String email;
-    private String phoneNumber;
-    private Date dob;
+    private int id;
     private Market market;
 //    private Order order;    TODO
 
@@ -27,28 +25,12 @@ public class Customer {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public int getId() {
+        return id;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Market getMarket() {

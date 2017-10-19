@@ -36,11 +36,30 @@ public class Market extends AbstractCatalog<Customer>{
         return marketName;
     }
 
+    public MarketOffer getMarketOffer() {
+        return marketOffer;
+    }
+
+    public void setMarketOffer(MarketOffer marketOffer) {
+        this.marketOffer = marketOffer;
+    }
+
     public void setMarketName(String marketName) {
         this.marketName = marketName;
     }
-
-
     
+    public Customer findCustomer(int i) throws Failed{
+        Customer cust = findElement(c -> c.getId() == i);
+        if(cust == null){
+            throw new Failed("Customer not exist");
+        }
+        return cust;
+    }
     
+    public class Failed extends Exception{
+        Failed(String message){
+        super(message);
+        }
+    }
+
 }
