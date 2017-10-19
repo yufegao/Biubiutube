@@ -5,17 +5,27 @@
  */
 package UserInterface.Login;
 
+import UserInterface.MainJFrame;
+import UserInterface.WorkAreaParent;
+import biz.Account;
+import biz.AccountCatalog;
+import biz.Business;
+
+import javax.swing.*;
+
 /**
  *
  * @author royn
  */
 public class LoginJPanel extends javax.swing.JPanel {
+    MainJFrame mainJFrame;
 
     /**
      * Creates new form LoginJPanel
      */
-    public LoginJPanel() {
+    public LoginJPanel(MainJFrame mainJFrame) {
         initComponents();
+        this.mainJFrame = mainJFrame;
     }
 
     /**
@@ -44,8 +54,28 @@ public class LoginJPanel extends javax.swing.JPanel {
         add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 200, -1));
 
         btnLogIn.setText("Log in");
+        btnLogIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogInActionPerformed(evt);
+            }
+        });
         add(btnLogIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, 180, 40));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
+        String username = txtAccount.getText();
+        char[] password = txtPassword.getPassword();
+        
+        Account account;
+        try {
+            account = Business.getInstance().getAccountCatalog().login(username, password);
+        } catch (AccountCatalog.LoginFailed loginFailed) {
+            JOptionPane.showMessageDialog(this, loginFailed.getMessage(), "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        this.mainJFrame.pushComponent(new WorkAreaParent(mainJFrame, account));
+    }//GEN-LAST:event_btnLogInActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

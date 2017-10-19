@@ -5,6 +5,8 @@
  */
 package UserInterface;
 
+import biz.Account;
+
 import java.awt.*;
 import javax.swing.JPanel;
 
@@ -15,13 +17,15 @@ import javax.swing.JPanel;
 public class WorkAreaParent extends javax.swing.JPanel implements ParentUI {
     private MainJFrame mainJFrame;
     private HeaderJPanel header;
+    private Account account;
 
     /**
      * Creates new form WorkAreaParent
      */
-    public WorkAreaParent(MainJFrame mainJFrame) {
+    public WorkAreaParent(MainJFrame mainJFrame, Account account) {
         initComponents();
         this.mainJFrame = mainJFrame;
+        this.account = account;
 
         this.add(new FooterJPanel(this), BorderLayout.PAGE_END);
 
