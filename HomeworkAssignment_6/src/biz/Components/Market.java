@@ -13,23 +13,27 @@ import java.util.ArrayList;
  * @author Administrator
  */
 public class Market extends AbstractCatalog<Customer>{
-    private ArrayList<Customer> customer;
     private String marketName;
     private MarketOffer marketOffer;
+    private double marketValue = 1;  // (0, 2]
 
     public Market() {
-        this.customer = new ArrayList<Customer>();
+        this.elementArrayList = new ArrayList<Customer>();
+        this.marketOffer = new MarketOffer(this);
+        Business.getInstance().getMarketOfferCatalog().addElement(this.marketOffer);
     }
+
+    public double getMarketValue() {
+        return marketValue;
+    }
+
+    public void setMarketValue(double marketValue) {
+        this.marketValue = marketValue;
+    }
+
     @Override
     public Customer createElement() {
         return new Customer();
-    }
-    public ArrayList<Customer> getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(ArrayList<Customer> customer) {
-        this.customer = customer;
     }
 
     public String getMarketName() {
@@ -47,7 +51,7 @@ public class Market extends AbstractCatalog<Customer>{
     public void setMarketName(String marketName) {
         this.marketName = marketName;
     }
-    
+
     public Customer findCustomer(int i) throws Failed{
         Customer cust = findElement(c -> c.getId() == i);
         if(cust == null){

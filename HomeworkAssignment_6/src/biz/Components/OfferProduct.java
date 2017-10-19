@@ -12,10 +12,11 @@ package biz.Components;
 public class OfferProduct {
 //    private Product product; TODO
     private static int offerId = 0;
-    private int highestPrice;
-    private int targetPrice;
-    private int lowestPrice;
+    private double highestPrice;
+    private double targetPrice;
+    private double lowestPrice;
     private int id;
+    private Product product;
 
     public OfferProduct() {
         offerId++;
@@ -24,33 +25,39 @@ public class OfferProduct {
 
     
 
-    public int getHighestPrice() {
+    public double getHighestPrice() {
         return highestPrice;
     }
 
-    public void setHighestPrice(int highestPrice) {
+    public void setHighestPrice(double highestPrice) {
         this.highestPrice = highestPrice;
     }
 
-    public int getTargetPrice() {
+    public double getTargetPrice() {
         return targetPrice;
     }
 
-    public void setTargetPrice(int targetPrice) {
+    public void setTargetPrice(double targetPrice) {
         this.targetPrice = targetPrice;
     }
 
-    public int getLowestPrice() {
+    public double getLowestPrice() {
         return lowestPrice;
     }
 
-    public void setLowestPrice(int lowestPrice) {
+    public void setLowestPrice(double lowestPrice) {
         this.lowestPrice = lowestPrice;
     }
 
     public int getId() {
         return id;
     }
-    
-    
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 }

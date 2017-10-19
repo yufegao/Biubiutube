@@ -13,34 +13,21 @@ import java.util.ArrayList;
  * @author Administrator
  */
 public class MarketOffer extends AbstractCatalog<OfferProduct>{
-    private ArrayList<OfferProduct> op;
-    private String marketOfferName;
-
-    public MarketOffer() {
-        this.op = new ArrayList<OfferProduct>();
+    public MarketOffer(Market market) {
+        elementArrayList = new ArrayList<>();
+        for (Product p: Business.getInstance().getAllProducts()) {
+            // init each offerProduct by marketValue
+            OfferProduct op = this.newElement();
+            op.setProduct(p);
+            double val = (1 + market.getMarketValue()) * p.getFactoryPrice();
+            op.setHighestPrice(val * 5);
+            op.setTargetPrice(val * 1.5);
+            op.setLowestPrice(val * 1);
+        }
     }
     
     @Override
     public OfferProduct createElement() {
         return new OfferProduct();
     }
-    
-    
-    
-    public ArrayList<OfferProduct> getOp() {
-        return op;
-    }
-
-    public void setOp(ArrayList<OfferProduct> op) {
-        this.op = op;
-    }
-
-    public String getMarketOfferName() {
-        return marketOfferName;
-    }
-
-    public void setMarketOfferName(String marketOfferName) {
-        this.marketOfferName = marketOfferName;
-    }
-    
 }

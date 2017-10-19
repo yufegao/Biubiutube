@@ -37,6 +37,17 @@ public class Business {
         }
         return business;
     }
+    
+    public static Business configureBusiness() {
+        Business business = getInstance();
+        Boss b1 = business.getBossCatalog().newElement();
+        b1.setUsername("Boss1");
+        b1.setPassword("1");
+        
+        Supplier s1 = business.getSupplierCatalog().newElement();
+        
+        return business;
+    }
 
     public AccountCatalog getAccountCatalog() {
         return accountCatalog;
@@ -70,6 +81,14 @@ public class Business {
         ArrayList<Customer> result = new ArrayList<>();
         for (Market m: marketCatalog.getElementArrayList()) {
             result.addAll(m.getElementArrayList());
+        }
+        return result;
+    }
+    
+    public ArrayList<Product> getAllProducts() {
+        ArrayList<Product> result = new ArrayList<>();
+        for (Supplier s: supplierCatalog.getElementArrayList()) {
+            result.addAll(s.getProductCatalog().getElementArrayList());
         }
         return result;
     }

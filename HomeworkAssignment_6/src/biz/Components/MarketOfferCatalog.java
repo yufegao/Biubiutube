@@ -13,20 +13,12 @@ import java.util.ArrayList;
  * @author Administrator
  */
 public class MarketOfferCatalog extends AbstractCatalog<MarketOffer> {
-    private ArrayList<MarketOffer> mo;
     private String catalogName;
-    @Override
-    public MarketOffer createElement() {
-        return new MarketOffer();
+    
+    public MarketOfferCatalog() {
+        elementArrayList = new ArrayList<>();
     }
 
-    public ArrayList<MarketOffer> getMo() {
-        return mo;
-    }
-
-    public void setMo(ArrayList<MarketOffer> mo) {
-        this.mo = mo;
-    }
 
     public String getCatalogName() {
         return catalogName;
@@ -34,6 +26,11 @@ public class MarketOfferCatalog extends AbstractCatalog<MarketOffer> {
 
     public void setCatalogName(String catalogName) {
         this.catalogName = catalogName;
+    }
+
+    @Override
+    public MarketOffer createElement() {
+        throw new UnsupportedOperationException("MarketOffer should be inited by each Market and add to this "); 
     }
     
 }
