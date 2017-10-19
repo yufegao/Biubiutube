@@ -5,11 +5,17 @@
  */
 package UserInterface.Market;
 
+import UserInterface.Components.HasTitle;
+import UserInterface.Components.TablePopulatable;
+import biz.Components.Business;
+import biz.Components.Market;
+import javax.swing.JTable;
+
 /**
  *
  * @author Administrator
  */
-public class MarketJPanel extends javax.swing.JPanel {
+public class MarketJPanel extends javax.swing.JPanel implements TablePopulatable<Market>, HasTitle {
 
     /**
      * Creates new form MarketJPanel
@@ -102,4 +108,24 @@ public class MarketJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public JTable getTable() {
+        return jTable1;
+    }
+
+    @Override
+    public Object[] populateRow(Market element) {
+        return new Object[] {element};
+    }
+
+    @Override
+    public void populateTable() {
+        populateTable(Business.getInstance().getMarketCatalog().getElementArrayList());
+    }
+
+    @Override
+    public String getTitle() {
+        return "Market List";
+    }
 }
