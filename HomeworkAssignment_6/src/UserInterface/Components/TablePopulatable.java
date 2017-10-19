@@ -5,6 +5,7 @@
  */
 package UserInterface.Components;
 
+import biz.Catalog.AbstractCatalog;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -43,4 +44,18 @@ public interface TablePopulatable<Element> {
     }
 
     void populateTable();
+    
+    default boolean removeSelected(AbstractCatalog<Element> catalog) {
+        Element selected = getSelected();
+        if (selected == null) {
+            return false;
+        }
+        
+        int result = JOptionPane.showConfirmDialog((Component) this, "Confirm delete?", "Warning", JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.NO_OPTION) {
+            return false;
+        }
+        
+        return catalog.removeElement(selected);
+    }
 }
