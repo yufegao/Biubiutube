@@ -5,17 +5,21 @@
  */
 package UserInterface;
 
+import javax.swing.*;
+
 /**
  *
  * @author royn
  */
-public class MainJFrame extends javax.swing.JFrame {
+public class MainJFrame extends javax.swing.JFrame implements ParentUI {
 
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
+        // TODO
+        // pushComponent(new LoginJPanel(this));
     }
 
     /**
@@ -27,8 +31,13 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        containerJPanel = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.CardLayout());
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
+
+        containerJPanel.setLayout(new java.awt.CardLayout());
+        getContentPane().add(containerJPanel);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -68,6 +77,12 @@ public class MainJFrame extends javax.swing.JFrame {
         });
     }
 
+    @Override
+    public JPanel getContainerJPanel() {
+        return containerJPanel;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel containerJPanel;
     // End of variables declaration//GEN-END:variables
 }

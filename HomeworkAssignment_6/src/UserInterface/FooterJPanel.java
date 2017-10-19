@@ -10,12 +10,14 @@ package UserInterface;
  * @author hezj
  */
 public class FooterJPanel extends javax.swing.JPanel {
+    private WorkAreaParent parent;
 
     /**
      * Creates new form FooterJPanel
      */
-    public FooterJPanel() {
+    public FooterJPanel(WorkAreaParent parent) {
         initComponents();
+        this.parent = parent;
     }
 
     /**
@@ -69,11 +71,11 @@ public class FooterJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        // TODO add your handling code here:
+        this.parent.popComponent();
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        // TODO add your handling code here:
+        this.parent.popAllComponents();
     }//GEN-LAST:event_logoutButtonActionPerformed
 
 
