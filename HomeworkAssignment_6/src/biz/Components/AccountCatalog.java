@@ -1,9 +1,14 @@
 package biz.Components;
 
 import biz.Catalog.AbstractCatalog;
+import java.util.ArrayList;
 
 public class AccountCatalog extends AbstractCatalog<Account> {
 
+    public AccountCatalog() {
+        elementArrayList = new ArrayList<>();
+    }
+    
     @Override
     public Account createElement() {
         throw new UnsupportedOperationException("Not supported yet.");

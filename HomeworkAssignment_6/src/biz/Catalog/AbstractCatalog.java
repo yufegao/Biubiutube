@@ -17,6 +17,10 @@ import java.util.ArrayList;
  }
 
  public PersonCatalog extends AbstractCatalog<Person> {
+     public PersonCatalog() {
+         this.elementArrayList = new ArrayList<>();
+     }
+ 
      @Override
      public Person createElement() {
         return new Person("hezj");
@@ -24,7 +28,7 @@ import java.util.ArrayList;
  }
  */
 public abstract class AbstractCatalog<Element> implements CatalogInterface<Element> {
-    ArrayList<Element> elementArrayList;
+    public ArrayList<Element> elementArrayList;
 
     public Element newElement() {
         Element e = createElement();

@@ -1,6 +1,6 @@
 package biz.Components;
 
-public class Boss {
+public class Boss extends Account {
     private String name;
 
     @Override
