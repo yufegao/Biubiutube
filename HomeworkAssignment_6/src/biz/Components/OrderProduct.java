@@ -33,4 +33,12 @@ public class OrderProduct {
     public double getTotalPrice() {
         return (double) Quantity * ActualPrice;
     }
+
+    public OfferProduct getOfferProduct() {
+        return offerProduct;
+    }
+
+    public void setOfferProduct(OfferProduct offerProduct) {
+        this.offerProduct = offerProduct;
+    }
 }
