@@ -41,4 +41,13 @@ public class OrderProduct {
     public void setOfferProduct(OfferProduct offerProduct) {
         this.offerProduct = offerProduct;
     }
+    
+    public double getRevenue() {
+        return 0;  // TODO
+    }
+    
+    @Override
+    public String toString() {
+        return offerProduct.getProduct().toString();
+    }
 }

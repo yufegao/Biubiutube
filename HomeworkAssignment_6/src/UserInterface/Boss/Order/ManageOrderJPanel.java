@@ -5,19 +5,26 @@
  */
 package UserInterface.Boss.Order;
 
-import UserInterface.SalesPerson.Order.*;
+import UserInterface.Components.HasTitle;
+import UserInterface.Components.ParentUI;
+import UserInterface.Components.TablePopulatable;
+import biz.Components.Business;
+import biz.Components.Order;
+import javax.swing.JTable;
 
 /**
  *
  * @author royn
  */
-public class ManageOrderJPanel extends javax.swing.JPanel {
-
+public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, TablePopulatable<Order> {
+    private ParentUI parent;
+    
     /**
      * Creates new form ManageOrderJPanel
      */
-    public ManageOrderJPanel() {
+    public ManageOrderJPanel(ParentUI parent) {
         initComponents();
+        this.parent = parent;
     }
 
     /**
@@ -31,23 +38,21 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblOrder = new javax.swing.JTable();
-        btnSearchCustomer = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Order Code", "Order Product", "Actual Price", "Number", "Bought By", "Sold By"
+                "ID", "Bought By", "Sold By", "Total Price", "Total Revenue"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -56,16 +61,68 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblOrder);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 740, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 740, -1));
 
-        btnSearchCustomer.setText("Search");
-        add(btnSearchCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 100, 40));
+        btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
+        add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 70, 100, 40));
+
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, 100, 40));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        Order order = getSelected();
+        if (order == null) {
+            return;
+        }
+        parent.pushComponent(new OrderDetailJPanel(order));
+    }//GEN-LAST:event_btnViewActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSearchCustomer;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnView;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblOrder;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String getTitle() {
+        return "Manage All Orders";
+    }
+
+    @Override
+    public JTable getTable() {
+        return tblOrder;
+    }
+
+    @Override
+    public Object[] populateRow(Order order) {
+        return new Object[] {
+            order,
+            order.getBoughtBy(),
+            order.getSoldBy(),
+            order.totalPrice(),
+            order.getRevenue()
+        };
+    }
+
+    @Override
+    public void populateTable() {
+        populateTable(Business.getInstance().getOrderDirectory().getElementArrayList());
+    }
 }
