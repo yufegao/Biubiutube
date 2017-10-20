@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.Market;
+package UserInterface.Boss.Market;
 
 import UserInterface.Components.HasTitle;
 import UserInterface.Components.ParentUI;
@@ -106,6 +106,13 @@ public class MarketJPanel extends javax.swing.JPanel implements TablePopulatable
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
+        Market selected = getSelected();
+        if(selected == null){
+            JOptionPane.showMessageDialog(null, "Please select any row");
+            return;
+        }
+        UpdateMarketJPanel um = new UpdateMarketJPanel(parent,selected);
+        parent.pushComponent(um);
     }//GEN-LAST:event_updateActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed

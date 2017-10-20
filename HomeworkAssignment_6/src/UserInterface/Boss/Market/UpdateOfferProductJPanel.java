@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.Market;
+package UserInterface.Boss.Market;
 
 import UserInterface.Components.HasTitle;
 import UserInterface.Components.ParentUI;

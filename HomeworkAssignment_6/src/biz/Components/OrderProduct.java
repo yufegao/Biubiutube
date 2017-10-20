@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -37,5 +36,9 @@ public class OrderProduct {
 
     public OfferProduct getOfferProduct() {
         return offerProduct;
+    }
+
+    public void setOfferProduct(OfferProduct offerProduct) {
+        this.offerProduct = offerProduct;
     }
 }

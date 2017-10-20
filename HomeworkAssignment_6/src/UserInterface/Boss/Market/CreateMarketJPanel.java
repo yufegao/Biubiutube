@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.Market;
+package UserInterface.Boss.Market;
 import UserInterface.Components.HasTitle;
 import UserInterface.Components.ParentUI;
 import biz.Components.Business;
@@ -60,7 +60,6 @@ public class CreateMarketJPanel extends javax.swing.JPanel implements HasTitle {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Market market = new Market();
         double value;
         try{
             value = Double.parseDouble(valueTF.getText());
@@ -68,6 +67,7 @@ public class CreateMarketJPanel extends javax.swing.JPanel implements HasTitle {
             JOptionPane.showMessageDialog(null,"vlue error");
             return;
         }
+        Market market = Business.getInstance().getMarketCatalog().newElement();
         market.setMarketName(nameTF.getText());
         market.setMarketValue(value);
         

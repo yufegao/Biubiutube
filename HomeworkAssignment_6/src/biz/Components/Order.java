@@ -12,25 +12,22 @@ import biz.Catalog.AbstractCatalog;
  * @author royn
  */
 public class Order extends AbstractCatalog<OrderProduct>{
-    private String OrderCode;
+    private static int orderId = 0;
+    private int id;
     private SalesPerson SoldBy;
     private Customer BoughtBy;
     private String status = "init";
-   
-    
+
+    public Order () {
+        orderId++;
+        id = orderId;
+    }
+
     @Override
     public OrderProduct createElement() {
         return new OrderProduct();
     }
 
-    public String getOrderCode() {
-        return OrderCode;
-    }
-
-    public void setOrderCode(String OrderCode) {
-        this.OrderCode = OrderCode;
-    }
-    
     public SalesPerson getSoldBy() {
         return SoldBy;
     }
@@ -50,11 +47,11 @@ public class Order extends AbstractCatalog<OrderProduct>{
     public void setStatus(String status) {
         this.status = status;
     }
-    
+
     public String getStatus() {
         return status;
     }
-    
+
     public double totalPrice() {
         float totalPrice = 0;
         for (OrderProduct op: this.elementArrayList) {
@@ -62,7 +59,7 @@ public class Order extends AbstractCatalog<OrderProduct>{
         }
         return totalPrice;
     }
-    
+
     public double getOrderReward() {
         double reward = 0;
         for (OrderProduct op: this.elementArrayList){
@@ -70,7 +67,7 @@ public class Order extends AbstractCatalog<OrderProduct>{
         }
         return reward;
     }
-    
+
     public double getRevenue(){
         double revenue = 0;
         for (OrderProduct op: this.elementArrayList){
@@ -78,10 +75,14 @@ public class Order extends AbstractCatalog<OrderProduct>{
         }
         return revenue;
     }
-    
+
     @Override
     public String toString() {
-        return OrderCode;
+        return Integer.toString(id);
     }
-    
+
+    public int getId() {
+        return id;
+    }
+
 }
