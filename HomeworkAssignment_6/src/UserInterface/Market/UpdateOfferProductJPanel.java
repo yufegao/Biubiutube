@@ -11,6 +11,7 @@ import biz.Components.Business;
 import biz.Components.Market;
 import biz.Components.MarketOffer;
 import biz.Components.OfferProduct;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,14 +27,8 @@ public class UpdateOfferProductJPanel extends javax.swing.JPanel implements HasT
         initComponents();
         this.parent = pa;
         this.offerProduct = op;
-        populateCombo();
     }
-    public void populateCombo(){
-        marketOfferCombo.removeAllItems();
-        for(MarketOffer mo : Business.getInstance().getMarketOfferCatalog().getElementArrayList()){
-            marketOfferCombo.addItem(mo);
-        }
-    }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,23 +38,18 @@ public class UpdateOfferProductJPanel extends javax.swing.JPanel implements HasT
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nameTF = new javax.swing.JTextField();
+        lowestTF = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        marketOfferCombo = new javax.swing.JComboBox();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        nameTF1 = new javax.swing.JTextField();
+        targetTF = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        nameTF2 = new javax.swing.JTextField();
+        highestTF = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        nameTF3 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        nameTF.setText("jTextField1");
-        add(nameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 170, -1));
+        lowestTF.setText(" ");
+        add(lowestTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 170, -1));
 
         jButton2.setText("Save");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -67,58 +57,50 @@ public class UpdateOfferProductJPanel extends javax.swing.JPanel implements HasT
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, -1, -1));
-
-        jButton3.setText("<<Back");
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, -1, -1));
-
-        marketOfferCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(marketOfferCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
-
-        jLabel2.setText("Market Offer:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, 20));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, -1, -1));
 
         jLabel3.setText("Lowset Price");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, -1, 20));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, -1, 20));
 
-        nameTF1.setText("jTextField1");
-        add(nameTF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 170, -1));
+        targetTF.setText(" ");
+        add(targetTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 170, -1));
 
         jLabel4.setText("Target Price");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, 20));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, -1, 20));
 
-        nameTF2.setText("jTextField1");
-        add(nameTF2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 170, -1));
+        highestTF.setText(" ");
+        add(highestTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 170, -1));
 
         jLabel5.setText("Highest Price");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, -1, 20));
-
-        nameTF3.setText("jTextField1");
-        add(nameTF3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 170, -1));
-
-        jLabel6.setText("Product Name");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, 20));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, -1, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        double low,target,highest;
+        try{
+            low = Double.parseDouble(lowestTF.getText());
+            target = Double.parseDouble(targetTF.getText());
+            highest = Double.parseDouble(highestTF.getText());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Please input data correctly");
+            return;
+        }
+        offerProduct.setTargetPrice(target);
+        offerProduct.setHighestPrice(highest);
+        offerProduct.setLowestPrice(low);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField highestTF;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JComboBox marketOfferCombo;
-    private javax.swing.JTextField nameTF;
-    private javax.swing.JTextField nameTF1;
-    private javax.swing.JTextField nameTF2;
-    private javax.swing.JTextField nameTF3;
+    private javax.swing.JTextField lowestTF;
+    private javax.swing.JTextField targetTF;
     // End of variables declaration//GEN-END:variables
 
     @Override

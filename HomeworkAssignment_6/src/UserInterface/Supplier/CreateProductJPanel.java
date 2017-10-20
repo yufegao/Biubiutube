@@ -9,12 +9,12 @@ package UserInterface.Supplier;
  *
  * @author royn
  */
-public class UpdateProduct extends javax.swing.JPanel {
+public class CreateProductJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form CreateProduct
      */
-    public UpdateProduct() {
+    public CreateProductJPanel() {
         initComponents();
     }
 
