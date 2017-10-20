@@ -37,7 +37,7 @@ public class WorkAreaParent extends javax.swing.JPanel implements ParentUI {
         this.add(header, BorderLayout.PAGE_START);
         
         if (account instanceof Boss) {
-            this.pushComponent(new UserInterface.Boss.LandingJPanel(this));
+            this.pushComponent(new UserInterface.Boss.LandingJPanel(this, (Boss) account));
         } else if (account instanceof Supplier) {
             this.pushComponent(new UserInterface.Supplier.ManageProductJPanel(this, (Supplier) account));
         } else if (account instanceof SalesPerson) {

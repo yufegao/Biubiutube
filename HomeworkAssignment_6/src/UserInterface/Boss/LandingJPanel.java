@@ -5,21 +5,26 @@
  */
 package UserInterface.Boss;
 
+import UserInterface.Boss.Account.AccountList;
+import UserInterface.Components.HasTitle;
 import UserInterface.Components.ParentUI;
+import biz.Components.Boss;
 
 /**
  *
  * @author royn
  */
-public class LandingJPanel extends javax.swing.JPanel {
+public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
     private ParentUI parentUI;
+    private Boss boss;
     
     /**
      * Creates new form NewJPanel
      */
-    public LandingJPanel(ParentUI parentUI) {
+    public LandingJPanel(ParentUI parentUI, Boss boss) {
         initComponents();
         this.parentUI = parentUI;
+        this.boss = boss;
     }
 
     /**
@@ -42,6 +47,11 @@ public class LandingJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnAccountCatalog.setText("Account Catalog");
+        btnAccountCatalog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAccountCatalogActionPerformed(evt);
+            }
+        });
         add(btnAccountCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 230, 70));
 
         btnOrderCatalog.setText("Order Catalog");
@@ -63,6 +73,10 @@ public class LandingJPanel extends javax.swing.JPanel {
         add(btnSalesPerformance1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, 230, 70));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAccountCatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountCatalogActionPerformed
+        this.parentUI.pushComponent(new AccountList(parentUI));
+    }//GEN-LAST:event_btnAccountCatalogActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnProductCatalog;
@@ -73,4 +87,9 @@ public class LandingJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnSalesPerformance1;
     private javax.swing.JButton btnSupplier;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String getTitle() {
+        return String.format("Hello, %s", boss);
+    }
 }

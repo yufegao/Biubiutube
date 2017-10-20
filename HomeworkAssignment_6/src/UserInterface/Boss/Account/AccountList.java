@@ -29,6 +29,7 @@ public class AccountList extends javax.swing.JPanel implements HasTitle, TablePo
     public AccountList(ParentUI parent) {
         initComponents();
         this.parent = parent;
+        populateTable();
     }
 
     /**
@@ -50,11 +51,11 @@ public class AccountList extends javax.swing.JPanel implements HasTitle, TablePo
 
             },
             new String [] {
-                "Username", "Role"
+                "Name", "Username", "Role"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -121,9 +122,10 @@ public class AccountList extends javax.swing.JPanel implements HasTitle, TablePo
         }
         if (!Business.getInstance().getAccountCatalog().removeAccount(selected)) {
             JOptionPane.showMessageDialog(this, "Cannot Remove this account.", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, "Removed");
+            return;
         }
+        populateTable();
+        JOptionPane.showMessageDialog(this, "Removed");
     }//GEN-LAST:event_removeButtonActionPerformed
 
 
@@ -156,7 +158,7 @@ public class AccountList extends javax.swing.JPanel implements HasTitle, TablePo
         } else {
             role = "Unknown Role";
         }
-        return new Object[] {element, role};
+        return new Object[] {element, element.getUsername(), role};
     }
 
     @Override

@@ -89,7 +89,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
         if (order == null) {
             return;
         }
-        parent.pushComponent(new OrderDetailJPanel(order));
+        parent.pushComponent(new OrderDetailJPanel(parent, order));
     }//GEN-LAST:event_btnViewActionPerformed
 
 

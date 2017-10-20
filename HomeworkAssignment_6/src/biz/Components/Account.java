@@ -18,7 +18,7 @@ public class Account {
     }
 
     public boolean checkPassword(String password) {
-        return password.equals(HashHelper.generateHash(password));
+        return this.password.equals(HashHelper.generateHash(password));
     }
 
     public void setPassword(String password) {
@@ -31,5 +31,10 @@ public class Account {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+    
+    @Override
+    public String toString() {
+        return username;
     }
 }

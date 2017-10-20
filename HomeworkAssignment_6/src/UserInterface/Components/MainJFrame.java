@@ -5,6 +5,7 @@
  */
 package UserInterface.Components;
 
+import UserInterface.Login.LoginJPanel;
 import javax.swing.*;
 
 /**
@@ -18,8 +19,7 @@ public class MainJFrame extends javax.swing.JFrame implements ParentUI {
      */
     public MainJFrame() {
         initComponents();
-        // TODO
-        // pushComponent(new LoginJPanel(this));
+        pushComponent(new LoginJPanel(this));
     }
 
     /**
@@ -34,6 +34,10 @@ public class MainJFrame extends javax.swing.JFrame implements ParentUI {
         containerJPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(900, 683));
+        setMinimumSize(new java.awt.Dimension(900, 683));
+        setPreferredSize(new java.awt.Dimension(900, 683));
+        setSize(new java.awt.Dimension(900, 683));
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         containerJPanel.setLayout(new java.awt.CardLayout());
@@ -81,7 +85,12 @@ public class MainJFrame extends javax.swing.JFrame implements ParentUI {
     public JPanel getContainerJPanel() {
         return containerJPanel;
     }
-
+    
+    @Override 
+    public void allComponentsPoped() {
+        pushComponent(new LoginJPanel(this));
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel containerJPanel;
     // End of variables declaration//GEN-END:variables
