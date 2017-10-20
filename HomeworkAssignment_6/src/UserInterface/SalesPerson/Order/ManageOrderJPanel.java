@@ -108,8 +108,8 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
-        String orderCode = null;
-        JOptionPane.showInputDialog(null, "Please input the code of order you want to find", orderCode);
+        int orderCode = 0;
+        orderCode = Integer.parseInt(JOptionPane.showInputDialog(null, "", "warning", orderCode));
         ArrayList<Order> orderList = Business.getInstance().getOrderDirectory().findElements(o -> o.getOrderCode().equals(orderCode));
         populateTable(orderList);
     }//GEN-LAST:event_btnSearchActionPerformed

@@ -6,10 +6,14 @@
 package UserInterface.Supplier;
 
 import UserInterface.Components.HasTitle;
+import UserInterface.Components.ParentUI;
 import UserInterface.Components.TablePopulatable;
+import biz.Components.Business;
 import biz.Components.Product;
 import biz.Components.ProductCatalog;
 import biz.Components.Supplier;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -18,12 +22,15 @@ import javax.swing.JTable;
  */
 public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle, TablePopulatable<Product>{
     private Supplier supplier;
+    private ParentUI parent;
+    
     /**
      * Creates new form LandingJPanel
      */
-    public ManageProductJPanel(Supplier supplier) {
+    public ManageProductJPanel(ParentUI parent, Supplier supplier) {
         initComponents();
         this.supplier = supplier;
+        this.parent = parent;
     }
 
     /**
@@ -68,17 +75,71 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 640, -1));
 
         btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
         add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 100, 40));
 
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
         add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 430, 100, 40));
 
         btnDeleteCustomer.setText("Delete");
+        btnDeleteCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteCustomerActionPerformed(evt);
+            }
+        });
         add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 530, 100, 40));
 
         btnAdd.setText("Add Product");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 480, 100, 40));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        this.parent.pushComponent(new CreateProductJPanel());
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCustomerActionPerformed
+        // TODO add your handling code here:
+        Product selectedProduct = getSelected();
+        if (selectedProduct == null) {
+            return;
+        }
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Delete selected Order?", "Warning", dialogButton);
+        if(dialogResult == JOptionPane.YES_OPTION){
+            supplier.getProductCatalog().removeElement(selectedProduct);
+        }
+    }//GEN-LAST:event_btnDeleteCustomerActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        Product selectedProduct = getSelected();
+        if (selectedProduct == null) {
+            return;
+        }else {
+            this.parent.pushComponent(new UpdateProductJPanel(selectedProduct));
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        final String productName = JOptionPane.showInputDialog(null, "Please input the name of Product you want to find");
+        ArrayList<Product> productList = supplier.getProductCatalog().findElements(p -> p.getProductName().equals(productName));
+        populateTable(productList);
+    }//GEN-LAST:event_btnSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -108,6 +169,6 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
     @Override
     public void populateTable() {
         ProductCatalog pc= supplier.getProductCatalog();
-        populateTable(pc.getElementArrayList());
+        populateTable(pc.elementArrayList);
     }
 }
