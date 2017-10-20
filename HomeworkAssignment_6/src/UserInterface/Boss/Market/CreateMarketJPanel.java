@@ -64,7 +64,11 @@ public class CreateMarketJPanel extends javax.swing.JPanel implements HasTitle {
         try{
             value = Double.parseDouble(valueTF.getText());
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"vlue error");
+            JOptionPane.showMessageDialog(null,"Please input value correctly");
+            return;
+        }
+        if(nameTF.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Please input market name correctly");
             return;
         }
         Market market = Business.getInstance().getMarketCatalog().newElement();

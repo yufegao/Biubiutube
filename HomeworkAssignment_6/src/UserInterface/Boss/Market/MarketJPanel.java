@@ -108,7 +108,6 @@ public class MarketJPanel extends javax.swing.JPanel implements TablePopulatable
         // TODO add your handling code here:
         Market selected = getSelected();
         if(selected == null){
-            JOptionPane.showMessageDialog(null, "Please select any row");
             return;
         }
         UpdateMarketJPanel um = new UpdateMarketJPanel(parent,selected);
@@ -119,7 +118,6 @@ public class MarketJPanel extends javax.swing.JPanel implements TablePopulatable
         // TODO add your handling code here:
         Market select = getSelected();
         if(select == null){
-            JOptionPane.showMessageDialog(null,"Please select any row!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         if(select.getElementArrayList().size() > 0){

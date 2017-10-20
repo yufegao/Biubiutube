@@ -6,6 +6,7 @@
 package UserInterface.Boss;
 
 import UserInterface.Boss.Account.AccountList;
+import UserInterface.Boss.Market.MarketJPanel;
 import UserInterface.Components.HasTitle;
 import UserInterface.Components.ParentUI;
 import biz.Components.Boss;
@@ -58,6 +59,11 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
         add(btnOrderCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 230, 70));
 
         btnSalesPerformance.setText("Market");
+        btnSalesPerformance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalesPerformanceActionPerformed(evt);
+            }
+        });
         add(btnSalesPerformance, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 230, 70));
 
         btnSupplier.setText("Supplier");
@@ -76,6 +82,12 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
     private void btnAccountCatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountCatalogActionPerformed
         this.parentUI.pushComponent(new AccountList(parentUI));
     }//GEN-LAST:event_btnAccountCatalogActionPerformed
+
+    private void btnSalesPerformanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalesPerformanceActionPerformed
+        // TODO add your handling code here:
+        MarketJPanel mark = new MarketJPanel(parentUI);
+        parentUI.pushComponent(mark);
+    }//GEN-LAST:event_btnSalesPerformanceActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
