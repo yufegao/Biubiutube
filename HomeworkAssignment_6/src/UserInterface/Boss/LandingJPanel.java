@@ -47,16 +47,16 @@ public class LandingJPanel extends javax.swing.JPanel {
         add(btnSalesPerformance, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 230, 70));
 
         btnSupplier.setText("Supplier");
-        add(btnSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 230, 70));
+        add(btnSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 230, 70));
 
         brnProductCatalog.setText("Product Catalog");
-        add(brnProductCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 230, 70));
+        add(brnProductCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 230, 70));
 
         btnSales.setText("Sales");
-        add(btnSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, 230, 70));
+        add(btnSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 230, 70));
 
         btnSalesPerformance1.setText("Sales Performance");
-        add(btnSalesPerformance1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 230, 70));
+        add(btnSalesPerformance1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, 230, 70));
     }// </editor-fold>//GEN-END:initComponents
 
 

@@ -24,7 +24,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="130" y="50" width="520" height="-1"/>
+          <AbsoluteConstraints x="50" y="30" width="520" height="421"/>
         </Constraint>
       </Constraints>
 
@@ -33,7 +33,7 @@
         <Component class="javax.swing.JTable" name="tblCustomer">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="3" rowCount="4">
+              <Table columnCount="3" rowCount="0">
                 <Column editable="false" title="Name" type="java.lang.Object"/>
                 <Column editable="false" title="ID" type="java.lang.Object"/>
                 <Column editable="false" title="Market" type="java.lang.Object"/>
@@ -69,9 +69,12 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Add Customer"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddCustomerActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="760" y="380" width="100" height="40"/>
+          <AbsoluteConstraints x="630" y="380" width="140" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -81,7 +84,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="760" y="20" width="100" height="40"/>
+          <AbsoluteConstraints x="670" y="20" width="100" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -89,9 +92,12 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Update"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateCustomerActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="760" y="430" width="100" height="40"/>
+          <AbsoluteConstraints x="630" y="430" width="140" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -99,9 +105,12 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteCustomerActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="760" y="530" width="100" height="40"/>
+          <AbsoluteConstraints x="630" y="520" width="140" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -109,9 +118,12 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Add Order"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddOrderActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="760" y="480" width="100" height="40"/>
+          <AbsoluteConstraints x="630" y="480" width="140" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
