@@ -6,27 +6,28 @@
 package UserInterface.SalesPerson.Order;
 
 import UserInterface.Components.HasTitle;
+import UserInterface.Components.ParentUI;
 import UserInterface.Components.TablePopulatable;
 import biz.Components.Business;
 import biz.Components.Order;
-import biz.Components.OrderDirectory;
 import biz.Components.SalesPerson;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
  *
- * @author royn
+ * @author hezj
  */
 public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, TablePopulatable<Order> {
     private SalesPerson salesPerson;
+    private ParentUI parent;
+    
     /**
      * Creates new form ManageOrderJPanel
      */
-    public ManageOrderJPanel(SalesPerson salesPerson) {
+    public ManageOrderJPanel(ParentUI parent, SalesPerson salesPerson) {
         initComponents();
         this.salesPerson = salesPerson;
+        this.parent = parent;
     }
 
     /**
@@ -40,26 +41,22 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblOrder = new javax.swing.JTable();
-        btnSearch = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
-        btnAdd = new javax.swing.JButton();
-
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnRemove = new javax.swing.JButton();
 
         tblOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Order Code", "Order Product", "Actual Price", "Number", "Bought By"
+                "ID", "Total Actual Price", "My Rewards", "Customer"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -68,57 +65,64 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
         });
         jScrollPane1.setViewportView(tblOrder);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 630, -1));
-
-        btnSearch.setText("Search");
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
-            }
-        });
-        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 100, 40));
-
         btnUpdate.setText("Update");
-        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 430, 100, 40));
-
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 530, 100, 40));
 
-        btnAdd.setText("Add Order");
-        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 480, 100, 40));
+        btnRemove.setText("Remove");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 341, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnRemove, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnUpdate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRemove)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE))
+                .addContainerGap())
+        );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        Order selectedOrder = getSelected();
-        if (selectedOrder == null) {
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        removeSelected(Business.getInstance().getOrderDirectory());
+    }//GEN-LAST:event_btnRemoveActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        Order order = getSelected();
+        if (order == null) {
             return;
         }
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog(null, "Delete selected Order?", "Warning", dialogButton);
-        if(dialogResult == JOptionPane.YES_OPTION){
-            Business.getInstance().getOrderDirectory().removeElement(selectedOrder);
-        }
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
-        int orderCode = 0;
-        orderCode = Integer.parseInt(JOptionPane.showInputDialog(null, "", "warning", orderCode));
-        ArrayList<Order> orderList = Business.getInstance().getOrderDirectory().findElements(o -> o.getOrderCode().equals(orderCode));
-        populateTable(orderList);
-    }//GEN-LAST:event_btnSearchActionPerformed
+        
+        this.parent.pushComponent(new PlaceOrUpdateOrderJpanel(order));
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblOrder;
@@ -135,13 +139,17 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
     }
 
     @Override
-    public Object[] populateRow(Order o) {
-        return new Object[] {o, o.getOrderProduct(), o.getOrderProduct().getActualPrice(), o.getNumber(), o.getBoughtBy()};
+    public Object[] populateRow(Order order) {
+        return new Object[] {
+            order,
+            order.totalPrice(),
+            order.getOrderReward(),
+            order.getBoughtBy()
+        };
     }
 
     @Override
     public void populateTable() {
-        OrderDirectory od = Business.getInstance().getOrderDirectory();
-        populateTable(od.findElements(o -> o.getSoldBy().equals(salesPerson)));
+        populateTable(Business.getInstance().getOrderDirectory().findElements(order -> order.getSoldBy().equals(this.salesPerson)));
     }
 }
