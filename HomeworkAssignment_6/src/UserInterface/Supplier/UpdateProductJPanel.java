@@ -5,17 +5,21 @@
  */
 package UserInterface.Supplier;
 
+import biz.Components.Product;
+
 /**
  *
  * @author royn
  */
-public class CreateProduct extends javax.swing.JPanel {
+public class UpdateProductJPanel extends javax.swing.JPanel {
+    private Product product;
 
     /**
      * Creates new form CreateProduct
      */
-    public CreateProduct() {
+    public UpdateProductJPanel(Product product) {
         initComponents();
+        this.product = product;
     }
 
     /**
