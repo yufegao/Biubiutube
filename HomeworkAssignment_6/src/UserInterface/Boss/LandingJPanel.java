@@ -5,17 +5,21 @@
  */
 package UserInterface.Boss;
 
+import UserInterface.Components.ParentUI;
+
 /**
  *
  * @author royn
  */
 public class LandingJPanel extends javax.swing.JPanel {
-
+    private ParentUI parentUI;
+    
     /**
      * Creates new form NewJPanel
      */
-    public LandingJPanel() {
+    public LandingJPanel(ParentUI parentUI) {
         initComponents();
+        this.parentUI = parentUI;
     }
 
     /**

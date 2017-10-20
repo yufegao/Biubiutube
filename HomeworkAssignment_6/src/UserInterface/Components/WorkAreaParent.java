@@ -6,8 +6,12 @@
 package UserInterface.Components;
 
 import biz.Components.Account;
+import biz.Components.Boss;
+import biz.Components.SalesPerson;
+import biz.Components.Supplier;
 
 import java.awt.*;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -31,6 +35,17 @@ public class WorkAreaParent extends javax.swing.JPanel implements ParentUI {
 
         this.header = new HeaderJPanel();
         this.add(header, BorderLayout.PAGE_START);
+        
+        if (account instanceof Boss) {
+            this.pushComponent(new UserInterface.Boss.LandingJPanel(this));
+        } else if (account instanceof Supplier) {
+            this.pushComponent(new UserInterface.Supplier.ManageProductJPanel(this, (Supplier) account));
+        } else if (account instanceof SalesPerson) {
+            this.pushComponent(new UserInterface.SalesPerson.LandingJPanel(this, (SalesPerson) account));
+        } else {
+            JOptionPane.showConfirmDialog(this, "Unknown Account.", "Warning", JOptionPane.WARNING_MESSAGE);
+            mainJFrame.popComponent();
+        }
     }
 
     /**

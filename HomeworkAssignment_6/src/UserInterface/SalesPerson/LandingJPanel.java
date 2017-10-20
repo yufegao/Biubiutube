@@ -5,17 +5,24 @@
  */
 package UserInterface.SalesPerson;
 
+import UserInterface.Components.ParentUI;
+import biz.Components.SalesPerson;
+
 /**
  *
  * @author royn
  */
 public class LandingJPanel extends javax.swing.JPanel {
-
+    private ParentUI parentUI;
+    private SalesPerson salesPerson;
+    
     /**
      * Creates new form LandingJPanel
      */
-    public LandingJPanel() {
+    public LandingJPanel(ParentUI parentUI, SalesPerson salesPerson) {
         initComponents();
+        this.parentUI = parentUI;
+        this.salesPerson = salesPerson;
     }
 
     /**
