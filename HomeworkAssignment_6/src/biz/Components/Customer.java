@@ -13,11 +13,14 @@ import java.util.Date;
  */
 public class Customer {
     private String name;
+    private static int count = 0;
     private int id;
     private Market market;
     
     public Customer(Market market) {
         this.market = market;
+        count++;
+        id = count;
     }
 
     public String getName() {

@@ -6,6 +6,7 @@
 package UserInterface.SalesPerson.Customer;
 
 import UserInterface.Components.HasTitle;
+import UserInterface.Components.ParentUI;
 import UserInterface.Components.TablePopulatable;
 import biz.Components.Business;
 import biz.Components.Customer;
@@ -20,8 +21,10 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
     /**
      * Creates new form ManageCustomer
      */
-    public ManageCustomerJPanel() {
+    private ParentUI parent;
+    public ManageCustomerJPanel(ParentUI parent) {
         initComponents();
+        this.parent = parent;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,6 +74,11 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
         add(btnAddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 380, 140, 40));
 
         btnSearchCustomer.setText("Search");
+        btnSearchCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchCustomerActionPerformed(evt);
+            }
+        });
         add(btnSearchCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 100, 40));
 
         btnUpdateCustomer.setText("Update");
@@ -104,10 +112,16 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
 
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
         // TODO add your handling code here:
+        CreateCustomerJPanel ccjp = new CreateCustomerJPanel(parent);
+        parent.pushComponent(ccjp);
+        
     }//GEN-LAST:event_btnAddCustomerActionPerformed
 
     private void btnUpdateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateCustomerActionPerformed
         // TODO add your handling code here:
+        Customer customer = getSelected();
+        UpdateCustomerJPanel ucjp = new UpdateCustomerJPanel(parent,customer);
+        parent.pushComponent(ucjp);
         
     }//GEN-LAST:event_btnUpdateCustomerActionPerformed
 
@@ -119,6 +133,12 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
         }
         customer.getMarket().removeElement(customer);
     }//GEN-LAST:event_btnDeleteCustomerActionPerformed
+
+    private void btnSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchCustomerActionPerformed
+        // TODO add your handling code here:
+        SearchCustomerJPanel scjp = new SearchCustomerJPanel(parent);
+        parent.pushComponent(scjp);
+    }//GEN-LAST:event_btnSearchCustomerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

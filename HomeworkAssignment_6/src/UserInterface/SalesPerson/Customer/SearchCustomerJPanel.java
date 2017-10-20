@@ -5,19 +5,39 @@
  */
 package UserInterface.SalesPerson.Customer;
 
+import UserInterface.Components.HasTitle;
+import UserInterface.Components.ParentUI;
+import UserInterface.Components.TablePopulatable;
+import biz.Components.Business;
+import biz.Components.Customer;
+import biz.Components.Market;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+
 /**
  *
  * @author Administrator
  */
-public class SearchCustomerJPanel extends javax.swing.JPanel {
+public class SearchCustomerJPanel extends javax.swing.JPanel implements TablePopulatable<Customer>,HasTitle{
 
     /**
      * Creates new form SearchCustomerJPanel
      */
-    public SearchCustomerJPanel() {
+    private ArrayList<Customer> customerList;
+    private ParentUI parentUI;
+    public SearchCustomerJPanel(ParentUI parentUI) {
         initComponents();
+        this.customerList = new ArrayList<>();
+        this.parentUI = parentUI;
+        populateMarket();
     }
-
+    public void populateMarket(){
+        marketCom.removeAllItems();
+        for(Market ma : Business.getInstance().getMarketCatalog().getElementArrayList()){
+            marketCom.addItem(ma);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,19 +47,93 @@ public class SearchCustomerJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
+        jButton1 = new javax.swing.JButton();
+        nameTF = new javax.swing.JTextField();
+        marketCom = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setText("search");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, -1, -1));
+
+        nameTF.setText("  ");
+        add(nameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 80, -1));
+
+        marketCom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(marketCom, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, -1, -1));
+
+        jLabel1.setText("Please input customer you want:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, 30));
+
+        jLabel2.setText("Please choose a market first:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, 30));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Customer Name", "id", "Marketl"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, -1, 230));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Market ma = (Market)marketCom.getSelectedItem();
+        if(nameTF.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Please input a person");
+        }
+        for(Customer c : ma.getElementArrayList()){
+            if(c.getName().equals(nameTF.getText())){
+                customerList.add(c);
+                continue;
+            }
+            JOptionPane.showMessageDialog(this, "No such customer");
+            return;
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JComboBox marketCom;
+    private javax.swing.JTextField nameTF;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public JTable getTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object[] populateRow(Customer cu) {
+        return new Object[]{cu , cu.getId(),cu.getMarket()};
+    }
+
+    @Override
+    public void populateTable() {
+        populateTable(customerList);
+    }
+
+    @Override
+    public String getTitle() {
+        return ("SearchCustomer");
+    }
 }

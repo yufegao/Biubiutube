@@ -5,6 +5,7 @@
  */
 package UserInterface.SalesPerson.Customer;
 
+import UserInterface.Components.ParentUI;
 import biz.Components.Business;
 import biz.Components.Customer;
 import biz.Components.Market;
@@ -20,9 +21,11 @@ public class UpdateCustomerJPanel extends javax.swing.JPanel {
      * Creates new form UpdateCustomer
      */
     private Customer customer;
-    public UpdateCustomerJPanel(Customer customer) {
+    private ParentUI pui;
+    public UpdateCustomerJPanel(ParentUI pui,Customer customer) {
         initComponents();
         this.customer = customer;
+        this.pui = pui;
         populateMarket();
     }
 public void populateMarket(){
