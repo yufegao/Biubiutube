@@ -22,7 +22,7 @@ import java.util.ArrayList;
  *
  * @author hezj
  */
-public class PlaceOrderJpanel extends javax.swing.JPanel implements HasTitle, TablePopulatable<OfferProduct> {
+public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasTitle, TablePopulatable<OfferProduct> {
     private SalesPerson salesPerson;
     private Customer customer;
     private Order order;
@@ -30,7 +30,7 @@ public class PlaceOrderJpanel extends javax.swing.JPanel implements HasTitle, Ta
     /**
      * Creates new form PlaceOrderJpanel
      */
-    public PlaceOrderJpanel(SalesPerson salesPerson, Customer customer) {
+    public PlaceOrUpdateOrderJpanel(SalesPerson salesPerson, Customer customer) {
         initComponents();
         this.salesPerson = salesPerson;
         this.customer = customer;
@@ -38,6 +38,14 @@ public class PlaceOrderJpanel extends javax.swing.JPanel implements HasTitle, Ta
         this.order = Business.getInstance().getOrderDirectory().newElement();
         this.order.setSoldBy(salesPerson);
         this.order.setBoughtBy(customer);
+    }
+    
+    public PlaceOrUpdateOrderJpanel(Order order) {
+        initComponents();
+        this.salesPerson = order.getSoldBy();
+        this.customer = order.getBoughtBy();
+        
+        this.btnPlaceOrder.setText("Save Order");
     }
 
     /**
@@ -462,7 +470,7 @@ public class PlaceOrderJpanel extends javax.swing.JPanel implements HasTitle, Ta
 
     @Override
     public String getTitle() {
-        return "Place Order";
+        return String.format("Place Order for %s", customer);
     }
 
     @Override

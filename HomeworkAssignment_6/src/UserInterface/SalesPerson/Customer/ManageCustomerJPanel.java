@@ -23,7 +23,6 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
     public ManageCustomerJPanel() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,10 +44,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
 
         tblCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Name", "ID", "Market"
@@ -64,23 +60,65 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
         });
         jScrollPane1.setViewportView(tblCustomer);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 520, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 520, 421));
 
         btnAddCustomer.setText("Add Customer");
-        add(btnAddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 380, 100, 40));
+        btnAddCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddCustomerActionPerformed(evt);
+            }
+        });
+        add(btnAddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 380, 140, 40));
 
         btnSearchCustomer.setText("Search");
-        add(btnSearchCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 100, 40));
+        add(btnSearchCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 100, 40));
 
         btnUpdateCustomer.setText("Update");
-        add(btnUpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 430, 100, 40));
+        btnUpdateCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateCustomerActionPerformed(evt);
+            }
+        });
+        add(btnUpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 430, 140, 40));
 
         btnDeleteCustomer.setText("Delete");
-        add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 530, 100, 40));
+        btnDeleteCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteCustomerActionPerformed(evt);
+            }
+        });
+        add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 520, 140, 40));
 
         btnAddOrder.setText("Add Order");
-        add(btnAddOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 480, 100, 40));
+        btnAddOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddOrderActionPerformed(evt);
+            }
+        });
+        add(btnAddOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 480, 140, 40));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddOrderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddOrderActionPerformed
+
+    private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddCustomerActionPerformed
+
+    private void btnUpdateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateCustomerActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnUpdateCustomerActionPerformed
+
+    private void btnDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCustomerActionPerformed
+        // TODO add your handling code here:
+        Customer customer = getSelected();
+        if (customer == null) {
+            return;
+        }
+        customer.getMarket().removeElement(customer);
+    }//GEN-LAST:event_btnDeleteCustomerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

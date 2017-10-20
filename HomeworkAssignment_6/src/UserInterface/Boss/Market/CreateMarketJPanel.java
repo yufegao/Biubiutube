@@ -69,9 +69,7 @@ public class CreateMarketJPanel extends javax.swing.JPanel implements HasTitle {
         }
         Market market = Business.getInstance().getMarketCatalog().newElement();
         market.setMarketName(nameTF.getText());
-        market.setMarketValue(value);
-        
-        
+        market.setMarketValue(value);               
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

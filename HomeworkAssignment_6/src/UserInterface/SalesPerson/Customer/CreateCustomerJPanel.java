@@ -5,6 +5,11 @@
  */
 package UserInterface.SalesPerson.Customer;
 
+import biz.Components.Business;
+import biz.Components.Customer;
+import biz.Components.Market;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author royn
@@ -16,6 +21,13 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
      */
     public CreateCustomerJPanel() {
         initComponents();
+        populateMarket();
+    }
+    public void populateMarket(){
+        cbxMarket.removeAllItems();
+        for(Market ma : Business.getInstance().getMarketCatalog().getElementArrayList()){
+            cbxMarket.addItem(ma);
+        }
     }
 
     /**
@@ -28,57 +40,47 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
-        txtPhoneNumber = new javax.swing.JTextField();
-        txtDOB = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
-        cbxMarket = new javax.swing.JComboBox<>();
+        cbxMarket = new javax.swing.JComboBox();
         btnSave = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Market");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 70, 30));
-
-        jLabel3.setText("Date of Birth");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 110, 30));
-
-        jLabel4.setText("Phone Number");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 100, 30));
-
-        jLabel5.setText("Email");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 70, 30));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 70, 30));
 
         jLabel6.setText("Name");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 70, 30));
-        add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 170, -1));
-        add(txtPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, 170, -1));
-        add(txtDOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 170, -1));
         add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, 170, -1));
 
-        cbxMarket.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(cbxMarket, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, 170, -1));
+        cbxMarket.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(cbxMarket, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, 170, -1));
 
         btnSave.setText("Save");
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 390, 170, 50));
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 170, 50));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        Market ma = (Market)cbxMarket.getSelectedItem();
+        Customer c = ma.newElement();
+        c.setName(txtName.getText());
+        JOptionPane.showMessageDialog(null,"Great!");
+        txtName.setText("");
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
-    private javax.swing.JComboBox<String> cbxMarket;
+    private javax.swing.JComboBox cbxMarket;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField txtDOB;
-    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPhoneNumber;
     // End of variables declaration//GEN-END:variables
 }
