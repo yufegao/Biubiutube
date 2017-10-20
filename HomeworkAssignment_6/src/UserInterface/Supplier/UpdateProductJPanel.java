@@ -6,6 +6,7 @@
 package UserInterface.Supplier;
 
 import biz.Components.Product;
+import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class UpdateProductJPanel extends javax.swing.JPanel {
     private Product product;
+    private ButtonGroup as_bg;
 
     /**
      * Creates new form CreateProduct
@@ -21,6 +23,10 @@ public class UpdateProductJPanel extends javax.swing.JPanel {
     public UpdateProductJPanel(Product product) {
         initComponents();
         this.product = product;
+        this.as_bg = new ButtonGroup();
+        as_bg.add(rbTrue);
+        as_bg.add(rbFalse);
+        
         refreshComponents();
     }
     
@@ -28,6 +34,15 @@ public class UpdateProductJPanel extends javax.swing.JPanel {
         txtName.setText(product.getProductName());
         txtProductNumber.setText(product.getProductNumber());
         txtFactoryPrice.setText(String.valueOf(product.getFactoryPrice()));
+        txtStock.setText(String.valueOf(product.getStock()));
+        
+        boolean Status = product.isIsAvailable();
+        if(Status == true){
+            rbTrue.setSelected(true);
+        }else{
+            rbFalse.setSelected(true);
+        }
+        
         
         txtName.setEnabled(true);
         txtProductNumber.setEnabled(true);
@@ -51,6 +66,10 @@ public class UpdateProductJPanel extends javax.swing.JPanel {
         txtName = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        txtStock = new javax.swing.JTextField();
+        rbTrue = new javax.swing.JRadioButton();
+        rbFalse = new javax.swing.JRadioButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -74,15 +93,25 @@ public class UpdateProductJPanel extends javax.swing.JPanel {
         });
         add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, 170, 50));
 
-        jLabel1.setText("jLabel1");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, -1, -1));
+        jLabel1.setText("Stock");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 70, -1));
+        add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 170, -1));
+
+        rbTrue.setText("Available");
+        add(rbTrue, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, -1, -1));
+
+        rbFalse.setText("Unavailable");
+        add(rbFalse, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 310, -1, -1));
+
+        jLabel2.setText("Status");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         String name = txtName.getText();
         String productNumber = txtProductNumber.getText();
-        
+     
         int factoryPrice;
         try{
             factoryPrice = Integer.parseInt(txtFactoryPrice.getText());
@@ -92,9 +121,28 @@ public class UpdateProductJPanel extends javax.swing.JPanel {
             return;
         }
         
+        int stock;
+        try{
+            stock = Integer.parseInt(txtStock.getText());
+        }
+        catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Please enter valid Price!");
+            return;
+        }
+        
+        boolean Status = true;
+        if(rbTrue.isSelected() == true){
+            Status = true;
+        }
+        else{
+            Status = false;
+        }
+        
         product.setProductName(name);
         product.setProductNumber(productNumber);
         product.setFactoryPrice(factoryPrice);
+        product.setStock(stock);
+        product.setIsAvailable(Status);
         
         txtName.setEnabled(false);
         txtProductNumber.setEnabled(false);
@@ -107,11 +155,15 @@ public class UpdateProductJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JRadioButton rbFalse;
+    private javax.swing.JRadioButton rbTrue;
     private javax.swing.JTextField txtFactoryPrice;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtProductNumber;
+    private javax.swing.JTextField txtStock;
     // End of variables declaration//GEN-END:variables
 }

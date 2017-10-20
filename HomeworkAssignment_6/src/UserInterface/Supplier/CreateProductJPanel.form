@@ -99,7 +99,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+    <Component class="javax.swing.JRadioButton" name="rbTrue">
       <Properties>
         <Property name="text" type="java.lang.String" value="Available"/>
       </Properties>
@@ -109,7 +109,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+    <Component class="javax.swing.JRadioButton" name="rbFalse">
       <Properties>
         <Property name="text" type="java.lang.String" value="Unavailable"/>
       </Properties>
