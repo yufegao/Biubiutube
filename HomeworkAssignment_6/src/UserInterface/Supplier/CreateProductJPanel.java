@@ -5,17 +5,30 @@
  */
 package UserInterface.Supplier;
 
+import biz.Components.Product;
+import biz.Components.Supplier;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author royn
  */
 public class CreateProductJPanel extends javax.swing.JPanel {
+    private Supplier supplier;
 
     /**
      * Creates new form CreateProduct
      */
-    public CreateProductJPanel() {
+    public CreateProductJPanel(Supplier supplier) {
         initComponents();
+        this.supplier = supplier;
+        refreshComponents();
+    }
+    
+    public void refreshComponents(){
+        txtName.setEnabled(true);
+        txtProductNumber.setEnabled(true);
+        txtFactoryPrice.setEnabled(true);
     }
 
     /**
@@ -34,33 +47,88 @@ public class CreateProductJPanel extends javax.swing.JPanel {
         txtFactoryPrice = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtStock = new javax.swing.JTextField();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setText("Factory Price");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 110, 30));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 110, 30));
 
         jLabel4.setText("Product Number");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 120, 30));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 120, 30));
 
         jLabel6.setText("Name");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 70, 30));
-        add(txtProductNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 210, 170, -1));
-        add(txtFactoryPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 170, -1));
-        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, 170, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 70, 30));
+        add(txtProductNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, 170, -1));
+        add(txtFactoryPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 210, 170, -1));
+        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 170, -1));
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
         add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, 170, 50));
+
+        jLabel1.setText("Stock");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 70, -1));
+        add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 170, -1));
+
+        jRadioButton1.setText("Available");
+        add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, -1, -1));
+
+        jRadioButton2.setText("Unavailable");
+        add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 310, -1, -1));
+
+        jLabel2.setText("Status");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        String name = txtName.getText();
+        String productNumber = txtProductNumber.getText();
+        
+        int factoryPrice;
+        try{
+            factoryPrice = Integer.parseInt(txtFactoryPrice.getText());
+        }
+        catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Please enter valid Price!");
+            return;
+        }
+        
+        Product product = supplier.getProductCatalog().newElement();
+        product.setProductName(name);
+        product.setProductNumber(productNumber);
+        product.setFactoryPrice(factoryPrice);
+        product.setIsAvailable(true);
+        
+        txtName.setText("");
+        txtProductNumber.setText("");
+        txtFactoryPrice.setText("");
+        
+        JOptionPane.showMessageDialog(null, "Product create successfully!");
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField txtFactoryPrice;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtProductNumber;
+    private javax.swing.JTextField txtStock;
     // End of variables declaration//GEN-END:variables
 }

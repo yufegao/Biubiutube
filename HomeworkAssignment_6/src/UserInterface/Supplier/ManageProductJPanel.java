@@ -109,7 +109,7 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        this.parent.pushComponent(new CreateProductJPanel());
+        this.parent.pushComponent(new CreateProductJPanel(supplier));
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCustomerActionPerformed

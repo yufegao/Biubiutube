@@ -6,6 +6,7 @@
 package UserInterface.Supplier;
 
 import biz.Components.Product;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,6 +21,17 @@ public class UpdateProductJPanel extends javax.swing.JPanel {
     public UpdateProductJPanel(Product product) {
         initComponents();
         this.product = product;
+        refreshComponents();
+    }
+    
+    public void refreshComponents(){
+        txtName.setText(product.getProductName());
+        txtProductNumber.setText(product.getProductNumber());
+        txtFactoryPrice.setText(String.valueOf(product.getFactoryPrice()));
+        
+        txtName.setEnabled(true);
+        txtProductNumber.setEnabled(true);
+        txtFactoryPrice.setEnabled(true);
     }
 
     /**
@@ -38,28 +50,63 @@ public class UpdateProductJPanel extends javax.swing.JPanel {
         txtFactoryPrice = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setText("Factory Price");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 110, 30));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 110, 30));
 
         jLabel4.setText("Product Number");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 120, 30));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 120, 30));
 
         jLabel6.setText("Name");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 70, 30));
-        add(txtProductNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 210, 170, -1));
-        add(txtFactoryPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 170, -1));
-        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, 170, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 70, 30));
+        add(txtProductNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, 170, -1));
+        add(txtFactoryPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 170, -1));
+        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 170, -1));
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
         add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, 170, 50));
+
+        jLabel1.setText("jLabel1");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        String name = txtName.getText();
+        String productNumber = txtProductNumber.getText();
+        
+        int factoryPrice;
+        try{
+            factoryPrice = Integer.parseInt(txtFactoryPrice.getText());
+        }
+        catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Please enter valid Price!");
+            return;
+        }
+        
+        product.setProductName(name);
+        product.setProductNumber(productNumber);
+        product.setFactoryPrice(factoryPrice);
+        
+        txtName.setEnabled(false);
+        txtProductNumber.setEnabled(false);
+        txtFactoryPrice.setEnabled(false);
+        
+        JOptionPane.showMessageDialog(null, "Product update successfully!");
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
