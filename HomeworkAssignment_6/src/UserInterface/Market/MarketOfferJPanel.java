@@ -43,7 +43,6 @@ public class MarketOfferJPanel extends javax.swing.JPanel implements TablePopula
         marketOfferTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         update = new javax.swing.JButton();
-        back = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -69,14 +68,6 @@ public class MarketOfferJPanel extends javax.swing.JPanel implements TablePopula
             }
         });
         add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, 150, -1));
-
-        back.setText("<<Back");
-        back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backActionPerformed(evt);
-            }
-        });
-        add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
@@ -89,14 +80,8 @@ public class MarketOfferJPanel extends javax.swing.JPanel implements TablePopula
         parent.pushComponent(uop);
     }//GEN-LAST:event_updateActionPerformed
 
-    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_backActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable marketOfferTable;
