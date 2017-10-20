@@ -6,13 +6,17 @@
 package biz.Components;
 
 import biz.Catalog.AbstractCatalog;
+import java.util.ArrayList;
 
 /**
  *
  * @author royn
  */
 public class OrderDirectory extends AbstractCatalog<Order>{    
-
+    public OrderDirectory() {
+        elementArrayList = new ArrayList<>();
+    }
+    
     @Override
     public Order createElement() {
         return new Order();
