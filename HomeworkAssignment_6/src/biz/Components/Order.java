@@ -68,6 +68,14 @@ public class Order extends AbstractCatalog<OrderProduct>{
         return reward;
     }
 
+    public double getRevenue(){
+        double revenue = 0;
+        for (OrderProduct op: this.elementArrayList){
+            revenue += (op.getActualPrice() -  op.getOfferProduct().getProduct().getFactoryPrice());
+        }
+        return revenue;
+    }
+
     @Override
     public String toString() {
         return Integer.toString(id);
