@@ -58,8 +58,6 @@ public class PlaceOrderJpanel extends javax.swing.JPanel implements HasTitle, Ta
         txtRevenue = new javax.swing.JTextField();
         btnPlaceOrder = new javax.swing.JButton();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         tblProductOffer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -77,8 +75,6 @@ public class PlaceOrderJpanel extends javax.swing.JPanel implements HasTitle, Ta
             }
         });
         jScrollPane1.setViewportView(tblProductOffer);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 28, 888, 160));
 
         tblOrderProduct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,27 +97,17 @@ public class PlaceOrderJpanel extends javax.swing.JPanel implements HasTitle, Ta
         });
         jScrollPane2.setViewportView(tblOrderProduct);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 229, 888, 198));
-
         jLabel2.setText("Product Offer List");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(716, 194, 44, -1));
 
         jLabel3.setText("Quantity:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(646, 199, -1, -1));
 
         jButton1.setText("Add To Order");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(766, 194, -1, -1));
 
         jLabel1.setText("Total Price:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(718, 438, -1, -1));
 
         txtTotalPrice.setEnabled(false);
-        add(txtTotalPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(794, 433, 100, -1));
 
         jLabel4.setText("Revenue:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(732, 476, -1, -1));
-        add(txtRevenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(794, 471, 100, -1));
 
         btnPlaceOrder.setText("Place Order");
         btnPlaceOrder.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +115,65 @@ public class PlaceOrderJpanel extends javax.swing.JPanel implements HasTitle, Ta
                 btnPlaceOrderActionPerformed(evt);
             }
         });
-        add(btnPlaceOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(779, 565, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtTotalPrice)
+                                    .addComponent(txtRevenue, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
+                            .addComponent(btnPlaceOrder, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtRevenue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(btnPlaceOrder)
+                .addContainerGap())
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
