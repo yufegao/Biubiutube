@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class MarketOffer extends AbstractCatalog<OfferProduct>{
     private Market market;
     public MarketOffer(Market ma) {
+        this.market = ma;
         elementArrayList = new ArrayList<>();
     }
     
@@ -36,7 +37,7 @@ public class MarketOffer extends AbstractCatalog<OfferProduct>{
             double val = (1 + market.getMarketValue()) * product.getFactoryPrice();
             op.setHighestPrice(val * 5);
             op.setTargetPrice(val * 1.5);
-            op.setLowestPrice(val * 1);        
+            op.setLowestPrice(val * 1);            
         }
         return elementArrayList;
     }

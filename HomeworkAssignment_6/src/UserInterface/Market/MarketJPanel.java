@@ -10,6 +10,7 @@ import UserInterface.Components.ParentUI;
 import UserInterface.Components.TablePopulatable;
 import biz.Components.Business;
 import biz.Components.Market;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -38,11 +39,10 @@ public class MarketJPanel extends javax.swing.JPanel implements TablePopulatable
         jScrollPane1 = new javax.swing.JScrollPane();
         marketTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        viewMarketOffer = new javax.swing.JButton();
+        create = new javax.swing.JButton();
+        update = new javax.swing.JButton();
+        delete = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -61,48 +61,40 @@ public class MarketJPanel extends javax.swing.JPanel implements TablePopulatable
         jLabel1.setText("All Markets");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 120, -1));
 
-        jButton1.setText("View MarketOffer");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        viewMarketOffer.setText("View MarketOffer");
+        viewMarketOffer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                viewMarketOfferActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 310, 150, -1));
+        add(viewMarketOffer, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 310, 150, -1));
 
-        jButton2.setText("Create ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        create.setText("Create ");
+        create.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                createActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, 150, -1));
+        add(create, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, 150, -1));
 
-        jButton3.setText("Update");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        update.setText("Update");
+        update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                updateActionPerformed(evt);
             }
         });
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 150, -1));
+        add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 150, -1));
 
-        jButton4.setText("<<Back");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        delete.setText("Delete");
+        delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                deleteActionPerformed(evt);
             }
         });
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 350, 150, -1));
-
-        jButton5.setText("Delete");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, 150, -1));
+        add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void viewMarketOfferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewMarketOfferActionPerformed
         // TODO add your handling code here:
         Market selected = getSelected();
         if(selected == null){
@@ -110,35 +102,42 @@ public class MarketJPanel extends javax.swing.JPanel implements TablePopulatable
         }
         MarketOfferJPanel moj = new MarketOfferJPanel(parent,selected);
         parent.pushComponent(moj);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_viewMarketOfferActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_updateActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        Market select = getSelected();
+        if(select == null){
+            JOptionPane.showMessageDialog(null,"Please select any row!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if(select.getElementArrayList().size() > 0){
+            JOptionPane.showMessageDialog(null,"Cannot delete market with so many customers!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Business.getInstance().getMarketCatalog().removeElement(select);
+    }//GEN-LAST:event_deleteActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        CreateMarketJPanel cmj = new CreateMarketJPanel(parent);
+        parent.pushComponent(cmj);
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_createActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton create;
+    private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable marketTable;
+    private javax.swing.JButton update;
+    private javax.swing.JButton viewMarketOffer;
     // End of variables declaration//GEN-END:variables
 
     @Override

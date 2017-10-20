@@ -5,29 +5,25 @@
  */
 package UserInterface.Market;
 import UserInterface.Components.HasTitle;
+import UserInterface.Components.ParentUI;
 import biz.Components.Business;
-import biz.Components.MarketOffer;
+import biz.Components.Market;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Administrator
  */
 public class CreateMarketJPanel extends javax.swing.JPanel implements HasTitle {
-
+    private ParentUI parent;
     /**
      * Creates new form CreateMarketJPanel
      */
-    public CreateMarketJPanel() {
+    public CreateMarketJPanel(ParentUI parent) {
         initComponents();
-        populateMarketOffer();
+        this.parent = parent;
     }
     
-    public void populateMarketOffer(){
-        marketOfferCombo.removeAllItems();
-        for(MarketOffer mo : Business.getInstance().getMarketOfferCatalog().getElementArrayList()){
-            marketOfferCombo.addItem(mo);
-        }
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,14 +35,11 @@ public class CreateMarketJPanel extends javax.swing.JPanel implements HasTitle {
 
         nameTF = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        marketOfferCombo = new javax.swing.JComboBox();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        valueTF = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        nameTF.setText("jTextField1");
         add(nameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 170, -1));
 
         jButton2.setText("Save");
@@ -55,34 +48,39 @@ public class CreateMarketJPanel extends javax.swing.JPanel implements HasTitle {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, -1, -1));
-
-        jButton3.setText("<<Back");
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, -1, -1));
-
-        marketOfferCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(marketOfferCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, -1, -1));
-
-        jLabel2.setText("Market Offer:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, -1, 20));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, -1, -1));
 
         jLabel3.setText("Market Name:");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, -1, 20));
+        add(valueTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 170, -1));
+
+        jLabel4.setText("Market Value:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        Market market = new Market();
+        double value;
+        try{
+            value = Double.parseDouble(valueTF.getText());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"vlue error");
+            return;
+        }
+        market.setMarketName(nameTF.getText());
+        market.setMarketValue(value);
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JComboBox marketOfferCombo;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField nameTF;
+    private javax.swing.JTextField valueTF;
     // End of variables declaration//GEN-END:variables
 
     @Override
