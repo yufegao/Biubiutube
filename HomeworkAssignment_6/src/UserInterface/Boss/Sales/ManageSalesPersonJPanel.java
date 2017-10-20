@@ -5,17 +5,28 @@
  */
 package UserInterface.Boss.Sales;
 
+import UserInterface.Components.HasTitle;
+import UserInterface.Components.ParentUI;
+import UserInterface.Components.TablePopulatable;
+import biz.Components.Business;
+import biz.Components.Order;
+import biz.Components.SalesPerson;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+
 /**
  *
  * @author royn
  */
-public class ManageSalesPersonJPanel extends javax.swing.JPanel {
-
+public class ManageSalesPersonJPanel extends javax.swing.JPanel implements HasTitle, TablePopulatable<SalesPerson> {
+    private ParentUI parentUI;
+    
     /**
      * Creates new form ManageSalesPersonJPanel
      */
-    public ManageSalesPersonJPanel() {
+    public ManageSalesPersonJPanel(ParentUI parentUI) {
         initComponents();
+        this.parentUI = parentUI;
     }
 
     /**
@@ -29,28 +40,121 @@ public class ManageSalesPersonJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        btnUpdate = new javax.swing.JButton();
+        btnRemove = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Full Name", "username"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 660, 580));
+
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, -1, -1));
+
+        btnRemove.setText("Remove");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
+        add(btnRemove, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 50, -1, -1));
+
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        SalesPerson salesPerson = getSelected();
+        if (salesPerson == null) {
+            return;
+        }
+
+        this.parentUI.pushComponent(new UpdateSalesPersonJPanel(salesPerson));
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        SalesPerson salesPerson = getSelected();
+        if (salesPerson == null) {
+            return;
+        }
+        
+        Order order = Business.getInstance().getOrderDirectory().findElement(o -> o.getSoldBy().equals(salesPerson));
+        if (order != null) {
+            JOptionPane.showMessageDialog(this, "Cannot remove sales person", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        int res = JOptionPane.showConfirmDialog(this, "Do you want to remove sales sales person", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (res == JOptionPane.NO_OPTION) {
+            return;
+        }
+
+        Business.getInstance().getOrderDirectory().removeElement(order);
+        populateTable();
+        JOptionPane.showMessageDialog(this, "salesPerson removed!");
+    }//GEN-LAST:event_btnRemoveActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        parentUI.pushComponent(new AddSalesPersonJPanel());
+    }//GEN-LAST:event_btnAddActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnRemove;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String getTitle() {
+        return "Manage Sales Person";
+    }
+
+    @Override
+    public JTable getTable() {
+        return jTable1;
+    }
+
+    @Override
+    public Object[] populateRow(SalesPerson salsPerson) {
+        return new Object[]{
+            salsPerson,
+            salsPerson.getUsername()
+        };
+    }
+
+    @Override
+    public void populateTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
