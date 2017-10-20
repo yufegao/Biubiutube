@@ -6,6 +6,7 @@
 package biz.Components;
 
 import biz.Catalog.AbstractCatalog;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Order extends AbstractCatalog<OrderProduct>{
     private String status = "init";
 
     public Order () {
+        elementArrayList = new ArrayList<>();
         orderId++;
         id = orderId;
     }
