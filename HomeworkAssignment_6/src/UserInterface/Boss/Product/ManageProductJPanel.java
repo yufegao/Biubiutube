@@ -5,18 +5,35 @@
  */
 package UserInterface.Boss.Product;
 
+import UserInterface.Components.HasTitle;
+import UserInterface.Components.ParentUI;
+import UserInterface.Components.TablePopulatable;
+import biz.Components.Business;
+import biz.Components.Product;
+import biz.Components.ProductCatalog;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+
+
 /**
  *
  * @author royn
  */
-public class ManageProductJPanel extends javax.swing.JPanel {
+public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle, TablePopulatable<Product>{
+    private Business business;
+    private ParentUI parent;
 
     /**
      * Creates new form ManageProductJPanel
      */
-    public ManageProductJPanel() {
+    public ManageProductJPanel(ParentUI parent, Business business) {
         initComponents();
+        this.parent = parent;
+        this.business = business;
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,17 +52,17 @@ public class ManageProductJPanel extends javax.swing.JPanel {
 
         tblProduct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Product Name", "Product Number", "Facotry Price", "Supplier"
+                "Product Name", "Product Number", "Facotry Price", "Supplier", "Stock"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -54,11 +71,23 @@ public class ManageProductJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblProduct);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 650, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 750, -1));
 
         btnSearchProduct.setText("Search");
+        btnSearchProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchProductActionPerformed(evt);
+            }
+        });
         add(btnSearchProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 20, 100, 40));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchProductActionPerformed
+        // TODO add your handling code here:
+        final String productName = JOptionPane.showInputDialog(this, "Please input the name of Product you want to find");
+        ArrayList<Product> productList = business.findProducts(p -> p.getProductName().equals(productName));
+        populateTable(productList);
+    }//GEN-LAST:event_btnSearchProductActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -66,4 +95,25 @@ public class ManageProductJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblProduct;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String getTitle() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public JTable getTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object[] populateRow(Product p) {
+        return new Object[] {p, p.getProductName(), p.getFactoryPrice(), p.getSupplier(), p.getStock()};
+    }
+
+    @Override
+    public void populateTable() {
+        ArrayList<Product> p = business.getAllProducts();
+        populateTable(p);    
+    }
 }

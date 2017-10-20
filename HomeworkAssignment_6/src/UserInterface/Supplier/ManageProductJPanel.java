@@ -119,7 +119,7 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
             return;
         }
         int dialogButton = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog(null, "Delete selected Order?", "Warning", dialogButton);
+        int dialogResult = JOptionPane.showConfirmDialog(this, "Delete selected Order?", "Warning", dialogButton);
         if(dialogResult == JOptionPane.YES_OPTION){
             supplier.getProductCatalog().removeElement(selectedProduct);
         }
@@ -136,7 +136,7 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
-        final String productName = JOptionPane.showInputDialog(null, "Please input the name of Product you want to find");
+        final String productName = JOptionPane.showInputDialog(this, "Please input the name of Product you want to find");
         ArrayList<Product> productList = supplier.getProductCatalog().findElements(p -> p.getProductName().equals(productName));
         populateTable(productList);
     }//GEN-LAST:event_btnSearchActionPerformed
