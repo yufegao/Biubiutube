@@ -30,43 +30,6 @@ public class Business {
         this.supplierCatalog = new SupplierCatalog();
         this.marketOfferCatalog = new MarketOfferCatalog();
         this.orderDirectory = new OrderDirectory();
-        
-        for (int i = 1; i <= 3; i++) {
-            Boss b = this.bossCatalog.newElement();
-            b.setName(String.format("BossName%s", i));
-            b.setUsername(String.format("Boss%d", i));
-            b.setPassword(String.format("%d", i));
-            this.accountCatalog.addElement(b);
-        }
-        
-        for (int i = 1; i <= 3; i++) {
-            SalesPerson s = this.salesPersonCatalog.newElement();
-            s.setFirstName(String.format("First%d", i));
-            s.setLastName(String.format("Last%d", i));
-            s.setUsername(String.format("SalesPerson%d", i));
-            s.setPassword(String.format("%s", i));
-            this.accountCatalog.addElement(s);
-        }
-        
-        for (int i = 1; i <= 3; i++) {
-            Supplier s = this.supplierCatalog.newElement();
-            s.setAddress(String.format("Address%s", i));
-            s.setName(String.format("SupplierName%s", i));
-            s.setUsername(String.format("Supplier%s", i));
-            s.setPassword(String.format("%s", i));
-            this.accountCatalog.addElement(s);
-        }
-        
-        for (int i = 1; i <= 3; i++) {
-            Market m = this.marketCatalog.createElement();
-            m.setMarketName(String.format("Market%s", i));
-            m.setMarketValue(((double) i) / 2);
-            
-            for (int j = 1; j <= 5; j++) {
-                Customer c = m.newElement();
-                c.setName(String.format("Customer%d-%d", i, j));
-            }
-        }
     }
 
     public static Business getInstance() {

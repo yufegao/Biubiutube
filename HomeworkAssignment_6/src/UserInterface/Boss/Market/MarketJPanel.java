@@ -25,6 +25,7 @@ public class MarketJPanel extends javax.swing.JPanel implements TablePopulatable
     public MarketJPanel(ParentUI parent) {
         initComponents();
         this.parent = parent;
+        populateTable();
     }
 
     /**

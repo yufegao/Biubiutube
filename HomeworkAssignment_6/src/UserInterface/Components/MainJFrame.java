@@ -6,6 +6,7 @@
 package UserInterface.Components;
 
 import UserInterface.Login.LoginJPanel;
+import biz.Components.BusinessConfigure;
 import javax.swing.*;
 
 /**
@@ -19,6 +20,7 @@ public class MainJFrame extends javax.swing.JFrame implements ParentUI {
      */
     public MainJFrame() {
         initComponents();
+        BusinessConfigure.configure();
         pushComponent(new LoginJPanel(this));
     }
 
