@@ -47,8 +47,10 @@ public class AccountCatalog extends AbstractCatalog<Account> {
             if (((Supplier) account).getProductCatalog().getElementArrayList().size() > 0) {
                 return false;
             }
+            this.removeElement(account);
             return Business.getInstance().getSupplierCatalog().removeElement((Supplier) account);   
         } else if (account instanceof Boss) {
+            this.removeElement(account);
             return Business.getInstance().getBossCatalog().removeElement((Boss) account);
         } else if (account instanceof SalesPerson) {
             SalesPerson salesPerson = (SalesPerson) account;
@@ -56,6 +58,7 @@ public class AccountCatalog extends AbstractCatalog<Account> {
             if (order != null) {
                 return false;
             }
+            this.removeElement(account);
             return Business.getInstance().getSalesPersonCatalog().removeElement(salesPerson);
         }
         return false;

@@ -7,6 +7,7 @@ package UserInterface.Boss.Account;
 
 import UserInterface.Components.HasTitle;
 import biz.Components.Account;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -125,6 +126,7 @@ public class AccountUpdate extends javax.swing.JPanel implements HasTitle {
         if (password.length > 0) {
             account.setPassword(new String(password));
         }
+        JOptionPane.showMessageDialog(this, "Saved!");
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

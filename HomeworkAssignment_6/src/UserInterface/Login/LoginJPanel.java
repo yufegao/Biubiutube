@@ -73,6 +73,9 @@ public class LoginJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, loginFailed.getMessage(), "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
+        
+        txtAccount.setText("");
+        txtPassword.setText("");
 
         this.mainJFrame.pushComponent(new WorkAreaParent(mainJFrame, account));
     }//GEN-LAST:event_btnLogInActionPerformed

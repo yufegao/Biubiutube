@@ -5,6 +5,7 @@
  */
 package biz.Components;
 
+import biz.Catalog.Finder;
 import java.util.ArrayList;
 
 /**
@@ -29,6 +30,34 @@ public class Business {
         this.supplierCatalog = new SupplierCatalog();
         this.marketOfferCatalog = new MarketOfferCatalog();
         this.orderDirectory = new OrderDirectory();
+        
+        for (int i = 1; i <= 3; i++) {
+            Boss b = this.bossCatalog.newElement();
+            b.setName(String.format("BossName%s", i));
+            b.setUsername(String.format("Boss%d", i));
+            b.setPassword(String.format("%d", i));
+            this.accountCatalog.addElement(b);
+        }
+        
+        for (int i = 1; i <= 3; i++) {
+            SalesPerson s = this.salesPersonCatalog.newElement();
+            s.setFirstName(String.format("First%d", i));
+            s.setLastName(String.format("Last%d", i));
+            s.setUsername(String.format("SalesPerson%d", i));
+            s.setPassword(String.format("%s", i));
+            this.accountCatalog.addElement(s);
+        }
+        
+        for (int i = 1; i <= 3; i++) {
+            Supplier s = this.supplierCatalog.newElement();
+            s.setAddress(String.format("Address%s", i));
+            s.setName(String.format("SupplierName%s", i));
+            s.setUsername(String.format("Supplier%s", i));
+            s.setPassword(String.format("%s", i));
+            this.accountCatalog.addElement(s);
+        }
+       
+        Supplier s1 = this.supplierCatalog.newElement();    
     }
 
     public static Business getInstance() {
@@ -38,17 +67,6 @@ public class Business {
         return business;
     }
     
-    public static Business configureBusiness() {
-        Business business = getInstance();
-        Boss b1 = business.getBossCatalog().newElement();
-        b1.setUsername("Boss1");
-        b1.setPassword("1");
-        
-        Supplier s1 = business.getSupplierCatalog().newElement();
-        
-        return business;
-    }
-
     public AccountCatalog getAccountCatalog() {
         return accountCatalog;
     }
@@ -89,6 +107,14 @@ public class Business {
         ArrayList<Product> result = new ArrayList<>();
         for (Supplier s: supplierCatalog.getElementArrayList()) {
             result.addAll(s.getProductCatalog().getElementArrayList());
+        }
+        return result;
+    }
+    
+    public ArrayList<Product> findProducts(Finder<Product> finder) {
+        ArrayList<Product> result = new ArrayList<>();
+        for (Supplier s: supplierCatalog.getElementArrayList()) {
+            result.addAll(s.getProductCatalog().findElements(finder));
         }
         return result;
     }
