@@ -5,6 +5,7 @@
  */
 package biz.Components;
 
+import biz.Catalog.Finder;
 import java.util.ArrayList;
 
 /**
@@ -106,6 +107,14 @@ public class Business {
         ArrayList<Product> result = new ArrayList<>();
         for (Supplier s: supplierCatalog.getElementArrayList()) {
             result.addAll(s.getProductCatalog().getElementArrayList());
+        }
+        return result;
+    }
+    
+    public ArrayList<Product> findProducts(Finder<Product> finder) {
+        ArrayList<Product> result = new ArrayList<>();
+        for (Supplier s: supplierCatalog.getElementArrayList()) {
+            result.addAll(s.getProductCatalog().findElements(finder));
         }
         return result;
     }
