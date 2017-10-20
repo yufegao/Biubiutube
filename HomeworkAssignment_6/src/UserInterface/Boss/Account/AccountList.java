@@ -13,6 +13,7 @@ import biz.Components.Boss;
 import biz.Components.Business;
 import biz.Components.SalesPerson;
 import biz.Components.Supplier;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -114,7 +115,15 @@ public class AccountList extends javax.swing.JPanel implements HasTitle, TablePo
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-        removeSelected(Business.getInstance().getAccountCatalog());
+        Account selected = getSelected();
+        if (selected == null) {
+            return;
+        }
+        if (!Business.getInstance().getAccountCatalog().removeAccount(selected)) {
+            JOptionPane.showMessageDialog(this, "Cannot Remove this account.", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Removed");
+        }
     }//GEN-LAST:event_removeButtonActionPerformed
 
 
