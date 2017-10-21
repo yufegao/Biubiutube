@@ -7,6 +7,7 @@ package UserInterface.Boss;
 
 import UserInterface.Boss.Account.AccountList;
 import UserInterface.Boss.Market.MarketJPanel;
+import UserInterface.Boss.Supplier.ManageSupplierJPanel;
 import UserInterface.Components.HasTitle;
 import UserInterface.Components.ParentUI;
 import biz.Components.Boss;
@@ -39,11 +40,11 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
 
         btnAccountCatalog = new javax.swing.JButton();
         btnOrderCatalog = new javax.swing.JButton();
-        btnSalesPerformance = new javax.swing.JButton();
+        btnMarket = new javax.swing.JButton();
         btnSupplier = new javax.swing.JButton();
         brnProductCatalog = new javax.swing.JButton();
         btnSales = new javax.swing.JButton();
-        btnSalesPerformance1 = new javax.swing.JButton();
+        btnSalesPerformance = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -58,15 +59,20 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
         btnOrderCatalog.setText("Order Catalog");
         add(btnOrderCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 230, 70));
 
-        btnSalesPerformance.setText("Market");
-        btnSalesPerformance.addActionListener(new java.awt.event.ActionListener() {
+        btnMarket.setText("Market");
+        btnMarket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalesPerformanceActionPerformed(evt);
+                btnMarketActionPerformed(evt);
             }
         });
-        add(btnSalesPerformance, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 230, 70));
+        add(btnMarket, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 230, 70));
 
         btnSupplier.setText("Supplier");
+        btnSupplier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSupplierActionPerformed(evt);
+            }
+        });
         add(btnSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 230, 70));
 
         brnProductCatalog.setText("Product Catalog");
@@ -75,28 +81,34 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
         btnSales.setText("Sales");
         add(btnSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 230, 70));
 
-        btnSalesPerformance1.setText("Sales Performance");
-        add(btnSalesPerformance1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, 230, 70));
+        btnSalesPerformance.setText("Sales Performance");
+        add(btnSalesPerformance, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, 230, 70));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAccountCatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountCatalogActionPerformed
         this.parentUI.pushComponent(new AccountList(parentUI));
     }//GEN-LAST:event_btnAccountCatalogActionPerformed
 
-    private void btnSalesPerformanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalesPerformanceActionPerformed
+    private void btnMarketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarketActionPerformed
         // TODO add your handling code here:
         MarketJPanel mark = new MarketJPanel(parentUI);
         parentUI.pushComponent(mark);
-    }//GEN-LAST:event_btnSalesPerformanceActionPerformed
+    }//GEN-LAST:event_btnMarketActionPerformed
+
+    private void btnSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierActionPerformed
+        // TODO add your handling code here:
+        ManageSupplierJPanel sup = new ManageSupplierJPanel(parentUI);
+        parentUI.pushComponent(sup);
+    }//GEN-LAST:event_btnSupplierActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnProductCatalog;
     private javax.swing.JButton btnAccountCatalog;
+    private javax.swing.JButton btnMarket;
     private javax.swing.JButton btnOrderCatalog;
     private javax.swing.JButton btnSales;
     private javax.swing.JButton btnSalesPerformance;
-    private javax.swing.JButton btnSalesPerformance1;
     private javax.swing.JButton btnSupplier;
     // End of variables declaration//GEN-END:variables
 

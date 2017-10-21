@@ -65,5 +65,10 @@ public class Market extends AbstractCatalog<Customer>{
         super(message);
         }
     }
+    
+     @Override
+    public String toString(){
+        return marketName;
+    }
 
 }

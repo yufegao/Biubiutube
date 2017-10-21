@@ -47,4 +47,9 @@ public class Customer {
         this.market = market;
     }
     
+    @Override
+
+    public String toString(){
+        return name;
+    }
 }

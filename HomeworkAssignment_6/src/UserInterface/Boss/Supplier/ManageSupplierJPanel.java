@@ -5,16 +5,23 @@
  */
 package UserInterface.Boss.Supplier;
 
+import UserInterface.Components.HasTitle;
+import UserInterface.Components.ParentUI;
+import UserInterface.Components.TablePopulatable;
+import biz.Components.Market;
+import biz.Components.Supplier;
+import javax.swing.JTable;
+
 /**
  *
  * @author royn
  */
-public class ManageSupplierJPanel extends javax.swing.JPanel {
-
+public class ManageSupplierJPanel extends javax.swing.JPanel implements TablePopulatable<Supplier>, HasTitle{
+    private ParentUI parent;
     /**
      * Creates new form ManageSupplierJPanel
      */
-    public ManageSupplierJPanel() {
+    public ManageSupplierJPanel(ParentUI parent) {
         initComponents();
     }
 
@@ -53,4 +60,24 @@ public class ManageSupplierJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public JTable getTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object[] populateRow(Supplier element) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void populateTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getTitle() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
