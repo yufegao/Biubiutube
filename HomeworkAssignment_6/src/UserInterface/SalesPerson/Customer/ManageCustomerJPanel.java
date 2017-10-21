@@ -8,8 +8,10 @@ package UserInterface.SalesPerson.Customer;
 import UserInterface.Components.HasTitle;
 import UserInterface.Components.ParentUI;
 import UserInterface.Components.TablePopulatable;
+import UserInterface.SalesPerson.Order.PlaceOrUpdateOrderJpanel;
 import biz.Components.Business;
 import biz.Components.Customer;
+import biz.Components.SalesPerson;
 import javax.swing.JTable;
 
 /**
@@ -17,14 +19,17 @@ import javax.swing.JTable;
  * @author royn
  */
 public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle, TablePopulatable<Customer> {
-
+    private ParentUI parent;
+    private SalesPerson salesPerson;
+    
     /**
      * Creates new form ManageCustomer
      */
-    private ParentUI parent;
-    public ManageCustomerJPanel(ParentUI parent) {
+    public ManageCustomerJPanel(ParentUI parent, SalesPerson salesPerson) {
         initComponents();
         this.parent = parent;
+        this.salesPerson = salesPerson;
+        populateTable();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,7 +46,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
         btnSearchCustomer = new javax.swing.JButton();
         btnUpdateCustomer = new javax.swing.JButton();
         btnDeleteCustomer = new javax.swing.JButton();
-        btnAddOrder = new javax.swing.JButton();
+        btnPlaceOrder = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -97,18 +102,22 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
         });
         add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 520, 140, 40));
 
-        btnAddOrder.setText("Add Order");
-        btnAddOrder.addActionListener(new java.awt.event.ActionListener() {
+        btnPlaceOrder.setText("Place Order");
+        btnPlaceOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddOrderActionPerformed(evt);
+                btnPlaceOrderActionPerformed(evt);
             }
         });
-        add(btnAddOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 480, 140, 40));
+        add(btnPlaceOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 480, 140, 40));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddOrderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddOrderActionPerformed
+    private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
+        Customer customer = getSelected();
+        if (customer == null) {
+            return;
+        }
+        this.parent.pushComponent(new PlaceOrUpdateOrderJpanel(salesPerson, customer));
+    }//GEN-LAST:event_btnPlaceOrderActionPerformed
 
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
         // TODO add your handling code here:
@@ -143,8 +152,8 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddCustomer;
-    private javax.swing.JButton btnAddOrder;
     private javax.swing.JButton btnDeleteCustomer;
+    private javax.swing.JButton btnPlaceOrder;
     private javax.swing.JButton btnSearchCustomer;
     private javax.swing.JButton btnUpdateCustomer;
     private javax.swing.JScrollPane jScrollPane1;

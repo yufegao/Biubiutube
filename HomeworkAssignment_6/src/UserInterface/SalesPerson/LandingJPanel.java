@@ -7,6 +7,7 @@ package UserInterface.SalesPerson;
 
 import UserInterface.Components.HasTitle;
 import UserInterface.Components.ParentUI;
+import UserInterface.SalesPerson.Customer.ManageCustomerJPanel;
 import UserInterface.SalesPerson.Order.ManageOrderJPanel;
 import UserInterface.SalesPerson.Order.PlaceOrUpdateOrderJpanel;
 import biz.Components.SalesPerson;
@@ -60,12 +61,12 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
-        // TODO add your handling code here:
-        this.parentUI.pushComponent(new ManageOrderJPanel(parentUI, salesPerson));
+        this.parentUI.pushComponent(new ManageCustomerJPanel(parentUI, salesPerson));
+
     }//GEN-LAST:event_btnCustomerActionPerformed
 
     private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
-        // TODO add your handling code here:
+        this.parentUI.pushComponent(new ManageOrderJPanel(parentUI, salesPerson));
     }//GEN-LAST:event_btnOrderActionPerformed
 
 
