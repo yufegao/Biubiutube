@@ -44,6 +44,7 @@ public class BusinessConfigure {
             for (int j = 1; j <= 10; j++) {
                 Product p = s.getProductCatalog().newElement();
                 p.setProductName(String.format("Product%d", j));
+                p.setProductNumber(String.format("Number%d", j));
                 p.setFactoryPrice(rand.nextDouble() * 1000);
                 p.setStock(rand.nextInt(100));
             }

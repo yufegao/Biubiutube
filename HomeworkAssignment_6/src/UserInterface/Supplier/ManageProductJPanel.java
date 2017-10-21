@@ -139,8 +139,12 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         final String productName = JOptionPane.showInputDialog(this, "Please input the name of Product you want to find");
+        if (productName == null){
+            return;
+        }else{
         ArrayList<Product> productList = supplier.getProductCatalog().findElements(p -> p.getProductName().equals(productName));
         populateTable(productList);
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
 
@@ -165,7 +169,7 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
 
     @Override
     public Object[] populateRow(Product p) {
-        return new Object[] {p, p.getProductName(), p.getFactoryPrice(), p.getStock()};
+        return new Object[] {p, p.getProductNumber(), p.getFactoryPrice(), p.getStock()};
     }
 
     @Override

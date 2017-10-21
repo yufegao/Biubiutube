@@ -51,6 +51,7 @@ public class UpdateProductJPanel extends javax.swing.JPanel implements HasTitle{
         txtName.setEnabled(true);
         txtProductNumber.setEnabled(true);
         txtFactoryPrice.setEnabled(true);
+        txtStock.setEnabled(true);
     }
 
     /**
