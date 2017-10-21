@@ -132,7 +132,6 @@ public class ManageMarketJPanel extends javax.swing.JPanel implements TablePopul
         // TODO add your handling code here:
         CreateMarketJPanel cmj = new CreateMarketJPanel(parent);
         parent.pushComponent(cmj);
-        
     }//GEN-LAST:event_createActionPerformed
 
 

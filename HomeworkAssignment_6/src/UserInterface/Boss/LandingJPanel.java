@@ -96,8 +96,7 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
 
     private void btnSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierActionPerformed
         // TODO add your handling code here:
-        ManageSupplierJPanel sup = new ManageSupplierJPanel(parentUI);
-        parentUI.pushComponent(sup);
+        this.parentUI.pushComponent(new ManageSupplierJPanel(parentUI));
     }//GEN-LAST:event_btnSupplierActionPerformed
 
 

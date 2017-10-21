@@ -8,7 +8,6 @@ package UserInterface.Supplier;
 import UserInterface.Components.HasTitle;
 import UserInterface.Components.ParentUI;
 import UserInterface.Components.TablePopulatable;
-import biz.Components.Business;
 import biz.Components.Product;
 import biz.Components.ProductCatalog;
 import biz.Components.Supplier;
@@ -24,6 +23,8 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
     private Supplier supplier;
     private ParentUI parent;
     
+    
+    
     /**
      * Creates new form LandingJPanel
      */
@@ -31,6 +32,7 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
         initComponents();
         this.supplier = supplier;
         this.parent = parent;
+        populateTable();
     }
 
     /**
@@ -109,7 +111,7 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        this.parent.pushComponent(new CreateProductJPanel(supplier));
+        this.parent.pushComponent(new CreateProductJPanel(parent, supplier));
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCustomerActionPerformed
@@ -130,7 +132,7 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
         if (selectedProduct == null) {
             return;
         }else {
-            this.parent.pushComponent(new UpdateProductJPanel(selectedProduct));
+            this.parent.pushComponent(new UpdateProductJPanel(parent,selectedProduct));
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
