@@ -427,9 +427,9 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
         return new Object[] {
             op,
             op.getProduct().getSupplier(),
-            op.getLowestPrice(),
-            op.getTargetPrice(),
-            op.getHighestPrice(),
+            String.format("%.2f", op.getLowestPrice()),
+            String.format("%.2f", op.getTargetPrice()),
+            String.format("%.2f", op.getHighestPrice()),
             op.getProduct().getStock()
         };
     }
@@ -449,12 +449,12 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
             dtm.addRow(new Object[] {
                 op,
                 op.getQuantity(),
-                op.getActualPrice(),
-                op.getTotalPrice()
+                String.format("%.2f", op.getActualPrice()),
+                String.format("%.2f", op.getTotalPrice())
             });           
         }
         
         txtTotalPrice.setText(Double.toString(order.totalPrice()));
-        txtRevenue.setText(Double.toString(order.getRevenue()));
+        txtRevenue.setText(String.format("%.2f", order.getRevenue()));
     }
 }

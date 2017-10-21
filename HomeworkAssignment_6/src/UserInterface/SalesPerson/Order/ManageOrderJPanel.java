@@ -50,11 +50,11 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
 
             },
             new String [] {
-                "ID", "Total Actual Price", "My Rewards", "Customer"
+                "ID", "Total Actual Price", "My Rewards", "Customer", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -83,8 +83,8 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 341, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnRemove, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -140,9 +140,10 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
     public Object[] populateRow(Order order) {
         return new Object[] {
             order,
-            order.totalPrice(),
-            order.getOrderReward(),
-            order.getBoughtBy()
+            String.format("%.2f", order.totalPrice()),
+            String.format("%.2f", order.getOrderReward()),
+            order.getBoughtBy(),
+            order.getStatus()
         };
     }
 

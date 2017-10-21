@@ -56,6 +56,8 @@ public interface TablePopulatable<Element> {
             return false;
         }
         
+        populateTable();
+        
         return catalog.removeElement(selected);
     }
 }

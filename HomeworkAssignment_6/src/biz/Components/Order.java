@@ -17,7 +17,7 @@ public class Order extends AbstractCatalog<OrderProduct>{
     private int id;
     private SalesPerson SoldBy;
     private Customer BoughtBy;
-    private String status = "init";
+    private String status = "Drafted";
 
     public Order () {
         elementArrayList = new ArrayList<>();
