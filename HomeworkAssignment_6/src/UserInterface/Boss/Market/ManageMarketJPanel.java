@@ -17,12 +17,12 @@ import javax.swing.JTable;
  *
  * @author Administrator
  */
-public class MarketJPanel extends javax.swing.JPanel implements TablePopulatable<Market>, HasTitle {
+public class ManageMarketJPanel extends javax.swing.JPanel implements TablePopulatable<Market>, HasTitle {
     private ParentUI parent;
     /**
      * Creates new form MarketJPanel
      */
-    public MarketJPanel(ParentUI parent) {
+    public ManageMarketJPanel(ParentUI parent) {
         initComponents();
         this.parent = parent;
         populateTable();

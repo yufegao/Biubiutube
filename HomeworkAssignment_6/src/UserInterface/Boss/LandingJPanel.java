@@ -5,8 +5,8 @@
  */
 package UserInterface.Boss;
 
-import UserInterface.Boss.Account.AccountList;
-import UserInterface.Boss.Market.MarketJPanel;
+import UserInterface.Boss.Account.ManageAccountJPanel;
+import UserInterface.Boss.Market.ManageMarketJPanel;
 import UserInterface.Boss.Supplier.ManageSupplierJPanel;
 import UserInterface.Components.HasTitle;
 import UserInterface.Components.ParentUI;
@@ -57,7 +57,7 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
         add(btnAccountCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 230, 70));
 
         btnOrderCatalog.setText("Order Catalog");
-        add(btnOrderCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 230, 70));
+        add(btnOrderCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 230, 70));
 
         btnMarket.setText("Market");
         btnMarket.addActionListener(new java.awt.event.ActionListener() {
@@ -82,17 +82,16 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
         add(btnSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 230, 70));
 
         btnSalesPerformance.setText("Sales Performance");
-        add(btnSalesPerformance, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, 230, 70));
+        add(btnSalesPerformance, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, 230, 70));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAccountCatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountCatalogActionPerformed
-        this.parentUI.pushComponent(new AccountList(parentUI));
+        this.parentUI.pushComponent(new ManageAccountJPanel(parentUI));
     }//GEN-LAST:event_btnAccountCatalogActionPerformed
 
     private void btnMarketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarketActionPerformed
         // TODO add your handling code here:
-        MarketJPanel mark = new MarketJPanel(parentUI);
-        parentUI.pushComponent(mark);
+        this.parentUI.pushComponent(new ManageMarketJPanel(parentUI));
     }//GEN-LAST:event_btnMarketActionPerformed
 
     private void btnSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierActionPerformed
