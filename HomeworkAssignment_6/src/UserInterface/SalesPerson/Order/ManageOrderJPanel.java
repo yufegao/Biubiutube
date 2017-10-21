@@ -28,6 +28,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
         initComponents();
         this.salesPerson = salesPerson;
         this.parent = parent;
+        populateTable();
     }
 
     /**
@@ -46,10 +47,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
 
         tblOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "Total Actual Price", "My Rewards", "Customer"

@@ -98,10 +98,10 @@
         <Component class="javax.swing.JTable" name="tblOrderProduct">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
+              <Table columnCount="4" rowCount="0">
                 <Column editable="false" title="Product Name" type="java.lang.Object"/>
-                <Column editable="true" title="Quantity" type="java.lang.Object"/>
-                <Column editable="true" title="Actual Unit Price" type="java.lang.Object"/>
+                <Column editable="false" title="Quantity" type="java.lang.Object"/>
+                <Column editable="false" title="Actual Unit Price" type="java.lang.Object"/>
                 <Column editable="false" title="Actual Total Price" type="java.lang.Object"/>
               </Table>
             </Property>
@@ -138,11 +138,11 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Product Offer List"/>
+        <Property name="text" type="java.lang.String" value="Product Offer List Total Product:"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="6" y="11" width="-1" height="-1"/>
+          <AbsoluteConstraints x="10" y="10" width="-1" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -192,7 +192,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="82" y="416" width="100" height="-1"/>
+          <AbsoluteConstraints x="82" y="416" width="290" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -207,9 +207,12 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JTextField" name="txtRevenue">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="82" y="451" width="100" height="-1"/>
+          <AbsoluteConstraints x="82" y="451" width="290" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -356,6 +359,16 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="819" y="142" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtTotalProduct">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="220" y="10" width="90" height="30"/>
         </Constraint>
       </Constraints>
     </Component>

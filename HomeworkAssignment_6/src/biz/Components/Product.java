@@ -13,9 +13,9 @@ package biz.Components;
 public class Product {
     private String ProductName;
     private String ProductNumber;
-    private int FactoryPrice;
+    private double FactoryPrice;
     private Supplier supplier;
-    private boolean isAvailable;
+    private boolean isAvailable = true;
     private int stock = 0;
 
     public boolean isIsAvailable() {
@@ -46,11 +46,11 @@ public class Product {
         this.ProductNumber = ProductNumber;
     }
 
-    public int getFactoryPrice() {
+    public double getFactoryPrice() {
         return FactoryPrice;
     }
 
-    public void setFactoryPrice(int FactoryPrice) {
+    public void setFactoryPrice(double FactoryPrice) {
         this.FactoryPrice = FactoryPrice;
     }
 

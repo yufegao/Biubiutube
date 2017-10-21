@@ -26,26 +26,34 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
     private SalesPerson salesPerson;
     private Customer customer;
     private Order order;
+    private boolean isNew;
 
     /**
      * Creates new form PlaceOrderJpanel
      */
     public PlaceOrUpdateOrderJpanel(SalesPerson salesPerson, Customer customer) {
         initComponents();
+        this.isNew = true;
         this.salesPerson = salesPerson;
         this.customer = customer;
         
         this.order = Business.getInstance().getOrderDirectory().newElement();
         this.order.setSoldBy(salesPerson);
         this.order.setBoughtBy(customer);
+        
+        populateTable();
     }
     
     public PlaceOrUpdateOrderJpanel(Order order) {
         initComponents();
+        this.isNew = false;
+        this.order = order;
         this.salesPerson = order.getSoldBy();
         this.customer = order.getBoughtBy();
         
-        this.btnPlaceOrder.setText("Save Order");
+        this.btnPlaceOrder.setText("Update Order");
+        populateTable();
+        populateOrder();
     }
 
     /**
@@ -83,6 +91,7 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
         jLabel8 = new javax.swing.JLabel();
         txtProductName = new javax.swing.JTextField();
         btnFind = new javax.swing.JButton();
+        txtTotalProduct = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -108,17 +117,14 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
 
         tblOrderProduct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Product Name", "Quantity", "Actual Unit Price", "Actual Total Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -129,8 +135,8 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 212, 888, 198));
 
-        jLabel2.setText("Product Offer List");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 11, -1, -1));
+        jLabel2.setText("Product Offer List Total Product:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
         add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 177, 44, -1));
 
         jLabel3.setText("Quantity:");
@@ -148,11 +154,13 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 421, -1, -1));
 
         txtTotalPrice.setEnabled(false);
-        add(txtTotalPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 416, 100, -1));
+        add(txtTotalPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 416, 290, -1));
 
         jLabel4.setText("Revenue:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 456, -1, -1));
-        add(txtRevenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 451, 100, -1));
+
+        txtRevenue.setEnabled(false);
+        add(txtRevenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 451, 290, -1));
 
         btnPlaceOrder.setText("Place Order");
         btnPlaceOrder.addActionListener(new java.awt.event.ActionListener() {
@@ -217,11 +225,15 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
             }
         });
         add(btnFind, new org.netbeans.lib.awtextra.AbsoluteConstraints(819, 142, -1, -1));
+
+        txtTotalProduct.setEnabled(false);
+        add(txtTotalProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 90, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
         this.order.setStatus("Placed");
         JOptionPane.showMessageDialog(this, "Order Placed");
+        // TODO: what next?
     }//GEN-LAST:event_btnPlaceOrderActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -272,11 +284,15 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
             orderProduct.setOfferProduct(offerProduct);
         }
         populateOrder();
+        populateTable();
+        txtQuantity.setText("");
+        txtActualPrice.setText("");
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         String productName = txtProductName.getText();
         ArrayList<OfferProduct> arr = customer.getMarket().getMarketOffer().findElements(op -> op.getProduct().getProductName().equals(productName));
+        txtTotalProduct.setText(Integer.toString(arr.size()));
         populateTable(arr);
     }//GEN-LAST:event_btnFindActionPerformed
 
@@ -313,7 +329,7 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
             return;
         }
         
-        String actualPriceTxt = txtActualPrice.getText();
+        String actualPriceTxt = txtActualPrice2.getText();
         double actualPrice;
         try {
             actualPrice = Double.parseDouble(actualPriceTxt);
@@ -332,6 +348,8 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
 
         orderProduct.setActualPrice(actualPrice);
         populateOrder();
+        txtActualPrice2.setText("");
+        JOptionPane.showMessageDialog(this, "Order Updated!");
     }//GEN-LAST:event_btnActualPriceActionPerformed
 
     private void btnQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuantityActionPerformed
@@ -342,7 +360,7 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
         
         OfferProduct offerProduct = orderProduct.getOfferProduct();
         
-        String quantityText = txtQuantity.getText();
+        String quantityText = txtQuantity2.getText();
         int quantity;
         try {
             quantity = Integer.parseInt(quantityText);
@@ -358,6 +376,8 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
         orderProduct.setQuantity(orderProduct.getQuantity() + quantity);
         offerProduct.getProduct().setStock(offerProduct.getProduct().getStock() - quantity);
         populateOrder();
+        txtQuantity2.setText("");
+        JOptionPane.showMessageDialog(this, "Order Updated!");
     }//GEN-LAST:event_btnQuantityActionPerformed
 
 
@@ -388,11 +408,13 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
     private javax.swing.JTextField txtQuantity2;
     private javax.swing.JTextField txtRevenue;
     private javax.swing.JTextField txtTotalPrice;
+    private javax.swing.JTextField txtTotalProduct;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public String getTitle() {
-        return String.format("Place Order for %s", customer);
+        String verb = this.isNew ? "Place" : "Update";
+        return String.format("%s Order for %s", verb, customer);
     }
 
     @Override
@@ -414,7 +436,9 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
 
     @Override
     public void populateTable() {
-        populateTable(customer.getMarket().getMarketOffer().getElementArrayList());
+        ArrayList<OfferProduct> arr = customer.getMarket().getMarketOffer().getElementArrayList();
+        populateTable(arr);
+        this.txtTotalProduct.setText(Integer.toString(arr.size()));
     }
     
     public void populateOrder() {

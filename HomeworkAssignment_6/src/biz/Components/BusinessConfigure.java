@@ -5,6 +5,8 @@
  */
 package biz.Components;
 
+import java.util.Random;
+
 /**
  *
  * @author hezj
@@ -36,6 +38,15 @@ public class BusinessConfigure {
             s.setUsername(String.format("Supplier%s", i));
             s.setPassword(String.format("%s", i));
             business.getAccountCatalog().addElement(s);
+            
+            Random rand = new Random();
+            
+            for (int j = 1; j <= 10; j++) {
+                Product p = s.getProductCatalog().newElement();
+                p.setProductName(String.format("Product%d", j));
+                p.setFactoryPrice(rand.nextDouble() * 1000);
+                p.setStock(rand.nextInt(100));
+            }
         }
 
         for (int i = 1; i <= 3; i++) {
