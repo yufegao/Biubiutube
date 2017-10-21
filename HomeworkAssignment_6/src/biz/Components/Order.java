@@ -63,6 +63,7 @@ public class Order extends AbstractCatalog<OrderProduct>{
     }
 
     public double getOrderReward() {
+        // FIXME: quantity
         double reward = 0;
         for (OrderProduct op: this.elementArrayList){
             reward += (op.getActualPrice()-op.getOfferProduct().getLowestPrice())*0.05;
@@ -71,6 +72,7 @@ public class Order extends AbstractCatalog<OrderProduct>{
     }
 
     public double getRevenue(){
+        // FIXME: quantity
         double revenue = 0;
         for (OrderProduct op: this.elementArrayList){
             revenue += (op.getActualPrice() -  op.getOfferProduct().getProduct().getFactoryPrice());
