@@ -122,10 +122,13 @@ public class ManageMarketJPanel extends javax.swing.JPanel implements TablePopul
             return;
         }
         if(select.getElementArrayList().size() > 0){
-            JOptionPane.showMessageDialog(null,"Cannot delete market with so many customers!", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Cannot delete market with so many customers!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         Business.getInstance().getMarketCatalog().removeElement(select);
+        populateTable();
+        JOptionPane.showMessageDialog(this,"All set!", "Information", JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_deleteActionPerformed
 
     private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
