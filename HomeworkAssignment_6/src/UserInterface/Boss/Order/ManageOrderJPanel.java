@@ -81,7 +81,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed

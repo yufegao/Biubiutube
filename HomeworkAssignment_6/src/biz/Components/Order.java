@@ -17,7 +17,7 @@ public class Order extends AbstractCatalog<OrderProduct>{
     private int id;
     private SalesPerson SoldBy;
     private Customer BoughtBy;
-    private String status = "init";
+    private String status = "Drafted";
 
     public Order () {
         elementArrayList = new ArrayList<>();
@@ -65,7 +65,7 @@ public class Order extends AbstractCatalog<OrderProduct>{
     public double getOrderReward() {
         double reward = 0;
         for (OrderProduct op: this.elementArrayList){
-            reward += (op.getActualPrice()-op.getOfferProduct().getLowestPrice())*0.05;
+            reward += (op.getActualPrice() - op.getOfferProduct().getProduct().getFactoryPrice()) * op.getQuantity() *0.05;
         }
         return reward;
     }
@@ -73,7 +73,7 @@ public class Order extends AbstractCatalog<OrderProduct>{
     public double getRevenue(){
         double revenue = 0;
         for (OrderProduct op: this.elementArrayList){
-            revenue += (op.getActualPrice() -  op.getOfferProduct().getProduct().getFactoryPrice());
+            revenue += (op.getActualPrice() -  op.getOfferProduct().getProduct().getFactoryPrice())*op.getQuantity();
         }
         return revenue;
     }

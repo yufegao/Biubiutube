@@ -28,6 +28,7 @@ public class MarketOfferJPanel extends javax.swing.JPanel implements TablePopula
         initComponents();
         this.market = market;
         this.parent = pa;
+        populateTable();
     }
 
     /**

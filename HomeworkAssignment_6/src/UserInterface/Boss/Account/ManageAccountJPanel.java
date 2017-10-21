@@ -20,13 +20,13 @@ import javax.swing.JTable;
  *
  * @author hezj
  */
-public class AccountList extends javax.swing.JPanel implements HasTitle, TablePopulatable<Account> {
+public class ManageAccountJPanel extends javax.swing.JPanel implements HasTitle, TablePopulatable<Account> {
     private ParentUI parent;
     
     /**
      * Creates new form AccountList
      */
-    public AccountList(ParentUI parent) {
+    public ManageAccountJPanel(ParentUI parent) {
         initComponents();
         this.parent = parent;
         populateTable();

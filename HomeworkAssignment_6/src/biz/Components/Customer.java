@@ -46,7 +46,10 @@ public class Customer {
     public void setMarket(Market market) {
         this.market = market;
     }
+
+    
     @Override
+
     public String toString(){
         return name;
     }

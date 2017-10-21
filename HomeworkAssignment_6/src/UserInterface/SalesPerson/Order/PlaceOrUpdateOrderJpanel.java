@@ -26,26 +26,34 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
     private SalesPerson salesPerson;
     private Customer customer;
     private Order order;
+    private boolean isNew;
 
     /**
      * Creates new form PlaceOrderJpanel
      */
     public PlaceOrUpdateOrderJpanel(SalesPerson salesPerson, Customer customer) {
         initComponents();
+        this.isNew = true;
         this.salesPerson = salesPerson;
         this.customer = customer;
         
         this.order = Business.getInstance().getOrderDirectory().newElement();
         this.order.setSoldBy(salesPerson);
         this.order.setBoughtBy(customer);
+        
+        populateTable();
     }
     
     public PlaceOrUpdateOrderJpanel(Order order) {
         initComponents();
+        this.isNew = false;
+        this.order = order;
         this.salesPerson = order.getSoldBy();
         this.customer = order.getBoughtBy();
         
-        this.btnPlaceOrder.setText("Save Order");
+        this.btnPlaceOrder.setText("Update Order");
+        populateTable();
+        populateOrder();
     }
 
     /**
@@ -83,6 +91,9 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
         jLabel8 = new javax.swing.JLabel();
         txtProductName = new javax.swing.JTextField();
         btnFind = new javax.swing.JButton();
+        txtTotalProduct = new javax.swing.JTextField();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblProductOffer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,19 +113,18 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
         });
         jScrollPane1.setViewportView(tblProductOffer);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 41, 888, 95));
+
         tblOrderProduct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Product Name", "Quantity", "Actual Unit Price", "Actual Total Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -123,9 +133,14 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
         });
         jScrollPane2.setViewportView(tblOrderProduct);
 
-        jLabel2.setText("Product Offer List");
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 212, 888, 198));
+
+        jLabel2.setText("Product Offer List Total Product:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
+        add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 177, 44, -1));
 
         jLabel3.setText("Quantity:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(596, 182, -1, -1));
 
         btnAdd.setText("Add Selected To Order");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -133,12 +148,19 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
                 btnAddActionPerformed(evt);
             }
         });
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 177, -1, -1));
 
         jLabel1.setText("Total Price:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 421, -1, -1));
 
         txtTotalPrice.setEnabled(false);
+        add(txtTotalPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 416, 290, -1));
 
         jLabel4.setText("Revenue:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 456, -1, -1));
+
+        txtRevenue.setEnabled(false);
+        add(txtRevenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 451, 290, -1));
 
         btnPlaceOrder.setText("Place Order");
         btnPlaceOrder.addActionListener(new java.awt.event.ActionListener() {
@@ -146,8 +168,11 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
                 btnPlaceOrderActionPerformed(evt);
             }
         });
+        add(btnPlaceOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 540, -1, -1));
+        add(txtActualPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(543, 177, 47, -1));
 
         jLabel5.setText("Actual Price:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(459, 182, -1, -1));
 
         btnRemove.setText("Remove Selected From Order");
         btnRemove.addActionListener(new java.awt.event.ActionListener() {
@@ -155,6 +180,7 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
                 btnRemoveActionPerformed(evt);
             }
         });
+        add(btnRemove, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 416, -1, -1));
 
         btnActualPrice.setText("Go");
         btnActualPrice.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +188,7 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
                 btnActualPriceActionPerformed(evt);
             }
         });
+        add(btnActualPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(819, 451, -1, -1));
 
         btnQuantity.setText("Go");
         btnQuantity.addActionListener(new java.awt.event.ActionListener() {
@@ -169,10 +196,15 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
                 btnQuantityActionPerformed(evt);
             }
         });
+        add(btnQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(819, 486, -1, -1));
 
         jLabel6.setText("ModifyS elected Actual Price to:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(519, 456, -1, -1));
+        add(txtActualPrice2, new org.netbeans.lib.awtextra.AbsoluteConstraints(723, 451, 90, -1));
+        add(txtQuantity2, new org.netbeans.lib.awtextra.AbsoluteConstraints(723, 486, 90, -1));
 
         jLabel7.setText("Modify Selected Quantity to:");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(539, 491, -1, -1));
 
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -180,8 +212,11 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
                 btnResetActionPerformed(evt);
             }
         });
+        add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(816, 6, -1, -1));
 
         jLabel8.setText("Find Product:");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(639, 147, -1, -1));
+        add(txtProductName, new org.netbeans.lib.awtextra.AbsoluteConstraints(728, 142, 88, -1));
 
         btnFind.setText("Go");
         btnFind.addActionListener(new java.awt.event.ActionListener() {
@@ -189,117 +224,16 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
                 btnFindActionPerformed(evt);
             }
         });
+        add(btnFind, new org.netbeans.lib.awtextra.AbsoluteConstraints(819, 142, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnReset))
-                    .addComponent(jScrollPane2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtRevenue, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel6))
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(txtQuantity2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnQuantity))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(txtActualPrice2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnActualPrice))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnRemove))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3)
-                                .addComponent(btnFind))
-                            .addComponent(btnPlaceOrder, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtActualPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAdd)))))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(btnReset))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFind))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd)
-                    .addComponent(jLabel3)
-                    .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtActualPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRemove)
-                    .addComponent(jLabel1)
-                    .addComponent(txtTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnActualPrice)
-                    .addComponent(jLabel6)
-                    .addComponent(txtActualPrice2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtRevenue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtQuantity2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnQuantity))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(btnPlaceOrder))
-        );
+        txtTotalProduct.setEnabled(false);
+        add(txtTotalProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 90, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
         this.order.setStatus("Placed");
         JOptionPane.showMessageDialog(this, "Order Placed");
+        // TODO: what next?
     }//GEN-LAST:event_btnPlaceOrderActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -350,11 +284,15 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
             orderProduct.setOfferProduct(offerProduct);
         }
         populateOrder();
+        populateTable();
+        txtQuantity.setText("");
+        txtActualPrice.setText("");
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
         String productName = txtProductName.getText();
         ArrayList<OfferProduct> arr = customer.getMarket().getMarketOffer().findElements(op -> op.getProduct().getProductName().equals(productName));
+        txtTotalProduct.setText(Integer.toString(arr.size()));
         populateTable(arr);
     }//GEN-LAST:event_btnFindActionPerformed
 
@@ -391,7 +329,7 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
             return;
         }
         
-        String actualPriceTxt = txtActualPrice.getText();
+        String actualPriceTxt = txtActualPrice2.getText();
         double actualPrice;
         try {
             actualPrice = Double.parseDouble(actualPriceTxt);
@@ -410,6 +348,8 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
 
         orderProduct.setActualPrice(actualPrice);
         populateOrder();
+        txtActualPrice2.setText("");
+        JOptionPane.showMessageDialog(this, "Order Updated!");
     }//GEN-LAST:event_btnActualPriceActionPerformed
 
     private void btnQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuantityActionPerformed
@@ -420,7 +360,7 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
         
         OfferProduct offerProduct = orderProduct.getOfferProduct();
         
-        String quantityText = txtQuantity.getText();
+        String quantityText = txtQuantity2.getText();
         int quantity;
         try {
             quantity = Integer.parseInt(quantityText);
@@ -436,6 +376,8 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
         orderProduct.setQuantity(orderProduct.getQuantity() + quantity);
         offerProduct.getProduct().setStock(offerProduct.getProduct().getStock() - quantity);
         populateOrder();
+        txtQuantity2.setText("");
+        JOptionPane.showMessageDialog(this, "Order Updated!");
     }//GEN-LAST:event_btnQuantityActionPerformed
 
 
@@ -466,11 +408,13 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
     private javax.swing.JTextField txtQuantity2;
     private javax.swing.JTextField txtRevenue;
     private javax.swing.JTextField txtTotalPrice;
+    private javax.swing.JTextField txtTotalProduct;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public String getTitle() {
-        return String.format("Place Order for %s", customer);
+        String verb = this.isNew ? "Place" : "Update";
+        return String.format("%s Order for %s", verb, customer);
     }
 
     @Override
@@ -483,16 +427,18 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
         return new Object[] {
             op,
             op.getProduct().getSupplier(),
-            op.getLowestPrice(),
-            op.getTargetPrice(),
-            op.getHighestPrice(),
+            String.format("%.2f", op.getLowestPrice()),
+            String.format("%.2f", op.getTargetPrice()),
+            String.format("%.2f", op.getHighestPrice()),
             op.getProduct().getStock()
         };
     }
 
     @Override
     public void populateTable() {
-        populateTable(customer.getMarket().getMarketOffer().getElementArrayList());
+        ArrayList<OfferProduct> arr = customer.getMarket().getMarketOffer().getElementArrayList();
+        populateTable(arr);
+        this.txtTotalProduct.setText(Integer.toString(arr.size()));
     }
     
     public void populateOrder() {
@@ -503,12 +449,12 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
             dtm.addRow(new Object[] {
                 op,
                 op.getQuantity(),
-                op.getActualPrice(),
-                op.getTotalPrice()
+                String.format("%.2f", op.getActualPrice()),
+                String.format("%.2f", op.getTotalPrice())
             });           
         }
         
         txtTotalPrice.setText(Double.toString(order.totalPrice()));
-        txtRevenue.setText(Double.toString(order.getRevenue()));
+        txtRevenue.setText(String.format("%.2f", order.getRevenue()));
     }
 }

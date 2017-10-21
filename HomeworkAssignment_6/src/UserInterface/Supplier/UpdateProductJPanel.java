@@ -5,6 +5,8 @@
  */
 package UserInterface.Supplier;
 
+import UserInterface.Components.HasTitle;
+import UserInterface.Components.ParentUI;
 import biz.Components.Product;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
@@ -13,16 +15,18 @@ import javax.swing.JOptionPane;
  *
  * @author royn
  */
-public class UpdateProductJPanel extends javax.swing.JPanel {
+public class UpdateProductJPanel extends javax.swing.JPanel implements HasTitle{
     private Product product;
     private ButtonGroup as_bg;
+    private ParentUI parent;
 
     /**
      * Creates new form CreateProduct
      */
-    public UpdateProductJPanel(Product product) {
+    public UpdateProductJPanel(ParentUI parent, Product product) {
         initComponents();
         this.product = product;
+        this.parent = parent;
         this.as_bg = new ButtonGroup();
         as_bg.add(rbTrue);
         as_bg.add(rbFalse);
@@ -47,6 +51,7 @@ public class UpdateProductJPanel extends javax.swing.JPanel {
         txtName.setEnabled(true);
         txtProductNumber.setEnabled(true);
         txtFactoryPrice.setEnabled(true);
+        txtStock.setEnabled(true);
     }
 
     /**
@@ -166,4 +171,9 @@ public class UpdateProductJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtProductNumber;
     private javax.swing.JTextField txtStock;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String getTitle() {
+        return "Update Your Product";
+    }
 }
