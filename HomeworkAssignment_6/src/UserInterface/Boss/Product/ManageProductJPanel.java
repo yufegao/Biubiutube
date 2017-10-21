@@ -21,16 +21,15 @@ import javax.swing.JTable;
  * @author royn
  */
 public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle, TablePopulatable<Product>{
-    private Business business;
     private ParentUI parent;
 
     /**
      * Creates new form ManageProductJPanel
      */
-    public ManageProductJPanel(ParentUI parent, Business business) {
+    public ManageProductJPanel(ParentUI parent) {
         initComponents();
         this.parent = parent;
-        this.business = business;
+        populateTable();
     }
     
     
@@ -85,7 +84,8 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
     private void btnSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchProductActionPerformed
         // TODO add your handling code here:
         final String productName = JOptionPane.showInputDialog(this, "Please input the name of Product you want to find");
-        ArrayList<Product> productList = business.findProducts(p -> p.getProductName().equals(productName));
+        //TODO Search Product here
+        ArrayList<Product> productList = findProducts(Business.getInstance().getAllProducts().get(0).getProductName().equals(productName));
         populateTable(productList);
     }//GEN-LAST:event_btnSearchProductActionPerformed
 
@@ -98,12 +98,12 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
 
     @Override
     public String getTitle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "View All Products";
     }
 
     @Override
     public JTable getTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return tblProduct;
     }
 
     @Override
@@ -113,7 +113,7 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
 
     @Override
     public void populateTable() {
-        ArrayList<Product> p = business.getAllProducts();
+        ArrayList<Product> p = Business.getInstance().getAllProducts();
         populateTable(p);    
     }
 }

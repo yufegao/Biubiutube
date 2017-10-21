@@ -17,13 +17,11 @@ import javax.swing.JOptionPane;
  */
 public class CreateSupplierJPanel extends javax.swing.JPanel implements HasTitle{
     private ParentUI parent;
-    private Business business;
     /**
      * Creates new form CreateSupplierJPanel
      */
-    public CreateSupplierJPanel(ParentUI parent, Business business) {
+    public CreateSupplierJPanel(ParentUI parent) {
         initComponents();
-        this.business = business;
         this.parent = parent;
         
         refreshComponents();
@@ -74,7 +72,7 @@ public class CreateSupplierJPanel extends javax.swing.JPanel implements HasTitle
         String address = txtAddress.getText();
         
 
-        Supplier supplier = business.getSupplierCatalog().newElement();
+        Supplier supplier = Business.getInstance().getSupplierCatalog().newElement();
         supplier.setName(name);
         supplier.setName(address);
 

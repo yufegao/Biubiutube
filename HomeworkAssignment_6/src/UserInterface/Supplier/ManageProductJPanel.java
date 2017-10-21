@@ -125,6 +125,8 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
         if(dialogResult == JOptionPane.YES_OPTION){
             supplier.getProductCatalog().removeElement(selectedProduct);
         }
+        populateTable();
+        JOptionPane.showMessageDialog(this, "Removed");
     }//GEN-LAST:event_btnDeleteCustomerActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed

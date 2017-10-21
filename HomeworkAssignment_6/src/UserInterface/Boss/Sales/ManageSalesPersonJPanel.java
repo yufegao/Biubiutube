@@ -11,6 +11,7 @@ import UserInterface.Components.TablePopulatable;
 import biz.Components.Business;
 import biz.Components.Order;
 import biz.Components.SalesPerson;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -19,14 +20,15 @@ import javax.swing.JTable;
  * @author royn
  */
 public class ManageSalesPersonJPanel extends javax.swing.JPanel implements HasTitle, TablePopulatable<SalesPerson> {
-    private ParentUI parentUI;
+    private ParentUI parent;
     
     /**
      * Creates new form ManageSalesPersonJPanel
      */
-    public ManageSalesPersonJPanel(ParentUI parentUI) {
+    public ManageSalesPersonJPanel(ParentUI parent) {
         initComponents();
-        this.parentUI = parentUI;
+        this.parent = parent;
+        populateTable();
     }
 
     /**
@@ -39,14 +41,15 @@ public class ManageSalesPersonJPanel extends javax.swing.JPanel implements HasTi
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblSalesPerson = new javax.swing.JTable();
+        btnSearch = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
-        btnRemove = new javax.swing.JButton();
+        btnDeleteCustomer = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblSalesPerson.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -62,9 +65,17 @@ public class ManageSalesPersonJPanel extends javax.swing.JPanel implements HasTi
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblSalesPerson);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 660, 580));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 660, 580));
+
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 100, 40));
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -72,15 +83,15 @@ public class ManageSalesPersonJPanel extends javax.swing.JPanel implements HasTi
                 btnUpdateActionPerformed(evt);
             }
         });
-        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, -1, -1));
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 430, 100, 40));
 
-        btnRemove.setText("Remove");
-        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteCustomer.setText("Delete");
+        btnDeleteCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveActionPerformed(evt);
+                btnDeleteCustomerActionPerformed(evt);
             }
         });
-        add(btnRemove, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 50, -1, -1));
+        add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 530, 100, 40));
 
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -88,51 +99,57 @@ public class ManageSalesPersonJPanel extends javax.swing.JPanel implements HasTi
                 btnAddActionPerformed(evt);
             }
         });
-        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, -1, -1));
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 480, 100, 40));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        SalesPerson salesPerson = getSelected();
-        if (salesPerson == null) {
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        final String salesPersonName = JOptionPane.showInputDialog(this, "Please input the name of Sales Person you want to find");
+        if (salesPersonName == null){
             return;
+        }else{
+            ArrayList<SalesPerson> salesPersonList = Business.getInstance().getSalesPersonCatalog().findElements((s -> s.toString().equals(salesPersonName)));
+            populateTable(salesPersonList);
         }
+    }//GEN-LAST:event_btnSearchActionPerformed
 
-        this.parentUI.pushComponent(new UpdateSalesPersonJPanel(salesPerson));
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        SalesPerson selectedSalesPerson = getSelected();
+        if (selectedSalesPerson == null) {
+            return;
+        }else {
+            this.parent.pushComponent(new UpdateSalesPersonJPanel(parent, selectedSalesPerson));
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        SalesPerson salesPerson = getSelected();
-        if (salesPerson == null) {
+    private void btnDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCustomerActionPerformed
+        // TODO add your handling code here:
+        SalesPerson selectedSalesPerson = getSelected();
+        if (selectedSalesPerson == null) {
             return;
         }
-        
-        Order order = Business.getInstance().getOrderDirectory().findElement(o -> o.getSoldBy().equals(salesPerson));
-        if (order != null) {
-            JOptionPane.showMessageDialog(this, "Cannot remove sales person", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog(this, "Delete selected Order?", "Warning", dialogButton);
+        if(dialogResult == JOptionPane.YES_OPTION){
+            Business.getInstance().getSalesPersonCatalog().removeElement(selectedSalesPerson);
         }
-        
-        int res = JOptionPane.showConfirmDialog(this, "Do you want to remove sales sales person", "Confirm", JOptionPane.YES_NO_OPTION);
-        if (res == JOptionPane.NO_OPTION) {
-            return;
-        }
-
-        Business.getInstance().getOrderDirectory().removeElement(order);
         populateTable();
-        JOptionPane.showMessageDialog(this, "salesPerson removed!");
-    }//GEN-LAST:event_btnRemoveActionPerformed
+        JOptionPane.showMessageDialog(this, "Removed");
+    }//GEN-LAST:event_btnDeleteCustomerActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        parentUI.pushComponent(new AddSalesPersonJPanel());
+        // TODO add your handling code here:
+        this.parent.pushComponent(new AddSalesPersonJPanel(parent));
     }//GEN-LAST:event_btnAddActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnRemove;
+    private javax.swing.JButton btnDeleteCustomer;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblSalesPerson;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -142,7 +159,7 @@ public class ManageSalesPersonJPanel extends javax.swing.JPanel implements HasTi
 
     @Override
     public JTable getTable() {
-        return jTable1;
+        return tblSalesPerson;
     }
 
     @Override
@@ -155,6 +172,6 @@ public class ManageSalesPersonJPanel extends javax.swing.JPanel implements HasTi
 
     @Override
     public void populateTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        populateTable(Business.getInstance().getSalesPersonCatalog().getElementArrayList());
     }
 }

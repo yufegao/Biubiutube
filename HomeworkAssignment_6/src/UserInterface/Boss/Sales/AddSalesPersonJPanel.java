@@ -5,17 +5,24 @@
  */
 package UserInterface.Boss.Sales;
 
+import UserInterface.Components.HasTitle;
+import UserInterface.Components.ParentUI;
+import biz.Components.Business;
+import biz.Components.SalesPerson;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hezj
  */
-public class AddSalesPersonJPanel extends javax.swing.JPanel {
-
+public class AddSalesPersonJPanel extends javax.swing.JPanel implements HasTitle{
+    private ParentUI parent;
     /**
      * Creates new form AddSalesPersonJPanel
      */
-    public AddSalesPersonJPanel() {
+    public AddSalesPersonJPanel(ParentUI parent) {
         initComponents();
+        this.parent = parent;
     }
 
     /**
@@ -27,19 +34,54 @@ public class AddSalesPersonJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
+        Address = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtFirstName = new javax.swing.JTextField();
+        btnSave3 = new javax.swing.JButton();
+        txtLastName = new javax.swing.JTextField();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Address.setText("Last Name");
+        add(Address, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 120, 30));
+
+        jLabel6.setText("First Name");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 70, 30));
+        add(txtFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, 170, -1));
+
+        btnSave3.setText("Save");
+        btnSave3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSave3ActionPerformed(evt);
+            }
+        });
+        add(btnSave3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, 170, 50));
+        add(txtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 170, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSave3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave3ActionPerformed
+        // TODO add your handling code here:
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+
+        SalesPerson salesPerson = Business.getInstance().getSalesPersonCatalog().newElement();
+        salesPerson.setFirstName(firstName);
+        salesPerson.setLastName(lastName);
+
+        JOptionPane.showMessageDialog(null, "Sales person create successfully!");
+    }//GEN-LAST:event_btnSave3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Address;
+    private javax.swing.JButton btnSave3;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtLastName;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String getTitle() {
+        return "Register for new Sales Person";
+    }
 }

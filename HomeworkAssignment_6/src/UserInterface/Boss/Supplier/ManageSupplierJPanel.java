@@ -10,6 +10,8 @@ import UserInterface.Components.ParentUI;
 import UserInterface.Components.TablePopulatable;
 import biz.Components.Business;
 import biz.Components.Supplier;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -18,6 +20,7 @@ import javax.swing.JTable;
  */
 public class ManageSupplierJPanel extends javax.swing.JPanel implements TablePopulatable<Supplier>, HasTitle{
     private ParentUI parent;
+    private Business business;
     /**
      * Creates new form ManageSupplierJPanel
      */
@@ -38,6 +41,10 @@ public class ManageSupplierJPanel extends javax.swing.JPanel implements TablePop
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSupplier = new javax.swing.JTable();
+        btnSearch = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDeleteCustomer = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -63,10 +70,86 @@ public class ManageSupplierJPanel extends javax.swing.JPanel implements TablePop
         jScrollPane1.setViewportView(tblSupplier);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 580, -1));
+
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 100, 40));
+
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 430, 100, 40));
+
+        btnDeleteCustomer.setText("Delete");
+        btnDeleteCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteCustomerActionPerformed(evt);
+            }
+        });
+        add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 530, 100, 40));
+
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 480, 100, 40));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        final String supplierName = JOptionPane.showInputDialog(this, "Please input the name of Supplier you want to find");
+        if (supplierName == null){
+            return;
+        }else{
+            ArrayList<Supplier> supplierList = Business.getInstance().getSupplierCatalog().findElements((s -> s.getName().equals(supplierName)));
+            populateTable(supplierList);
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        Supplier selectedSupplier = getSelected();
+        if (selectedSupplier == null) {
+            return;
+        }else {
+            this.parent.pushComponent(new UpdateSupplierJPanel(parent,selectedSupplier));
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCustomerActionPerformed
+        // TODO add your handling code here:
+        Supplier selectedPSupplier = getSelected();
+        if (selectedPSupplier == null) {
+            return;
+        }
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog(this, "Delete selected Order?", "Warning", dialogButton);
+        if(dialogResult == JOptionPane.YES_OPTION){
+            Business.getInstance().getSupplierCatalog().removeElement(selectedPSupplier);
+        }
+        populateTable();
+        JOptionPane.showMessageDialog(this, "Removed");
+    }//GEN-LAST:event_btnDeleteCustomerActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        this.parent.pushComponent(new CreateSupplierJPanel(parent));
+    }//GEN-LAST:event_btnAddActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDeleteCustomer;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblSupplier;
     // End of variables declaration//GEN-END:variables
@@ -77,8 +160,8 @@ public class ManageSupplierJPanel extends javax.swing.JPanel implements TablePop
     }
 
     @Override
-    public Object[] populateRow(Supplier element) {
-        return new Object[] {element, element.getAddress()};
+    public Object[] populateRow(Supplier s) {
+        return new Object[] {s, s.getAddress()};
     }
 
     @Override
