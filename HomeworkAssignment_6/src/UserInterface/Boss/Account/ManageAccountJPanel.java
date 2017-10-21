@@ -46,6 +46,8 @@ public class ManageAccountJPanel extends javax.swing.JPanel implements HasTitle,
         btnUpdate = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         tblAccount.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -64,12 +66,15 @@ public class ManageAccountJPanel extends javax.swing.JPanel implements HasTitle,
         });
         jScrollPane1.setViewportView(tblAccount);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, 588));
+
         btnUpdate.setText("Update Selected");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, 160, 40));
 
         removeButton.setText("Remove Selected");
         removeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -77,33 +82,7 @@ public class ManageAccountJPanel extends javax.swing.JPanel implements HasTitle,
                 removeButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnUpdate)
-                    .addComponent(removeButton))
-                .addContainerGap(279, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnUpdate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(removeButton)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
+        add(removeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 140, 160, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
