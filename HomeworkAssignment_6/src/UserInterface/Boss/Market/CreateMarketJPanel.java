@@ -64,16 +64,23 @@ public class CreateMarketJPanel extends javax.swing.JPanel implements HasTitle {
         try{
             value = Double.parseDouble(valueTF.getText());
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Please input value correctly");
+            JOptionPane.showMessageDialog(this,"Please input value correctly");
             return;
         }
         if(nameTF.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Please input market name correctly");
+            JOptionPane.showMessageDialog(this,"Please input market name correctly");
             return;
+        }
+        for(Market ma : Business.getInstance().getMarketCatalog().getElementArrayList()){
+        if(nameTF.getText().equals(ma.getMarketName())){
+             JOptionPane.showMessageDialog(this,"Cannot create market which is already existed!");
+             return;
+        }
         }
         Market market = Business.getInstance().getMarketCatalog().newElement();
         market.setMarketName(nameTF.getText());
-        market.setMarketValue(value);               
+        market.setMarketValue(value);
+        JOptionPane.showMessageDialog(this, "All set");
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
