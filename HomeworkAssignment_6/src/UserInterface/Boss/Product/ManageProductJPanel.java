@@ -10,7 +10,6 @@ import UserInterface.Components.ParentUI;
 import UserInterface.Components.TablePopulatable;
 import biz.Components.Business;
 import biz.Components.Product;
-import biz.Components.ProductCatalog;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -82,10 +81,8 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchProductActionPerformed
-        // TODO add your handling code here:
         final String productName = JOptionPane.showInputDialog(this, "Please input the name of Product you want to find");
-        //TODO Search Product here
-        ArrayList<Product> productList = findProducts(Business.getInstance().getAllProducts().get(0).getProductName().equals(productName));
+        ArrayList<Product> productList = Business.getInstance().findProducts(product -> product.getProductName().equals(productName));
         populateTable(productList);
     }//GEN-LAST:event_btnSearchProductActionPerformed
 
