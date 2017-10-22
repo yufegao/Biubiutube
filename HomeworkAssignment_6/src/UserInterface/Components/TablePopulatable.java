@@ -73,12 +73,19 @@ public interface TablePopulatable<Element> {
         StringBuilder sb = new StringBuilder();
         JTable table = getTable();
         DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+        
+        ArrayList<String> strArr = new ArrayList<>();
+        for (int j = 0; j < dtm.getColumnCount(); j++) {
+            strArr.add(dtm.getColumnName(j));
+        }
+        sb.append(String.join(",", strArr) + "\n");
+
         for (int i = 0; i < dtm.getRowCount(); i++) {
-            ArrayList<String> strArr = new ArrayList<>();
+            strArr = new ArrayList<>();
             for (int j = 0; j < dtm.getColumnCount(); j++) {
                 strArr.add(String.valueOf(dtm.getValueAt(i, j)));
             }
-            sb.append(String.join(", ", strArr) + "\n");
+            sb.append(String.join(",", strArr) + "\n");
         }
         return sb;
     }
@@ -99,6 +106,7 @@ public interface TablePopulatable<Element> {
                 BufferedWriter writer = null;
                 writer = new BufferedWriter(new FileWriter(file));
                 writer.write(getTableSB().toString());
+                writer.close();
                 JOptionPane.showMessageDialog((Component) this, "Exported");
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog((Component) this, "Export failed.", "Warning", JOptionPane.WARNING_MESSAGE);

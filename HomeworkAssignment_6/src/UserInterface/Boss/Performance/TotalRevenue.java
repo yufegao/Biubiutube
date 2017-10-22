@@ -19,8 +19,8 @@ public class TotalRevenue extends javax.swing.JPanel implements HasTitle {
      */
     public TotalRevenue() {
         initComponents();
-        this.txtTotalRevenue.setText(String.valueOf(Business.getInstance().getOrderDirectory().getTotalRevenue(true)));
-        this.txtTotalRevenue2.setText(String.valueOf(Business.getInstance().getOrderDirectory().getTotalRevenue(false)));
+        this.txtTotalRevenue.setText(String.format("%.2f", Business.getInstance().getOrderDirectory().getTotalRevenue(true)));
+        this.txtTotalRevenue2.setText(String.format("%.2f", Business.getInstance().getOrderDirectory().getTotalRevenue(false)));
     }
 
     /**
