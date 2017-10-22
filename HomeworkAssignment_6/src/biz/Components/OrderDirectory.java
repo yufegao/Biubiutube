@@ -22,4 +22,18 @@ public class OrderDirectory extends AbstractCatalog<Order>{
         return new Order();
     }
     
+    public double getTotalRevenue(boolean includeDrafted) {
+        ArrayList<Order> orders;
+        if (includeDrafted) {
+            orders = this.getElementArrayList();
+        } else {
+            orders = this.findElements(o -> o.getStatus().equals("Placed"));
+        }
+        
+        double res = 0;
+        for (Order order : orders) {
+            res += order.getRevenue();
+        }
+        return res;
+    }
 }

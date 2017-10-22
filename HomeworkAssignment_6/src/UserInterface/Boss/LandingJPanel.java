@@ -8,6 +8,7 @@ package UserInterface.Boss;
 import UserInterface.Boss.Account.ManageAccountJPanel;
 import UserInterface.Boss.Market.ManageMarketJPanel;
 import UserInterface.Boss.Order.ManageOrderJPanel;
+import UserInterface.Boss.Performance.PerformanceLandingPage;
 import UserInterface.Boss.Sales.ManageSalesPersonJPanel;
 import UserInterface.Boss.Supplier.ManageSupplierJPanel;
 import UserInterface.Components.HasTitle;
@@ -100,6 +101,11 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
         add(btnSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 230, 70));
 
         btnSalesPerformance.setText("Sales Performance");
+        btnSalesPerformance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalesPerformanceActionPerformed(evt);
+            }
+        });
         add(btnSalesPerformance, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, 230, 70));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -108,29 +114,28 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
     }//GEN-LAST:event_btnAccountCatalogActionPerformed
 
     private void btnMarketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarketActionPerformed
-        // TODO add your handling code here:
         this.parentUI.pushComponent(new ManageMarketJPanel(parentUI));
     }//GEN-LAST:event_btnMarketActionPerformed
 
     private void btnSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierActionPerformed
-        // TODO add your handling code here:
         this.parentUI.pushComponent(new ManageSupplierJPanel(parentUI));
     }//GEN-LAST:event_btnSupplierActionPerformed
 
     private void btnSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalesActionPerformed
-        // TODO add your handling code here:
         this.parentUI.pushComponent(new ManageSalesPersonJPanel(parentUI));
     }//GEN-LAST:event_btnSalesActionPerformed
 
     private void brnProductCatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnProductCatalogActionPerformed
-        // TODO add your handling code here:
         this.parentUI.pushComponent(new ManageProductJPanel(parentUI));
     }//GEN-LAST:event_brnProductCatalogActionPerformed
 
     private void btnOrderCatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderCatalogActionPerformed
-        // TODO add your handling code here:
         this.parentUI.pushComponent(new ManageOrderJPanel(parentUI));
     }//GEN-LAST:event_btnOrderCatalogActionPerformed
+
+    private void btnSalesPerformanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalesPerformanceActionPerformed
+        this.parentUI.pushComponent(new PerformanceLandingPage(parentUI));
+    }//GEN-LAST:event_btnSalesPerformanceActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
