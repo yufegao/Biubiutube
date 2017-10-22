@@ -7,6 +7,14 @@ package UserInterface.Components;
 
 import biz.Catalog.AbstractCatalog;
 import java.awt.Component;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -59,5 +67,42 @@ public interface TablePopulatable<Element> {
         populateTable();
         
         return catalog.removeElement(selected);
+    }
+    
+    default StringBuilder getTableSB() {
+        StringBuilder sb = new StringBuilder();
+        JTable table = getTable();
+        DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+        for (int i = 0; i < dtm.getRowCount(); i++) {
+            ArrayList<String> strArr = new ArrayList<>();
+            for (int j = 0; j < dtm.getColumnCount(); j++) {
+                strArr.add(String.valueOf(dtm.getValueAt(i, j)));
+            }
+            sb.append(String.join(", ", strArr) + "\n");
+        }
+        return sb;
+    }
+    
+    default void toCSV() {
+        toCSV("Output.csv");
+    }
+    
+    default void toCSV(String fileName) {
+        JFileChooser chooser = new JFileChooser(); 
+        chooser.setCurrentDirectory(new java.io.File("."));
+        chooser.setDialogTitle("Choose csv path");
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.setAcceptAllFileFilterUsed(false);
+        if (chooser.showOpenDialog((Component) this) == JFileChooser.APPROVE_OPTION) { 
+            try {
+                File file = new File(chooser.getSelectedFile().toString() + "/" + fileName);
+                BufferedWriter writer = null;
+                writer = new BufferedWriter(new FileWriter(file));
+                writer.write(getTableSB().toString());
+                JOptionPane.showMessageDialog((Component) this, "Exported");
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog((Component) this, "Export failed.", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }
 }

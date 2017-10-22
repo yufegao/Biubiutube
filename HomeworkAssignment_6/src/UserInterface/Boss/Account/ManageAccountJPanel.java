@@ -45,6 +45,7 @@ public class ManageAccountJPanel extends javax.swing.JPanel implements HasTitle,
         tblAccount = new javax.swing.JTable();
         btnUpdate = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
+        btnExport = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -83,6 +84,14 @@ public class ManageAccountJPanel extends javax.swing.JPanel implements HasTitle,
             }
         });
         add(removeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 140, 160, 40));
+
+        btnExport.setText("Export to csv");
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportActionPerformed(evt);
+            }
+        });
+        add(btnExport, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 200, 160, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -107,8 +116,13 @@ public class ManageAccountJPanel extends javax.swing.JPanel implements HasTitle,
         JOptionPane.showMessageDialog(this, "Removed");
     }//GEN-LAST:event_removeButtonActionPerformed
 
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+        toCSV();
+    }//GEN-LAST:event_btnExportActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExport;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton removeButton;
