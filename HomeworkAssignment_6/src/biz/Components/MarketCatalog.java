@@ -21,5 +21,5 @@ public class MarketCatalog extends AbstractCatalog<Market>{
     @Override
     public Market createElement() {
         return new Market();      
-    }
+    }    
 }

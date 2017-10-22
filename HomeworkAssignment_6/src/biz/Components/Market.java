@@ -65,6 +65,18 @@ public class Market extends AbstractCatalog<Customer>{
         super(message);
         }
     }
+    
+    public double getMarketRevenue() {
+        double res = 0;
+        Order targetOrder = Business.getInstance().getOrderDirectory().getElementArrayList().get(0);
+        for(Market market: elementArrayList){
+            if(targetOrder.getBoughtBy().getMarket().equals(market)){
+                res += targetOrder.getRevenue();
+            }
+        }
+        return res;
+    }
+    
     @Override
     public String toString(){
         return marketName;

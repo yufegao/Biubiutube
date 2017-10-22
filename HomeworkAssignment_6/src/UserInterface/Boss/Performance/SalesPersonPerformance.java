@@ -5,24 +5,17 @@
  */
 package UserInterface.Boss.Performance;
 
-import UserInterface.Components.HasTitle;
-import UserInterface.Components.TablePopulatable;
-import biz.Components.Business;
-import biz.Components.Market;
-import javax.swing.JTable;
-
 /**
  *
- * @author hezj
+ * @author royn
  */
-public class ProductSalesRevenueByMarket extends javax.swing.JPanel implements HasTitle, TablePopulatable<Market>{
+public class SalesPersonPerformance extends javax.swing.JPanel {
 
     /**
-     * Creates new form ProductSalesRevenueByMarket
+     * Creates new form SalesPersonPerformance
      */
-    public ProductSalesRevenueByMarket() {
+    public SalesPersonPerformance() {
         initComponents();
-        populateTable();
     }
 
     /**
@@ -35,11 +28,13 @@ public class ProductSalesRevenueByMarket extends javax.swing.JPanel implements H
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblMarket = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
+        btnAbove = new javax.swing.JButton();
+        btnBelow = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tblMarket.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -47,7 +42,7 @@ public class ProductSalesRevenueByMarket extends javax.swing.JPanel implements H
                 {null, null}
             },
             new String [] {
-                "Market", "Revenue"
+                "Sales Person", "Order Revenue"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -58,37 +53,22 @@ public class ProductSalesRevenueByMarket extends javax.swing.JPanel implements H
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblMarket);
+        jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 590, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 620, 470));
+
+        btnAbove.setText("with consist above target sales");
+        add(btnAbove, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, 380, 40));
+
+        btnBelow.setText("with below total order target sales");
+        add(btnBelow, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 380, 40));
     }// </editor-fold>//GEN-END:initComponents
-
-    @Override
-    public String getTitle() {
-        return "Product Sales Revenue By Market";
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbove;
+    private javax.swing.JButton btnBelow;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblMarket;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public JTable getTable() {
-        return tblMarket;
-    }
-
-    @Override
-    public Object[] populateRow(Market market) {
-        return new Object[]{
-            market,
-            market.getMarketRevenue()
-        };
-    }
-
-    @Override
-    public void populateTable() {
-        populateTable(Business.getInstance().getMarketCatalog().getElementArrayList());
-    }
 }

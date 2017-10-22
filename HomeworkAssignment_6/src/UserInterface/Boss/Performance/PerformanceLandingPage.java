@@ -36,7 +36,6 @@ public class PerformanceLandingPage extends javax.swing.JPanel implements HasTit
         btnTotalRevenue = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -47,7 +46,7 @@ public class PerformanceLandingPage extends javax.swing.JPanel implements HasTit
                 btnProductSalesRevenueActionPerformed(evt);
             }
         });
-        add(btnProductSalesRevenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
+        add(btnProductSalesRevenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, -1, -1));
 
         btnTotalRevenue.setText("Total Revenue >>");
         btnTotalRevenue.addActionListener(new java.awt.event.ActionListener() {
@@ -55,19 +54,31 @@ public class PerformanceLandingPage extends javax.swing.JPanel implements HasTit
                 btnTotalRevenueActionPerformed(evt);
             }
         });
-        add(btnTotalRevenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        add(btnTotalRevenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, -1, -1));
 
         jButton2.setText("Top 10 sales persons by revenues broken down by market >>");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, -1));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, -1, -1));
 
-        jButton3.setText("Sales persons with consist above target sales >>");
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, -1));
-
-        jButton4.setText("Sales person with below total order target sales >>");
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
+        jButton3.setText("Sales persons above or below target sales >>");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, -1, -1));
 
         jButton5.setText("Top 3 products consistently sold above market target price >>");
-        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, -1, -1));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProductSalesRevenueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductSalesRevenueActionPerformed
@@ -78,13 +89,24 @@ public class PerformanceLandingPage extends javax.swing.JPanel implements HasTit
         this.parentUI.pushComponent(new TotalRevenue());
     }//GEN-LAST:event_btnTotalRevenueActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.parentUI.pushComponent(new SalesPersonPerformance());
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        this.parentUI.pushComponent(new ProductSoldAboveTargetPrice());
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.parentUI.pushComponent(new TopSalesPersonInEachMarket());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnProductSalesRevenue;
     private javax.swing.JButton btnTotalRevenue;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     // End of variables declaration//GEN-END:variables
 

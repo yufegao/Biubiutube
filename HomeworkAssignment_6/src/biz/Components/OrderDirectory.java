@@ -35,5 +35,6 @@ public class OrderDirectory extends AbstractCatalog<Order>{
             res += order.getRevenue();
         }
         return res;
-    }
+    }     
+        
 }
