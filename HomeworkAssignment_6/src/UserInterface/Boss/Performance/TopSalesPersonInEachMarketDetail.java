@@ -87,7 +87,8 @@ public class TopSalesPersonInEachMarketDetail extends javax.swing.JPanel impleme
         return new Object[] {
             salesPerson,
             salesPerson.getUsername(),
-            String.format("%.2f", salesPerson.getSalesRevenue(market))
+            String.format("%.2f", salesPerson.getSalesRevenue(market)),
+            String.format("%.2f", salesPerson.getSalesGap(market))
         };
     }
 
