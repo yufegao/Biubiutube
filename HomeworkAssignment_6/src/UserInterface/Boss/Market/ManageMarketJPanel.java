@@ -40,10 +40,10 @@ public class ManageMarketJPanel extends javax.swing.JPanel implements TablePopul
         jScrollPane1 = new javax.swing.JScrollPane();
         marketTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        viewMarketOffer = new javax.swing.JButton();
         create = new javax.swing.JButton();
         update = new javax.swing.JButton();
         delete = new javax.swing.JButton();
+        viewMarketOffer1 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -61,14 +61,6 @@ public class ManageMarketJPanel extends javax.swing.JPanel implements TablePopul
 
         jLabel1.setText("All Markets");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 120, -1));
-
-        viewMarketOffer.setText("View MarketOffer");
-        viewMarketOffer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewMarketOfferActionPerformed(evt);
-            }
-        });
-        add(viewMarketOffer, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 310, 150, -1));
 
         create.setText("Create ");
         create.addActionListener(new java.awt.event.ActionListener() {
@@ -93,17 +85,15 @@ public class ManageMarketJPanel extends javax.swing.JPanel implements TablePopul
             }
         });
         add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, 150, -1));
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void viewMarketOfferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewMarketOfferActionPerformed
-        // TODO add your handling code here:
-        Market selected = getSelected();
-        if(selected == null){
-            return;
-        }
-        MarketOfferJPanel moj = new MarketOfferJPanel(parent,selected);
-        parent.pushComponent(moj);
-    }//GEN-LAST:event_viewMarketOfferActionPerformed
+        viewMarketOffer1.setText("View MarketOffer");
+        viewMarketOffer1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewMarketOffer1ActionPerformed(evt);
+            }
+        });
+        add(viewMarketOffer1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 310, 150, -1));
+    }// </editor-fold>//GEN-END:initComponents
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
@@ -137,6 +127,16 @@ public class ManageMarketJPanel extends javax.swing.JPanel implements TablePopul
         parent.pushComponent(cmj);
     }//GEN-LAST:event_createActionPerformed
 
+    private void viewMarketOffer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewMarketOffer1ActionPerformed
+        // TODO add your handling code here:
+        Market selected = getSelected();
+        if(selected == null){
+            return;
+        }
+        MarketOfferJPanel mo = new MarketOfferJPanel(parent,selected);
+        parent.pushComponent(mo);
+    }//GEN-LAST:event_viewMarketOffer1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton create;
@@ -145,7 +145,7 @@ public class ManageMarketJPanel extends javax.swing.JPanel implements TablePopul
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable marketTable;
     private javax.swing.JButton update;
-    private javax.swing.JButton viewMarketOffer;
+    private javax.swing.JButton viewMarketOffer1;
     // End of variables declaration//GEN-END:variables
 
     @Override

@@ -36,6 +36,7 @@ public class ProductSalesRevenueByMarket extends javax.swing.JPanel implements H
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMarket = new javax.swing.JTable();
+        btnView3 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -61,7 +62,20 @@ public class ProductSalesRevenueByMarket extends javax.swing.JPanel implements H
         jScrollPane1.setViewportView(tblMarket);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 590, -1));
+
+        btnView3.setText("<<Export");
+        btnView3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnView3ActionPerformed(evt);
+            }
+        });
+        add(btnView3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 120, 180, 40));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnView3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnView3ActionPerformed
+        // TODO add your handling code here:
+        toCSV();
+    }//GEN-LAST:event_btnView3ActionPerformed
 
     @Override
     public String getTitle() {
@@ -70,6 +84,9 @@ public class ProductSalesRevenueByMarket extends javax.swing.JPanel implements H
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnView1;
+    private javax.swing.JButton btnView2;
+    private javax.swing.JButton btnView3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblMarket;
     // End of variables declaration//GEN-END:variables

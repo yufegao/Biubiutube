@@ -40,6 +40,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
         tblOrder = new javax.swing.JTable();
         btnView = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
+        btnView1 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -69,7 +70,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
                 btnViewActionPerformed(evt);
             }
         });
-        add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 70, 100, 40));
+        add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 70, 180, 40));
 
         btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +78,15 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
                 btnSearchActionPerformed(evt);
             }
         });
-        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, 100, 40));
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, 180, 40));
+
+        btnView1.setText("<<Export");
+        btnView1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnView1ActionPerformed(evt);
+            }
+        });
+        add(btnView1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 120, 180, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
@@ -92,10 +101,16 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
         parent.pushComponent(new OrderDetailJPanel(parent, order));
     }//GEN-LAST:event_btnViewActionPerformed
 
+    private void btnView1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnView1ActionPerformed
+        // TODO add your handling code here:
+        toCSV();
+    }//GEN-LAST:event_btnView1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnView;
+    private javax.swing.JButton btnView1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblOrder;
     // End of variables declaration//GEN-END:variables

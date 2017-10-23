@@ -45,6 +45,7 @@ public class ManageSupplierJPanel extends javax.swing.JPanel implements TablePop
         btnUpdate = new javax.swing.JButton();
         btnDeleteCustomer = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
+        btnView1 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -77,7 +78,7 @@ public class ManageSupplierJPanel extends javax.swing.JPanel implements TablePop
                 btnSearchActionPerformed(evt);
             }
         });
-        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 100, 40));
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 160, 40));
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +86,7 @@ public class ManageSupplierJPanel extends javax.swing.JPanel implements TablePop
                 btnUpdateActionPerformed(evt);
             }
         });
-        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 430, 100, 40));
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 430, 160, 40));
 
         btnDeleteCustomer.setText("Delete");
         btnDeleteCustomer.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +94,7 @@ public class ManageSupplierJPanel extends javax.swing.JPanel implements TablePop
                 btnDeleteCustomerActionPerformed(evt);
             }
         });
-        add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 530, 100, 40));
+        add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 530, 160, 40));
 
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +102,15 @@ public class ManageSupplierJPanel extends javax.swing.JPanel implements TablePop
                 btnAddActionPerformed(evt);
             }
         });
-        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 480, 100, 40));
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 480, 160, 40));
+
+        btnView1.setText("<<Export");
+        btnView1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnView1ActionPerformed(evt);
+            }
+        });
+        add(btnView1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 380, 160, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
@@ -144,12 +153,18 @@ public class ManageSupplierJPanel extends javax.swing.JPanel implements TablePop
         this.parent.pushComponent(new CreateSupplierJPanel(parent));
     }//GEN-LAST:event_btnAddActionPerformed
 
+    private void btnView1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnView1ActionPerformed
+        // TODO add your handling code here:
+        toCSV();
+    }//GEN-LAST:event_btnView1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDeleteCustomer;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnView1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblSupplier;
     // End of variables declaration//GEN-END:variables

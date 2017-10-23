@@ -5,11 +5,14 @@
  */
 package UserInterface.Boss.Performance;
 
+import UserInterface.Components.TablePopulatable;
+import javax.swing.JTable;
+
 /**
  *
  * @author royn
  */
-public class SalesPersonPerformance extends javax.swing.JPanel {
+public class SalesPersonPerformance extends javax.swing.JPanel implements TablePopulatable {
 
     /**
      * Creates new form SalesPersonPerformance
@@ -31,6 +34,7 @@ public class SalesPersonPerformance extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         btnAbove = new javax.swing.JButton();
         btnBelow = new javax.swing.JButton();
+        btnView1 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -62,13 +66,42 @@ public class SalesPersonPerformance extends javax.swing.JPanel {
 
         btnBelow.setText("with below total order target sales");
         add(btnBelow, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 380, 40));
+
+        btnView1.setText("<<Export");
+        btnView1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnView1ActionPerformed(evt);
+            }
+        });
+        add(btnView1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 120, 180, 40));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnView1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnView1ActionPerformed
+        // TODO add your handling code here:
+        toCSV();
+    }//GEN-LAST:event_btnView1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbove;
     private javax.swing.JButton btnBelow;
+    private javax.swing.JButton btnView1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public JTable getTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object[] populateRow(Object element) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void populateTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

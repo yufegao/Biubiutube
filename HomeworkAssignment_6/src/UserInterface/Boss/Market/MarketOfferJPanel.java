@@ -44,6 +44,7 @@ public class MarketOfferJPanel extends javax.swing.JPanel implements TablePopula
         marketOfferTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         update = new javax.swing.JButton();
+        update1 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -68,7 +69,15 @@ public class MarketOfferJPanel extends javax.swing.JPanel implements TablePopula
                 updateActionPerformed(evt);
             }
         });
-        add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, 150, -1));
+        add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 150, -1));
+
+        update1.setText("<<Export");
+        update1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                update1ActionPerformed(evt);
+            }
+        });
+        add(update1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
@@ -81,12 +90,18 @@ public class MarketOfferJPanel extends javax.swing.JPanel implements TablePopula
         parent.pushComponent(uop);
     }//GEN-LAST:event_updateActionPerformed
 
+    private void update1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update1ActionPerformed
+        // TODO add your handling code here:
+        toCSV();
+    }//GEN-LAST:event_update1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable marketOfferTable;
     private javax.swing.JButton update;
+    private javax.swing.JButton update1;
     // End of variables declaration//GEN-END:variables
 
     @Override

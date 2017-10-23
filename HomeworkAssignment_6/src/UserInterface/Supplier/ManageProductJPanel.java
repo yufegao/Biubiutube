@@ -50,6 +50,7 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
         btnUpdate = new javax.swing.JButton();
         btnDeleteCustomer = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
+        btnView2 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -107,6 +108,16 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
             }
         });
         add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 480, 100, 40));
+
+        btnView2.setText("<<Export");
+        btnView2.setMaximumSize(new java.awt.Dimension(113, 41));
+        btnView2.setMinimumSize(new java.awt.Dimension(113, 41));
+        btnView2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnView2ActionPerformed(evt);
+            }
+        });
+        add(btnView2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 370, 100, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -149,12 +160,19 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    private void btnView2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnView2ActionPerformed
+        // TODO add your handling code here:
+        toCSV();
+    }//GEN-LAST:event_btnView2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDeleteCustomer;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnView1;
+    private javax.swing.JButton btnView2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblProduct;
     // End of variables declaration//GEN-END:variables

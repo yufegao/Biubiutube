@@ -47,6 +47,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
         btnUpdateCustomer = new javax.swing.JButton();
         btnDeleteCustomer = new javax.swing.JButton();
         btnPlaceOrder = new javax.swing.JButton();
+        btnView1 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -76,7 +77,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
                 btnAddCustomerActionPerformed(evt);
             }
         });
-        add(btnAddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 380, 140, 40));
+        add(btnAddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 380, 220, 40));
 
         btnSearchCustomer.setText("Search");
         btnSearchCustomer.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +85,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
                 btnSearchCustomerActionPerformed(evt);
             }
         });
-        add(btnSearchCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 100, 40));
+        add(btnSearchCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 180, 40));
 
         btnUpdateCustomer.setText("Update");
         btnUpdateCustomer.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +93,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
                 btnUpdateCustomerActionPerformed(evt);
             }
         });
-        add(btnUpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 430, 140, 40));
+        add(btnUpdateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 430, 220, 40));
 
         btnDeleteCustomer.setText("Delete");
         btnDeleteCustomer.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +101,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
                 btnDeleteCustomerActionPerformed(evt);
             }
         });
-        add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 520, 140, 40));
+        add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 520, 220, 40));
 
         btnPlaceOrder.setText("Place Order");
         btnPlaceOrder.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +109,15 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
                 btnPlaceOrderActionPerformed(evt);
             }
         });
-        add(btnPlaceOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 480, 140, 40));
+        add(btnPlaceOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 480, 220, 40));
+
+        btnView1.setText("<<Export");
+        btnView1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnView1ActionPerformed(evt);
+            }
+        });
+        add(btnView1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 330, 220, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
@@ -149,6 +158,11 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
         parent.pushComponent(scjp);
     }//GEN-LAST:event_btnSearchCustomerActionPerformed
 
+    private void btnView1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnView1ActionPerformed
+        // TODO add your handling code here:
+        toCSV();
+    }//GEN-LAST:event_btnView1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddCustomer;
@@ -156,6 +170,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
     private javax.swing.JButton btnPlaceOrder;
     private javax.swing.JButton btnSearchCustomer;
     private javax.swing.JButton btnUpdateCustomer;
+    private javax.swing.JButton btnView1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblCustomer;
     // End of variables declaration//GEN-END:variables

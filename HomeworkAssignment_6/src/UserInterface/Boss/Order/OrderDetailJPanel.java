@@ -40,6 +40,7 @@ public class OrderDetailJPanel extends javax.swing.JPanel implements HasTitle, T
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblOrderProduct = new javax.swing.JTable();
+        btnView1 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -65,10 +66,24 @@ public class OrderDetailJPanel extends javax.swing.JPanel implements HasTitle, T
         jScrollPane1.setViewportView(tblOrderProduct);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 650, -1));
+
+        btnView1.setText("<<Export");
+        btnView1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnView1ActionPerformed(evt);
+            }
+        });
+        add(btnView1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 120, 170, 40));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnView1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnView1ActionPerformed
+        // TODO add your handling code here:
+        toCSV();
+    }//GEN-LAST:event_btnView1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnView1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblOrderProduct;
     // End of variables declaration//GEN-END:variables

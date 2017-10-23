@@ -45,6 +45,7 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProduct = new javax.swing.JTable();
         btnSearchProduct = new javax.swing.JButton();
+        btnView2 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -77,7 +78,15 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
                 btnSearchProductActionPerformed(evt);
             }
         });
-        add(btnSearchProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 20, 100, 40));
+        add(btnSearchProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 100, 170, 40));
+
+        btnView2.setText("<<Export");
+        btnView2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnView2ActionPerformed(evt);
+            }
+        });
+        add(btnView2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 170, 180, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchProductActionPerformed
@@ -86,9 +95,16 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
         populateTable(productList);
     }//GEN-LAST:event_btnSearchProductActionPerformed
 
+    private void btnView2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnView2ActionPerformed
+        // TODO add your handling code here:
+        toCSV();
+    }//GEN-LAST:event_btnView2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearchProduct;
+    private javax.swing.JButton btnView1;
+    private javax.swing.JButton btnView2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblProduct;
     // End of variables declaration//GEN-END:variables
