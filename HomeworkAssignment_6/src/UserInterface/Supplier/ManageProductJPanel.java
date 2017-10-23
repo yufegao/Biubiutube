@@ -189,7 +189,7 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
 
     @Override
     public Object[] populateRow(Product p) {
-        return new Object[] {p, p.getProductNumber(), p.getFactoryPrice(), p.getStock()};
+        return new Object[] {p, p.getProductNumber(), String.format("%.2f", p.getFactoryPrice()), p.getStock()};
     }
 
     @Override

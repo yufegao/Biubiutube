@@ -70,4 +70,23 @@ public class Product {
     public String toString() {
         return ProductName;
     }
+    
+    public double getProductRevenue(){
+        double res = 0;
+
+        for (Order order: Business.getInstance().getOrderDirectory().getElementArrayList()) {
+            boolean hasProduct = false;
+            for (OrderProduct orderProduct: order.getElementArrayList()) {
+                if (orderProduct.getOfferProduct().getProduct().equals(this)) {
+                    hasProduct = true;
+                    break;
+                }
+            }
+            if (hasProduct) {
+                res += order.getRevenue();
+            }
+        }
+        return res;
+    }
+    
 }

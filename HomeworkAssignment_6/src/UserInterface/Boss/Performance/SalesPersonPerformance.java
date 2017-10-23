@@ -6,22 +6,40 @@
 package UserInterface.Boss.Performance;
 
 import UserInterface.Components.HasTitle;
+import UserInterface.Components.ParentUI;
 import UserInterface.Components.TablePopulatable;
+import biz.Components.Business;
+import biz.Components.Order;
+import biz.Components.OrderDirectory;
+import java.util.Comparator;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author royn
  */
-public class SalesPersonPerformance extends javax.swing.JPanel implements TablePopulatable, HasTitle {
+public class SalesPersonPerformance extends javax.swing.JPanel implements TablePopulatable<Order>, HasTitle {
 
     /**
      * Creates new form SalesPersonPerformance
      */
+    private OrderDirectory orderDirectory;
     public SalesPersonPerformance() {
         initComponents();
+        this.orderDirectory = Business.getInstance().getOrderDirectory();
+//         populateTable();
+        
     }
-
+    public void ppt(OrderDirectory od){
+        DefaultTableModel dtm = (DefaultTableModel)revenueT.getModel();
+        dtm.setRowCount(0);
+        for(Order o : od.getElementArrayList()){
+            Object row[]= new Object[2];
+            row[0] = o.getSoldBy();
+            row[1] = o.getRevenue();
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,19 +50,16 @@ public class SalesPersonPerformance extends javax.swing.JPanel implements TableP
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        revenueT = new javax.swing.JTable();
         btnAbove = new javax.swing.JButton();
         btnBelow = new javax.swing.JButton();
         btnView1 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        revenueT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Sales Person", "Order Revenue"
@@ -58,7 +73,7 @@ public class SalesPersonPerformance extends javax.swing.JPanel implements TableP
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(revenueT);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 620, 470));
 
@@ -94,10 +109,25 @@ public class SalesPersonPerformance extends javax.swing.JPanel implements TableP
 
     private void btnBelowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBelowActionPerformed
         // TODO add your handling code here:
+        OrderDirectory odd = new OrderDirectory();
+        for(Order o : orderDirectory.getElementArrayList()){
+            if(o.getGap() < 0){
+                odd.getElementArrayList().add(o);
+            }
+        }
+        ppt(odd);
+        
     }//GEN-LAST:event_btnBelowActionPerformed
 
     private void btnAboveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboveActionPerformed
         // TODO add your handling code here:
+        OrderDirectory odd = new OrderDirectory();
+        for(Order o : orderDirectory.getElementArrayList()){
+            if(o.getGap() > 0){
+                odd.getElementArrayList().add(o);
+            }
+        }
+        ppt(odd);
     }//GEN-LAST:event_btnAboveActionPerformed
 
 
@@ -106,22 +136,25 @@ public class SalesPersonPerformance extends javax.swing.JPanel implements TableP
     private javax.swing.JButton btnBelow;
     private javax.swing.JButton btnView1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable revenueT;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public JTable getTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return revenueT;
     }
 
     @Override
-    public Object[] populateRow(Object element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Object[] populateRow(Order element) {
+        return new Object[] {
+            element,
+            element.getSoldBy()            
+        };
     }
 
     @Override
     public void populateTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        populateTable(orderDirectory.getElementArrayList());
     }
 
     @Override
