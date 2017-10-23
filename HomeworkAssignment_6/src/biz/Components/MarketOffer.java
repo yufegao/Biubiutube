@@ -14,6 +14,10 @@ import java.util.ArrayList;
  */
 public class MarketOffer extends AbstractCatalog<OfferProduct>{
     private Market market;
+
+    public Market getMarket() {
+        return market;
+    }
     public MarketOffer(Market ma) {
         this.market = ma;
         elementArrayList = new ArrayList<>();
