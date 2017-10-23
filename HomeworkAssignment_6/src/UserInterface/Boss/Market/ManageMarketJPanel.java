@@ -133,7 +133,7 @@ public class ManageMarketJPanel extends javax.swing.JPanel implements TablePopul
         if(selected == null){
             return;
         }
-        MarketOfferJPanel mo = new MarketOfferJPanel(parent,selected);
+        MarketOfferJPanel mo = new MarketOfferJPanel(parent, selected);
         parent.pushComponent(mo);
     }//GEN-LAST:event_viewMarketOffer1ActionPerformed
 

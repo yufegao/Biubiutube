@@ -77,6 +77,14 @@ public class Order extends AbstractCatalog<OrderProduct>{
         }
         return revenue;
     }
+    
+    public double getGap(){
+        double gap = 0;
+        for (OrderProduct op: this.elementArrayList){
+            gap += (op.getActualPrice() -  op.getOfferProduct().getTargetPrice())*op.getQuantity();
+        }
+        return gap;
+    }
 
     @Override
     public String toString() {

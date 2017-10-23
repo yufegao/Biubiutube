@@ -24,7 +24,12 @@ public class UpdateMarketJPanel extends javax.swing.JPanel {
         initComponents();
         this.parent = parent;
         this.market = ma;
-        
+        updateComponents();
+    }
+    
+    public void updateComponents(){
+        nameTF.setText(market.getMarketName());
+        valueTF.setText(String.valueOf(market.getMarketValue()));
     }
 
     /**
@@ -45,16 +50,16 @@ public class UpdateMarketJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         nameTF.setText(" ");
-        add(nameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(278, 166, 135, -1));
+        add(nameTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 135, -1));
 
         jLabel1.setText("New Market Name");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, -1, -1));
 
         valueTF.setText(" ");
-        add(valueTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 135, -1));
+        add(valueTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, 135, -1));
 
         jLabel2.setText("New Market Value");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, -1, -1));
 
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +67,7 @@ public class UpdateMarketJPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, -1, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -71,11 +76,13 @@ public class UpdateMarketJPanel extends javax.swing.JPanel {
         try{
             val = Double.parseDouble(valueTF.getText());
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Please input correct value","Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please input correct value","Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         market.setMarketName(nameTF.getText());
         market.setMarketValue(val);
+        
+        JOptionPane.showMessageDialog(this, "Market Updated Successfully!");
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
