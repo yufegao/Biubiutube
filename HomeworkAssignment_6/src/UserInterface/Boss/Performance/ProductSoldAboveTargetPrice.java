@@ -32,7 +32,8 @@ public class ProductSoldAboveTargetPrice extends javax.swing.JPanel implements H
     public void PSResult(){
         ArrayList<Product> products = Business.getInstance().getAllProducts();
         products.sort((Product o1, Product o2) -> Double.compare(o1.getProductRevenue(), o2.getProductRevenue()));
-        populateTable(new ArrayList<> (products.subList(0, 3)));
+        int toIndex = products.size() > 3 ? 3 : products.size();
+        populateTable(new ArrayList<> (products.subList(0, toIndex)));
     }
 
     /**
