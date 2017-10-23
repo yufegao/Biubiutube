@@ -67,7 +67,7 @@ public class ManageAccountJPanel extends javax.swing.JPanel implements HasTitle,
         });
         jScrollPane1.setViewportView(tblAccount);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, 588));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, 540));
 
         btnUpdate.setText("Update Selected");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {

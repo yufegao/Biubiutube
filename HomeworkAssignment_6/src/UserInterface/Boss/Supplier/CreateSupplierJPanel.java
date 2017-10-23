@@ -75,6 +75,7 @@ public class CreateSupplierJPanel extends javax.swing.JPanel implements HasTitle
         Supplier supplier = Business.getInstance().getSupplierCatalog().newElement();
         supplier.setName(name);
         supplier.setAddress(address);
+        Business.getInstance().getAccountCatalog().addElement(supplier);
 
         JOptionPane.showMessageDialog(null, "Product create successfully!");
     }//GEN-LAST:event_btnSaveActionPerformed

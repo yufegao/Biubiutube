@@ -24,6 +24,9 @@ public class UpdateSupplierJPanel extends javax.swing.JPanel implements HasTitle
         initComponents();
         this.supplier = supplier;
         this.parent = parent;
+        
+        txtAddress.setText(supplier.getAddress());
+        txtName.setText(supplier.getName());
     }
 
     /**
