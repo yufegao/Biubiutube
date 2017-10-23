@@ -5,6 +5,8 @@
  */
 package biz.Components;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -25,7 +27,7 @@ public class BusinessConfigure {
             business.getAccountCatalog().addElement(b);
         }
 
-        for (int i = 1; i <= 3; i++) {
+        for (int i = 1; i <= 30; i++) {
             SalesPerson s = business.getSalesPersonCatalog().newElement();
             s.setFirstName(String.format("First%d", i));
             s.setLastName(String.format("Last%d", i));
@@ -71,22 +73,21 @@ public class BusinessConfigure {
                     order.setBoughtBy(customer);
                     order.setSoldBy(salesPerson);
                     order.setStatus("Placed");
-                    for (Product product: Business.getInstance().getAllProducts()) {
-                        if (rand.nextDouble() < 0.01) {  // 1% chance to purchase this product
+                    
+                    ArrayList<Product> allProducts = Business.getInstance().getAllProducts();
+                    Collections.shuffle(allProducts);
+                    for (Product product: allProducts.subList(0, rand.nextInt(5) + 1)) {
                             MarketOffer marketOffer = Business.getInstance().getMarketOfferCatalog().findElement(mo -> mo.getMarket().equals(customer.getMarket()));
+                            marketOffer.getElementArrayList();
                             OfferProduct offerProduct = marketOffer.findElement(op -> op.getProduct().equals(product));
                             OrderProduct orderProduct = order.newElement();
                             orderProduct.setOfferProduct(offerProduct);
                             orderProduct.setQuantity(rand.nextInt(10) + 1); // 1 ~ 10
                             double orderRate = rand.nextDouble() * (3.0 - 0.8) + 0.8;
-                            orderProduct.setActualPrice(orderRate * offerProduct.getTargetPrice());  // FIXME: NPE here
-                        }
-                    }
-                    if (order.getElementArrayList().size() == 0) {
-                        Business.getInstance().getOrderDirectory().removeElement(order);
+                            orderProduct.setActualPrice(orderRate * offerProduct.getTargetPrice()); 
                     }
                 }
             }
         }
-    }
+    }        
 }
