@@ -5,6 +5,7 @@
  */
 package UserInterface.Boss.Performance;
 
+import UserInterface.Components.HasTitle;
 import UserInterface.Components.TablePopulatable;
 import javax.swing.JTable;
 
@@ -12,7 +13,7 @@ import javax.swing.JTable;
  *
  * @author royn
  */
-public class SalesPersonPerformance extends javax.swing.JPanel implements TablePopulatable {
+public class SalesPersonPerformance extends javax.swing.JPanel implements TablePopulatable, HasTitle {
 
     /**
      * Creates new form SalesPersonPerformance
@@ -62,9 +63,19 @@ public class SalesPersonPerformance extends javax.swing.JPanel implements TableP
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 620, 470));
 
         btnAbove.setText("with consist above target sales");
+        btnAbove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAboveActionPerformed(evt);
+            }
+        });
         add(btnAbove, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, 380, 40));
 
         btnBelow.setText("with below total order target sales");
+        btnBelow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBelowActionPerformed(evt);
+            }
+        });
         add(btnBelow, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 380, 40));
 
         btnView1.setText("<<Export");
@@ -80,6 +91,14 @@ public class SalesPersonPerformance extends javax.swing.JPanel implements TableP
         // TODO add your handling code here:
         toCSV();
     }//GEN-LAST:event_btnView1ActionPerformed
+
+    private void btnBelowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBelowActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBelowActionPerformed
+
+    private void btnAboveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAboveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -103,5 +122,10 @@ public class SalesPersonPerformance extends javax.swing.JPanel implements TableP
     @Override
     public void populateTable() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getTitle() {
+        return "Sales Person(People) Performance\nPress Button to view.";
     }
 }

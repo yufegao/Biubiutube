@@ -53,12 +53,12 @@ public class MarketOfferJPanel extends javax.swing.JPanel implements TablePopula
 
             },
             new String [] {
-                "Product Name", "Lowest Price", "Target Price", "Highest Price"
+                "Product Name", "Lowest Price", "Target Price", "Highest Price", "Suplierpl"
             }
         ));
         jScrollPane1.setViewportView(marketOfferTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 370, 240));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 550, 380));
 
         jLabel1.setText("Market Offer Name");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 120, 20));
@@ -69,7 +69,7 @@ public class MarketOfferJPanel extends javax.swing.JPanel implements TablePopula
                 updateActionPerformed(evt);
             }
         });
-        add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 150, -1));
+        add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 170, 150, -1));
 
         update1.setText("<<Export");
         update1.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +77,7 @@ public class MarketOfferJPanel extends javax.swing.JPanel implements TablePopula
                 update1ActionPerformed(evt);
             }
         });
-        add(update1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, 150, -1));
+        add(update1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
@@ -122,6 +122,13 @@ public class MarketOfferJPanel extends javax.swing.JPanel implements TablePopula
 
     @Override
     public Object[] populateRow(OfferProduct element) {
-        return new Object[]{element};
+
+        return new Object[] {
+            element,
+            String.format("%.2f",element.getLowestPrice()),
+            String.format("%.2f",element.getTargetPrice()),
+            String.format("%.2f",element.getHighestPrice()),
+            element.getProduct().getSupplier()
+        };
     }
 }
