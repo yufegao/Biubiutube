@@ -122,6 +122,6 @@ public class MarketOfferJPanel extends javax.swing.JPanel implements TablePopula
 
     @Override
     public Object[] populateRow(OfferProduct element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new Object[]{element};
     }
 }
