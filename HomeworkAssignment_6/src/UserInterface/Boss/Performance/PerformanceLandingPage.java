@@ -98,7 +98,7 @@ public class PerformanceLandingPage extends javax.swing.JPanel implements HasTit
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.parentUI.pushComponent(new TopSalesPersonInEachMarket());
+        this.parentUI.pushComponent(new TopSalesPersonInEachMarket(parentUI));
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
