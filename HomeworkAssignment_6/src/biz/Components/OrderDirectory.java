@@ -35,6 +35,20 @@ public class OrderDirectory extends AbstractCatalog<Order>{
             res += order.getRevenue();
         }
         return res;
-    }     
+    }
+    
+    public double getTotalGap(boolean includeDrafted) {
+        ArrayList<Order> orders;
+        if (includeDrafted) {
+            orders = this.getElementArrayList();
+        } else {
+            orders = this.findElements(o -> o.getStatus().equals("Placed"));
+        }
         
+        double res = 0;
+        for (Order order: orders) {
+            res += order.getGap();
+        }
+        return res;
+    }    
 }
