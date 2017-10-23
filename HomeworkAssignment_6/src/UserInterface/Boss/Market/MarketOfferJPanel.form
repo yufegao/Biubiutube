@@ -33,15 +33,21 @@
         <Component class="javax.swing.JTable" name="marketOfferTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="0">
+              <Table columnCount="5" rowCount="0">
                 <Column editable="true" title="Product Name" type="java.lang.Object"/>
                 <Column editable="true" title="Lowest Price" type="java.lang.Object"/>
                 <Column editable="true" title="Target Price" type="java.lang.Object"/>
                 <Column editable="true" title="Highest Price" type="java.lang.Object"/>
+                <Column editable="true" title="Suplierpl" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -90,7 +96,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="590" y="160" width="150" height="-1"/>
+          <AbsoluteConstraints x="690" y="170" width="150" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -103,7 +109,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="590" y="200" width="150" height="-1"/>
+          <AbsoluteConstraints x="690" y="210" width="150" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
