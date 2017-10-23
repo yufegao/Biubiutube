@@ -70,7 +70,7 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
         });
         jScrollPane1.setViewportView(tblProduct);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 750, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 690, -1));
 
         btnSearchProduct.setText("Search");
         btnSearchProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +78,7 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
                 btnSearchProductActionPerformed(evt);
             }
         });
-        add(btnSearchProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 100, 170, 40));
+        add(btnSearchProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 40, 170, 40));
 
         btnView2.setText("<<Export");
         btnView2.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +86,7 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
                 btnView2ActionPerformed(evt);
             }
         });
-        add(btnView2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 170, 180, 40));
+        add(btnView2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 170, 180, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchProductActionPerformed
@@ -103,7 +103,6 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearchProduct;
-    private javax.swing.JButton btnView1;
     private javax.swing.JButton btnView2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblProduct;

@@ -62,7 +62,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
         });
         jScrollPane1.setViewportView(tblOrder);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 740, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 670, -1));
 
         btnView.setText("View");
         btnView.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +70,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
                 btnViewActionPerformed(evt);
             }
         });
-        add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 70, 180, 40));
+        add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, 180, 40));
 
         btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +78,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
                 btnSearchActionPerformed(evt);
             }
         });
-        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, 180, 40));
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 180, 40));
 
         btnView1.setText("<<Export");
         btnView1.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +86,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
                 btnView1ActionPerformed(evt);
             }
         });
-        add(btnView1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 120, 180, 40));
+        add(btnView1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 120, 180, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
