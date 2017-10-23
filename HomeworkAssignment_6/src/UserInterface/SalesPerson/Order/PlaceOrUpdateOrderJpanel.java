@@ -51,7 +51,9 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
         this.salesPerson = order.getSoldBy();
         this.customer = order.getBoughtBy();
         
-        this.btnPlaceOrder.setText("Update Order");
+        if (order.getStatus().equals("Placed")) {
+            this.btnPlaceOrder.setText("Update Order");
+        }
         populateTable();
         populateOrder();
     }
@@ -232,8 +234,8 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
         this.order.setStatus("Placed");
+        this.btnPlaceOrder.setText("Update Order");
         JOptionPane.showMessageDialog(this, "Order Placed");
-        // TODO: what next?
     }//GEN-LAST:event_btnPlaceOrderActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
