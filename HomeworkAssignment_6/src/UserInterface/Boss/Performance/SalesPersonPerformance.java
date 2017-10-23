@@ -11,6 +11,7 @@ import UserInterface.Components.TablePopulatable;
 import biz.Components.Business;
 import biz.Components.Order;
 import biz.Components.OrderDirectory;
+import java.util.ArrayList;
 import java.util.Comparator;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -29,17 +30,9 @@ public class SalesPersonPerformance extends javax.swing.JPanel implements TableP
         initComponents();
         this.orderDirectory = Business.getInstance().getOrderDirectory();
 //         populateTable();
-        
+        populateTable();
     }
-    public void ppt(OrderDirectory od){
-        DefaultTableModel dtm = (DefaultTableModel)revenueT.getModel();
-        dtm.setRowCount(0);
-        for(Order o : od.getElementArrayList()){
-            Object row[]= new Object[2];
-            row[0] = o.getSoldBy();
-            row[1] = o.getRevenue();
-        }
-    }
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -109,25 +102,19 @@ public class SalesPersonPerformance extends javax.swing.JPanel implements TableP
 
     private void btnBelowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBelowActionPerformed
         // TODO add your handling code here:
-        OrderDirectory odd = new OrderDirectory();
-        for(Order o : orderDirectory.getElementArrayList()){
-            if(o.getGap() < 0){
-                odd.getElementArrayList().add(o);
-            }
-        }
-        ppt(odd);
+        ArrayList<Order> orders = orderDirectory.getElementArrayList();
+        orders.sort((Order o1, Order o2) -> Double.compare(o1.getGap(), o2.getGap()));
+        int toIndex = orders.size() > 3 ? 3 : orders.size();
+        populateTable(new ArrayList<> (orders.subList(0, toIndex)));
         
     }//GEN-LAST:event_btnBelowActionPerformed
 
     private void btnAboveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboveActionPerformed
         // TODO add your handling code here:
-        OrderDirectory odd = new OrderDirectory();
-        for(Order o : orderDirectory.getElementArrayList()){
-            if(o.getGap() > 0){
-                odd.getElementArrayList().add(o);
-            }
-        }
-        ppt(odd);
+        ArrayList<Order> orders = orderDirectory.getElementArrayList();
+        orders.sort((Order o1, Order o2) -> Double.compare(o2.getGap(), o1.getGap()));
+        int toIndex = orders.size() > 3 ? 3 : orders.size();
+        populateTable(new ArrayList<> (orders.subList(0, toIndex)));
     }//GEN-LAST:event_btnAboveActionPerformed
 
 
@@ -147,8 +134,8 @@ public class SalesPersonPerformance extends javax.swing.JPanel implements TableP
     @Override
     public Object[] populateRow(Order element) {
         return new Object[] {
-            element,
-            element.getSoldBy()            
+            element.getSoldBy(),
+            String.format("%.2f", element.getRevenue())
         };
     }
 
