@@ -102,7 +102,7 @@ public class ProductSoldAboveTargetPrice extends javax.swing.JPanel implements H
         return new Object[]{
             element,
             element.getSupplier(),
-            element.getProductRevenue()
+            String.format("%.2f", element.getProductRevenue())
         };
     }
 
