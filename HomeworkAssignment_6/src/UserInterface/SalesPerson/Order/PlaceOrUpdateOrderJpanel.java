@@ -94,6 +94,8 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
         txtProductName = new javax.swing.JTextField();
         btnFind = new javax.swing.JButton();
         txtTotalProduct = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtReward = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -230,6 +232,12 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
 
         txtTotalProduct.setEnabled(false);
         add(txtTotalProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 90, 30));
+
+        jLabel9.setText("Reward:");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, -1, 30));
+
+        txtReward.setEnabled(false);
+        add(txtReward, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 490, 290, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
@@ -399,6 +407,7 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblOrderProduct;
@@ -409,6 +418,7 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
     private javax.swing.JTextField txtQuantity;
     private javax.swing.JTextField txtQuantity2;
     private javax.swing.JTextField txtRevenue;
+    private javax.swing.JTextField txtReward;
     private javax.swing.JTextField txtTotalPrice;
     private javax.swing.JTextField txtTotalProduct;
     // End of variables declaration//GEN-END:variables
@@ -458,5 +468,6 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
         
         txtTotalPrice.setText(Double.toString(order.totalPrice()));
         txtRevenue.setText(String.format("%.2f", order.getRevenue()));
+        txtReward.setText(String.format("%.2f", order.getOrderReward()));
     }
 }
