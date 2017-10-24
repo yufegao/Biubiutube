@@ -68,7 +68,7 @@ public class ManageSalesPersonJPanel extends javax.swing.JPanel implements HasTi
         });
         jScrollPane1.setViewportView(tblSalesPerson);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 660, 580));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 660, 580));
 
         btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +76,7 @@ public class ManageSalesPersonJPanel extends javax.swing.JPanel implements HasTi
                 btnSearchActionPerformed(evt);
             }
         });
-        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 200, 40));
+        add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 20, 200, 40));
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +84,7 @@ public class ManageSalesPersonJPanel extends javax.swing.JPanel implements HasTi
                 btnUpdateActionPerformed(evt);
             }
         });
-        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 430, 200, 40));
+        add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 430, 200, 40));
 
         btnDeleteCustomer.setText("Delete");
         btnDeleteCustomer.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +92,7 @@ public class ManageSalesPersonJPanel extends javax.swing.JPanel implements HasTi
                 btnDeleteCustomerActionPerformed(evt);
             }
         });
-        add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 530, 200, 40));
+        add(btnDeleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 530, 200, 40));
 
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +100,7 @@ public class ManageSalesPersonJPanel extends javax.swing.JPanel implements HasTi
                 btnAddActionPerformed(evt);
             }
         });
-        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 480, 200, 40));
+        add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 480, 200, 40));
 
         btnView1.setText("<<Export");
         btnView1.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +108,7 @@ public class ManageSalesPersonJPanel extends javax.swing.JPanel implements HasTi
                 btnView1ActionPerformed(evt);
             }
         });
-        add(btnView1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 140, 200, 40));
+        add(btnView1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 140, 200, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
