@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
  */
 public class UpdateProductJPanel extends javax.swing.JPanel implements HasTitle{
     private Product product;
-    private ButtonGroup as_bg;
     private ParentUI parent;
 
     /**
@@ -27,9 +26,6 @@ public class UpdateProductJPanel extends javax.swing.JPanel implements HasTitle{
         initComponents();
         this.product = product;
         this.parent = parent;
-        this.as_bg = new ButtonGroup();
-        as_bg.add(rbTrue);
-        as_bg.add(rbFalse);
         
         refreshComponents();
     }
@@ -39,15 +35,7 @@ public class UpdateProductJPanel extends javax.swing.JPanel implements HasTitle{
         txtProductNumber.setText(product.getProductNumber());
         txtFactoryPrice.setText(String.valueOf(product.getFactoryPrice()));
         txtStock.setText(String.valueOf(product.getStock()));
-        
-        boolean Status = product.isIsAvailable();
-        if(Status == true){
-            rbTrue.setSelected(true);
-        }else{
-            rbFalse.setSelected(true);
-        }
-        
-        
+         
         txtName.setEnabled(true);
         txtProductNumber.setEnabled(true);
         txtFactoryPrice.setEnabled(true);
@@ -72,9 +60,6 @@ public class UpdateProductJPanel extends javax.swing.JPanel implements HasTitle{
         btnSave = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtStock = new javax.swing.JTextField();
-        rbTrue = new javax.swing.JRadioButton();
-        rbFalse = new javax.swing.JRadioButton();
-        jLabel2 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -101,15 +86,6 @@ public class UpdateProductJPanel extends javax.swing.JPanel implements HasTitle{
         jLabel1.setText("Stock");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 70, -1));
         add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 170, -1));
-
-        rbTrue.setText("Available");
-        add(rbTrue, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, -1, -1));
-
-        rbFalse.setText("Unavailable");
-        add(rbFalse, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 310, -1, -1));
-
-        jLabel2.setText("Status");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -135,19 +111,10 @@ public class UpdateProductJPanel extends javax.swing.JPanel implements HasTitle{
             return;
         }
         
-        boolean Status = true;
-        if(rbTrue.isSelected() == true){
-            Status = true;
-        }
-        else{
-            Status = false;
-        }
-        
         product.setProductName(name);
         product.setProductNumber(productNumber);
         product.setFactoryPrice(factoryPrice);
         product.setStock(stock);
-        product.setIsAvailable(Status);
         
         txtName.setEnabled(false);
         txtProductNumber.setEnabled(false);
@@ -160,12 +127,9 @@ public class UpdateProductJPanel extends javax.swing.JPanel implements HasTitle{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JRadioButton rbFalse;
-    private javax.swing.JRadioButton rbTrue;
     private javax.swing.JTextField txtFactoryPrice;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtProductNumber;
