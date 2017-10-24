@@ -101,7 +101,6 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
             }
         }
         populateTable(orderList);
-        
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
