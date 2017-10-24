@@ -6,6 +6,7 @@
 package UserInterface.Boss;
 
 import UserInterface.Boss.Account.ManageAccountJPanel;
+import UserInterface.Boss.Boss.ManageBoss;
 import UserInterface.Boss.Market.ManageMarketJPanel;
 import UserInterface.Boss.Order.ManageOrderJPanel;
 import UserInterface.Boss.Performance.PerformanceLandingPage;
@@ -49,6 +50,7 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
         brnProductCatalog = new javax.swing.JButton();
         btnSales = new javax.swing.JButton();
         btnSalesPerformance = new javax.swing.JButton();
+        btnBoss = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -58,7 +60,7 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
                 btnAccountCatalogActionPerformed(evt);
             }
         });
-        add(btnAccountCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 230, 70));
+        add(btnAccountCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 230, 70));
 
         btnOrderCatalog.setText("Order Catalog");
         btnOrderCatalog.addActionListener(new java.awt.event.ActionListener() {
@@ -66,7 +68,7 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
                 btnOrderCatalogActionPerformed(evt);
             }
         });
-        add(btnOrderCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 230, 70));
+        add(btnOrderCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 230, 70));
 
         btnMarket.setText("Market");
         btnMarket.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +76,7 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
                 btnMarketActionPerformed(evt);
             }
         });
-        add(btnMarket, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 230, 70));
+        add(btnMarket, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 230, 70));
 
         btnSupplier.setText("Supplier");
         btnSupplier.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +84,7 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
                 btnSupplierActionPerformed(evt);
             }
         });
-        add(btnSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 230, 70));
+        add(btnSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 230, 70));
 
         brnProductCatalog.setText("Product Catalog");
         brnProductCatalog.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +92,7 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
                 brnProductCatalogActionPerformed(evt);
             }
         });
-        add(brnProductCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 230, 70));
+        add(brnProductCatalog, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 230, 70));
 
         btnSales.setText("Sales");
         btnSales.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +100,7 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
                 btnSalesActionPerformed(evt);
             }
         });
-        add(btnSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 230, 70));
+        add(btnSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 230, 70));
 
         btnSalesPerformance.setText("Sales Performance");
         btnSalesPerformance.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +108,15 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
                 btnSalesPerformanceActionPerformed(evt);
             }
         });
-        add(btnSalesPerformance, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, 230, 70));
+        add(btnSalesPerformance, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, 230, 70));
+
+        btnBoss.setText("Boss Catalog");
+        btnBoss.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBossActionPerformed(evt);
+            }
+        });
+        add(btnBoss, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 230, 70));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAccountCatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountCatalogActionPerformed
@@ -137,10 +147,15 @@ public class LandingJPanel extends javax.swing.JPanel implements HasTitle {
         this.parentUI.pushComponent(new PerformanceLandingPage(parentUI));
     }//GEN-LAST:event_btnSalesPerformanceActionPerformed
 
+    private void btnBossActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBossActionPerformed
+        this.parentUI.pushComponent(new ManageBoss(parentUI));
+    }//GEN-LAST:event_btnBossActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnProductCatalog;
     private javax.swing.JButton btnAccountCatalog;
+    private javax.swing.JButton btnBoss;
     private javax.swing.JButton btnMarket;
     private javax.swing.JButton btnOrderCatalog;
     private javax.swing.JButton btnSales;

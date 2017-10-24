@@ -64,9 +64,11 @@ public interface TablePopulatable<Element> {
             return false;
         }
         
+        boolean res = catalog.removeElement(selected);
+
         populateTable();
         
-        return catalog.removeElement(selected);
+        return res;
     }
     
     default StringBuilder getTableSB() {

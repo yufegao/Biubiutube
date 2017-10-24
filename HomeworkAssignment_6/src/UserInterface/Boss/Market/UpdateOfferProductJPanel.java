@@ -27,6 +27,9 @@ public class UpdateOfferProductJPanel extends javax.swing.JPanel implements HasT
         initComponents();
         this.parent = pa;
         this.offerProduct = op;
+        lowestTF.setText(String.format("%.2f", op.getLowestPrice()));
+        highestTF.setText(String.format("%.2f", op.getHighestPrice()));
+        targetTF.setText(String.format("%.2f", op.getTargetPrice()));
     }
    
     /**
@@ -76,12 +79,14 @@ public class UpdateOfferProductJPanel extends javax.swing.JPanel implements HasT
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
         double low,target,highest;
         try{
             low = Double.parseDouble(lowestTF.getText());
             target = Double.parseDouble(targetTF.getText());
             highest = Double.parseDouble(highestTF.getText());
+            if (low < 0 || low >= target || highest <= target) {
+                throw new Exception();
+            }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Please input data correctly");
             return;
@@ -89,7 +94,7 @@ public class UpdateOfferProductJPanel extends javax.swing.JPanel implements HasT
         offerProduct.setTargetPrice(target);
         offerProduct.setHighestPrice(highest);
         offerProduct.setLowestPrice(low);
-        
+        JOptionPane.showMessageDialog(this, "Success!");
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
