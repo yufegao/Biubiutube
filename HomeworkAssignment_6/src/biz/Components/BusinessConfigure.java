@@ -78,7 +78,6 @@ public class BusinessConfigure {
                     Collections.shuffle(allProducts);
                     for (Product product: allProducts.subList(0, rand.nextInt(5) + 1)) {
                             MarketOffer marketOffer = Business.getInstance().getMarketOfferCatalog().findElement(mo -> mo.getMarket().equals(customer.getMarket()));
-                            marketOffer.getElementArrayList();
                             OfferProduct offerProduct = marketOffer.findElement(op -> op.getProduct().equals(product));
                             OrderProduct orderProduct = order.newElement();
                             orderProduct.setOfferProduct(offerProduct);

@@ -67,6 +67,9 @@ public class AddSalesPersonJPanel extends javax.swing.JPanel implements HasTitle
         SalesPerson salesPerson = Business.getInstance().getSalesPersonCatalog().newElement();
         salesPerson.setFirstName(firstName);
         salesPerson.setLastName(lastName);
+        
+        Business.getInstance().getAccountCatalog().addElement(salesPerson);
+
 
         JOptionPane.showMessageDialog(null, "Sales person create successfully!");
     }//GEN-LAST:event_btnSave3ActionPerformed

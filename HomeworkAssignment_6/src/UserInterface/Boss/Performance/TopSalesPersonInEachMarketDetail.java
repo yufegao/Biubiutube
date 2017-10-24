@@ -95,7 +95,7 @@ public class TopSalesPersonInEachMarketDetail extends javax.swing.JPanel impleme
     @Override
     public void populateTable() {
         ArrayList<SalesPerson> salesPersonArrayList = Business.getInstance().getSalesPersonCatalog().getElementArrayList();
-        salesPersonArrayList.sort((s1, s2) -> Double.compare(s1.getSalesRevenue(market), s2.getSalesRevenue(market)));
+        salesPersonArrayList.sort((s1, s2) -> Double.compare(s2.getSalesRevenue(market), s1.getSalesRevenue(market)));
         int toIndex = salesPersonArrayList.size() > 10 ? 10 : salesPersonArrayList.size();
         populateTable(new ArrayList<> (salesPersonArrayList.subList(0, toIndex)));
     }

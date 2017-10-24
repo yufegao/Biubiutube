@@ -6,7 +6,10 @@
 package biz.Components;
 
 import biz.Catalog.AbstractCatalog;
+import biz.Catalog.Finder;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
 
 /**
  *
@@ -28,12 +31,10 @@ public class MarketOffer extends AbstractCatalog<OfferProduct>{
         return new OfferProduct();
     }
 
-    
-    @Override
-    public ArrayList<OfferProduct> getElementArrayList() {
+
+    private void updateElementArrayList() {
         for(Product product : Business.getInstance().getAllProducts()){
-            OfferProduct offerProduct = this.findElement(op -> op.getProduct().equals(product));
-            if(offerProduct != null){
+            if(this.elementArrayList.stream().filter(op -> op.getProduct().equals(product)).count() > 0){
                 continue;
             }
             OfferProduct op = this.newElement();
@@ -43,6 +44,24 @@ public class MarketOffer extends AbstractCatalog<OfferProduct>{
             op.setTargetPrice(val * 1.5);
             op.setLowestPrice(val * 1);            
         }
-        return elementArrayList;
     }
+
+    @Override
+    public OfferProduct findElement(Finder<OfferProduct> finder) {
+        updateElementArrayList();
+        return super.findElement(finder);
+    }
+
+    @Override
+    public ArrayList<OfferProduct> findElements(Finder<OfferProduct> finder) {
+        updateElementArrayList();
+        return super.findElements(finder);
+    }
+
+    @Override
+    public ArrayList<OfferProduct> getElementArrayList() {
+        updateElementArrayList();
+        return super.getElementArrayList();
+    }
+    
 }
