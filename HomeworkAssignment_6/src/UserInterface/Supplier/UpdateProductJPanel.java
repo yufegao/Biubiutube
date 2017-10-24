@@ -81,7 +81,7 @@ public class UpdateProductJPanel extends javax.swing.JPanel implements HasTitle{
         jLabel3.setText("Factory Price");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 110, 30));
 
-        jLabel4.setText("Product Number");
+        jLabel4.setText("Product CDKey");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 120, 30));
 
         jLabel6.setText("Name");

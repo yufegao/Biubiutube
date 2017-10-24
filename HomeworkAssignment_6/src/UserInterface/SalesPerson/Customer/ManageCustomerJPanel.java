@@ -43,7 +43,6 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCustomer = new javax.swing.JTable();
         btnAddCustomer = new javax.swing.JButton();
-        btnSearchCustomer = new javax.swing.JButton();
         btnUpdateCustomer = new javax.swing.JButton();
         btnDeleteCustomer = new javax.swing.JButton();
         btnPlaceOrder = new javax.swing.JButton();
@@ -78,14 +77,6 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
             }
         });
         add(btnAddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 380, 220, 40));
-
-        btnSearchCustomer.setText("Search");
-        btnSearchCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchCustomerActionPerformed(evt);
-            }
-        });
-        add(btnSearchCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 180, 40));
 
         btnUpdateCustomer.setText("Update");
         btnUpdateCustomer.addActionListener(new java.awt.event.ActionListener() {
@@ -152,12 +143,6 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
         customer.getMarket().removeElement(customer);
     }//GEN-LAST:event_btnDeleteCustomerActionPerformed
 
-    private void btnSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchCustomerActionPerformed
-        // TODO add your handling code here:
-        SearchCustomerJPanel scjp = new SearchCustomerJPanel(parent);
-        parent.pushComponent(scjp);
-    }//GEN-LAST:event_btnSearchCustomerActionPerformed
-
     private void btnView1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnView1ActionPerformed
         // TODO add your handling code here:
         toCSV();
@@ -168,7 +153,6 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
     private javax.swing.JButton btnAddCustomer;
     private javax.swing.JButton btnDeleteCustomer;
     private javax.swing.JButton btnPlaceOrder;
-    private javax.swing.JButton btnSearchCustomer;
     private javax.swing.JButton btnUpdateCustomer;
     private javax.swing.JButton btnView1;
     private javax.swing.JScrollPane jScrollPane1;

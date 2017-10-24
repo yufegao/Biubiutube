@@ -62,7 +62,7 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
                 {null, null, null, null}
             },
             new String [] {
-                "Product Name", "Product Number", "Facotry Price", "Stock"
+                "Product Name", "Product CDKey", "Facotry Price", "Stock"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -171,7 +171,6 @@ public class ManageProductJPanel extends javax.swing.JPanel implements HasTitle,
     private javax.swing.JButton btnDeleteCustomer;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btnView1;
     private javax.swing.JButton btnView2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblProduct;
