@@ -26,6 +26,7 @@ public class UpdateCustomerJPanel extends javax.swing.JPanel {
         initComponents();
         this.customer = customer;
         this.pui = pui;
+        txtName.setText(customer.getName());
         populateMarket();
     }
 public void populateMarket(){

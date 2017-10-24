@@ -129,6 +129,9 @@ public class ManageCustomerJPanel extends javax.swing.JPanel implements HasTitle
     private void btnUpdateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateCustomerActionPerformed
         // TODO add your handling code here:
         Customer customer = getSelected();
+        if (customer == null) {
+            return;
+        }
         UpdateCustomerJPanel ucjp = new UpdateCustomerJPanel(parent,customer);
         parent.pushComponent(ucjp);
         
