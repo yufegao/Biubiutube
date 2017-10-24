@@ -104,8 +104,8 @@ public class SalesPersonPerformance extends javax.swing.JPanel implements TableP
         // TODO add your handling code here:
         ArrayList<Order> orders = orderDirectory.getElementArrayList();
         orders.sort((Order o1, Order o2) -> Double.compare(o1.getGap(), o2.getGap()));
-        int toIndex = orders.size() > 3 ? 3 : orders.size();
-        populateTable(new ArrayList<> (orders.subList(0, toIndex)));
+//        int toIndex = orders.size() > 3 ? 3 : orders.size();
+        populateTable(new ArrayList<> (orders.subList(0, orders.size())));
         
     }//GEN-LAST:event_btnBelowActionPerformed
 
@@ -113,8 +113,8 @@ public class SalesPersonPerformance extends javax.swing.JPanel implements TableP
         // TODO add your handling code here:
         ArrayList<Order> orders = orderDirectory.getElementArrayList();
         orders.sort((Order o1, Order o2) -> Double.compare(o2.getGap(), o1.getGap()));
-        int toIndex = orders.size() > 3 ? 3 : orders.size();
-        populateTable(new ArrayList<> (orders.subList(0, toIndex)));
+//        int toIndex = orders.size() > 3 ? 3 : orders.size();
+        populateTable(new ArrayList<> (orders.subList(0, orders.size())));
     }//GEN-LAST:event_btnAboveActionPerformed
 
 

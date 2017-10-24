@@ -110,7 +110,7 @@ public class CreateProductJPanel extends javax.swing.JPanel implements HasTitle{
             factoryPrice = Integer.parseInt(txtFactoryPrice.getText());
         }
         catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "Please enter valid Price!");
+            JOptionPane.showMessageDialog(null, "Please enter valid FactoryPrice!");
             return;
         }
         
@@ -119,7 +119,7 @@ public class CreateProductJPanel extends javax.swing.JPanel implements HasTitle{
             stock = Integer.parseInt(txtStock.getText());
         }
         catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "Please enter valid Price!");
+            JOptionPane.showMessageDialog(null, "Please enter valid Stock!");
             return;
         }
         
