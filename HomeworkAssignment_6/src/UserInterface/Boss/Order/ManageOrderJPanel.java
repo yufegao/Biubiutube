@@ -10,6 +10,8 @@ import UserInterface.Components.ParentUI;
 import UserInterface.Components.TablePopulatable;
 import biz.Components.Business;
 import biz.Components.Order;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -25,6 +27,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
     public ManageOrderJPanel(ParentUI parent) {
         initComponents();
         this.parent = parent;
+        populateTable();
     }
 
     /**
@@ -90,6 +93,14 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String targetorder = JOptionPane.showInputDialog(this, "Please input the number of order you want to find");
+        ArrayList orderList = new ArrayList<>();
+        for (Order order : Business.getInstance().getOrderDirectory().elementArrayList){
+            if(String.valueOf(order.getId()).equals(targetorder)){
+                orderList.add(order);
+            }
+        }
+        populateTable(orderList);
         
     }//GEN-LAST:event_btnSearchActionPerformed
 
