@@ -137,13 +137,20 @@ public class ManageSalesPersonJPanel extends javax.swing.JPanel implements HasTi
         if (selectedSalesPerson == null) {
             return;
         }
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog(this, "Delete selected Order?", "Warning", dialogButton);
-        if(dialogResult == JOptionPane.YES_OPTION){
-            Business.getInstance().getSalesPersonCatalog().removeElement(selectedSalesPerson);
+        
+        Order order = Business.getInstance().getOrderDirectory().findElement(o -> o.getSoldBy().equals(selectedSalesPerson));
+        if (order != null) {
+            JOptionPane.showMessageDialog(this, "Cannot remove, this sales person has order", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
         }
-        populateTable();
-        JOptionPane.showMessageDialog(this, "Removed");
+        
+        SalesPerson selected = getSelected();
+        if (selected == null) {
+            return;
+        }
+        if (removeSelected(Business.getInstance().getSalesPersonCatalog())) {
+            Business.getInstance().getAccountCatalog().removeAccount(selected);
+        }
     }//GEN-LAST:event_btnDeleteCustomerActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed

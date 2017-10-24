@@ -134,18 +134,19 @@ public class ManageSupplierJPanel extends javax.swing.JPanel implements TablePop
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCustomerActionPerformed
-        // TODO add your handling code here:
         Supplier selectedPSupplier = getSelected();
         if (selectedPSupplier == null) {
             return;
         }
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog(this, "Delete selected Order?", "Warning", dialogButton);
-        if(dialogResult == JOptionPane.YES_OPTION){
-            Business.getInstance().getSupplierCatalog().removeElement(selectedPSupplier);
+        
+        if (selectedPSupplier.getProductCatalog().getElementArrayList().size() > 0) {
+            JOptionPane.showMessageDialog(this, "Cannot remove! Supplier has product", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
         }
-        populateTable();
-        JOptionPane.showMessageDialog(this, "Removed");
+        
+        if (removeSelected(Business.getInstance().getSupplierCatalog())) {
+            Business.getInstance().getAccountCatalog().removeAccount(selectedPSupplier);
+        }
     }//GEN-LAST:event_btnDeleteCustomerActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
