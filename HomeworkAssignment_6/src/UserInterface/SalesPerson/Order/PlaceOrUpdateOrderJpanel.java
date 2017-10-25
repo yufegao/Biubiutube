@@ -12,6 +12,7 @@ import biz.Components.Customer;
 import biz.Components.OfferProduct;
 import biz.Components.Order;
 import biz.Components.OrderProduct;
+import biz.Components.Product;
 import biz.Components.SalesPerson;
 
 import javax.swing.*;
@@ -330,6 +331,8 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
         if (op == null) {
             return;
         }
+        Product p = op.getOfferProduct().getProduct();
+        p.setStock(p.getStock() + op.getQuantity());
         order.removeElement(op);
         populateOrder();
         populateTable();
@@ -376,18 +379,23 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
         int quantity;
         try {
             quantity = Integer.parseInt(quantityText);
-        } catch (NumberFormatException e) {
+            if (quantity <= 0) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Invalid quantity.");
             return;
         }
-        if (quantity > offerProduct.getProduct().getStock()) {
+               
+        if (quantity - orderProduct.getQuantity() > offerProduct.getProduct().getStock()) {
             JOptionPane.showMessageDialog(this, "Not enough product in stock.");
             return;
         }
         
-        orderProduct.setQuantity(orderProduct.getQuantity() + quantity);
-        offerProduct.getProduct().setStock(offerProduct.getProduct().getStock() - quantity);
+        offerProduct.getProduct().setStock(offerProduct.getProduct().getStock() - (quantity - orderProduct.getQuantity()));
+        orderProduct.setQuantity(quantity);
         populateOrder();
+        populateTable();
         txtQuantity2.setText("");
         JOptionPane.showMessageDialog(this, "Order Updated!");
     }//GEN-LAST:event_btnQuantityActionPerformed
