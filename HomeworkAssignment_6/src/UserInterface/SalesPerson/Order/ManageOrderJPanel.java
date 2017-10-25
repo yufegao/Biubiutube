@@ -66,7 +66,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
         });
         jScrollPane1.setViewportView(tblOrder);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 28, 591, 588));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 28, 591, 490));
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
