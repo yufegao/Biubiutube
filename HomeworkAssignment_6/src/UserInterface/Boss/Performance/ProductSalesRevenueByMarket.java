@@ -100,7 +100,7 @@ public class ProductSalesRevenueByMarket extends javax.swing.JPanel implements H
     public Object[] populateRow(Market market) {
         return new Object[]{
             market,
-            market.getMarketRevenue()
+            String.format("%.2f", market.getMarketRevenue())
         };
     }
 
