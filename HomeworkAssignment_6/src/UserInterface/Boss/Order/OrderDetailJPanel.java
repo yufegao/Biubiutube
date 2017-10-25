@@ -27,6 +27,7 @@ public class OrderDetailJPanel extends javax.swing.JPanel implements HasTitle, T
         initComponents();
         this.parent = parent;
         this.order = order;
+        populateTable();
     }
 
     /**
@@ -103,13 +104,14 @@ public class OrderDetailJPanel extends javax.swing.JPanel implements HasTitle, T
         return new Object[] {
             orderProduct,
             orderProduct.getQuantity(),
-            orderProduct.getActualPrice(),
-            orderProduct.getTotalPrice()
+            String.format("%.2f", orderProduct.getActualPrice()),
+            String.format("%.2f", orderProduct.getTotalPrice()),
+            String.format("%.2f", orderProduct.getReward()),
         };
     }
 
     @Override
     public void populateTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        populateTable(order.getElementArrayList());
     }
 }

@@ -141,8 +141,8 @@ public class ManageOrderJPanel extends javax.swing.JPanel implements HasTitle, T
             order,
             order.getBoughtBy(),
             order.getSoldBy(),
-            order.totalPrice(),
-            order.getRevenue()
+            String.format("%.2f", order.totalPrice()),
+            String.format("%.2f", order.getRevenue())
         };
     }
 

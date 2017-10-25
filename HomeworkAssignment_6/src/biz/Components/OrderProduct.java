@@ -42,8 +42,16 @@ public class OrderProduct {
         this.offerProduct = offerProduct;
     }
     
+    public double getReward() {
+        return (this.getActualPrice() - this.getOfferProduct().getProduct().getFactoryPrice()) * this.getQuantity() *0.05;
+    }
+    
     public double getRevenue() {
-        return 0;  // TODO
+        return (this.getActualPrice() -  this.getOfferProduct().getProduct().getFactoryPrice()) * this.getQuantity();
+    }
+    
+    public double getGap() {
+        return (this.getActualPrice() - this.getOfferProduct().getTargetPrice()) * this.getQuantity();
     }
     
     @Override

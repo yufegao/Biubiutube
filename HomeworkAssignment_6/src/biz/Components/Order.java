@@ -63,27 +63,15 @@ public class Order extends AbstractCatalog<OrderProduct>{
     }
 
     public double getOrderReward() {
-        double reward = 0;
-        for (OrderProduct op: this.elementArrayList){
-            reward += (op.getActualPrice() - op.getOfferProduct().getProduct().getFactoryPrice()) * op.getQuantity() *0.05;
-        }
-        return reward;
+        return this.elementArrayList.stream().map(op -> op.getReward()).reduce(.0, (a, b) -> a + b);
     }
 
     public double getRevenue(){
-        double revenue = 0;
-        for (OrderProduct op: this.elementArrayList){
-            revenue += (op.getActualPrice() -  op.getOfferProduct().getProduct().getFactoryPrice())*op.getQuantity();
-        }
-        return revenue;
+        return this.elementArrayList.stream().map(op -> op.getRevenue()).reduce(.0, (a, b) -> a + b);
     }
     
     public double getGap(){
-        double gap = 0;
-        for (OrderProduct op: this.elementArrayList){
-            gap += (op.getActualPrice() -  op.getOfferProduct().getTargetPrice())*op.getQuantity();
-        }
-        return gap;
+        return this.elementArrayList.stream().map(op -> op.getGap()).reduce(.0, (a, b) -> a + b);
     }
 
     @Override
