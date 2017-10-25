@@ -202,7 +202,7 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
         });
         add(btnQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(819, 486, -1, -1));
 
-        jLabel6.setText("ModifyS elected Actual Price to:");
+        jLabel6.setText("Modify Selected Actual Price to:");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(519, 456, -1, -1));
         add(txtActualPrice2, new org.netbeans.lib.awtextra.AbsoluteConstraints(723, 451, 90, -1));
         add(txtQuantity2, new org.netbeans.lib.awtextra.AbsoluteConstraints(723, 486, 90, -1));
@@ -284,15 +284,16 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
 
         offerProduct.getProduct().setStock(offerProduct.getProduct().getStock() - quantity);
 
-        OrderProduct orderProduct = order.findElement(op -> op.getOfferProduct().equals(offerProduct));
-        if (orderProduct != null) {
-            orderProduct.setQuantity(orderProduct.getQuantity() + quantity);
-        } else {
-            orderProduct = order.newElement();
-            orderProduct.setQuantity(quantity);
-            orderProduct.setActualPrice(actualPrice);
-            orderProduct.setOfferProduct(offerProduct);
+        if (order.findElement(op -> op.getOfferProduct().equals(offerProduct)) != null) {
+            JOptionPane.showMessageDialog(this, "Product already exists. Please Select and modify quantity or actual price if you mean to modify.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
         }
+
+        OrderProduct orderProduct = order.newElement();
+        orderProduct.setQuantity(quantity);
+        orderProduct.setActualPrice(actualPrice);
+        orderProduct.setOfferProduct(offerProduct);
+        
         populateOrder();
         populateTable();
         txtQuantity.setText("");
@@ -331,6 +332,7 @@ public class PlaceOrUpdateOrderJpanel extends javax.swing.JPanel implements HasT
         }
         order.removeElement(op);
         populateOrder();
+        populateTable();
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnActualPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualPriceActionPerformed
