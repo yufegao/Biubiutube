@@ -16,9 +16,9 @@
 To avoid naming conflicts between package and class, use `lower camel case` or `lower case abbreviation` for any packages and `upper camel case` for classes.  
 #### Example
 - package
-  - `biz`
-  - `ui`
-  - `topBar`
+    - `biz`
+    - `ui`
+    - `topBar`
 - class
     - `Business`
     - `AdDepartment`
