@@ -14,7 +14,6 @@ public class TopBar extends JPanel {
     public TopBar(ParentUI parent) {
         this.parent = parent;
         initComponents();
-        System.out.println(btnBack.getHeight());
     }
 
     private void initComponents() {
