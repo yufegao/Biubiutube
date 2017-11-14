@@ -6,6 +6,7 @@
 package biz.role;
 
 import javax.swing.JPanel;
+import ui.ParentUI;
 
 /**
  *
@@ -15,5 +16,6 @@ public abstract class Role {
     public enum RoleType{
         
     }
-    public abstract JPanel createWorkArea(JPanel parent);
+    
+    public abstract JPanel createWorkArea(ParentUI parent, Account account);
 }
