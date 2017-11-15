@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package biz.salesRole;
+package biz.role.salesRole;
 
 import biz.role.Role;
 import javax.swing.JPanel;
