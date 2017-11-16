@@ -5,9 +5,11 @@
  */
 package biz.role.customerServiceRole;
 
+import biz.account.Account;
 import biz.role.producerRole.*;
 import biz.role.Role;
 import javax.swing.JPanel;
+import ui.ParentUI;
 
 /**
  *
@@ -16,8 +18,8 @@ import javax.swing.JPanel;
 public class CustomerServiceRole extends Role{
 
     @Override
-    public JPanel createWorkArea(JPanel parent,Account account) {
+    public JPanel createWorkArea(ParentUI parent, Account account) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }    
     
 }
