@@ -9,7 +9,7 @@
             - [Example](#example)
 
 ## Hierarchical Object Model
-![](https://bytebucket.org/zhongjiehe/aed_assignments/raw/d9227c9007e31b4ba002529cdbc7b799bf61326e/FinalProject/Documents/Model.jpg?token=9b5bb207f54cfdaa6687294c3afc2900776a7a8b)
+![](https://bytebucket.org/zhongjiehe/aed_assignments/raw/33ebf8b7559e97c8d22b5bcf46cffa65aaa9e632/FinalProject/Documents/Hierarchical%20Object%20Model.png?token=748c1f09976231be1fdd67fa5a7c5fa6eaa7cd74)
 
 ## Naming Convention
 ### Package and Class
