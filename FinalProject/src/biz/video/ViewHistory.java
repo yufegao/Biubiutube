@@ -26,4 +26,9 @@ public class ViewHistory {
     public Calendar getCalendar() {
         return calendar;
     }
+
+    @Override
+    public String toString() {
+        return calendar.toString() + " - " + account.toString();
+    }
 }

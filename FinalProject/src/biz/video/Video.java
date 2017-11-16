@@ -8,6 +8,7 @@ public class Video {
     private VoteCatalog voteCatalog;
     private CommentCatalog commentCatalog;
     private ViewHistoryCatalog viewHistoryCatalog;
+    private String title;
 
     public enum VideoAdType {
         NoAdd("No Advertisement"),
@@ -47,11 +48,26 @@ public class Video {
     }
 
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
     Video(Account uploader) {
         this.uploader = uploader;
         this.voteCatalog = new VoteCatalog(this);
         this.commentCatalog = new CommentCatalog(this);
         this.viewHistoryCatalog = new ViewHistoryCatalog(this);
         this.adType = VideoAdType.NoAdd;  // default no ad
+        this.title = "";
+    }
+
+    @Override
+    public String toString() {
+        return title;
     }
 }

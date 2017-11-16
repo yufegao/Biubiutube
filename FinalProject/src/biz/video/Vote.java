@@ -26,4 +26,9 @@ public class Vote {
     public Account getAccount() {
         return account;
     }
+
+    @Override
+    public String toString() {
+        return calendar.toString() + " - " + account.toString();
+    }
 }
