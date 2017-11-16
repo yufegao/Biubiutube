@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 public class ECOUniversitySupervisorRole extends Role{
 
     @Override
-    public JPanel createWorkArea(JPanel parent) {
+    public JPanel createWorkArea(JPanel parent,Account account) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package biz.salesRole;
+package biz.role.salesRole;
 
 import biz.role.Role;
 import javax.swing.JPanel;
@@ -12,10 +12,10 @@ import javax.swing.JPanel;
  *
  * @author 79813
  */
-public class SalesManagerRole extends Role{
+public class SalesPersonRole extends Role{
 
     @Override
-    public JPanel createWorkArea(JPanel parent) {
+    public JPanel createWorkArea(JPanel parent,Account account) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
