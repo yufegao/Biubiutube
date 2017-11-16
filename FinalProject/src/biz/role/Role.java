@@ -5,6 +5,7 @@
  */
 package biz.role;
 
+import biz.account.Account;
 import javax.swing.JPanel;
 import ui.components.topBar.ParentUI;
 

@@ -5,7 +5,7 @@
  */
 package biz.organizations;
 
-import biz.accounts.AccountCatalog;
+import biz.account.AccountCatalog;
 import biz.person.PersonCatalog;
 import biz.role.Role;
 import java.util.ArrayList;
