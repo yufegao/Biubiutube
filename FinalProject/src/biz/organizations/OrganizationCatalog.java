@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package biz.order;
+package biz.organizations;
+
+import java.util.ArrayList;
 
 /**
  *
  * @author 79813
  */
-public class OrderCatalog {
-    
+public class OrganizationCatalog {
+    private ArrayList<Organization> organizations;
 }

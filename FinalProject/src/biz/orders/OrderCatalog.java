@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package biz.organization;
+package biz.orders;
 
 /**
  *
  * @author 79813
  */
-public class Organization {
+public class OrderCatalog {
     
 }

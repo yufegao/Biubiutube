@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package biz.account;
+package biz.accounts;
 
 import biz.enterprises.Enterprise;
-import biz.order.OrderCatalog;
+import biz.orders.OrderCatalog;
 import biz.role.Role.RoleType;
 
 /**
