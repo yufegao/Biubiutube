@@ -13,4 +13,19 @@ import java.util.ArrayList;
  */
 public class OrganizationCatalog {
     private ArrayList<Organization> organizations;
+
+    public OrganizationCatalog() {
+        organizations = new ArrayList<>();
+    }
+    
+    public ArrayList<Organization> getOrganizations() {
+        return organizations;
+    }
+
+    public Organization createAndAddOrganization(){
+        Organization organization = null;
+        
+        return organization;
+    }
+    
 }
