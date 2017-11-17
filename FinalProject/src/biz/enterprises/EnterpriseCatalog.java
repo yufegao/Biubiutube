@@ -5,12 +5,29 @@
  */
 package biz.enterprises;
 
+import biz.nw.Network;
+
 import java.util.ArrayList;
 
 /**
  *
  * @author 79813
  */
-public class EnterpriseCatalog {
-    private ArrayList<Enterprise> enterprises;
+public abstract class EnterpriseCatalog<Enterprise> {
+    protected Network network;
+    protected ArrayList<Enterprise> enterprises;
+
+    public EnterpriseCatalog(Network network) {
+        this.network = network;
+    }
+
+    public abstract Enterprise newEnterprise(String name);
+
+    public void removeEnterprise(Enterprise e) {
+        this.enterprises.remove(e);
+    }
+
+    public Network getNetwork() {
+        return network;
+    }
 }

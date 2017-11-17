@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package biz.organizations;
+package biz.org.adc;
 
+import biz.enterprises.Enterprise;
+import biz.org.Organization;
 import biz.role.Role;
 import java.util.ArrayList;
 
@@ -12,14 +14,15 @@ import java.util.ArrayList;
  *
  * @author 79813
  */
-public class ECOAdminOrganization extends Organization{
+public class AdevertiseAccountingOrganization extends Organization {
 
-    public ECOAdminOrganization() {
-        super(organizationType.ECOAdmin.getTypeName());
+
+    public AdevertiseAccountingOrganization(String name, Enterprise enterprise) {
+        super(name, enterprise);
     }
 
     @Override
-    public ArrayList<Role> getRole() {
+    public ArrayList<Role> getSupportedRoles() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

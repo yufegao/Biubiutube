@@ -1,24 +1,30 @@
 package biz.enterprises;
 
-import biz.organizations.Organization;
-import biz.organizations.OrganizationCatalog;
+import biz.nw.Network;
 
+public abstract class Enterprise {
+    private Network network;
+    private String name;
 
-
-public abstract class Enterprise extends Organization{
-  private EnterpriseType enterpriseType;
-  private OrganizationCatalog organizationCatalog;
-
-    public Enterprise(String name,EnterpriseType type) {
-        super(name);
-        this.enterpriseType = type;
-        
+    public Enterprise(String name, Network network) {
+        this.network = network;
+        this.name = name;
     }
-  public enum EnterpriseType{
-      
-  }
 
-  public EnterpriseType getEnterpriseType(){
-    return enterpriseType;
-  }
+    public Network getNetwork() {
+        return network;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
