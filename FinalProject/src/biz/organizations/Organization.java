@@ -20,14 +20,18 @@ public abstract class Organization {
     private AccountCatalog accountCatalog;
     
     public enum organizationType{
-        ECOCollege("ECOCollege"),ECOSupervisor("ECOSupervisor"),ECOAdmin("ECOAdmin"),UniverseCollege("UniverseCollege"),UniverseSupervisor("UniverseSupervisor"),UniverseDirectorate("UniverseDirectorate"),
-        UniverseSalesDepartment("UniverseSalesDepartment"),UniverseAdmin("UniverseAdmin"),UniverseAccounting("UniverseAccounting"),AdvertiseProduce("AdvertiseProduce"),AdvertiseSupervisor("AdvertiseSupervisor"),
-        AdvertiseAdmin("AdvertiseAdmin"),AdevertiseAccounting("AdevertiseAccounting"),NonProPSA("NonProPSA"),NonProSupervisor("NonProSupervisor"),NonProAdmin("NonProAdmin");
+        ECOCollege("ECOCollege"),ECOSupervisor("ECOSupervisor"),ECOAdmin("ECOAdmin"),
+        UniverseCollege("UniverseCollege"),UniverseSupervisor("UniverseSupervisor"),
+        UniverseDirectorate("UniverseDirectorate"),UniverseSalesDepartment("UniverseSalesDepartment"),
+        UniverseAdmin("UniverseAdmin"),UniverseAccounting("UniverseAccounting"),
+        AdvertiseProduce("AdvertiseProduce"),AdvertiseSupervisor("AdvertiseSupervisor"),
+        AdvertiseAdmin("AdvertiseAdmin"),AdevertiseAccounting("AdevertiseAccounting"),
+        NonProPSA("NonProPSA"),NonProSupervisor("NonProSupervisor"),NonProAdmin("NonProAdmin");
         private String typeName;
         private organizationType(String type){
             this.typeName = type;
         }
-        public String getType(){
+        public String getTypeName(){
             return typeName;
         }
     }
