@@ -6,7 +6,7 @@ import biz.org.npo.NonProAdminOrganization;
 import biz.org.npo.NonProSupervisorOrganization;
 
 public class NPOEnterprise extends Enterprise {
-    // TODO: org and orgCatalog here
+
     private NonProAdminOrganization npoa;
     private NPOOrganizationCatalog npooc;
     private NonProSupervisorOrganization nposo;

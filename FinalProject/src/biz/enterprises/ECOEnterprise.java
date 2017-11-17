@@ -6,7 +6,7 @@ import biz.org.eco.ECOSupervisorOrganization;
 import biz.org.eco.ECOVideoProducerOrganizationCatalog;
 
 public class ECOEnterprise extends Enterprise {
-    // TODO: org and orgCatalog here
+
     private ECOVideoProducerOrganizationCatalog ecovpoc;
     private ECOSupervisorOrganization ecoso;
     private ECOAdminOrganization ecoao;

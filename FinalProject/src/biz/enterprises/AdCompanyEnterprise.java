@@ -8,7 +8,7 @@ import biz.org.adc.AdvertiseProduceOrganizationCatalog;
 import biz.org.adc.AdvertiseSupervisorOrganization;
 
 public class AdCompanyEnterprise extends Enterprise {
-    // TODO: org and orgCatalog here
+
     private AdevertiseAccountingOrganization aAccount;
     private AdvertiseAdminOrganization aAdmin;
     private AdvertiseProduceOrganizationCatalog aPCatalog;
