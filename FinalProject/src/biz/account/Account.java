@@ -13,7 +13,8 @@ import biz.role.Role.RoleType;
  *
  * @author 79813
  */
-public abstract class Account {
+public class Account {
+    // TODO
     private OrderCatalog orderCatalog;
     private int money;
     private RoleType roleType;

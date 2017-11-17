@@ -1,30 +1,36 @@
 package biz.person;
 
-public class Person{
-  private String name;
-  private int id;
-  private static  int count= 1;
-      public Person() {
-        id = count;
-        count++;
+import biz.org.Organization;
+
+public class Person {
+    private String firstName;
+    private String lastName;
+    private Organization org;
+
+    Person(String firstName, String lastName, Organization org) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.org = org;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return firstName + lastName;
     }
 
     @Override
     public String toString() {
-        return name;
+        return getFullName();
     }
-    
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Organization getOrg() {
+        return org;
+    }
 }

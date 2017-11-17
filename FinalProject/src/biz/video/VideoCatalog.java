@@ -1,14 +1,16 @@
 package biz.video;
 
 import biz.account.Account;
+import biz.nw.Network;
 
 import java.util.ArrayList;
 
 public class VideoCatalog {
     private ArrayList<Video> videoArrayList;
-//    private Network network;
+    private Network network;
 
-    public VideoCatalog() {
+    public VideoCatalog(Network network) {
+        this.network = network;
         this.videoArrayList = new ArrayList<>();
     }
 
