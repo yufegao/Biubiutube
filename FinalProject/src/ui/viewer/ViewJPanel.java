@@ -3,18 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.Viewer;
+package ui.viewer;
+
+import biz.account.Account;
+import ui.components.ParentUI;
 
 /**
  *
  * @author royn
  */
-public class ViewJPanel extends javax.swing.JPanel {
+public class ViewJPanel extends javax.swing.JPanel implements LoginArea, Hastitle{
 
     /**
      * Creates new form NewJPanel
      */
-    public ViewJPanel() {
+    public ViewJPanel(ParentUI parent, Account account) {
         initComponents();
         
     }

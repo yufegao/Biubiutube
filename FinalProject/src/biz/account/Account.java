@@ -7,6 +7,7 @@ package biz.account;
 
 import biz.enterprises.Enterprise;
 import biz.orders.OrderCatalog;
+import biz.role.Role;
 import biz.role.Role.RoleType;
 
 /**
@@ -19,6 +20,10 @@ public class Account {
     private int money;
     private RoleType roleType;
     private Enterprise enterprise;
-    
-    
+
+    private Role role;
+
+    public Role getRole() {
+        return role;
+    }
 }
