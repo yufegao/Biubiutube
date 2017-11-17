@@ -3,19 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.components.topBar;
+package ui.components;
+
+import java.awt.Color;
 
 /**
  *
  * @author hezj
  */
-public class HomePage extends javax.swing.JPanel {
-
+public class DemoJPanel extends javax.swing.JPanel {
+    private ParentUI parent;
+    
     /**
-     * Creates new form HomePage
+     * Creates new form DemoJPanel
      */
-    public HomePage() {
+    public DemoJPanel(ParentUI parent) {
+        this.parent = parent;
         initComponents();
+        this.setBackground(new Color(rand255(), rand255(), rand255()));
     }
 
     /**
@@ -27,29 +32,41 @@ public class HomePage extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        btnPush = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("BiubiuTube");
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        btnPush.setText("Push");
+        btnPush.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPushActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addComponent(btnPush, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(622, Short.MAX_VALUE))
+                .addComponent(btnPush)
+                .addGap(0, 621, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private int rand255() {
+        return (int)(Math.random() * 255); 
+    }
+    
+    private void btnPushActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPushActionPerformed
+        parent.pushComponent(new DemoJPanel(parent));
+    }//GEN-LAST:event_btnPushActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnPush;
     // End of variables declaration//GEN-END:variables
 }

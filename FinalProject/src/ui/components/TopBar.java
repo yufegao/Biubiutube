@@ -1,4 +1,4 @@
-package ui.components.topBar;
+package ui.components;
 
 import javax.swing.*;
 import java.awt.*;

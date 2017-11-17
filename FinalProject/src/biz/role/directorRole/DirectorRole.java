@@ -8,7 +8,7 @@ package biz.role.directorRole;
 import biz.account.Account;
 import biz.role.Role;
 import javax.swing.JPanel;
-import ui.ParentUI;
+import ui.components.ParentUI;
 
 /**
  *
