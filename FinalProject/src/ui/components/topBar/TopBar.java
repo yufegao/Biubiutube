@@ -1,9 +1,7 @@
-package ui.topBar;
+package ui.components.topBar;
 
 import javax.swing.*;
 import java.awt.*;
-import ui.DemoJPanel;
-import ui.ParentUI;
 
 public class TopBar extends JPanel {
     private ParentUI parent;

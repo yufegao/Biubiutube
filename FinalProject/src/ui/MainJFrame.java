@@ -5,7 +5,9 @@
  */
 package ui;
 
-import ui.topBar.TopBar;
+import ui.components.topBar.HomePage;
+import ui.components.topBar.ParentUI;
+import ui.components.topBar.TopBar;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
