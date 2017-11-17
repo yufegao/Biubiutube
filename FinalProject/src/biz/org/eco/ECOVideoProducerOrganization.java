@@ -14,10 +14,10 @@ import java.util.ArrayList;
  *
  * @author 79813
  */
-public class ECOCollegeOrganization extends Organization {
+public class ECOVideoProducerOrganization extends Organization {
 
 
-    public ECOCollegeOrganization(String name, Enterprise enterprise) {
+    public ECOVideoProducerOrganization(String name, Enterprise enterprise) {
         super(name, enterprise);
     }
 

@@ -16,9 +16,8 @@ import java.util.ArrayList;
  */
 public class AdevertiseAccountingOrganization extends Organization {
 
-
     public AdevertiseAccountingOrganization(String name, Enterprise enterprise) {
-        super(name, enterprise);
+       super(name,enterprise);
     }
 
     @Override

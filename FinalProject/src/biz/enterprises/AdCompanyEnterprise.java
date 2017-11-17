@@ -11,10 +11,31 @@ public class AdCompanyEnterprise extends Enterprise {
     // TODO: org and orgCatalog here
     private AdevertiseAccountingOrganization aAccount;
     private AdvertiseAdminOrganization aAdmin;
-    private AdvertiseProduceOrganization aProduce;
     private AdvertiseProduceOrganizationCatalog aPCatalog;
     private AdvertiseSupervisorOrganization aSupervisor;
     public AdCompanyEnterprise(String name, Network network) {
         super(name, network);
+        this.aPCatalog = new AdvertiseProduceOrganizationCatalog(this);
+        
+        this.aAccount = new AdevertiseAccountingOrganization(name + "AdvertiseAccountingOrganization", this);
+        this.aAdmin = new AdvertiseAdminOrganization(name, this);
+        this.aSupervisor = new AdvertiseSupervisorOrganization(name, this);
     }
+
+    public AdevertiseAccountingOrganization getaAccount() {
+        return aAccount;
+    }
+
+    public AdvertiseAdminOrganization getaAdmin() {
+        return aAdmin;
+    }
+
+    public AdvertiseProduceOrganizationCatalog getaPCatalog() {
+        return aPCatalog;
+    }
+
+    public AdvertiseSupervisorOrganization getaSupervisor() {
+        return aSupervisor;
+    }
+    
 }
