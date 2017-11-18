@@ -7,9 +7,9 @@ package ui;
 
 import ui.components.TopBar;
 import ui.components.ParentUI;
-import ui.viewer.HomePage;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import ui.college.viewer.HomePage;
 
 /**
  *
