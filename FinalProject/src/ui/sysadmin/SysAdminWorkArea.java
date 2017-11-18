@@ -65,7 +65,7 @@ public class SysAdminWorkArea extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoActionPerformed
-        parent.pushComponent(new manageNetwork(parent));
+        parent.pushComponent(new ManageNetwork(parent));
     }//GEN-LAST:event_btnGoActionPerformed
 
     /**
