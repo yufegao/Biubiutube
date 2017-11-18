@@ -17,9 +17,13 @@ public class SysAdminWorkArea extends javax.swing.JFrame {
     /**
      * Creates new form SysAdminWorkArea
      */
-    public SysAdminWorkArea(ParentUI parent) {
+    private SysAdminWorkArea(ParentUI parent) {
         this.parent = parent;
         initComponents();
+    }
+
+    private SysAdminWorkArea() {
+
     }
 
     /**
