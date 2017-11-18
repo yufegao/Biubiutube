@@ -22,9 +22,10 @@ public class EcoSystem {
 
     private static EcoSystem system;
     private ArrayList<Network> networks;
-    
+    private ArrayList<Role> roleList;
     private EcoSystem(){
         networks = new ArrayList<>();
+        roleList = new ArrayList<>();
     }
     
     public static EcoSystem geEcoSystem(){
@@ -40,13 +41,13 @@ public class EcoSystem {
         return network;
     }
     
-    public ArrayList<Role> getSupportedRole(RoleType type){
-        ArrayList<Role> roleList = new ArrayList<>();
-        if(type.getRoletype().equals(RoleType.SysAdmin.getRoletype())){
-            roleList.add(new SystemAdminRole());
-        }else if(type.getRoletype().equals(RoleType.CensorRole.getRoletype())){
-            roleList.add(new CensorRole());
-        }
+    public ArrayList<Role> getSupportedAdminRole(){
+        
+        roleList.add(new SystemAdminRole());       
+        return roleList;
+    }
+    public ArrayList<Role> getSupportedCensorRole(){
+        roleList.add(new CensorRole());
         return roleList;
     }
 }
