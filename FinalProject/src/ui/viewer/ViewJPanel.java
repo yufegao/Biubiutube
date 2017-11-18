@@ -6,13 +6,14 @@
 package ui.viewer;
 
 import biz.account.Account;
+import ui.components.HasTitle;
 import ui.components.ParentUI;
 
 /**
  *
  * @author royn
  */
-public class ViewJPanel extends javax.swing.JPanel implements LoginArea, Hastitle{
+public class ViewJPanel extends javax.swing.JPanel implements HasTitle {
 
     /**
      * Creates new form NewJPanel
@@ -113,4 +114,9 @@ public class ViewJPanel extends javax.swing.JPanel implements LoginArea, Hastitl
     private javax.swing.JTextField txtTags;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String getTitle() {
+        return "Welcome to BiubiuTube!";
+    }
 }

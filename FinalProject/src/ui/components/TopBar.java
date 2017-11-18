@@ -22,6 +22,7 @@ public class TopBar extends JPanel {
         
         this.btnBack = new JButton("< Back");
         this.btnBack.addActionListener(e -> parent.popComponent());
+        this.btnBack.setVisible(false);
 
         this.add(loginArea, BorderLayout.LINE_END);
         add(btnBack, BorderLayout.LINE_START);
@@ -30,18 +31,20 @@ public class TopBar extends JPanel {
     
     public void loggedIn(/* Account account */) {
         remove(loginArea);
+//        TODO
 //        statusArea.setGreeting("Hello, " + account.getPerson().getFullName());
         statusArea.setGreeting("Hello, foba");
         parent.pushComponent(new DemoJPanel(parent));
         add(btnBack, BorderLayout.LINE_START);
         add(statusArea, BorderLayout.LINE_END);
+        btnBack.setVisible(true);
         validate();
         repaint();
     }
     
     public void loggedOut() {
         remove(statusArea);
-        remove(btnBack);
+        btnBack.setVisible(false);
         add(loginArea, BorderLayout.LINE_END);
         validate();
         repaint();
