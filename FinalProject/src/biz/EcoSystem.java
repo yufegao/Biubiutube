@@ -22,12 +22,12 @@ public class EcoSystem {
 
     private static EcoSystem system;
     private ArrayList<Network> networks;
-    
+
     private EcoSystem(){
         networks = new ArrayList<>();
     }
     
-    public static EcoSystem geEcoSystem(){
+    public static EcoSystem getInstance(){
         if(system == null){
             system = new EcoSystem();
         }
