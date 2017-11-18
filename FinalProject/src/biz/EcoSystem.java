@@ -22,13 +22,17 @@ public class EcoSystem {
 
     private static EcoSystem system;
     private ArrayList<Network> networks;
+<<<<<<< HEAD
     private ArrayList<Role> roleList;
+=======
+
+>>>>>>> 69286a2a06c228acafe9a80296eebce97f1288e1
     private EcoSystem(){
         networks = new ArrayList<>();
         roleList = new ArrayList<>();
     }
     
-    public static EcoSystem geEcoSystem(){
+    public static EcoSystem getInstance(){
         if(system == null){
             system = new EcoSystem();
         }
