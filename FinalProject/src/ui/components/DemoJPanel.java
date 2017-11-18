@@ -34,6 +34,7 @@ public class DemoJPanel extends javax.swing.JPanel implements HasTitle {
     private void initComponents() {
 
         btnPush = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -44,17 +45,23 @@ public class DemoJPanel extends javax.swing.JPanel implements HasTitle {
             }
         });
 
+        jButton1.setText("U can see me");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnPush, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(btnPush)
-                .addGap(0, 621, Short.MAX_VALUE))
+                .addGap(572, 572, 572)
+                .addComponent(jButton1))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -69,6 +76,7 @@ public class DemoJPanel extends javax.swing.JPanel implements HasTitle {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPush;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 
     @Override

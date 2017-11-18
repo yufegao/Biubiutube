@@ -50,7 +50,7 @@ public interface ParentUI {
             String title = ((HasTitle) component).getTitle();
             JLabel lblHeader = new JLabel(title, JLabel.CENTER);
             Font f = lblHeader.getFont();
-            lblHeader.setFont(new Font(f.getName(), Font.BOLD, 20));
+            lblHeader.setFont(new Font(f.getName(), Font.BOLD, 30));
 
             wrapper.add(lblHeader, BorderLayout.PAGE_START);
         }
