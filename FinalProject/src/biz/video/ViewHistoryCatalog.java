@@ -18,4 +18,12 @@ public class ViewHistoryCatalog {
         this.viewHistoryArrayList.add(vh);
         return vh;
     }
+
+    public Video getVideo() {
+        return video;
+    }
+
+    public ArrayList<ViewHistory> getViewHistoryArrayList() {
+        return viewHistoryArrayList;
+    }
 }

@@ -5,6 +5,7 @@
  */
 package ui;
 
+import biz.EcoSystemHelper;
 import ui.components.TopBar;
 import ui.components.ParentUI;
 import java.awt.BorderLayout;
@@ -77,6 +78,7 @@ public class MainJFrame extends javax.swing.JFrame implements ParentUI {
             java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        EcoSystemHelper.configure();
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

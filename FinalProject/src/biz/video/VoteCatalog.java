@@ -18,11 +18,16 @@ public class VoteCatalog {
         return v;
     }
 
-    public int getVoteCount() {
-        return this.voteArrayList.size();
+    public Video getVideo() {
+        return video;
+    }
+
+    public ArrayList<Vote> getVoteArrayList() {
+        return voteArrayList;
     }
 
     VoteCatalog(Video video) {
         this.video = video;
+        this.voteArrayList = new ArrayList<>();
     }
 }

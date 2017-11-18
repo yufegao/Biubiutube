@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.stream.Stream;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -23,12 +24,21 @@ import javax.swing.table.DefaultTableModel;
 public interface TablePopulatable<Element> {
     JTable getTable();
 
-    default void populateTable(Iterable<Element> elements) {
+    default DefaultTableModel clearTable() {
         JTable table = getTable();
         DefaultTableModel dtm = (DefaultTableModel) table.getModel();
         dtm.setRowCount(0);
-
+        return dtm;
+    }
+    
+    default void populateTable(Iterable<Element> elements) {
+        DefaultTableModel dtm = clearTable();
         elements.forEach(e -> dtm.addRow(populateRow(e)));
+    }
+    
+    default void populateTable(Stream<Element> elementStream) {
+        DefaultTableModel dtm = clearTable();
+        elementStream.forEach(e -> dtm.addRow(populateRow(e)));
     }
 
     Object[] populateRow(Element element);

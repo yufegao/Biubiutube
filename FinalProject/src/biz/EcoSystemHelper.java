@@ -4,6 +4,7 @@ import biz.account.Account;
 import biz.nw.Network;
 import biz.org.unv.UniverseCollegeOrganization;
 import biz.person.Person;
+import biz.video.Video;
 
 public class EcoSystemHelper {
     public static EcoSystem configure() {
@@ -27,8 +28,15 @@ public class EcoSystemHelper {
 
         person = coe.getPersonCatalog().newPerson("Cathy", "Sun");
         try {
-            coe.getAccountCatalog().newAccount("sls", "sls", coe.getCollegeLecturerRole(), person);
+            account = coe.getAccountCatalog().newAccount("sls", "sls", coe.getCollegeLecturerRole(), person);
+            for (int i = 1; i < 9; i++) {
+                Video v = nw.getVideoCatalog().newVideo(account);
+                v.setTitle(String.format("INFO5100-Lab%d", i));
+                v.setAdType(Video.VideoAdType.AnyAdd);
+                v.setStatus(Video.VideoStatus.ESApproved);
+            }
         } catch (Exception ignored) {}
+
 
         return system;
     }

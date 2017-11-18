@@ -8,6 +8,10 @@ public class CommentCatalog {
     private Video video;
     private ArrayList<Comment> commentArrayList;
 
+    public ArrayList<Comment> getCommentArrayList() {
+        return commentArrayList;
+    }
+
     CommentCatalog(Video video) {
         this.video = video;
         this.commentArrayList = new ArrayList<>();

@@ -9,6 +9,7 @@ import biz.EcoSystem;
 import biz.account.Account;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * @author hezj
@@ -69,7 +70,7 @@ public class LoginArea extends javax.swing.JPanel {
         try {
             account = EcoSystem.getInstance().login(txtUsername.getText(), new String(txtPassword.getPassword()));
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog((Component) parent, e.getMessage(), "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         parent.pushComponent(account.getRole().createWorkArea(parent, account));

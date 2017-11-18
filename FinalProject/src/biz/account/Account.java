@@ -10,10 +10,8 @@ import biz.orders.OrderCatalog;
 import biz.org.Organization;
 import biz.person.Person;
 import biz.role.Role;
-import biz.role.Role.RoleType;
 
 /**
- *
  * @author 79813
  */
 public class Account {
@@ -32,7 +30,7 @@ public class Account {
     public Account(Organization organization, String username, String password, Role role, Person person) {
         this.person = person;
         this.username = username;
-        setPasswordHash(password);
+        setPassword(password);
         this.role = role;
         this.org = organization;
     }
@@ -68,7 +66,7 @@ public class Account {
     public void setOrg(Organization org) {
         this.org = org;
     }
-    
+
     public Role getRole() {
         return role;
     }
@@ -85,11 +83,11 @@ public class Account {
         return this.passwordHash.equals(HashHelper.generateHash(password));
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String password) {
+        this.passwordHash = HashHelper.generateHash(password);
     }
-    
-     public boolean isActive() {
+
+    public boolean isActive() {
         return isActive;
     }
 

@@ -6,13 +6,17 @@
 package ui.network.university.college.Lecturer;
 
 import biz.account.Account;
+import biz.video.Video;
+
+import javax.swing.JTable;
+
 import ui.components.ParentUI;
+import ui.components.TablePopulatable;
 
 /**
- *
  * @author royn
  */
-public class ManageVideo extends javax.swing.JPanel {
+public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<Video> {
     private ParentUI parent;
     private Account account;
 
@@ -23,6 +27,7 @@ public class ManageVideo extends javax.swing.JPanel {
         this.parent = parent;
         this.account = account;
         initComponents();
+        populateTable();
     }
 
     /**
@@ -35,29 +40,34 @@ public class ManageVideo extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        tbl = new javax.swing.JTable();
+        btnAdd = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
+        btnDetail = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title", "Ad Type", "Status", "View Count", "Comment Count", "Vote Count"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
-        jButton1.setText("Add");
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tbl);
 
-        jButton2.setText("Edit");
+        btnAdd.setText("Add");
 
-        jButton3.setText("View Detail");
+        btnEdit.setText("Edit");
+
+        btnDetail.setText("View Detail");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -70,9 +80,9 @@ public class ManageVideo extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3))))
+                            .addComponent(btnAdd)
+                            .addComponent(btnEdit)
+                            .addComponent(btnDetail))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -81,21 +91,46 @@ public class ManageVideo extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btnAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(btnEdit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(btnDetail)
                 .addContainerGap(99, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDetail;
+    private javax.swing.JButton btnEdit;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbl;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public JTable getTable() {
+        return tbl;
+    }
+
+    @Override
+    public Object[] populateRow(Video v) {
+        return new Object[]{
+                v,
+                v.getAdType(),
+                v.getStatus(),
+                v.getViewHistoryCatalog().getViewHistoryArrayList().size(),
+                v.getCommentCatalog().getCommentArrayList().size(),
+                v.getVoteCatalog().getVoteArrayList().size(),
+        };
+    }
+
+    @Override
+    public void populateTable() {
+        populateTable(account.getOrg()
+                .getEnterprise().getNetwork().getVideoCatalog()
+                .getVideoArrayList().stream()
+                .filter(v -> v.getUploader().equals(account)));
+    }
 }

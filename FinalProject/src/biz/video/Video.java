@@ -112,6 +112,14 @@ public class Video {
         return tagHashSet;
     }
 
+    public VideoStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(VideoStatus status) {
+        this.status = status;
+    }
+
     Video(Account uploader) {
         this.uploader = uploader;
         this.voteCatalog = new VoteCatalog(this);
