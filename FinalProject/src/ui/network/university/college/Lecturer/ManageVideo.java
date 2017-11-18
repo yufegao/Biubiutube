@@ -65,8 +65,14 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
         jScrollPane1.setViewportView(tbl);
 
         btnAdd.setText("Add");
+        btnAdd.setMaximumSize(new java.awt.Dimension(114, 29));
+        btnAdd.setMinimumSize(new java.awt.Dimension(114, 29));
+        btnAdd.setPreferredSize(new java.awt.Dimension(114, 29));
 
         btnEdit.setText("Edit");
+        btnEdit.setMaximumSize(new java.awt.Dimension(114, 29));
+        btnEdit.setMinimumSize(new java.awt.Dimension(114, 29));
+        btnEdit.setPreferredSize(new java.awt.Dimension(114, 29));
 
         btnDetail.setText("View Detail");
 
@@ -81,8 +87,8 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnAdd)
-                            .addComponent(btnEdit)
+                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnDetail))))
                 .addContainerGap())
         );
@@ -92,9 +98,9 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAdd)
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEdit)
+                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDetail)
                 .addContainerGap(99, Short.MAX_VALUE))
