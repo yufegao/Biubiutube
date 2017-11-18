@@ -13,12 +13,12 @@ import ui.components.ParentUI;
  *
  * @author royn
  */
-public class ViewJPanel extends javax.swing.JPanel implements HasTitle {
+public class VideoDetailJPanel extends javax.swing.JPanel implements HasTitle {
 
     /**
      * Creates new form NewJPanel
      */
-    public ViewJPanel(ParentUI parent, Account account) {
+    public VideoDetailJPanel(ParentUI parent, Account account) {
         initComponents();
         
     }
@@ -78,7 +78,7 @@ public class ViewJPanel extends javax.swing.JPanel implements HasTitle {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btnSubmit, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(130, 130, 130))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,7 +97,7 @@ public class ViewJPanel extends javax.swing.JPanel implements HasTitle {
                     .addComponent(txtComment)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 2, Short.MAX_VALUE)))
+                        .addGap(32, 32, 32)))
                 .addContainerGap())
         );
 
