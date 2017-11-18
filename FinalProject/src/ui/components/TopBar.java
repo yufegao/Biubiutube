@@ -34,7 +34,6 @@ public class TopBar extends JPanel {
 //        TODO
 //        statusArea.setGreeting("Hello, " + account.getPerson().getFullName());
         statusArea.setGreeting("Hello, foba");
-        parent.pushComponent(new DemoJPanel(parent));
         add(btnBack, BorderLayout.LINE_START);
         add(statusArea, BorderLayout.LINE_END);
         btnBack.setVisible(true);

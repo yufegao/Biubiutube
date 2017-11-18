@@ -5,6 +5,8 @@
  */
 package ui.components;
 
+import biz.account.Account;
+
 /**
  *
  * @author hezj
@@ -66,6 +68,7 @@ public class LoginArea extends javax.swing.JPanel {
         // parent.pushComponent(getWorkArea(account));
         // txtPassword.setText("");
         // txtUsername.setText("");
+        parent.pushComponent(new DemoWorkArea(parent, new Account(null)));  // TODO
         topBar.loggedIn();
     }//GEN-LAST:event_btnLoginActionPerformed
 
