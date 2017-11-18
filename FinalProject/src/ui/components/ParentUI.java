@@ -5,8 +5,11 @@
  */
 package ui.components;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Font;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -15,9 +18,7 @@ import javax.swing.JPanel;
  */
 public interface ParentUI {
     JPanel getContainerJPanel();
-
-    default void setHeaderTitle(String title) {};
-
+        
     default void popComponent() {
         JPanel containerJPanel = getContainerJPanel();
         if (containerJPanel.getComponentCount() <= 0) {
@@ -34,10 +35,6 @@ public interface ParentUI {
             if (component instanceof TablePopulatable) {
                 ((TablePopulatable) component).populateTable();
             }
-//            
-//            if (component instanceof HasTitle) {
-//                setHeaderTitle(((HasTitle) component).getTitle());
-//            }
         }
         componentPoped();
     }
@@ -46,13 +43,21 @@ public interface ParentUI {
 
     default void pushComponent(Component component) {
         JPanel containerJPanel = getContainerJPanel();
-        containerJPanel.add(component.getClass().getName(), component);
+        JPanel wrapper = new JPanel(new BorderLayout());
+        
+        wrapper.add(component, BorderLayout.CENTER);
+        if (component instanceof HasTitle) {
+            String title = ((HasTitle) component).getTitle();
+            JLabel lblHeader = new JLabel(title, JLabel.CENTER);
+            Font f = lblHeader.getFont();
+            lblHeader.setFont(new Font(f.getName(), Font.BOLD, 20));
+
+            wrapper.add(lblHeader, BorderLayout.PAGE_START);
+        }
+        
+        containerJPanel.add(component.getClass().getName(), wrapper);
         ((CardLayout) containerJPanel.getLayout()).next(containerJPanel);
-
-//        if (component instanceof HasTitle) {
-//            setHeaderTitle(((HasTitle) component).getTitle());
-//        }
-
+        
         componentPushed(component);
     }
 

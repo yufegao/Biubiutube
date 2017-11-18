@@ -6,12 +6,13 @@
 package ui.components;
 
 import java.awt.Color;
+import java.util.UUID;
 
 /**
  *
  * @author hezj
  */
-public class DemoJPanel extends javax.swing.JPanel {
+public class DemoJPanel extends javax.swing.JPanel implements HasTitle {
     private ParentUI parent;
     
     /**
@@ -69,4 +70,9 @@ public class DemoJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPush;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String getTitle() {
+        return String.format("Demo %s", UUID.randomUUID());
+    }
 }
