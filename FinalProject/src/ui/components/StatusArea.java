@@ -33,6 +33,7 @@ public class StatusArea extends javax.swing.JPanel {
 
         btnLogout = new javax.swing.JButton();
         lblGreeting = new javax.swing.JLabel();
+        btnManage = new javax.swing.JButton();
 
         btnLogout.setText("Logout");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -43,6 +44,13 @@ public class StatusArea extends javax.swing.JPanel {
 
         lblGreeting.setText("username");
 
+        btnManage.setText("Manage Account");
+        btnManage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -51,13 +59,17 @@ public class StatusArea extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblGreeting)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLogout))
+                .addComponent(btnManage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLogout)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(btnLogout)
-                .addComponent(lblGreeting))
+                .addComponent(lblGreeting)
+                .addComponent(btnManage))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -70,9 +82,14 @@ public class StatusArea extends javax.swing.JPanel {
         topBar.loggedOut();
     }//GEN-LAST:event_btnLogoutActionPerformed
 
+    private void btnManageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageActionPerformed
+        topBar.manageAccount();
+    }//GEN-LAST:event_btnManageActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnManage;
     private javax.swing.JLabel lblGreeting;
     // End of variables declaration//GEN-END:variables
 }
