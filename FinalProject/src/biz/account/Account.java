@@ -26,8 +26,9 @@ public class Account {
 
     private Role role;
 
-    public Account(Organization organization) {
+    public Account(Organization organization,Role role) {
         this.org = organization;
+        this.role = role;
     }
 
     public OrderCatalog getOrderCatalog() {
