@@ -14,13 +14,13 @@ import ui.components.TablePopulatable;
  *
  * @author 79813
  */
-public class ManageNetwork extends javax.swing.JPanel implements TablePopulatable<Network> {
+public class manageNetwork extends javax.swing.JPanel implements TablePopulatable<Network> {
     private ParentUI parent;
     
     /**
      * Creates new form ManageNetwork
      */
-    public ManageNetwork(ParentUI parent) {
+    public manageNetwork(ParentUI parent) {
         this.parent = parent;
         initComponents();
         populateTable();

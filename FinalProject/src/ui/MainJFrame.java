@@ -9,7 +9,7 @@ import ui.components.TopBar;
 import ui.components.ParentUI;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import ui.university.college.viewer.HomePage;
+import ui.network.university.college.viewer.HomePage;
 
 
 /**

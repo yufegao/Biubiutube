@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.university.college.viewer;
+package ui.network.university.college.viewer;
 
 import biz.account.Account;
 import ui.components.HasTitle;

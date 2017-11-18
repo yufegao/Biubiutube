@@ -3,20 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.university.college.viewer;
-
-import ui.components.HasTitle;
+package ui.network.advertisementEnterprise.adminOrganization;
 
 /**
  *
- * @author hezj
+ * @author royn
  */
-public class HomePage extends javax.swing.JPanel implements HasTitle {
+public class NewJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form HomePage
+     * Creates new form NewJPanel
      */
-    public HomePage() {
+    public NewJPanel() {
         initComponents();
     }
 
@@ -29,33 +27,19 @@ public class HomePage extends javax.swing.JPanel implements HasTitle {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-
-        jButton1.setText("Right Buttom");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 874, Short.MAX_VALUE)
-                .addComponent(jButton1))
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(621, 621, 621)
-                .addComponent(jButton1))
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public String getTitle() {
-        return "BiubiuTube";
-    }
 }
