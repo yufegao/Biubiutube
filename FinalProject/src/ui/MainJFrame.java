@@ -17,13 +17,15 @@ import ui.network.university.college.viewer.HomePage;
  * @author hezj
  */
 public class MainJFrame extends javax.swing.JFrame implements ParentUI {
-
+    private TopBar topBar;
+    
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
+        topBar = new TopBar(this);
         initComponents();
-        this.add(new TopBar(this), BorderLayout.PAGE_START);
+        this.add(topBar, BorderLayout.PAGE_START);
         this.pushComponent(new HomePage());
     }
 
@@ -95,6 +97,11 @@ public class MainJFrame extends javax.swing.JFrame implements ParentUI {
 
     @Override
     public void componentPoped() {
+        int count = this.container.getComponentCount();
+        if (count <= 1) {
+            this.topBar.loggedOut();
+        }
+        
         if (this.container.getComponentCount() <= 0) {
             this.pushComponent(new HomePage());
         }
