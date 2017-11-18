@@ -9,6 +9,7 @@ import biz.account.Account;
 import biz.video.Video;
 
 import javax.swing.JTable;
+import ui.components.HasTitle;
 
 import ui.components.ParentUI;
 import ui.components.TablePopulatable;
@@ -16,7 +17,7 @@ import ui.components.TablePopulatable;
 /**
  * @author royn
  */
-public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<Video> {
+public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<Video>, HasTitle {
     private ParentUI parent;
     private Account account;
 
@@ -132,5 +133,10 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
                 .getEnterprise().getNetwork().getVideoCatalog()
                 .getVideoArrayList().stream()
                 .filter(v -> v.getUploader().equals(account)));
+    }
+
+    @Override
+    public String getTitle() {
+        return String.format("%s's videos", account);
     }
 }

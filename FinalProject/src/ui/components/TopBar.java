@@ -1,5 +1,7 @@
 package ui.components;
 
+import biz.account.Account;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -28,12 +30,10 @@ public class TopBar extends JPanel {
         add(btnBack, BorderLayout.LINE_START);
         
     }
-    
-    public void loggedIn(/* Account account */) {
+
+    public void loggedIn(Account account) {
         remove(loginArea);
-//        TODO
-//        statusArea.setGreeting("Hello, " + account.getPerson().getFullName());
-        statusArea.setGreeting("Hello, foba");
+        statusArea.setGreeting("Hello, " + account.getPerson().getFullName());
         add(btnBack, BorderLayout.LINE_START);
         add(statusArea, BorderLayout.LINE_END);
         btnBack.setVisible(true);

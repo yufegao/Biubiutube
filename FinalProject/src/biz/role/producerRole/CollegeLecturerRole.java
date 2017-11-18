@@ -9,7 +9,7 @@ import biz.account.Account;
 import biz.role.Role;
 import javax.swing.JPanel;
 import ui.components.ParentUI;
-import ui.network.university.college.Lecturer.ManageVideo;
+import ui.network.university.college.Lecturer.LecturerWorkArea;
 
 /**
  *
@@ -19,7 +19,7 @@ public class CollegeLecturerRole extends Role{
 
     @Override
     public JPanel createWorkArea(ParentUI parent, Account account) {
-        return new ManageVideo(parent, account);
+        return new LecturerWorkArea(parent, account);
     }    
     
 }

@@ -76,7 +76,7 @@ public class LoginArea extends javax.swing.JPanel {
         parent.pushComponent(account.getRole().createWorkArea(parent, account));
         txtPassword.setText("");
         txtUsername.setText("");
-        topBar.loggedIn();
+        topBar.loggedIn(account);
     }//GEN-LAST:event_btnLoginActionPerformed
 
 

@@ -15,7 +15,7 @@ public class Person {
     }
 
     public String getFullName() {
-        return firstName + lastName;
+        return firstName + ' ' + lastName;
     }
 
     @Override

@@ -98,4 +98,9 @@ public class Account {
     public Person getPerson() {
         return person;
     }
+
+    @Override
+    public String toString() {
+        return username;
+    }
 }
