@@ -5,12 +5,14 @@
  */
 package biz.account;
 
+import biz.EcoSystem;
 import biz.org.Organization;
+import biz.person.Person;
+import biz.role.Role;
 
 import java.util.ArrayList;
 
 /**
- *
  * @author 79813
  */
 public class AccountCatalog {
@@ -26,16 +28,16 @@ public class AccountCatalog {
         return org;
     }
 
-    public Account newAccount() {
-        Account acc = new Account(org);
+    public Account newAccount(String username, String password, Role role, Person person) throws Exception {
+        Account acc = new Account(org, username, password, role, person);
+        EcoSystem.getInstance().addAccount(acc);
         this.accountArrayList.add(acc);
-        // System.getInstance().addAccount(acc); TODO
         return acc;
     }
 
     public void removeAccount(Account account) {
         this.accountArrayList.remove(account);
-        // System.getInstance().removeAccount(account); TODO
+        EcoSystem.getInstance().removeAccount(account);
     }
 
     public ArrayList<Account> getAccountArrayList() {

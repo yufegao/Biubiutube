@@ -19,4 +19,12 @@ public class VideoCatalog {
         this.videoArrayList.add(video);
         return video;
     }
+
+    public ArrayList<Video> getVideoArrayList() {
+        return videoArrayList;
+    }
+
+    public Network getNetwork() {
+        return network;
+    }
 }

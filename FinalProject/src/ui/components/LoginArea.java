@@ -5,16 +5,18 @@
  */
 package ui.components;
 
+import biz.EcoSystem;
 import biz.account.Account;
 
+import javax.swing.*;
+
 /**
- *
  * @author hezj
  */
 public class LoginArea extends javax.swing.JPanel {
     private ParentUI parent;
     private TopBar topBar;
-    
+
     /**
      * Creates new form LoginArea
      */
@@ -63,12 +65,16 @@ public class LoginArea extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO
-        // Account account = login(..., ...);
-        // parent.pushComponent(getWorkArea(account));
-        // txtPassword.setText("");
-        // txtUsername.setText("");
-        parent.pushComponent(new DemoWorkArea(parent, new Account(null)));  // TODO
+        Account account;
+        try {
+            account = EcoSystem.getInstance().login(txtUsername.getText(), new String(txtPassword.getPassword()));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        parent.pushComponent(account.getRole().createWorkArea(parent, account));
+        txtPassword.setText("");
+        txtUsername.setText("");
         topBar.loggedIn();
     }//GEN-LAST:event_btnLoginActionPerformed
 

@@ -8,6 +8,7 @@ package biz.account;
 import biz.enterprises.Enterprise;
 import biz.orders.OrderCatalog;
 import biz.org.Organization;
+import biz.person.Person;
 import biz.role.Role;
 import biz.role.Role.RoleType;
 
@@ -19,16 +20,20 @@ public class Account {
 
     private OrderCatalog orderCatalog;
     private int money;
-    private RoleType roleType;
     private Enterprise enterprise;
     private Organization org;
     private String username;
-    private String password;
+    private String passwordHash;
+    private Person person;
     private boolean isActive;
 
     private Role role;
 
-    public Account(Organization organization) {
+    public Account(Organization organization, String username, String password, Role role, Person person) {
+        this.person = person;
+        this.username = username;
+        setPasswordHash(password);
+        this.role = role;
         this.org = organization;
     }
 
@@ -46,14 +51,6 @@ public class Account {
 
     public void setMoney(int money) {
         this.money = money;
-    }
-
-    public RoleType getRoleType() {
-        return roleType;
-    }
-
-    public void setRoleType(RoleType roleType) {
-        this.roleType = roleType;
     }
 
     public Enterprise getEnterprise() {
@@ -85,11 +82,11 @@ public class Account {
     }
 
     public boolean checkPassword(String password) {
-        return this.password.equals(HashHelper.generateHash(password));
+        return this.passwordHash.equals(HashHelper.generateHash(password));
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
     
      public boolean isActive() {
@@ -98,5 +95,9 @@ public class Account {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public Person getPerson() {
+        return person;
     }
 }

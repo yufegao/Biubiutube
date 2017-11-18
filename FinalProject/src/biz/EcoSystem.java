@@ -5,49 +5,94 @@
  */
 package biz;
 
-import biz.enterprises.Enterprise;
+import biz.account.Account;
+import biz.account.AccountCatalog;
 import biz.nw.Network;
-import biz.org.Organization;
-import biz.role.Role;
-import biz.role.Role.RoleType;
+import biz.person.PersonCatalog;
 import biz.role.adminRole.SystemAdminRole;
 import biz.role.customerServiceRole.CensorRole;
+
 import java.util.ArrayList;
 
 /**
- *
  * @author 79813
  */
 public class EcoSystem {
 
     private static EcoSystem system;
-    private ArrayList<Network> networks;
-    private ArrayList<Role> roleList;
-        private EcoSystem(){
-        networks = new ArrayList<>();
-        roleList = new ArrayList<>();
+    private PersonCatalog systemPersonCatalog;
+    private AccountCatalog systemAccountCatalog;
+
+    private SystemAdminRole systemAdminRole;
+    private CensorRole systemCensorRole;
+
+    private ArrayList<Network> networkArrayList;
+    private ArrayList<Account> allAccountArrayList;
+
+    private EcoSystem() {
+        systemPersonCatalog = new PersonCatalog(null);
+        systemAccountCatalog = new AccountCatalog(null);
+        networkArrayList = new ArrayList<>();
+        allAccountArrayList = new ArrayList<>();
+
+        systemAdminRole = new SystemAdminRole();
+        systemCensorRole = new CensorRole();
     }
-    
-    public static EcoSystem getInstance(){
-        if(system == null){
+
+    public static EcoSystem getInstance() {
+        if (system == null) {
             system = new EcoSystem();
         }
         return system;
     }
-    
-    public Network createAndAddNetwork(String name){
+
+    public void addAccount(Account account) throws Exception {
+        if (this.allAccountArrayList
+                .stream()
+                .anyMatch(a -> a.getUsername().equals(account.getUsername()))) {
+            throw new Exception("Duplicate Username.");
+        }
+        this.allAccountArrayList.add(account);
+    }
+
+    public void removeAccount(Account account) {
+        this.allAccountArrayList.remove(account);
+    }
+
+    public Network newNetwork(String name) {
         Network network = new Network(name);
-        networks.add(network);
+        networkArrayList.add(network);
         return network;
     }
-    
-    public ArrayList<Role> getSupportedAdminRole(){
-        
-        roleList.add(new SystemAdminRole());       
-        return roleList;
+
+    public PersonCatalog getSystemPersonCatalog() {
+        return systemPersonCatalog;
     }
-    public ArrayList<Role> getSupportedCensorRole(){
-        roleList.add(new CensorRole());
-        return roleList;
+
+    public AccountCatalog getSystemAccountCatalog() {
+        return systemAccountCatalog;
+    }
+
+    public ArrayList<Network> getNetworkArrayList() {
+        return networkArrayList;
+    }
+
+    public Account login(String username, String password) throws Exception {
+        Account account = allAccountArrayList.stream().filter(acc -> acc.getUsername().equals(username)).findFirst().orElse(null);
+        if (account == null) {
+            throw new Exception("Account Not Found.");
+        }
+        if (!account.checkPassword(password)) {
+            throw new Exception("Password Mismatch.");
+        }
+        return account;
+    }
+
+    public SystemAdminRole getSystemAdminRole() {
+        return systemAdminRole;
+    }
+
+    public CensorRole getSystemCensorRole() {
+        return systemCensorRole;
     }
 }
