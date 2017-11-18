@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Font;
+import java.util.UUID;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -55,10 +56,10 @@ public interface ParentUI {
             wrapper.add(lblHeader, BorderLayout.PAGE_START);
         }
         
-        containerJPanel.add(component.getClass().getName(), wrapper);
+        containerJPanel.add(UUID.randomUUID().toString(), wrapper);
         ((CardLayout) containerJPanel.getLayout()).next(containerJPanel);
         
-        componentPushed(component);
+        componentPushed(wrapper);
     }
 
     default void componentPushed(Component component) {}
