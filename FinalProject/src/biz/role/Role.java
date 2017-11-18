@@ -15,8 +15,32 @@ import ui.components.ParentUI;
  */
 public abstract class Role {
     public enum RoleType{
-        
+        SysAdmin("SysAdmin"),CensorRole("CensorRole"),ECOLecturer("Lecturer"),ECODepartSupervisor("ECODepartSupervisor"),
+        ECOSupervisor("ECOSupervisor"),ECOAdmin("ECOAdmin"),UniversityViewer("UniversityCollegeViewer"),
+        UniversityLecture("UniversityCollegeLecture"),UniversityDepartmentSupervisor("UniversityDepartmentSupervisor"),
+        UniversitySupervisor("UniversitySupervisor"),UniversityDirector("UniversityDirector"),UniversitySalesManger("UniversitySalesManger"),
+        UniversitySalesPerson("UniversitySalesPerson"),UniversityAdmin("UniversityAdmin"),UniversityAccountManager("UniversityAccountManager"),
+        UniversityAccounting("UniversityAccounting"),AdvertiseProducer("AdvertiseProducer"),AdvertiseDepartmentSupervisor("AdvertiseDepartmentSupervisor"),
+        AdvertiseCompanySupervisor("AdvertiseCompanySupervisor"),AdvertiseAdmin("AdvertiseAdmin"),AdvertiseAccounting("AdvertiseAccounting"),
+        NonProProducer("NonProProducer"),NonProDepartmentSupervisor("NonProDepartmentSupervisor"),NonProCompanySupervisor("NonProCompanySupervisor"),
+        NonProAdmin("NonProAdmin"),AnonymosViewer("AnonymosViewer");
+        private String type;
+        private RoleType(String name){
+            this.type = name;
+        }
+        public String getRoletype(){
+            return type;
+        }
+        @Override
+        public String toString(){
+            return type;
+        }
     }
     
     public abstract JPanel createWorkArea(ParentUI parent, Account account);
+    
+    @Override
+    public String toString(){
+        return this.getClass().getName();
+    }
 }

@@ -15,7 +15,7 @@ import ui.components.ParentUI;
  *
  * @author 79813
  */
-public class CustomerServiceRole extends Role{
+public class CensorRole extends Role{
 
     @Override
     public JPanel createWorkArea(ParentUI parent, Account account) {
