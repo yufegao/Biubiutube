@@ -68,13 +68,28 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
         btnAdd.setMaximumSize(new java.awt.Dimension(114, 29));
         btnAdd.setMinimumSize(new java.awt.Dimension(114, 29));
         btnAdd.setPreferredSize(new java.awt.Dimension(114, 29));
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnEdit.setText("Edit");
         btnEdit.setMaximumSize(new java.awt.Dimension(114, 29));
         btnEdit.setMinimumSize(new java.awt.Dimension(114, 29));
         btnEdit.setPreferredSize(new java.awt.Dimension(114, 29));
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         btnDetail.setText("View Detail");
+        btnDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetailActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -106,6 +121,26 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
                 .addContainerGap(99, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
+        Video selected = getSelected();
+        if (selected == null) {
+            return;
+        }
+        parent.pushComponent(new VideoDetail(selected));
+    }//GEN-LAST:event_btnDetailActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        parent.pushComponent(new AddOrEditVideo(account));
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        Video selected = getSelected();
+        if (selected == null) {
+            return;
+        }
+        parent.pushComponent(new AddOrEditVideo(selected, account));
+    }//GEN-LAST:event_btnEditActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

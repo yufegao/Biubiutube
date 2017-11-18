@@ -34,6 +34,7 @@ public class EcoSystemHelper {
                 v.setTitle(String.format("INFO5100-Lab%d", i));
                 v.setAdType(Video.VideoAdType.AnyAdd);
                 v.setStatus(Video.VideoStatus.ESApproved);
+                v.setPicPath("https://i.imgur.com/ijtKGes.png");
             }
         } catch (Exception ignored) {}
 

@@ -12,6 +12,8 @@ public class Video {
     private CommentCatalog commentCatalog;
     private ViewHistoryCatalog viewHistoryCatalog;
     private String title;
+    private String description;
+    private String picPath;
     private HashSet<VideoTag> tagHashSet;
 
     public enum VideoAdType {
@@ -44,6 +46,7 @@ public class Video {
 
         String title;
         String description;
+
         VideoStatus(String title, String description) {
             this.title = title;
             this.description = description;
@@ -96,6 +99,14 @@ public class Video {
         this.title = title;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public boolean canView() {
         return this.status.equals(VideoStatus.ESApproved);
     }
@@ -120,6 +131,14 @@ public class Video {
         this.status = status;
     }
 
+    public String getPicPath() {
+        return picPath;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
+    }
+    
     Video(Account uploader) {
         this.uploader = uploader;
         this.voteCatalog = new VoteCatalog(this);
@@ -129,6 +148,7 @@ public class Video {
         this.adType = VideoAdType.NoAdd;  // default no ad
         this.status = VideoStatus.Uploaded;
         this.title = "";
+        this.description = "";
     }
 
     @Override

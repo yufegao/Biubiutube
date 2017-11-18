@@ -14,18 +14,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- *
  * @author hezj
  */
 public interface ParentUI {
     JPanel getContainerJPanel();
-        
+
     default void popComponent() {
         JPanel containerJPanel = getContainerJPanel();
         if (containerJPanel.getComponentCount() <= 0) {
             return;
         }
-        
+
         containerJPanel.remove(containerJPanel.getComponentCount() - 1);
         ((CardLayout) containerJPanel.getLayout()).previous(containerJPanel);
 
@@ -33,19 +32,23 @@ public interface ParentUI {
             int componentCount = containerJPanel.getComponentCount();
             Component component = containerJPanel.getComponent(componentCount - 1);  // get the last Component
 
-            if (component instanceof TablePopulatable) {
-                ((TablePopulatable) component).populateTable();
+            for (Component c : ((JPanel) component).getComponents()) {
+                if (c instanceof TablePopulatable) {
+                    ((TablePopulatable) c).populateTable();
+                }
             }
+
         }
         componentPoped();
     }
 
-    default void componentPoped() {}
+    default void componentPoped() {
+    }
 
     default void pushComponent(Component component) {
         JPanel containerJPanel = getContainerJPanel();
         JPanel wrapper = new JPanel(new BorderLayout());
-        
+
         wrapper.add(component, BorderLayout.CENTER);
         if (component instanceof HasTitle) {
             String title = ((HasTitle) component).getTitle();
@@ -55,14 +58,15 @@ public interface ParentUI {
 
             wrapper.add(lblHeader, BorderLayout.PAGE_START);
         }
-        
+
         containerJPanel.add(UUID.randomUUID().toString(), wrapper);
         ((CardLayout) containerJPanel.getLayout()).next(containerJPanel);
-        
+
         componentPushed(wrapper);
     }
 
-    default void componentPushed(Component component) {}
+    default void componentPushed(Component component) {
+    }
 
     default void popAllComponents() {
         JPanel containerJPanel = getContainerJPanel();
@@ -72,5 +76,6 @@ public interface ParentUI {
         allComponentsPoped();
     }
 
-    default void allComponentsPoped() {}
+    default void allComponentsPoped() {
+    }
 }
