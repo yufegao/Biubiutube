@@ -6,7 +6,6 @@
 package ui.components;
 
 import biz.account.Account;
-import ui.SystemAdminWorkArea;
 
 /**
  *

@@ -60,7 +60,7 @@ public class DemoJPanel extends javax.swing.JPanel implements HasTitle {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(btnPush)
-                .addGap(572, 572, 572)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 592, Short.MAX_VALUE)
                 .addComponent(jButton1))
         );
     }// </editor-fold>//GEN-END:initComponents

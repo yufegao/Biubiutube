@@ -39,8 +39,8 @@ public class MainJFrame extends javax.swing.JFrame implements ParentUI {
         container = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1000, 700));
-        setMinimumSize(new java.awt.Dimension(1000, 700));
+        setMaximumSize(new java.awt.Dimension(1000, 750));
+        setMinimumSize(new java.awt.Dimension(1000, 750));
         setSize(new java.awt.Dimension(1000, 700));
 
         container.setLayout(new java.awt.CardLayout());
