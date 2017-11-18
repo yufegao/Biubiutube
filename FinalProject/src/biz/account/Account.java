@@ -24,6 +24,7 @@ public class Account {
     private Organization org;
     private String username;
     private String password;
+    private boolean isActive;
 
     private Role role;
 
@@ -83,11 +84,19 @@ public class Account {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public boolean checkPassword(String password) {
+        return this.password.equals(HashHelper.generateHash(password));
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+     public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }
