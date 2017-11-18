@@ -4,6 +4,7 @@ import biz.account.Account;
 
 import javax.swing.*;
 import java.awt.*;
+
 import ui.ManageMyAccount;
 
 public class TopBar extends JPanel {
@@ -23,14 +24,14 @@ public class TopBar extends JPanel {
 
         loginArea = new LoginArea(parent, this);
         statusArea = new StatusArea(parent, this);
-        
+
         this.btnBack = new JButton("< Back");
         this.btnBack.addActionListener(e -> parent.popComponent());
         this.btnBack.setVisible(false);
 
         this.add(loginArea, BorderLayout.LINE_END);
         add(btnBack, BorderLayout.LINE_START);
-        
+
     }
 
     public void loggedIn(Account account) {
@@ -43,7 +44,7 @@ public class TopBar extends JPanel {
         validate();
         repaint();
     }
-    
+
     public void loggedOut() {
         this.account = null;
         remove(statusArea);
@@ -52,8 +53,16 @@ public class TopBar extends JPanel {
         validate();
         repaint();
     }
-    
+
     public void manageAccount() {
+        int componentCount = parent.getContainerJPanel().getComponentCount();
+        JPanel jp = (JPanel) parent.getContainerJPanel().getComponent(componentCount - 1);
+        for (Component c : jp.getComponents()) {
+            if (c instanceof ManageMyAccount) {
+                return;
+            }
+        }
+
         parent.pushComponent(new ManageMyAccount(parent, account));
     }
 }
