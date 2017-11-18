@@ -6,6 +6,7 @@ public class Person {
     private String firstName;
     private String lastName;
     private Organization org;
+    private String email;
 
     Person(String firstName, String lastName, Organization org) {
         this.firstName = firstName;
@@ -33,4 +34,14 @@ public class Person {
     public Organization getOrg() {
         return org;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    
 }

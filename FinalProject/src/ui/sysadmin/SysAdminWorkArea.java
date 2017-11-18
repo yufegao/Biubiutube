@@ -3,27 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui;
+package ui.sysadmin;
 
-import ui.components.TopBar;
 import ui.components.ParentUI;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
-import ui.college.viewer.HomePage;
 
 /**
  *
- * @author hezj
+ * @author 79813
  */
-public class MainJFrame extends javax.swing.JFrame implements ParentUI {
-
+public class SysAdminWorkArea extends javax.swing.JFrame {
+    private ParentUI parent;
+    
     /**
-     * Creates new form MainJFrame
+     * Creates new form SysAdminWorkArea
      */
-    public MainJFrame() {
+    private SysAdminWorkArea(ParentUI parent) {
+        this.parent = parent;
         initComponents();
-        this.add(new TopBar(this), BorderLayout.PAGE_START);
-        this.pushComponent(new HomePage());
+    }
+
+    private SysAdminWorkArea() {
+
     }
 
     /**
@@ -35,18 +35,38 @@ public class MainJFrame extends javax.swing.JFrame implements ParentUI {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        container = new javax.swing.JPanel();
+        btnGo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1000, 700));
-        setMinimumSize(new java.awt.Dimension(1000, 700));
-        setSize(new java.awt.Dimension(1000, 700));
 
-        container.setLayout(new java.awt.CardLayout());
-        getContentPane().add(container, java.awt.BorderLayout.CENTER);
+        btnGo.setText("go");
+        btnGo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(btnGo)
+                .addGap(0, 349, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(btnGo)
+                .addGap(0, 271, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoActionPerformed
+        parent.pushComponent(new ManageNetwork(parent));
+    }//GEN-LAST:event_btnGoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -65,43 +85,25 @@ public class MainJFrame extends javax.swing.JFrame implements ParentUI {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SysAdminWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SysAdminWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SysAdminWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SysAdminWorkArea.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainJFrame().setVisible(true);
+                new SysAdminWorkArea().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel container;
+    private javax.swing.JButton btnGo;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public JPanel getContainerJPanel() {
-        return container;
-    }
-
-    @Override
-    public void componentPoped() {
-        if (this.container.getComponentCount() <= 0) {
-            this.pushComponent(new HomePage());
-        }
-    }
-
-    @Override
-    public void allComponentsPoped() {
-        this.pushComponent(new HomePage());
-    }
-    
 }

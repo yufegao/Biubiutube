@@ -27,7 +27,7 @@ public class AccountCatalog {
     }
 
     public Account newAccount() {
-        Account acc = new Account();
+        Account acc = new Account(org);
         this.accountArrayList.add(acc);
         // System.getInstance().addAccount(acc); TODO
         return acc;
