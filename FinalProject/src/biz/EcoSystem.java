@@ -5,11 +5,8 @@
  */
 package biz;
 
-import biz.enterprises.Enterprise;
 import biz.nw.Network;
-import biz.org.Organization;
 import biz.role.Role;
-import biz.role.Role.RoleType;
 import biz.role.adminRole.SystemAdminRole;
 import biz.role.customerServiceRole.CensorRole;
 import java.util.ArrayList;

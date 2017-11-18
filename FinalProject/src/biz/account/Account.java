@@ -9,7 +9,6 @@ import biz.enterprises.Enterprise;
 import biz.orders.OrderCatalog;
 import biz.org.Organization;
 import biz.role.Role;
-import biz.role.Role.RoleType;
 
 /**
  *
@@ -19,7 +18,6 @@ public class Account {
 
     private OrderCatalog orderCatalog;
     private int money;
-    private RoleType roleType;
     private Enterprise enterprise;
     private Organization org;
     private String username;
@@ -47,15 +45,7 @@ public class Account {
     public void setMoney(int money) {
         this.money = money;
     }
-
-    public RoleType getRoleType() {
-        return roleType;
-    }
-
-    public void setRoleType(RoleType roleType) {
-        this.roleType = roleType;
-    }
-
+    
     public Enterprise getEnterprise() {
         return enterprise;
     }
