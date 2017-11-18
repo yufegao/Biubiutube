@@ -41,11 +41,16 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
         this.cbAdType.addItem(Video.VideoAdType.NoAdd);
         this.cbAdType.addItem(Video.VideoAdType.PSAOnly);
         
+        this.cbPrimeOnly.removeAllItems();
+        this.cbPrimeOnly.addItem(true);
+        this.cbPrimeOnly.addItem(false);
+        
         if (video != null) {
             txtTitle.setText(video.getTitle());
             cbAdType.setSelectedItem(video.getTitle());
             txtDescription.setText(video.getDescription());
             txtPicPath.setText(video.getPicPath());
+            cbPrimeOnly.setSelectedItem(video.isPrimeOnly());
         }
     }
 
@@ -68,6 +73,8 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
         btn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtPicPath = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        cbPrimeOnly = new javax.swing.JComboBox();
 
         jLabel1.setText("Title");
 
@@ -90,6 +97,10 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
 
         jLabel4.setText("Pic Path");
 
+        jLabel5.setText("Prime Only");
+
+        cbPrimeOnly.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,17 +110,22 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btn)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtTitle)
-                        .addComponent(cbAdType, 0, 208, Short.MAX_VALUE)
-                        .addComponent(txtPicPath)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTitle)
+                            .addComponent(cbAdType, 0, 208, Short.MAX_VALUE)
+                            .addComponent(cbPrimeOnly, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtPicPath))
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel2))))
                 .addGap(0, 792, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -124,6 +140,10 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbAdType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbPrimeOnly, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPicPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -131,9 +151,9 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn)
-                .addContainerGap(240, Short.MAX_VALUE))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -142,6 +162,7 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
         String description = txtDescription.getText();
         String picPath = txtPicPath.getText();
         Video.VideoAdType type = (Video.VideoAdType) cbAdType.getSelectedItem();
+        boolean isPrimeOnly = (boolean) cbPrimeOnly.getSelectedItem();
         // TODO validation
         
         Video v;
@@ -154,6 +175,7 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
         v.setDescription(description);
         v.setPicPath(picPath);
         v.setAdType(type);
+        v.setPrimeOnly(isPrimeOnly);
         
         if (video == null) {
             txtTitle.setText("");
@@ -175,10 +197,12 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn;
     private javax.swing.JComboBox cbAdType;
+    private javax.swing.JComboBox cbPrimeOnly;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtDescription;
     private javax.swing.JTextField txtPicPath;

@@ -51,11 +51,11 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
 
             },
             new String [] {
-                "Title", "Ad Type", "Status", "View Count", "Comment Count", "Vote Count"
+                "Title", "Ad Type", "Status", "View Count", "Comment Count", "Vote Count", "Prime Onlyl"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -165,6 +165,7 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
                 v.getViewHistoryCatalog().getViewHistoryArrayList().size(),
                 v.getCommentCatalog().getCommentArrayList().size(),
                 v.getVoteCatalog().getVoteArrayList().size(),
+                v.isPrimeOnly()
         };
     }
 

@@ -15,6 +15,7 @@ public class Video {
     private String description;
     private String picPath;
     private HashSet<VideoTag> tagHashSet;
+    private boolean isPrimeOnly;
 
     public enum VideoAdType {
         NoAdd("No Advertisement"),
@@ -138,7 +139,15 @@ public class Video {
     public void setPicPath(String picPath) {
         this.picPath = picPath;
     }
-    
+
+    public boolean isPrimeOnly() {
+        return isPrimeOnly;
+    }
+
+    public void setPrimeOnly(boolean primeOnly) {
+        isPrimeOnly = primeOnly;
+    }
+
     Video(Account uploader) {
         this.uploader = uploader;
         this.voteCatalog = new VoteCatalog(this);
@@ -149,6 +158,7 @@ public class Video {
         this.status = VideoStatus.Uploaded;
         this.title = "";
         this.description = "";
+        this.isPrimeOnly = false;
     }
 
     @Override
