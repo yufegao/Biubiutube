@@ -1,8 +1,6 @@
 package biz.video;
 
 import biz.account.Account;
-import biz.wrk.VideoUploadRequest;
-
 import java.util.HashSet;
 
 public class Video {
@@ -160,9 +158,6 @@ public class Video {
         this.title = "";
         this.description = "";
         this.isPrimeOnly = false;
-
-        VideoUploadRequest req = new VideoUploadRequest(uploader, this);
-        uploader.getVideoUploadWorkQueue().addRequest(req);
     }
 
     @Override

@@ -10,7 +10,6 @@ import biz.orders.OrderCatalog;
 import biz.org.Organization;
 import biz.person.Person;
 import biz.role.Role;
-import biz.wrk.VideoUploadWorkQueue;
 
 /**
  * @author 79813
@@ -25,7 +24,6 @@ public class Account {
     private String passwordHash;
     private Person person;
     private boolean isActive;
-    private VideoUploadWorkQueue videoUploadWorkQueue;
 
     private Role role;
 
@@ -35,7 +33,6 @@ public class Account {
         setPassword(password);
         this.role = role;
         this.org = organization;
-        this.videoUploadWorkQueue = new VideoUploadWorkQueue();
     }
 
     public OrderCatalog getOrderCatalog() {
@@ -105,9 +102,5 @@ public class Account {
     @Override
     public String toString() {
         return username;
-    }
-
-    public VideoUploadWorkQueue getVideoUploadWorkQueue() {
-        return videoUploadWorkQueue;
     }
 }

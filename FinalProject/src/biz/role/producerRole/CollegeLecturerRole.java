@@ -20,6 +20,6 @@ public class CollegeLecturerRole extends Role{
     @Override
     public JPanel createWorkArea(ParentUI parent, Account account) {
         return new LecturerWorkArea(parent, account);
-    }    
+    }
     
 }
