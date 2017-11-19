@@ -5,6 +5,7 @@ import biz.nw.Network;
 import biz.org.unv.UniverseCollegeOrganization;
 import biz.person.Person;
 import biz.video.Video;
+import biz.video.VideoTag;
 
 public class EcoSystemHelper {
     public static EcoSystem configure() {
@@ -35,6 +36,7 @@ public class EcoSystemHelper {
                 v.setAdType(Video.VideoAdType.AnyAdd);
                 v.setStatus(Video.VideoStatus.ESApproved);
                 v.setPicPath("https://i.imgur.com/ijtKGes.png");
+                v.addTag(nw.getVideoTagCatalog().getOrNewTag("INFO"));
                 if (i > 3) {
                     v.setStatus(Video.VideoStatus.DSApproved);
                 }

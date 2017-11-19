@@ -121,6 +121,10 @@ public class Video {
         this.tagHashSet.remove(tag);
     }
 
+    public void removeAllTag() {
+        this.tagHashSet = new HashSet<>();
+    }
+
     public HashSet<VideoTag> getTagHashSet() {
         return tagHashSet;
     }
