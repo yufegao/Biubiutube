@@ -51,7 +51,7 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
 
             },
             new String [] {
-                "Title", "Ad Type", "Status", "View Count", "Comment Count", "Vote Count", "Prime Onlyl"
+                "Title", "Ad Type", "Status", "View Count", "Comment Count", "Vote Count", "Prime Only"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -84,7 +84,10 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
             }
         });
 
-        btnDetail.setText("View Detail");
+        btnDetail.setText("View Details");
+        btnDetail.setMaximumSize(new java.awt.Dimension(114, 29));
+        btnDetail.setMinimumSize(new java.awt.Dimension(114, 29));
+        btnDetail.setPreferredSize(new java.awt.Dimension(114, 29));
         btnDetail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDetailActionPerformed(evt);
@@ -95,16 +98,16 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDetail))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDetail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -117,18 +120,10 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDetail)
+                .addComponent(btnDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(99, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
-        Video selected = getSelected();
-        if (selected == null) {
-            return;
-        }
-        parent.pushComponent(new VideoDetail(selected));
-    }//GEN-LAST:event_btnDetailActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         parent.pushComponent(new AddOrEditVideo(account));
@@ -141,6 +136,14 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
         }
         parent.pushComponent(new AddOrEditVideo(selected, account));
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
+        Video selected = getSelected();
+        if (selected == null) {
+            return;
+        }
+        parent.pushComponent(new VideoDetail(selected));
+    }//GEN-LAST:event_btnDetailActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
