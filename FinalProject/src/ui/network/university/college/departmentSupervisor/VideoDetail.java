@@ -20,6 +20,7 @@ public class VideoDetail extends javax.swing.JPanel implements HasTitle {
     private Video video;
     private Account account;
     private ParentUI parent;
+    // TODO: show video detail for censorship
 
     /**
      * Creates new form VideoDetail
