@@ -128,6 +128,11 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
         jLabel6.setText("Tag");
 
         btnAddTag.setText("↓ Add Tag");
+        btnAddTag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddTagActionPerformed(evt);
+            }
+        });
 
         btnRemoveTag.setText("Remove Selected Tag");
         btnRemoveTag.addActionListener(new java.awt.event.ActionListener() {
@@ -141,15 +146,15 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(263, 263, 263)
+                .addGap(262, 262, 262)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(btnAddTag)
                         .addComponent(txtTitle, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtTag, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                        .addComponent(txtTag)
                         .addComponent(btnRemoveTag)
-                        .addComponent(jScrollPane2))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,12 +169,12 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
                             .addComponent(txtPicPath, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                .addContainerGap(274, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(124, 124, 124)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel1))
@@ -202,7 +207,7 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRemoveTag)
                     .addComponent(btn))
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(315, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -212,7 +217,12 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
         String picPath = txtPicPath.getText();
         Video.VideoAdType type = (Video.VideoAdType) cbAdType.getSelectedItem();
         boolean isPrimeOnly = (boolean) cbPrimeOnly.getSelectedItem();
-        // TODO validation
+
+        if (title.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Invalid, Title cannot be empty!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
         
         Video v;
         if (video == null) {
@@ -229,14 +239,15 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
         v.removeAllTag();
         for (int i = 0; i < lstTag.getModel().getSize(); i++) {
             VideoTag tag = (VideoTag) lstTag.getModel().getElementAt(i);
-            video.addTag(tag);
+            v.addTag(tag);
         }
 
         if (video == null) {
             txtTitle.setText("");
             txtDescription.setText("");
             txtPicPath.setText("");
-            lstTag.removeAll();
+            txtTag.setText("");
+            lstTag.setModel(new DefaultListModel());
             JOptionPane.showMessageDialog(this, "Added");
         } else {
             JOptionPane.showMessageDialog(this, "Saved");
@@ -254,6 +265,17 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
             ((DefaultListModel) lstTag.getModel()).removeElement(tag);
         }
     }//GEN-LAST:event_btnRemoveTagActionPerformed
+
+    private void btnAddTagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTagActionPerformed
+        String tagName = txtTag.getText();
+        VideoTag tag = account.getOrg().getEnterprise().getNetwork().getVideoTagCatalog().getOrNewTag(tagName);
+        for (int i = 0; i < lstTag.getModel().getSize(); i++) {
+            if (lstTag.getModel().getElementAt(i).equals(tag)) {
+                return;
+            }
+        }
+        ((DefaultListModel) lstTag.getModel()).addElement(tag);
+    }//GEN-LAST:event_btnAddTagActionPerformed
 
     @Override
     public String getTitle() {
