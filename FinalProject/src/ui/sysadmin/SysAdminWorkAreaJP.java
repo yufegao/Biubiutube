@@ -5,6 +5,8 @@
  */
 package ui.sysadmin;
 
+import biz.account.Account;
+import ui.ManageMyAccount;
 import ui.components.ParentUI;
 
 /**
@@ -13,11 +15,13 @@ import ui.components.ParentUI;
  */
 public class SysAdminWorkAreaJP extends javax.swing.JPanel {
     private ParentUI parentUI;
+    private Account account;
     /**
      * Creates new form SysAdminWorkAreaJP
      */
-    public SysAdminWorkAreaJP(ParentUI parentUI) {
+    public SysAdminWorkAreaJP(ParentUI parentUI,Account account) {
         initComponents();
+        this.account = account;
         this.parentUI = parentUI;
     }
 
@@ -30,28 +34,28 @@ public class SysAdminWorkAreaJP extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnManageNetwork = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnManageAccount = new javax.swing.JButton();
 
-        jButton1.setText(" Manage Network");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnManageNetwork.setText(" Manage Network");
+        btnManageNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnManageNetworkActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Add Admin");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setText("Add Admin");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Manage Account");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnManageAccount.setText("Manage Account");
+        btnManageAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnManageAccountActionPerformed(evt);
             }
         });
 
@@ -62,43 +66,44 @@ public class SysAdminWorkAreaJP extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(409, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnManageNetwork, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManageAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(436, 436, 436))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(216, 216, 216)
-                .addComponent(jButton2)
+                .addComponent(btnAdd)
                 .addGap(32, 32, 32)
-                .addComponent(jButton1)
+                .addComponent(btnManageNetwork)
                 .addGap(29, 29, 29)
-                .addComponent(jButton3)
+                .addComponent(btnManageAccount)
                 .addContainerGap(266, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void btnManageNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetworkActionPerformed
+        
         parentUI.pushComponent(new ManageNetwork(parentUI));
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnManageNetworkActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        
         parentUI.pushComponent(new CreateAdmin(parentUI));
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnManageAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageAccountActionPerformed
+        
+        parentUI.pushComponent(new ManageMyAccount(parentUI, account));
+    }//GEN-LAST:event_btnManageAccountActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnManageAccount;
+    private javax.swing.JButton btnManageNetwork;
     // End of variables declaration//GEN-END:variables
 }
