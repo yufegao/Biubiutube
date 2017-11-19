@@ -10,7 +10,7 @@ import ui.components.TopBar;
 import ui.components.ParentUI;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import ui.network.university.college.viewer.HomePage;
+import ui.network.university.college.viewer.anonymous.HomePage;
 
 
 /**
@@ -27,7 +27,7 @@ public class MainJFrame extends javax.swing.JFrame implements ParentUI {
         topBar = new TopBar(this);
         initComponents();
         this.add(topBar, BorderLayout.PAGE_START);
-        this.pushComponent(new HomePage());
+        this.pushComponent(new HomePage(this));
     }
 
     /**
@@ -105,13 +105,13 @@ public class MainJFrame extends javax.swing.JFrame implements ParentUI {
         }
         
         if (this.container.getComponentCount() <= 0) {
-            this.pushComponent(new HomePage());
+            this.pushComponent(new HomePage(this));
         }
     }
 
     @Override
     public void allComponentsPoped() {
-        this.pushComponent(new HomePage());
+        this.pushComponent(new HomePage(this));
     }
     
 }
