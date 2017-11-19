@@ -8,6 +8,10 @@ package ui.network.university.college.departmentSupervisor;
 import biz.account.Account;
 import biz.role.supervisorRole.UniversityDepartmentSupervisorRole;
 import biz.video.Video;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import ui.components.HasTitle;
 import ui.components.ParentUI;
@@ -20,6 +24,7 @@ public class VideoDetail extends javax.swing.JPanel implements HasTitle {
     private Video video;
     private Account account;
     private ParentUI parent;
+    // TODO: show video detail for censorship
 
     /**
      * Creates new form VideoDetail
@@ -29,6 +34,19 @@ public class VideoDetail extends javax.swing.JPanel implements HasTitle {
         this.account = account;
         this.video = video;
         initComponents();
+        
+        this.txtAdType.setText(video.getAdType().getValue());
+        this.txtDescription.setText(video.getDescription());
+        this.txtAdType.setEnabled(false);
+        this.txtDescription.setEnabled(false);
+        
+        URL url;
+        try {
+            url = new URL(video.getPicPath());
+            BufferedImage image = ImageIO.read(url);
+            this.lblPic.setIcon(new ImageIcon(image));
+            this.lblPic.setText("");
+        } catch (Exception ignored) {}
     }
 
     /**
@@ -42,6 +60,12 @@ public class VideoDetail extends javax.swing.JPanel implements HasTitle {
 
         btnApprove = new javax.swing.JButton();
         btnDeny = new javax.swing.JButton();
+        lblPic = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtDescription = new javax.swing.JTextArea();
+        txtAdType = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         btnApprove.setText("Approve");
         btnApprove.addActionListener(new java.awt.event.ActionListener() {
@@ -57,20 +81,59 @@ public class VideoDetail extends javax.swing.JPanel implements HasTitle {
             }
         });
 
+        lblPic.setBackground(new java.awt.Color(0, 0, 0));
+        lblPic.setForeground(new java.awt.Color(255, 255, 255));
+        lblPic.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPic.setText("PIC");
+
+        txtDescription.setColumns(20);
+        txtDescription.setRows(5);
+        jScrollPane1.setViewportView(txtDescription);
+
+        jLabel3.setText("Ad Type");
+
+        jLabel2.setText("Description");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 822, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnDeny)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnApprove))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(lblPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(txtAdType, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 621, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(lblPic, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtAdType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnApprove)
                     .addComponent(btnDeny)))
@@ -97,6 +160,12 @@ public class VideoDetail extends javax.swing.JPanel implements HasTitle {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnApprove;
     private javax.swing.JButton btnDeny;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblPic;
+    private javax.swing.JTextField txtAdType;
+    private javax.swing.JTextArea txtDescription;
     // End of variables declaration//GEN-END:variables
 
     @Override

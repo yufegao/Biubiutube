@@ -7,7 +7,11 @@ package ui.network.university.college.Lecturer;
 
 import biz.account.Account;
 import biz.video.Video;
-import javax.swing.JOptionPane;
+
+import javax.swing.*;
+
+import biz.video.VideoTag;
+import java.util.List;
 import ui.components.HasTitle;
 
 /**
@@ -15,7 +19,6 @@ import ui.components.HasTitle;
  * @author hezj
  */
 public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
-    // TODO: VideoTag
     private Video video;
     private Account account;
     
@@ -43,6 +46,8 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
         this.cbPrimeOnly.removeAllItems();
         this.cbPrimeOnly.addItem(true);
         this.cbPrimeOnly.addItem(false);
+
+        this.lstTag.removeAll();
         
         if (video != null) {
             txtTitle.setText(video.getTitle());
@@ -50,6 +55,12 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
             txtDescription.setText(video.getDescription());
             txtPicPath.setText(video.getPicPath());
             cbPrimeOnly.setSelectedItem(video.isPrimeOnly());
+
+            DefaultListModel<VideoTag> listModel = new DefaultListModel<>();
+            video.getTagHashSet().forEach(tag -> {
+                listModel.addElement(tag);
+            });
+            lstTag.setModel(listModel);
         }
     }
 
@@ -74,6 +85,12 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
         txtPicPath = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         cbPrimeOnly = new javax.swing.JComboBox();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lstTag = new javax.swing.JList();
+        jLabel6 = new javax.swing.JLabel();
+        txtTag = new javax.swing.JTextField();
+        btnAddTag = new javax.swing.JButton();
+        btnRemoveTag = new javax.swing.JButton();
 
         jLabel1.setText("Title");
 
@@ -100,59 +117,100 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
 
         cbPrimeOnly.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        lstTag.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(lstTag);
+
+        jLabel6.setText("Tag");
+
+        btnAddTag.setText("↓ Add Tag");
+        btnAddTag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddTagActionPerformed(evt);
+            }
+        });
+
+        btnRemoveTag.setText("Remove Selected Tag");
+        btnRemoveTag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveTagActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(263, 263, 263)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(228, 228, 228))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnAddTag)
+                                .addComponent(txtTitle, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtTag, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                                .addComponent(btnRemoveTag)
+                                .addComponent(jScrollPane2)))
+                        .addGap(48, 48, 48)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbPrimeOnly, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbAdType, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btn)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTitle)
-                            .addComponent(cbAdType, 0, 208, Short.MAX_VALUE)
-                            .addComponent(cbPrimeOnly, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtPicPath))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel2))))
-                .addGap(0, 792, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(txtPicPath, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
+                .addGap(124, 124, 124)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbPrimeOnly, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbAdType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbPrimeOnly, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbAdType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPicPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAddTag)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtPicPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRemoveTag)
+                    .addComponent(btn))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -176,16 +234,40 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
         v.setAdType(type);
         v.setPrimeOnly(isPrimeOnly);
         
+        v.removeAllTag();
+        for (int i = 0; i < lstTag.getModel().getSize(); i++) {
+            VideoTag tag = (VideoTag) lstTag.getModel().getElementAt(i);
+            video.addTag(tag);
+        }
+
         if (video == null) {
             txtTitle.setText("");
             txtDescription.setText("");
             txtPicPath.setText("");
+            lstTag.removeAll();
             JOptionPane.showMessageDialog(this, "Added");
         } else {
             JOptionPane.showMessageDialog(this, "Saved");
         }
         
     }//GEN-LAST:event_btnActionPerformed
+
+    private void btnRemoveTagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveTagActionPerformed
+        List selectedTags = lstTag.getSelectedValuesList();
+        if (selectedTags.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Select Tag(s) to remove");
+            return;
+        }
+        for (Object tag: selectedTags) {
+            ((DefaultListModel) lstTag.getModel()).removeElement(tag);
+        }
+    }//GEN-LAST:event_btnRemoveTagActionPerformed
+
+    private void btnAddTagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTagActionPerformed
+        String tagName = txtTag.getText();
+        VideoTag tag = account.getOrg().getEnterprise().getNetwork().getVideoTagCatalog().getOrNewTag(tagName);
+        ((DefaultListModel) lstTag.getModel()).addElement(tag);
+    }//GEN-LAST:event_btnAddTagActionPerformed
 
     @Override
     public String getTitle() {
@@ -195,6 +277,8 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn;
+    private javax.swing.JButton btnAddTag;
+    private javax.swing.JButton btnRemoveTag;
     private javax.swing.JComboBox cbAdType;
     private javax.swing.JComboBox cbPrimeOnly;
     private javax.swing.JLabel jLabel1;
@@ -202,9 +286,13 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList lstTag;
     private javax.swing.JTextArea txtDescription;
     private javax.swing.JTextField txtPicPath;
+    private javax.swing.JTextField txtTag;
     private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables
 }

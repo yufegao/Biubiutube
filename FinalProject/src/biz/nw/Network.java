@@ -6,10 +6,13 @@ import biz.enterprises.ECOEnterpriseCatalog;
 import biz.enterprises.NPOEnterpriseCatalog;
 import biz.enterprises.UniversityEnterprise;
 import biz.video.VideoCatalog;
+import biz.video.VideoTagCatalog;
 
 public class Network {
     private VideoCatalog videoCatalog;
     private AdCatalog adCatalog;
+
+    private VideoTagCatalog videoTagCatalog;
 
     private UniversityEnterprise university;
     private ECOEnterpriseCatalog ecoCatalog;
@@ -23,6 +26,8 @@ public class Network {
         this.university = new UniversityEnterprise(name, this);
         this.videoCatalog = new VideoCatalog(this);
         this.adCatalog = new AdCatalog(this);
+
+        this.videoTagCatalog = new VideoTagCatalog(this);
 
         this.ecoCatalog = new ECOEnterpriseCatalog(this);
         this.adCompanyCatalog = new AdCompanyEnterpriseCatalog(this);
@@ -56,5 +61,9 @@ public class Network {
 
     public NPOEnterpriseCatalog getNpoCatalog() {
         return npoCatalog;
+    }
+
+    public VideoTagCatalog getVideoTagCatalog() {
+        return videoTagCatalog;
     }
 }
