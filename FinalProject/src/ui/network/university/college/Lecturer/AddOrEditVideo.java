@@ -17,7 +17,6 @@ import ui.components.HasTitle;
 public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
     // TODO: VideoTag
     private Video video;
-    private String title;
     private Account account;
     
 
