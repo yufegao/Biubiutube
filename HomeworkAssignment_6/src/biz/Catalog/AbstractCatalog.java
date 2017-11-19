@@ -1,32 +1,5 @@
 package biz.Catalog;
-
 import java.util.ArrayList;
-
-/**
- This abstract class implements `newElement`, `removeElement`, `findElement` method.
- To make use of it, extends and override `createElement`.
-
- Example:
-
- public Person {
-     private String name;
-
-     public Person(String name) {
-        this.name = name;
-     }
- }
-
- public PersonCatalog extends AbstractCatalog<Person> {
-     public PersonCatalog() {
-         this.elementArrayList = new ArrayList<>();
-     }
- 
-     @Override
-     public Person createElement() {
-        return new Person("hezj");
-     }
- }
- */
 public abstract class AbstractCatalog<Element> implements CatalogInterface<Element> {
     public ArrayList<Element> elementArrayList;
 
