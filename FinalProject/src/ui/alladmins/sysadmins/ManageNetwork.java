@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.sysAdmin;
+package ui.alladmins.sysadmins;
 
+import biz.EcoSystem;
 import biz.nw.Network;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import ui.components.ParentUI;
 import ui.components.TablePopulatable;
@@ -20,8 +22,8 @@ public class ManageNetwork extends javax.swing.JPanel implements TablePopulatabl
     /**
      * Creates new form ManageNetwork
      */
-    public ManageNetwork(ParentUI parent) {
-        this.parent = parent;
+    public ManageNetwork(ParentUI parentUI) {
+        this.parent = parentUI;
         initComponents();
         populateTable();
     }
@@ -36,13 +38,13 @@ public class ManageNetwork extends javax.swing.JPanel implements TablePopulatabl
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblNetwork = new javax.swing.JTable();
         btnAdd = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btnView = new javax.swing.JButton();
+        txtName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblNetwork.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -50,7 +52,7 @@ public class ManageNetwork extends javax.swing.JPanel implements TablePopulatabl
                 "Network Name"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblNetwork);
 
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -59,10 +61,10 @@ public class ManageNetwork extends javax.swing.JPanel implements TablePopulatabl
             }
         });
 
-        jButton3.setText("View Selected");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnView.setText("View Selected");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnViewActionPerformed(evt);
             }
         });
 
@@ -79,8 +81,8 @@ public class ManageNetwork extends javax.swing.JPanel implements TablePopulatabl
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnAdd)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
+                    .addComponent(btnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtName))
                 .addGap(0, 247, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -89,51 +91,58 @@ public class ManageNetwork extends javax.swing.JPanel implements TablePopulatabl
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addComponent(btnAdd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3))
+                        .addComponent(btnView))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 355, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-//         if(){
-//             
-//         }
-//TODO
+         if(txtName.getText().equals("")){
+             JOptionPane.showMessageDialog(this, "Please input anything!!");
+             return;
+         }
+         EcoSystem.getInstance().newNetwork(txtName.getText());
+         JOptionPane.showMessageDialog(this, "You are all set!");
+         populateTable();
+         return;
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         
-    }//GEN-LAST:event_jButton3ActionPerformed
+        Network selectedNet = getSelected();
+        if(selectedNet == null)
+            return;
+        parent.pushComponent(new NetworkDetail(selectedNet));
+    }//GEN-LAST:event_btnViewActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnView;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tblNetwork;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public JTable getTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return tblNetwork;
     }
 
     @Override
-    public Object[] populateRow(Network element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Object[] populateRow(Network network) {
+        return new Object[]{network};
     }
 
     @Override
     public void populateTable() {
-//        populateTable(System.getInstance().getNetworkArrayList);
+        populateTable(EcoSystem.getInstance().getNetworkArrayList());
     }
 }

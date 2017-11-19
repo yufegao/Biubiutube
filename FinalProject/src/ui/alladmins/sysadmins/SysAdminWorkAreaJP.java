@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.sysAdmin;
+package ui.alladmins.sysadmins;
 
 import biz.account.Account;
-import ui.ManageMyAccount;
 import ui.components.ParentUI;
 
 /**
@@ -97,7 +96,7 @@ public class SysAdminWorkAreaJP extends javax.swing.JPanel {
 
     private void btnManageAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageAccountActionPerformed
         
-        parentUI.pushComponent(new ManageMyAccount(parentUI, account));
+        parentUI.pushComponent(new ManageAccounts(parentUI,account));
     }//GEN-LAST:event_btnManageAccountActionPerformed
 
 

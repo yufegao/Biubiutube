@@ -9,7 +9,7 @@ import biz.account.Account;
 import biz.role.Role;
 import javax.swing.JPanel;
 import ui.components.ParentUI;
-import ui.sysAdmin.SysAdminWorkAreaJP;
+import ui.alladmins.sysadmins.SysAdminWorkAreaJP;
 
 /**
  *

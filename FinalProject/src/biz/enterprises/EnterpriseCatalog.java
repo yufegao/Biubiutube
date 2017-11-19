@@ -19,6 +19,7 @@ public abstract class EnterpriseCatalog<Enterprise> {
 
     public EnterpriseCatalog(Network network) {
         this.network = network;
+        this.enterprises = new ArrayList<>();
     }
 
     public abstract Enterprise newEnterprise(String name);
@@ -30,4 +31,9 @@ public abstract class EnterpriseCatalog<Enterprise> {
     public Network getNetwork() {
         return network;
     }
+
+    public ArrayList<Enterprise> getEnterprises() {
+        return enterprises;
+    }
+    
 }
