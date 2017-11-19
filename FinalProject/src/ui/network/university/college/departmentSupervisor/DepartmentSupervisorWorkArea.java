@@ -23,7 +23,13 @@ public class DepartmentSupervisorWorkArea extends GeneralWorkArea {
 
     @Override
     protected ArrayList<JButton> getButtons() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<JButton> buttons = new ArrayList<>();
+        
+        JButton button = new JButton(String.format("Censor Video Uploaded in %s", account.getOrg()));
+        button.addActionListener(e -> parent.pushComponent(new ManageVideoUploadRequest(parent, account)));
+        buttons.add(button);
+        
+        return buttons;
     }
 
     @Override

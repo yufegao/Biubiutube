@@ -5,16 +5,28 @@
  */
 package ui.network.university.college.departmentSupervisor;
 
+import biz.account.Account;
+import biz.video.Video;
+import javax.swing.JOptionPane;
+import ui.components.HasTitle;
+import ui.components.ParentUI;
+
 /**
  *
  * @author hezj
  */
-public class VideoDetail extends javax.swing.JPanel {
+public class VideoDetail extends javax.swing.JPanel implements HasTitle {
+    private Video video;
+    private Account account;
+    private ParentUI parent;
 
     /**
      * Creates new form VideoDetail
      */
-    public VideoDetail() {
+    public VideoDetail(ParentUI parent, Account account, Video video) {
+        this.parent = parent;
+        this.account = account;
+        this.video = video;
         initComponents();
     }
 
@@ -27,19 +39,63 @@ public class VideoDetail extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnApprove = new javax.swing.JButton();
+        btnDeny = new javax.swing.JButton();
+
+        btnApprove.setText("Approve");
+        btnApprove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApproveActionPerformed(evt);
+            }
+        });
+
+        btnDeny.setText("Deny");
+        btnDeny.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDenyActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 822, Short.MAX_VALUE)
+                .addComponent(btnDeny)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnApprove))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 621, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnApprove)
+                    .addComponent(btnDeny)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
+        video.setStatus(Video.VideoStatus.DSApproved);
+        JOptionPane.showMessageDialog(this, "Success!");
+        this.parent.popComponent();
+    }//GEN-LAST:event_btnApproveActionPerformed
+
+    private void btnDenyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDenyActionPerformed
+        video.setStatus(Video.VideoStatus.Banned);
+        JOptionPane.showMessageDialog(this, "Success!");
+        this.parent.popComponent();
+    }//GEN-LAST:event_btnDenyActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnApprove;
+    private javax.swing.JButton btnDeny;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String getTitle() {
+        return String.format("Censoring %s", video);
+    }
 }
