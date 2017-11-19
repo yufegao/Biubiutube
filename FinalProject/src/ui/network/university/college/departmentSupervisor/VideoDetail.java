@@ -6,6 +6,7 @@
 package ui.network.university.college.departmentSupervisor;
 
 import biz.account.Account;
+import biz.role.supervisorRole.UniversityDepartmentSupervisorRole;
 import biz.video.Video;
 import javax.swing.JOptionPane;
 import ui.components.HasTitle;
@@ -77,7 +78,11 @@ public class VideoDetail extends javax.swing.JPanel implements HasTitle {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
-        video.setStatus(Video.VideoStatus.DSApproved);
+        if (account.getRole() instanceof UniversityDepartmentSupervisorRole) {
+            video.setStatus(Video.VideoStatus.DSApproved);
+        } else {
+            video.setStatus(Video.VideoStatus.ESApproved);
+        }
         JOptionPane.showMessageDialog(this, "Success!");
         this.parent.popComponent();
     }//GEN-LAST:event_btnApproveActionPerformed

@@ -45,6 +45,12 @@ public class EcoSystemHelper {
             }
         } catch (Exception ignored) {}
 
+        person = nw.getUniversity().getSupervisorOrganization().getPersonCatalog().newPerson("David", "Li");
+        try {
+            nw.getUniversity().getSupervisorOrganization().getAccountCatalog().newAccount("li", "li", nw.getUniversity().getSupervisorOrganization().getUniversitySupervisorRole(), person);
+        } catch (Exception ignored) {}
+
+
 
         return system;
     }

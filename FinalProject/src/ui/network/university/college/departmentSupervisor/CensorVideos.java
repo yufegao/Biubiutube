@@ -7,6 +7,7 @@ package ui.network.university.college.departmentSupervisor;
 
 import biz.account.Account;
 import biz.org.Organization;
+import biz.role.supervisorRole.UniversityDepartmentSupervisorRole;
 import biz.video.Video;
 import biz.video.VideoCatalog;
 import java.util.stream.Stream;
@@ -20,14 +21,14 @@ import ui.components.ParentUI;
  *
  * @author royn
  */
-public class ManageVideoUploadRequest extends javax.swing.JPanel implements TablePopulatable<Video>, HasTitle {
+public class CensorVideos extends javax.swing.JPanel implements TablePopulatable<Video>, HasTitle {
     private ParentUI parent;
     private Account account;
         
     /**
      * Creates new form NewJPanel
      */
-    public ManageVideoUploadRequest(ParentUI parent, Account account) {
+    public CensorVideos(ParentUI parent, Account account) {
         this.parent = parent;
         this.account = account;
         initComponents();
@@ -127,13 +128,21 @@ public class ManageVideoUploadRequest extends javax.swing.JPanel implements Tabl
     public void populateTable() {
         Organization org = account.getOrg();
         VideoCatalog ctlg = org.getEnterprise().getNetwork().getVideoCatalog();
-        Stream s = ctlg.getVideoArrayList().stream()
-                .filter(v -> v.getUploader().getOrg().equals(org) && v.getStatus().equals(Video.VideoStatus.Uploaded));
+        Stream<Video> s = ctlg.getVideoArrayList().stream();
+        if (account.getRole() instanceof UniversityDepartmentSupervisorRole) {
+            s = s.filter(v -> v.getUploader().getOrg().equals(org) && v.getStatus().equals(Video.VideoStatus.Uploaded));
+        } else {
+            s = s.filter(v -> v.getStatus().equals(Video.VideoStatus.DSApproved));
+        }
         populateTable(s);
     }
 
     @Override
     public String getTitle() {
-        return String.format("Uploaded Videos in %s", account.getOrg());
+        if (account.getRole() instanceof UniversityDepartmentSupervisorRole) {
+            return String.format("Uploaded Videos in %s", account.getOrg());
+        } else {
+            return String.format("Uploaded Videos in %s", account.getOrg().getEnterprise());
+        }
     }
 }
