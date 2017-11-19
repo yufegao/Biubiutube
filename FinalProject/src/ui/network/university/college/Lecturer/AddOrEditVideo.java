@@ -48,6 +48,7 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
         this.cbPrimeOnly.addItem(false);
 
         this.lstTag.removeAll();
+        DefaultListModel<VideoTag> listModel = new DefaultListModel<>();
         
         if (video != null) {
             txtTitle.setText(video.getTitle());
@@ -56,12 +57,12 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
             txtPicPath.setText(video.getPicPath());
             cbPrimeOnly.setSelectedItem(video.isPrimeOnly());
 
-            DefaultListModel<VideoTag> listModel = new DefaultListModel<>();
+            
             video.getTagHashSet().forEach(tag -> {
                 listModel.addElement(tag);
             });
-            lstTag.setModel(listModel);
         }
+        lstTag.setModel(listModel);
     }
 
     /**
@@ -127,11 +128,6 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
         jLabel6.setText("Tag");
 
         btnAddTag.setText("↓ Add Tag");
-        btnAddTag.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddTagActionPerformed(evt);
-            }
-        });
 
         btnRemoveTag.setText("Remove Selected Tag");
         btnRemoveTag.addActionListener(new java.awt.event.ActionListener() {
@@ -147,19 +143,15 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
             .addGroup(layout.createSequentialGroup()
                 .addGap(263, 263, 263)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(228, 228, 228))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btnAddTag)
-                                .addComponent(txtTitle, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtTag, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-                                .addComponent(btnRemoveTag)
-                                .addComponent(jScrollPane2)))
-                        .addGap(48, 48, 48)))
+                    .addComponent(jLabel6)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnAddTag)
+                        .addComponent(txtTitle, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtTag, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                        .addComponent(btnRemoveTag)
+                        .addComponent(jScrollPane2))
+                    .addComponent(jLabel1))
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel5)
@@ -179,8 +171,8 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
             .addGroup(layout.createSequentialGroup()
                 .addGap(124, 124, 124)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,12 +254,6 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
             ((DefaultListModel) lstTag.getModel()).removeElement(tag);
         }
     }//GEN-LAST:event_btnRemoveTagActionPerformed
-
-    private void btnAddTagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTagActionPerformed
-        String tagName = txtTag.getText();
-        VideoTag tag = account.getOrg().getEnterprise().getNetwork().getVideoTagCatalog().getOrNewTag(tagName);
-        ((DefaultListModel) lstTag.getModel()).addElement(tag);
-    }//GEN-LAST:event_btnAddTagActionPerformed
 
     @Override
     public String getTitle() {
