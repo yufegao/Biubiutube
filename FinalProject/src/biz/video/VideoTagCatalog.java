@@ -1,17 +1,25 @@
 package biz.video;
 
-import java.util.ArrayList;
+import biz.nw.Network;
+
+import java.util.HashMap;
 
 public class VideoTagCatalog {
-    private ArrayList<VideoTag> tagArrayList;
+    private Network network;
+    private HashMap<String, VideoTag> videoTagHashMap;
 
-    public VideoTagCatalog() {
-        this.tagArrayList = new ArrayList<>();
+    public VideoTagCatalog(Network network) {
+        this.network = network;
+        this.videoTagHashMap = new HashMap<>();
     }
 
-    public VideoTag newTag() {
-        VideoTag t = new VideoTag();
-        this.tagArrayList.add(t);
+    public VideoTag getOrNewTag(String name) {
+        VideoTag t = videoTagHashMap.getOrDefault(name, new VideoTag(name));
+        this.videoTagHashMap.put(name, t);
         return t;
+    }
+
+    public Network getNetwork() {
+        return network;
     }
 }
