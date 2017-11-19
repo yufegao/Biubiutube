@@ -5,6 +5,9 @@
  */
 package ui.network.university.college.viewer.anonymous;
 
+import biz.nw.Network;
+import biz.org.unv.UniverseCollegeOrganization;
+import javax.swing.JOptionPane;
 import ui.components.HasTitle;
 import ui.components.ParentUI;
 
@@ -14,6 +17,8 @@ import ui.components.ParentUI;
  */
 public class Signup extends javax.swing.JPanel implements HasTitle {
     private ParentUI parent;
+    private Network network;
+    private UniverseCollegeOrganization college;
     
     /**
      * Creates new form Signup
@@ -21,6 +26,8 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
     public Signup(ParentUI parent) {
         this.parent = parent;
         initComponents();
+        txtCollege.setEnabled(false);
+        txtNetwork.setEnabled(false);
     }
 
     /**
@@ -48,18 +55,28 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
         txtPassword1 = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
         txtPassword2 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
-        btnChooseCollege1 = new javax.swing.JButton();
+        btnCheck = new javax.swing.JButton();
 
         jLabel1.setText("Network");
 
         btnChooseNetwork.setText("Choose >>");
+        btnChooseNetwork.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChooseNetworkActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("College");
 
         btnChooseCollege.setText("Choose >>");
+        btnChooseCollege.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChooseCollegeActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("First Name");
 
@@ -71,11 +88,16 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
 
         jLabel7.setText("Confirm Password");
 
-        jButton1.setText("Submit");
+        btnSubmit.setText("Submit");
 
         jLabel8.setText("Username");
 
-        btnChooseCollege1.setText("Check");
+        btnCheck.setText("Check");
+        btnCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -94,7 +116,7 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jButton1)
+                                        .addComponent(btnSubmit)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(txtPassword1)
                                             .addComponent(txtPassword2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -110,12 +132,14 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
                                         .addComponent(jLabel3)))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtCollege, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                                        .addComponent(txtCollege, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                                         .addComponent(txtNetwork, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addGap(18, 18, 18)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btnChooseNetwork)
-                                        .addComponent(btnChooseCollege))))
+                                        .addComponent(btnChooseCollege, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(btnChooseNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(0, 0, Short.MAX_VALUE)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,8 +148,8 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(txtUsername)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnChooseCollege1))))
-                .addGap(0, 375, Short.MAX_VALUE))
+                            .addComponent(btnCheck))))
+                .addContainerGap(375, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,7 +162,7 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
                     .addComponent(btnChooseNetwork))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCollege, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnChooseCollege))
@@ -159,7 +183,7 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnChooseCollege1))
+                    .addComponent(btnCheck))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -169,10 +193,26 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addComponent(btnSubmit)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnChooseCollegeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCollegeActionPerformed
+        if (network == null) {
+            JOptionPane.showMessageDialog(this, "Please Choose Network First", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        parent.pushComponent(new CollegeChoose(parent, network));
+    }//GEN-LAST:event_btnChooseCollegeActionPerformed
+
+    private void btnChooseNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseNetworkActionPerformed
+        parent.pushComponent(new NetworkChoose(parent));
+    }//GEN-LAST:event_btnChooseNetworkActionPerformed
+
+    private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCheckActionPerformed
 
     @Override
     public String getTitle() {
@@ -181,10 +221,10 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCheck;
     private javax.swing.JButton btnChooseCollege;
-    private javax.swing.JButton btnChooseCollege1;
     private javax.swing.JButton btnChooseNetwork;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
