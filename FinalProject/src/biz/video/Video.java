@@ -1,9 +1,11 @@
 package biz.video;
 
 import biz.account.Account;
+import java.util.Calendar;
 import java.util.HashSet;
 
 public class Video {
+    private Calendar createdAt;
     private Account uploader;
     private VideoAdType adType;
     private VideoStatus status;
@@ -147,6 +149,10 @@ public class Video {
         isPrimeOnly = primeOnly;
     }
 
+    public Calendar getCreatedAt() {
+        return createdAt;
+    }
+
     Video(Account uploader) {
         this.uploader = uploader;
         this.voteCatalog = new VoteCatalog(this);
@@ -158,6 +164,7 @@ public class Video {
         this.title = "";
         this.description = "";
         this.isPrimeOnly = false;
+        this.createdAt = Calendar.getInstance();
     }
 
     @Override

@@ -22,8 +22,8 @@ public class EcoSystemHelper {
 
         person = coe.getPersonCatalog().newPerson("Bruce", "Qian");
         try {
-            coe.getAccountCatalog().newAccount("mls", "mls", coe.getCollegeLecturerRole(), person);
-            coe.getAccountCatalog().newAccount("mlsa", "mlsa", coe.getUniversityDepartmentSupervisorRole(), person);
+            coe.getAccountCatalog().newAccount("qls", "qls", coe.getCollegeLecturerRole(), person);
+            coe.getAccountCatalog().newAccount("qlsa", "qlsa", coe.getUniversityDepartmentSupervisorRole(), person);
         } catch (Exception ignored) {}
 
         person = coe.getPersonCatalog().newPerson("Cathy", "Sun");
@@ -35,8 +35,21 @@ public class EcoSystemHelper {
                 v.setAdType(Video.VideoAdType.AnyAdd);
                 v.setStatus(Video.VideoStatus.ESApproved);
                 v.setPicPath("https://i.imgur.com/ijtKGes.png");
+                if (i > 3) {
+                    v.setStatus(Video.VideoStatus.DSApproved);
+                }
+                
+                if (i > 5) {
+                    v.setStatus(Video.VideoStatus.Uploaded);
+                }
             }
         } catch (Exception ignored) {}
+
+        person = nw.getUniversity().getSupervisorOrganization().getPersonCatalog().newPerson("David", "Li");
+        try {
+            nw.getUniversity().getSupervisorOrganization().getAccountCatalog().newAccount("li", "li", nw.getUniversity().getSupervisorOrganization().getUniversitySupervisorRole(), person);
+        } catch (Exception ignored) {}
+
 
 
         return system;

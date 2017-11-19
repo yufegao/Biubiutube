@@ -5,7 +5,9 @@
  */
 package ui;
 
+import biz.EcoSystem;
 import biz.account.Account;
+import biz.org.Organization;
 import biz.person.Person;
 
 import javax.swing.JTable;
@@ -13,6 +15,8 @@ import javax.swing.JTable;
 import ui.components.HasTitle;
 import ui.components.ParentUI;
 import ui.components.TablePopulatable;
+
+import java.util.stream.Stream;
 
 /**
  * @author hezj
@@ -125,9 +129,14 @@ public class ManageMyAccount extends javax.swing.JPanel implements HasTitle, Tab
     @Override
     public void populateTable() {
         Person p = account.getPerson();
-        populateTable(
-                account.getOrg().getAccountCatalog().getAccountArrayList()
-                        .stream().filter(acc -> acc.getPerson().equals(p)));
+        Organization org = account.getOrg();
+        Stream<Account> s;
+        if (org == null) {
+            s = EcoSystem.getInstance().getSystemAccountCatalog().getAccountArrayList().stream();
+        } else {
+            s = account.getOrg().getAccountCatalog().getAccountArrayList().stream();
+        }
+        populateTable(s.filter(acc -> acc.getPerson().equals(p)));
     }
 
 

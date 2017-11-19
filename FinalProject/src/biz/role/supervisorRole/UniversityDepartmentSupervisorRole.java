@@ -9,6 +9,7 @@ import biz.account.Account;
 import biz.role.Role;
 import javax.swing.JPanel;
 import ui.components.ParentUI;
+import ui.network.university.college.departmentSupervisor.DepartmentSupervisorWorkArea;
 
 /**
  *
@@ -18,6 +19,6 @@ public class UniversityDepartmentSupervisorRole extends Role{
 
     @Override
     public JPanel createWorkArea(ParentUI parent, Account account) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new DepartmentSupervisorWorkArea(parent, account);
     }    
 }

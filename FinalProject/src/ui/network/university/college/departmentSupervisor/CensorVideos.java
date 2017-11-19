@@ -5,23 +5,34 @@
  */
 package ui.network.university.college.departmentSupervisor;
 
+import biz.account.Account;
+import biz.org.Organization;
+import biz.role.supervisorRole.UniversityDepartmentSupervisorRole;
 import biz.video.Video;
+import biz.video.VideoCatalog;
+import java.util.stream.Stream;
 import ui.components.HasTitle;
 import ui.components.TablePopulatable;
 
 import javax.swing.*;
+import ui.components.ParentUI;
 
 /**
  *
  * @author royn
  */
-public class ManageVideoUploadRequest extends javax.swing.JPanel implements TablePopulatable<Video>, HasTitle {
-
+public class CensorVideos extends javax.swing.JPanel implements TablePopulatable<Video>, HasTitle {
+    private ParentUI parent;
+    private Account account;
+        
     /**
      * Creates new form NewJPanel
      */
-    public ManageVideoUploadRequest() {
+    public CensorVideos(ParentUI parent, Account account) {
+        this.parent = parent;
+        this.account = account;
         initComponents();
+        populateTable();
     }
 
     /**
@@ -34,10 +45,10 @@ public class ManageVideoUploadRequest extends javax.swing.JPanel implements Tabl
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl = new javax.swing.JTable();
         btnView = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -53,9 +64,14 @@ public class ManageVideoUploadRequest extends javax.swing.JPanel implements Tabl
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl);
 
         btnView.setText("View Detail");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -78,31 +94,55 @@ public class ManageVideoUploadRequest extends javax.swing.JPanel implements Tabl
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        Video selected = getSelected();
+        if (selected == null) {
+            return;
+        }
+        parent.pushComponent(new VideoDetail(parent, account, selected));
+    }//GEN-LAST:event_btnViewActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnView;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbl;
     // End of variables declaration//GEN-END:variables
 
 
     @Override
     public JTable getTable() {
-        return null;
+        return tbl;
     }
 
     @Override
     public Object[] populateRow(Video video) {
-        return new Object[0];
+        return new Object[] {
+            video,
+            video.getUploader(),
+            video.getCreatedAt().getTime(),
+        };
     }
 
     @Override
     public void populateTable() {
-
+        Organization org = account.getOrg();
+        VideoCatalog ctlg = org.getEnterprise().getNetwork().getVideoCatalog();
+        Stream<Video> s = ctlg.getVideoArrayList().stream();
+        if (account.getRole() instanceof UniversityDepartmentSupervisorRole) {
+            s = s.filter(v -> v.getUploader().getOrg().equals(org) && v.getStatus().equals(Video.VideoStatus.Uploaded));
+        } else {
+            s = s.filter(v -> v.getStatus().equals(Video.VideoStatus.DSApproved));
+        }
+        populateTable(s);
     }
 
     @Override
     public String getTitle() {
-        return null;
+        if (account.getRole() instanceof UniversityDepartmentSupervisorRole) {
+            return String.format("Uploaded Videos in %s", account.getOrg());
+        } else {
+            return String.format("Uploaded Videos in %s", account.getOrg().getEnterprise());
+        }
     }
 }
