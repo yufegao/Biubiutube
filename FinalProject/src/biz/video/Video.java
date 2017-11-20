@@ -15,8 +15,17 @@ public class Video {
     private String title;
     private String description;
     private String picPath;
+    private String url;
     private HashSet<VideoTag> tagHashSet;
     private boolean isPrimeOnly;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public enum VideoAdType {
         NoAdd("No Advertisement"),
