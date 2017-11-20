@@ -91,7 +91,7 @@ public class SysAdminWorkAreaJP extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         
-        parentUI.pushComponent(new CreateAdmin(parentUI));
+        parentUI.pushComponent(new CreateAdmin(parentUI,account));
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnManageAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageAccountActionPerformed
