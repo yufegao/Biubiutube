@@ -8,6 +8,9 @@ package ui.network.advertisementEnterprise.supervisorOrganization;
 import biz.account.Account;
 import biz.ad.Ad;
 import biz.ad.AdCatalog;
+import biz.enterprises.Enterprise;
+import biz.org.Organization;
+import biz.role.supervisorRole.ADCompanySupervisorRole;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.logging.Level;
@@ -23,14 +26,14 @@ import ui.components.ParentUI;
  *
  * @author royn
  */
-public class AdvertisementSensorVideos extends javax.swing.JPanel implements TablePopulatable<Ad>,HasTitle{
+public class SensorAdvertisements extends javax.swing.JPanel implements TablePopulatable<Ad>,HasTitle{
     private ParentUI parent;
     private Account account;
 
     /**
      * Creates new form AdvertisementSensorVideos
      */
-    public AdvertisementSensorVideos(ParentUI parent, Account account) {
+    public SensorAdvertisements(ParentUI parent, Account account) {
         this.parent = parent;
         this.account = account;
         initComponents();
@@ -59,25 +62,15 @@ public class AdvertisementSensorVideos extends javax.swing.JPanel implements Tab
 
         tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Title", "Uploader", "Prime Only", "Ad Type", "Created At"
+                "Title", "Producer", "Type", "Create at"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                tblMouseReleased(evt);
-            }
-        });
+        ));
         jScrollPane1.setViewportView(tbl);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -114,10 +107,11 @@ public class AdvertisementSensorVideos extends javax.swing.JPanel implements Tab
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
@@ -128,34 +122,22 @@ public class AdvertisementSensorVideos extends javax.swing.JPanel implements Tab
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnApprove)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDeny)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnView))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING))
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnApprove)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDeny)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnView)
                 .addContainerGap())
+            .addComponent(jScrollPane1)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tblMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMouseReleased
-        Ad selected = getSelected();
-        if (selected == null) {
-            return;
-        }
-
-        txtDescription.setText(selected.getDescription());
-        validate();
-    }//GEN-LAST:event_tblMouseReleased
 
     private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
         Ad selected = getSelected();
@@ -163,31 +145,31 @@ public class AdvertisementSensorVideos extends javax.swing.JPanel implements Tab
             return;
         }
 
-        if (account.getRole() instanceof UniversityDepartmentSupervisorRole) {
-            selected.setStatus(Video.VideoStatus.DSApproved);
+        if (account.getRole() instanceof ADCompanySupervisorRole) {
+            selected.setStatus(Ad.AdStatus.ESApproved);
         } else {
-            selected.setStatus(Video.VideoStatus.ESApproved);
+            selected.setStatus(Ad.AdStatus.NSApproved);
         }
         JOptionPane.showMessageDialog(this, "Success!");
         populateTable();
     }//GEN-LAST:event_btnApproveActionPerformed
 
     private void btnDenyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDenyActionPerformed
-        Video selected = getSelected();
+        Ad selected = getSelected();
         if (selected == null) {
             return;
         }
-        selected.setStatus(Video.VideoStatus.Banned);
+        selected.setStatus(Ad.AdStatus.Banned);
         JOptionPane.showMessageDialog(this, "Success!");
         populateTable();
     }//GEN-LAST:event_btnDenyActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-        Video selected = getSelected();
+        Ad selected = getSelected();
         if (selected == null) {
             return;
         }
-        parent.pushComponent(new WatchVideo(parent, selected, account));
+        parent.pushComponent(new WatchAd(parent, selected, account));
     }//GEN-LAST:event_btnViewActionPerformed
 
 
@@ -197,7 +179,6 @@ public class AdvertisementSensorVideos extends javax.swing.JPanel implements Tab
     private javax.swing.JButton btnView;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tbl;
@@ -206,21 +187,39 @@ public class AdvertisementSensorVideos extends javax.swing.JPanel implements Tab
 
     @Override
     public JTable getTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return tbl;
     }
 
     @Override
-    public Object[] populateRow(Ad element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Object[] populateRow(Ad ad) {
+        return new Object[] {
+            ad,
+            ad.getProducer(),
+            ad.getType(),
+            ad.getCreatedAt().getTime(),
+        };
     }
 
     @Override
     public void populateTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        txtDescription.setText("");
+        Enterprise ent = account.getOrg().getEnterprise();
+        AdCatalog adlg = ent.getNetwork().getAdCatalog();
+        Stream<Ad> s = adlg.getAdArrayList().stream();
+        if (account.getRole() instanceof ADCompanySupervisorRole) {
+            s = s.filter(a -> a.getProducer().getOrg().getEnterprise().equals(ent) && a.getStatus().equals(Ad.AdStatus.Produced));
+        } else {
+            s = s.filter(a -> a.getStatus().equals(Ad.AdStatus.ESApproved));
+        }
+        populateTable(s);
     }
 
     @Override
     public String getTitle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (account.getRole() instanceof ADCompanySupervisorRole) {
+            return String.format("Uploaded Videos in %s", account.getOrg().getEnterprise());
+        } else {
+            return String.format("Uploaded Videos in %s", account.getOrg().getEnterprise().getNetwork());
+        }
     }
 }
