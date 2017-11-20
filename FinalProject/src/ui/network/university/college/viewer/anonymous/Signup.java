@@ -241,7 +241,7 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
             account.setActive(false);
         } catch (Exception ignored) {}
 
-        JOptionPane.showMessageDialog(this, "Signu  p Request Submitted. Have a good day.");
+        JOptionPane.showMessageDialog(this, "Signup Request Submitted. Have a good day.");
         parent.popAllComponents();
     }//GEN-LAST:event_btnSubmitActionPerformed
 

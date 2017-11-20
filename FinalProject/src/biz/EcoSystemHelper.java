@@ -81,6 +81,11 @@ public class EcoSystemHelper {
             nw.getUniversity().getSupervisorOrganization().getAccountCatalog().newAccount("li", "li", nw.getUniversity().getSupervisorOrganization().getUniversitySupervisorRole(), person);
         } catch (Exception ignored) {}
 
+        try {
+            account = coe.getAccountCatalog().newAccount("sxm", "sxm", coe.getViewerRole(), person);
+            account.setActive(false);
+        } catch (Exception ignored) {}
+
         return system;
     }
 }
