@@ -7,6 +7,9 @@ package ui.network.advertisementEnterprise.supervisorOrganization;
 
 import biz.account.Account;
 import biz.ad.Ad;
+import biz.role.supervisorRole.ADCompanySupervisorRole;
+import javax.swing.JOptionPane;
+import ui.components.BiubiuBrowser;
 import ui.components.ParentUI;
 
 /**
@@ -14,16 +17,21 @@ import ui.components.ParentUI;
  * @author royn
  */
 public class WatchAd extends javax.swing.JPanel {
-
+    private Ad ad;
+    private ParentUI parent;
+    private Account account;
     /**
      * Creates new form WatchAd
      */
-    public WatchAd() {
-        initComponents();
-    }
 
-    WatchAd(ParentUI parent, Ad selected, Account account) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public WatchAd(ParentUI parent, Ad ad, Account account) {
+        this.ad = ad;
+        this.parent = parent;
+        this.account = account;
+        initComponents();
+        
+        jpWatch.add(BiubiuBrowser.getInstance().view);
+        BiubiuBrowser.getInstance().browser.loadURL(ad.getUrl());
     }
 
     /**
@@ -35,19 +43,73 @@ public class WatchAd extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnApprove = new javax.swing.JButton();
+        btnDeny = new javax.swing.JButton();
+        jpWatch = new javax.swing.JPanel();
+
+        btnApprove.setText("Approve");
+        btnApprove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApproveActionPerformed(evt);
+            }
+        });
+
+        btnDeny.setText("Deny");
+        btnDeny.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDenyActionPerformed(evt);
+            }
+        });
+
+        jpWatch.setBackground(new java.awt.Color(255, 255, 255));
+        jpWatch.setLayout(new javax.swing.BoxLayout(jpWatch, javax.swing.BoxLayout.LINE_AXIS));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpWatch, javax.swing.GroupLayout.PREFERRED_SIZE, 863, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnApprove, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                    .addComponent(btnDeny, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(btnApprove)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDeny)
+                .addGap(0, 586, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpWatch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
+        if (account.getRole() instanceof ADCompanySupervisorRole) {
+            ad.setStatus(ad.getStatus().ESApproved);
+        } else {
+            ad.setStatus(ad.getStatus().NSApproved);
+        }
+        JOptionPane.showMessageDialog(this, "Success!");
+        this.parent.popComponent();
+    }//GEN-LAST:event_btnApproveActionPerformed
+
+    private void btnDenyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDenyActionPerformed
+        ad.setStatus(ad.getStatus().Banned);
+        JOptionPane.showMessageDialog(this, "Success!");
+        this.parent.popComponent();
+    }//GEN-LAST:event_btnDenyActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnApprove;
+    private javax.swing.JButton btnDeny;
+    private javax.swing.JPanel jpWatch;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,7 +1,7 @@
 package biz.enterprises;
 
 import biz.nw.Network;
-import biz.org.adc.AdevertiseAccountingOrganization;
+import biz.org.adc.AdvertiseAccountingOrganization;
 import biz.org.adc.AdvertiseAdminOrganization;
 import biz.org.adc.AdvertiseProduceOrganization;
 import biz.org.adc.AdvertiseProduceOrganizationCatalog;
@@ -9,7 +9,7 @@ import biz.org.adc.AdvertiseSupervisorOrganization;
 
 public class AdCompanyEnterprise extends Enterprise {
 
-    private AdevertiseAccountingOrganization aAccount;
+    private AdvertiseAccountingOrganization aAccount;
     private AdvertiseAdminOrganization aAdmin;
     private AdvertiseProduceOrganizationCatalog aPCatalog;
     private AdvertiseSupervisorOrganization aSupervisor;
@@ -17,12 +17,12 @@ public class AdCompanyEnterprise extends Enterprise {
         super(name, network);
         this.aPCatalog = new AdvertiseProduceOrganizationCatalog(this);
         
-        this.aAccount = new AdevertiseAccountingOrganization(name + "AdvertiseAccountingOrganization", this);
+        this.aAccount = new AdvertiseAccountingOrganization(name + "AdvertiseAccountingOrganization", this);
         this.aAdmin = new AdvertiseAdminOrganization(name, this);
         this.aSupervisor = new AdvertiseSupervisorOrganization(name, this);
     }
 
-    public AdevertiseAccountingOrganization getaAccount() {
+    public AdvertiseAccountingOrganization getaAccount() {
         return aAccount;
     }
 

@@ -25,7 +25,7 @@ public class AdvertisementSupervisorWorkArea extends GeneralWorkArea{
     protected ArrayList<JButton> getButtons() {
         ArrayList<JButton> buttons = new ArrayList<>();
         
-        JButton button = new JButton(String.format("Censor Video Uploaded in %s", account.getOrg()));
+        JButton button = new JButton(String.format("Censor Advertisement Uploaded by %s", account.getOrg().getEnterprise()));
         button.addActionListener(e -> parent.pushComponent(new CensorAdvertisements(parent, account)));
         buttons.add(button);
         
