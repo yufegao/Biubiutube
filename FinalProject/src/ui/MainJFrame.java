@@ -113,5 +113,5 @@ public class MainJFrame extends javax.swing.JFrame implements ParentUI {
     public void allComponentsPoped() {
         this.pushComponent(new HomePage(this));
     }
-    
-}
+
+    }

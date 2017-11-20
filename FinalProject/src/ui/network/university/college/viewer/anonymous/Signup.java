@@ -5,9 +5,14 @@
  */
 package ui.network.university.college.viewer.anonymous;
 
+import biz.EcoSystem;
+import biz.account.Account;
 import biz.nw.Network;
 import biz.org.unv.UniverseCollegeOrganization;
 import javax.swing.JOptionPane;
+
+import biz.person.Person;
+import biz.role.producerRole.ECOLecturerRole;
 import ui.components.HasTitle;
 import ui.components.ParentUI;
 
@@ -30,6 +35,16 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
         txtNetwork.setEnabled(false);
     }
 
+    public void setNetwork(Network network) {
+        this.network = network;
+        this.txtNetwork.setText(network.toString());
+    }
+
+    public void setCollege(UniverseCollegeOrganization college) {
+        this.college = college;
+        this.txtCollege.setText(college.toString());
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,7 +56,6 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
 
         jLabel1 = new javax.swing.JLabel();
         txtNetwork = new javax.swing.JTextField();
-        btnChooseNetwork = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtCollege = new javax.swing.JTextField();
         btnChooseCollege = new javax.swing.JButton();
@@ -61,13 +75,6 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
         btnCheck = new javax.swing.JButton();
 
         jLabel1.setText("Network");
-
-        btnChooseNetwork.setText("Choose >>");
-        btnChooseNetwork.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnChooseNetworkActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("College");
 
@@ -89,6 +96,11 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
         jLabel7.setText("Confirm Password");
 
         btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Username");
 
@@ -121,7 +133,6 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
                                             .addComponent(txtPassword1)
                                             .addComponent(txtPassword2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2)
                                 .addComponent(jLabel1)
                                 .addComponent(txtFirstName)
                                 .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -131,15 +142,13 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
                                         .addComponent(jLabel4)
                                         .addComponent(jLabel3)))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtCollege, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                                        .addComponent(txtNetwork, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btnChooseCollege, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(btnChooseNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(0, 0, Short.MAX_VALUE)))))
+                                        .addComponent(jLabel2)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtCollege, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                                            .addComponent(txtNetwork, javax.swing.GroupLayout.Alignment.LEADING)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnChooseCollege, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,16 +166,15 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnChooseNetwork))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCollege, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnChooseCollege))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addGap(9, 9, 9)
+                        .addComponent(txtCollege, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnChooseCollege, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,25 +202,48 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
                 .addComponent(txtPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSubmit)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGap(84, 84, 84))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnChooseCollegeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseCollegeActionPerformed
-        if (network == null) {
-            JOptionPane.showMessageDialog(this, "Please Choose Network First", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        parent.pushComponent(new CollegeChoose(parent, network));
+        parent.pushComponent(new NCChoose(parent));
     }//GEN-LAST:event_btnChooseCollegeActionPerformed
 
-    private void btnChooseNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseNetworkActionPerformed
-        parent.pushComponent(new NetworkChoose(parent));
-    }//GEN-LAST:event_btnChooseNetworkActionPerformed
-
     private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
-        // TODO add your handling code here:
+        String username = txtUsername.getText();
+        if (EcoSystem.getInstance().isUsernameExist(username)) {
+            JOptionPane.showMessageDialog(this, "Username Exists! Please use another one.", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Congratulations, You Can Use This Username.");
+        }
     }//GEN-LAST:event_btnCheckActionPerformed
+
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        String fName = txtFirstName.getText();
+        String lName = txtLastName.getText();
+        String email = txtEmail.getText();
+
+        String username = txtUsername.getText();
+        String pwd1 = new String(txtPassword1.getPassword());
+        String pwd2 = new String(txtPassword2.getPassword());
+        
+        // TODO: validation
+        if (fName.isEmpty() || lName.isEmpty() || email.isEmpty() || username.isEmpty() || EcoSystem.getInstance().isUsernameExist(username) || pwd1.isEmpty() || !pwd1.equals(pwd2)) {
+            JOptionPane.showMessageDialog(this, "Invalid!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        Person p = college.getPersonCatalog().newPerson(fName, lName);
+        p.setEmail(email);
+        try {
+            Account account = college.getAccountCatalog().newAccount(username, pwd1, college.getViewerRole(), p);
+            account.setActive(false);
+        } catch (Exception ignored) {}
+
+        JOptionPane.showMessageDialog(this, "Signu  p Request Submitted. Have a good day.");
+        parent.popAllComponents();
+    }//GEN-LAST:event_btnSubmitActionPerformed
 
     @Override
     public String getTitle() {
@@ -223,7 +254,6 @@ public class Signup extends javax.swing.JPanel implements HasTitle {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCheck;
     private javax.swing.JButton btnChooseCollege;
-    private javax.swing.JButton btnChooseNetwork;
     private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

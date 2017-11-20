@@ -18,13 +18,11 @@ public class Account {
 
     private OrderCatalog orderCatalog;
     private int money;
-    private Enterprise enterprise;
     private Organization org;
     private String username;
     private String passwordHash;
     private Person person;
     private boolean isActive;
-
     private Role role;
 
     public Account(Organization organization, String username, String password, Role role, Person person) {
@@ -33,6 +31,7 @@ public class Account {
         setPassword(password);
         this.role = role;
         this.org = organization;
+        this.isActive = true;
     }
 
     public OrderCatalog getOrderCatalog() {
@@ -49,14 +48,6 @@ public class Account {
 
     public void setMoney(int money) {
         this.money = money;
-    }
-
-    public Enterprise getEnterprise() {
-        return enterprise;
-    }
-
-    public void setEnterprise(Enterprise enterprise) {
-        this.enterprise = enterprise;
     }
 
     public Organization getOrg() {
