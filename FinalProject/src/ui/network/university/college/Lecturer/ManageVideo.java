@@ -20,6 +20,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import javax.swing.JTable;
+
+import ui.components.BiubiuBrowser;
 import ui.components.HasTitle;
 
 import ui.components.ParentUI;
@@ -201,10 +203,8 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
         jp.setLayout(new BoxLayout(jp, BoxLayout.LINE_AXIS));
         jp.setSize(1000, 700);
                 
-        Browser browser = new Browser();
-        BrowserView view = new BrowserView(browser);
-        jp.add(view);
-        browser.loadURL(selected.getUrl());
+        jp.add(BiubiuBrowser.getInstance().view);
+        BiubiuBrowser.getInstance().browser.loadURL(selected.getUrl());
         parent.pushComponent(jp);
     }//GEN-LAST:event_btnDetailActionPerformed
 
