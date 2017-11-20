@@ -190,6 +190,7 @@ public class EcoSystemHelper {
         Video v = nw.getVideoCatalog().newVideo(account);
         v.setDescription(faker.shakespeare().hamletQuote());
         v.setPicPath(picPaths[faker.random().nextInt(picPaths.length)]);
+        v.setUrl(videoURLs[faker.random().nextInt(videoURLs.length)]);
 
         int val = faker.random().nextInt(10);
         if (val < 5) {  // 50% ESApproved
