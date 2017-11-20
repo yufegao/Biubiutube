@@ -15,8 +15,8 @@ import ui.components.ParentUI;
  *
  * @author royn
  */
-public class AdminWorkArea extends GeneralWorkArea{
-    public AdminWorkArea(ParentUI parent, Account account) {
+public class AdvertismentAdminWorkArea extends GeneralWorkArea{
+    public AdvertismentAdminWorkArea(ParentUI parent, Account account) {
         super(parent, account);
     }
 

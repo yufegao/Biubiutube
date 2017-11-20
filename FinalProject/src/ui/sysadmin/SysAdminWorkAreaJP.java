@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.alladmins.sysadmins;
+package ui.sysadmin;
 
 import biz.account.Account;
 import ui.components.ParentUI;
