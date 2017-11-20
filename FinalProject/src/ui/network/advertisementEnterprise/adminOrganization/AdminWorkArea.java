@@ -22,7 +22,13 @@ public class AdminWorkArea extends GeneralWorkArea{
 
     @Override
     protected ArrayList<JButton> getButtons() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<JButton> buttons = new ArrayList<>();
+        
+        JButton btnManageOrganization = new JButton("Manage Video");
+        btnManageOrganization.addActionListener(e -> parent.pushComponent(new ManageOrganizations(parent, account)));
+        buttons.add(btnManageOrganization);
+        
+        return buttons;
     }
 
     @Override

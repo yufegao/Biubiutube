@@ -9,12 +9,12 @@ package ui.network.advertisementEnterprise.supervisorOrganization;
  *
  * @author royn
  */
-public class NewJPanel extends javax.swing.JPanel {
+public class SupervisorWorkArea extends javax.swing.JPanel {
 
     /**
      * Creates new form NewJPanel
      */
-    public NewJPanel() {
+    public SupervisorWorkArea() {
         initComponents();
     }
 
