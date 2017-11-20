@@ -8,11 +8,14 @@ public class Ad {
     private Account producer;
     private AdStatus status;
     private AdType type;
+    private String description;
+    private String url;
 
     public enum AdStatus {
         Produced("Produced", "Ad is produced, waiting organization supervisor to approve."),
-        OSApproved("Organization Supervisor Approved", "Ad is approved by department supervisor, waiting enterprise supervisor to approve."),
-        ESApproved("Enterprise Supervisor Approved", "Ad is approved by enterprise supervisor, ready to go.");
+        ESApproved("Enterprise Supervisor Approved", "Ad is approved by enterprise supervisor, waiting university supervisor to approve."),
+        NSApproved("Network Supervisor Approved", "Ad is approved by network supervisor, ready to go."),
+        Banned("Banned", "Advertisement is banned according to censorship");
 
         private String name;
         private String description;
@@ -42,6 +45,14 @@ public class Ad {
             return this.name;
         }
     }
+    
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     Ad(Account account) {
         this.producer = account;
@@ -51,6 +62,7 @@ public class Ad {
         } else if (account.getRole() instanceof AdvertisementProducerRole) {
             this.type = AdType.CommercialAd;
         }
+        this.description = "";
     }
 
     public AdStatus getStatus() {
@@ -67,5 +79,13 @@ public class Ad {
 
     public AdType getType() {
         return type;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
