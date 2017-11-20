@@ -26,14 +26,14 @@ import ui.components.ParentUI;
  *
  * @author royn
  */
-public class SensorAdvertisements extends javax.swing.JPanel implements TablePopulatable<Ad>,HasTitle{
+public class CensorAdvertisements extends javax.swing.JPanel implements TablePopulatable<Ad>,HasTitle{
     private ParentUI parent;
     private Account account;
 
     /**
      * Creates new form AdvertisementSensorVideos
      */
-    public SensorAdvertisements(ParentUI parent, Account account) {
+    public CensorAdvertisements(ParentUI parent, Account account) {
         this.parent = parent;
         this.account = account;
         initComponents();
@@ -217,9 +217,9 @@ public class SensorAdvertisements extends javax.swing.JPanel implements TablePop
     @Override
     public String getTitle() {
         if (account.getRole() instanceof ADCompanySupervisorRole) {
-            return String.format("Uploaded Videos in %s", account.getOrg().getEnterprise());
+            return String.format("Uploaded Advertisements in %s", account.getOrg().getEnterprise());
         } else {
-            return String.format("Uploaded Videos in %s", account.getOrg().getEnterprise().getNetwork());
+            return String.format("Uploaded Advertisements in %s", account.getOrg().getEnterprise().getNetwork());
         }
     }
 }
