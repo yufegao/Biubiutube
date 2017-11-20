@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.advertisementEnterprise.supervisorOrganization;
+package ui.network.advertisementEnterprise.accountingOrganization;
 
 /**
  *
  * @author royn
  */
-public class NewJPanel extends javax.swing.JPanel {
+public class ManageOrders extends javax.swing.JPanel {
 
     /**
      * Creates new form NewJPanel
      */
-    public NewJPanel() {
+    public ManageOrders() {
         initComponents();
     }
 
@@ -31,11 +31,11 @@ public class NewJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

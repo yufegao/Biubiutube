@@ -10,7 +10,12 @@ import biz.org.Organization;
 import biz.role.supervisorRole.UniversityDepartmentSupervisorRole;
 import biz.video.Video;
 import biz.video.VideoCatalog;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
+import javax.imageio.ImageIO;
 import ui.components.HasTitle;
 import ui.components.TablePopulatable;
 
@@ -33,6 +38,7 @@ public class CensorVideos extends javax.swing.JPanel implements TablePopulatable
         this.account = account;
         initComponents();
         populateTable();
+        txtDescription.setEnabled(false);
     }
 
     /**
@@ -47,29 +53,69 @@ public class CensorVideos extends javax.swing.JPanel implements TablePopulatable
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl = new javax.swing.JTable();
         btnView = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtDescription = new javax.swing.JTextArea();
+        jpPic = new javax.swing.JPanel();
+        btnApprove = new javax.swing.JButton();
+        btnDeny = new javax.swing.JButton();
 
         tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title", "Uploader", "Created At"
+                "Title", "Uploader", "Prime Only", "Ad Type", "Created At"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tblMouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl);
 
-        btnView.setText("View Detail");
+        btnView.setText("Watch Selected >>");
         btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewActionPerformed(evt);
+            }
+        });
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jLabel1.setText("Selected Description");
+
+        jLabel2.setText("Selected Picture");
+
+        txtDescription.setColumns(20);
+        txtDescription.setRows(5);
+        jScrollPane2.setViewportView(txtDescription);
+
+        jpPic.setBackground(new java.awt.Color(255, 255, 255));
+        jpPic.setLayout(new javax.swing.BoxLayout(jpPic, javax.swing.BoxLayout.LINE_AXIS));
+
+        btnApprove.setText("Approve Selected");
+        btnApprove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApproveActionPerformed(evt);
+            }
+        });
+
+        btnDeny.setText("Deny Selected");
+        btnDeny.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDenyActionPerformed(evt);
             }
         });
 
@@ -78,19 +124,43 @@ public class CensorVideos extends javax.swing.JPanel implements TablePopulatable
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 994, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(jpPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnApprove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDeny, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnView, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnView))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnView))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jpPic, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnApprove)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDeny)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnView))
+                    .addComponent(jSeparator1)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -99,14 +169,65 @@ public class CensorVideos extends javax.swing.JPanel implements TablePopulatable
         if (selected == null) {
             return;
         }
-        parent.pushComponent(new VideoDetail(parent, account, selected));
+        parent.pushComponent(new WatchVideo(parent, selected, account));
     }//GEN-LAST:event_btnViewActionPerformed
+
+    private void tblMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMouseReleased
+        Video selected = getSelected();
+        if (selected == null) {
+            return;
+        }
+        
+        try {
+            URL url = new URL(selected.getPicPath());
+            BufferedImage image = ImageIO.read(url);
+            jpPic.removeAll();
+            jpPic.add(new JLabel(new ImageIcon(image)));
+        } catch (Exception ex) {
+            Logger.getLogger(CensorVideos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txtDescription.setText(selected.getDescription());
+        validate();
+    }//GEN-LAST:event_tblMouseReleased
+
+    private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
+        Video selected = getSelected();
+        if (selected == null) {
+            return;
+        }
+        
+        if (account.getRole() instanceof UniversityDepartmentSupervisorRole) {
+            selected.setStatus(Video.VideoStatus.DSApproved);
+        } else {
+            selected.setStatus(Video.VideoStatus.ESApproved);
+        }
+        JOptionPane.showMessageDialog(this, "Success!");
+        populateTable();
+    }//GEN-LAST:event_btnApproveActionPerformed
+
+    private void btnDenyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDenyActionPerformed
+        Video selected = getSelected();
+        if (selected == null) {
+            return;
+        }
+        selected.setStatus(Video.VideoStatus.Banned);
+        JOptionPane.showMessageDialog(this, "Success!");
+        populateTable();
+    }//GEN-LAST:event_btnDenyActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnApprove;
+    private javax.swing.JButton btnDeny;
     private javax.swing.JButton btnView;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel jpPic;
     private javax.swing.JTable tbl;
+    private javax.swing.JTextArea txtDescription;
     // End of variables declaration//GEN-END:variables
 
 
@@ -120,12 +241,16 @@ public class CensorVideos extends javax.swing.JPanel implements TablePopulatable
         return new Object[] {
             video,
             video.getUploader(),
+            video.isPrimeOnly(),
+            video.getAdType(),
             video.getCreatedAt().getTime(),
         };
     }
 
     @Override
     public void populateTable() {
+        jpPic.removeAll();
+        txtDescription.setText("");
         Organization org = account.getOrg();
         VideoCatalog ctlg = org.getEnterprise().getNetwork().getVideoCatalog();
         Stream<Video> s = ctlg.getVideoArrayList().stream();

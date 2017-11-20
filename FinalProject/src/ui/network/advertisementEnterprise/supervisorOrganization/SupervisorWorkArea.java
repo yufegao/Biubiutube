@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.advertisementEnterprise.adminOrganization;
+package ui.network.advertisementEnterprise.supervisorOrganization;
 
 /**
  *
  * @author royn
  */
-public class NewJPanel extends javax.swing.JPanel {
+public class SupervisorWorkArea extends javax.swing.JPanel {
 
     /**
      * Creates new form NewJPanel
      */
-    public NewJPanel() {
+    public SupervisorWorkArea() {
         initComponents();
     }
 

@@ -16,7 +16,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="348" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="txtEmail" alignment="0" min="-2" pref="277" max="-2" attributes="0"/>
@@ -30,7 +30,7 @@
                               <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnSubmit" min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="txtPassword1" max="32767" attributes="0"/>
                                           <Component id="txtPassword2" alignment="1" min="-2" pref="277" max="-2" attributes="0"/>
@@ -39,7 +39,6 @@
                               </Group>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <Component id="txtFirstName" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtLastName" alignment="0" min="-2" pref="277" max="-2" attributes="0"/>
@@ -50,16 +49,16 @@
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="txtCollege" alignment="0" pref="144" max="32767" attributes="0"/>
-                                      <Component id="txtNetwork" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btnChooseNetwork" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnChooseCollege" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="txtCollege" alignment="0" pref="141" max="32767" attributes="0"/>
+                                          <Component id="txtNetwork" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnChooseCollege" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
@@ -73,11 +72,11 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="txtUsername" max="32767" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btnChooseCollege1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCheck" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="0" pref="375" max="32767" attributes="0"/>
+              <EmptySpace pref="375" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -87,18 +86,17 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtNetwork" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnChooseNetwork" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="txtNetwork" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                      <Component id="txtCollege" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="btnChooseCollege" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtCollege" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnChooseCollege" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="txtFirstName" min="-2" max="-2" attributes="0"/>
@@ -115,7 +113,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtUsername" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnChooseCollege1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCheck" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
@@ -126,8 +124,8 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="txtPassword2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="84" max="32767" attributes="0"/>
+              <Component id="btnSubmit" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -140,11 +138,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtNetwork">
     </Component>
-    <Component class="javax.swing.JButton" name="btnChooseNetwork">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Choose &gt;&gt;"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" value="College"/>
@@ -156,6 +149,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Choose &gt;&gt;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChooseCollegeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -192,10 +188,13 @@
     </Component>
     <Component class="javax.swing.JPasswordField" name="txtPassword2">
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnSubmit">
       <Properties>
         <Property name="text" type="java.lang.String" value="Submit"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSubmitActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
@@ -204,10 +203,13 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtUsername">
     </Component>
-    <Component class="javax.swing.JButton" name="btnChooseCollege1">
+    <Component class="javax.swing.JButton" name="btnCheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="Check"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCheckActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -8,6 +8,7 @@ package biz.org.unv;
 import biz.enterprises.Enterprise;
 import biz.org.Organization;
 import biz.role.Role;
+import biz.role.consumerRole.ViewerRole;
 import biz.role.producerRole.CollegeLecturerRole;
 import biz.role.supervisorRole.UniversityDepartmentSupervisorRole;
 
@@ -22,15 +23,18 @@ public class UniverseCollegeOrganization extends Organization {
 
     private CollegeLecturerRole collegeLecturerRole;
     private UniversityDepartmentSupervisorRole universityDepartmentSupervisorRole;
+    private ViewerRole viewerRole;
 
     public UniverseCollegeOrganization(String name, Enterprise enterprise) {
         super(name, enterprise);
         supportedRoles = new ArrayList<>();
         collegeLecturerRole = new CollegeLecturerRole();
         universityDepartmentSupervisorRole = new UniversityDepartmentSupervisorRole();
+        viewerRole = new ViewerRole();
 
         supportedRoles.add(collegeLecturerRole);
         supportedRoles.add(universityDepartmentSupervisorRole);
+        supportedRoles.add(viewerRole);
     }
 
     public CollegeLecturerRole getCollegeLecturerRole() {
@@ -39,6 +43,10 @@ public class UniverseCollegeOrganization extends Organization {
 
     public UniversityDepartmentSupervisorRole getUniversityDepartmentSupervisorRole() {
         return universityDepartmentSupervisorRole;
+    }
+
+    public ViewerRole getViewerRole() {
+        return viewerRole;
     }
 
     @Override

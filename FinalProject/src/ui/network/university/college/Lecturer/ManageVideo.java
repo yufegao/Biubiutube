@@ -7,12 +7,24 @@ package ui.network.university.college.Lecturer;
 
 import biz.account.Account;
 import biz.video.Video;
+import com.teamdev.jxbrowser.chromium.Browser;
+import com.teamdev.jxbrowser.chromium.swing.BrowserView;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import javax.swing.JTable;
 import ui.components.HasTitle;
 
 import ui.components.ParentUI;
 import ui.components.TablePopulatable;
+import ui.network.university.college.departmentSupervisor.CensorVideos;
 
 /**
  * @author royn
@@ -28,6 +40,7 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
         this.parent = parent;
         this.account = account;
         initComponents();
+        txtDescription.setEnabled(false);
         populateTable();
     }
 
@@ -45,6 +58,12 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
         btnAdd = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnDetail = new javax.swing.JButton();
+        jpPic = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtDescription = new javax.swing.JTextArea();
 
         tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -62,9 +81,14 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
                 return canEdit [columnIndex];
             }
         });
+        tbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tblMouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl);
 
-        btnAdd.setText("Add");
+        btnAdd.setText("Add New >>");
         btnAdd.setMaximumSize(new java.awt.Dimension(114, 29));
         btnAdd.setMinimumSize(new java.awt.Dimension(114, 29));
         btnAdd.setPreferredSize(new java.awt.Dimension(114, 29));
@@ -74,7 +98,7 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
             }
         });
 
-        btnEdit.setText("Edit");
+        btnEdit.setText("Edit Selected  >>");
         btnEdit.setMaximumSize(new java.awt.Dimension(114, 29));
         btnEdit.setMinimumSize(new java.awt.Dimension(114, 29));
         btnEdit.setPreferredSize(new java.awt.Dimension(114, 29));
@@ -84,7 +108,7 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
             }
         });
 
-        btnDetail.setText("View Details");
+        btnDetail.setText("Watch Selected >>");
         btnDetail.setMaximumSize(new java.awt.Dimension(114, 29));
         btnDetail.setMinimumSize(new java.awt.Dimension(114, 29));
         btnDetail.setPreferredSize(new java.awt.Dimension(114, 29));
@@ -94,34 +118,65 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
             }
         });
 
+        jpPic.setBackground(new java.awt.Color(255, 255, 255));
+        jpPic.setLayout(new javax.swing.BoxLayout(jpPic, javax.swing.BoxLayout.LINE_AXIS));
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jLabel1.setText("Selected Description");
+
+        jLabel2.setText("Selected Picture");
+
+        txtDescription.setColumns(20);
+        txtDescription.setRows(5);
+        jScrollPane2.setViewportView(txtDescription);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDetail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDetail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jpPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addComponent(jScrollPane1))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jpPic, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -142,16 +197,49 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
         if (selected == null) {
             return;
         }
-        parent.pushComponent(new VideoDetail(selected));
+        JPanel jp = new JPanel();
+        jp.setLayout(new BoxLayout(jp, BoxLayout.LINE_AXIS));
+        jp.setSize(1000, 700);
+                
+        Browser browser = new Browser();
+        BrowserView view = new BrowserView(browser);
+        jp.add(view);
+        browser.loadURL(selected.getUrl());
+        parent.pushComponent(jp);
     }//GEN-LAST:event_btnDetailActionPerformed
+
+    private void tblMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMouseReleased
+        Video video = getSelected();
+        if (video == null) {
+            return;
+        }
+        
+        try {
+            URL url = new URL(video.getPicPath());
+            BufferedImage image = ImageIO.read(url);
+            jpPic.removeAll();
+            jpPic.add(new JLabel(new ImageIcon(image)));
+        } catch (Exception ex) {
+            Logger.getLogger(CensorVideos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txtDescription.setText(video.getDescription());
+        validate();
+
+    }//GEN-LAST:event_tblMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDetail;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel jpPic;
     private javax.swing.JTable tbl;
+    private javax.swing.JTextArea txtDescription;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -174,6 +262,8 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
 
     @Override
     public void populateTable() {
+        jpPic.removeAll();
+        txtDescription.setText("");
         populateTable(account.getOrg()
                 .getEnterprise().getNetwork().getVideoCatalog()
                 .getVideoArrayList().stream()
