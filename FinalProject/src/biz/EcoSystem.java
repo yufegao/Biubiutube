@@ -85,6 +85,9 @@ public class EcoSystem {
         if (!account.checkPassword(password)) {
             throw new Exception("Password Mismatch.");
         }
+        if (!account.isActive()) {
+            throw new Exception("Account InActive.");
+        }
         return account;
     }
 
@@ -94,5 +97,13 @@ public class EcoSystem {
 
     public CensorRole getSystemCensorRole() {
         return systemCensorRole;
+    }
+
+    public ArrayList<Account> getAllAccountArrayList() {
+        return allAccountArrayList;
+    }
+    
+    public boolean isUsernameExist(String username) {
+        return this.allAccountArrayList.stream().anyMatch(a -> a.getUsername().equals(username));
     }
 }

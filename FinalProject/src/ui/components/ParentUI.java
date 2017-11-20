@@ -20,6 +20,8 @@ public interface ParentUI {
     JPanel getContainerJPanel();
 
     default void popComponent() {
+        BiubiuBrowser.getInstance().browser.loadURL("about:blank");
+
         JPanel containerJPanel = getContainerJPanel();
         if (containerJPanel.getComponentCount() <= 0) {
             return;

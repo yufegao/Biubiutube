@@ -5,6 +5,7 @@ import biz.enterprises.AdCompanyEnterpriseCatalog;
 import biz.enterprises.ECOEnterpriseCatalog;
 import biz.enterprises.NPOEnterpriseCatalog;
 import biz.enterprises.UniversityEnterprise;
+import biz.org.unv.UniverseCollegeOrganization;
 import biz.video.VideoCatalog;
 import biz.video.VideoTagCatalog;
 
