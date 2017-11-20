@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.alladmins.sysadmins;
+package ui.sysadmin;
 
 import biz.EcoSystem;
 import biz.nw.Network;
