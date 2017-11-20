@@ -5,7 +5,7 @@
  */
 package ui;
 
-import biz.EcoSystemHelper;
+import biz.fakerHelper.EcoSystemHelper;
 import ui.components.TopBar;
 import ui.components.ParentUI;
 import java.awt.BorderLayout;

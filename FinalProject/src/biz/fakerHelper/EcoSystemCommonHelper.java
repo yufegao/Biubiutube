@@ -1,4 +1,4 @@
-package biz;
+package biz.fakerHelper;
 
 import biz.account.Account;
 import biz.account.AccountCatalog;

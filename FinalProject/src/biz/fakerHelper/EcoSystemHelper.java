@@ -1,5 +1,6 @@
-package biz;
+package biz.fakerHelper;
 
+import biz.EcoSystem;
 import biz.account.Account;
 import biz.nw.Network;
 import biz.org.unv.UniverseCollegeOrganization;
@@ -10,7 +11,7 @@ import com.github.javafaker.Faker;
 
 import java.util.HashSet;
 
-import static biz.EcoSystemCollegeHelper.fakeCollege;
+import static biz.fakerHelper.EcoSystemCollegeHelper.fakeCollege;
 
 public class EcoSystemHelper {
     private static Faker faker = new Faker();

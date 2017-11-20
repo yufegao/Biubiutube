@@ -1,4 +1,4 @@
-package biz;
+package biz.fakerHelper;
 
 import biz.account.Account;
 import biz.nw.Network;
@@ -11,8 +11,8 @@ import com.github.javafaker.Faker;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import static biz.EcoSystemCommonHelper.fakeAccount;
-import static biz.EcoSystemCommonHelper.fakePerson;
+import static biz.fakerHelper.EcoSystemCommonHelper.fakeAccount;
+import static biz.fakerHelper.EcoSystemCommonHelper.fakePerson;
 
 public class EcoSystemCollegeHelper {
     private static Faker faker = new Faker();
