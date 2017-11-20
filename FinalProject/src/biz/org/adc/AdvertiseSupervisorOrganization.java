@@ -8,6 +8,7 @@ package biz.org.adc;
 import biz.enterprises.Enterprise;
 import biz.org.Organization;
 import biz.role.Role;
+import biz.role.supervisorRole.ADCompanySupervisorRole;
 import java.util.ArrayList;
 
 /**
@@ -15,15 +16,25 @@ import java.util.ArrayList;
  * @author 79813
  */
 public class AdvertiseSupervisorOrganization extends Organization {
-
+    private ArrayList<Role> supportedRoles;
+    
+    private ADCompanySupervisorRole adCompanySupervisorRole;
 
     public AdvertiseSupervisorOrganization(String name, Enterprise enterprise) {
         super(name, enterprise);
+        supportedRoles = new ArrayList<>();
+        adCompanySupervisorRole = new ADCompanySupervisorRole();
+        
+        supportedRoles.add(adCompanySupervisorRole);
     }
 
+    public ADCompanySupervisorRole getAdCompanySupervisorRole() {
+        return adCompanySupervisorRole;
+    }
+    
     @Override
     public ArrayList<Role> getSupportedRoles() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return supportedRoles;
     }
     
 }
