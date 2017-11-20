@@ -1,33 +1,26 @@
 package biz;
 
 import biz.account.Account;
-import biz.account.AccountCatalog;
 import biz.nw.Network;
 import biz.org.unv.UniverseCollegeOrganization;
 import biz.person.Person;
-import biz.person.PersonCatalog;
-import biz.role.Role;
 import biz.video.Video;
 import biz.video.VideoTag;
 import com.github.javafaker.Faker;
 
-import java.util.ArrayList;
 import java.util.HashSet;
+
+import static biz.EcoSystemCollegeHelper.fakeCollege;
 
 public class EcoSystemHelper {
     private static Faker faker = new Faker();
-    private static String[] videoURLs = new String[] { // TODO: more video URL
-            "https://www.youtube.com/embed/RqvCNb7fKsg"
-    };
-    private static String[] picPaths = new String[] { // TODO: more pic path
-            "https://i.imgur.com/ijtKGes.png"
-    };
 
     public static EcoSystem configure() {
         EcoSystem system = EcoSystem.getInstance();
         Network nw = system.newNetwork("NEU");
 
-        // auto fake college COE
+        // auto fake a college with hacker abbrev tags
+        // and rename it to COE
         HashSet<VideoTag> tags = new HashSet<>();
         for (int i = 0; i < 10; i++) {
             String tagName = faker.hacker().abbreviation();
@@ -35,6 +28,21 @@ public class EcoSystemHelper {
         }
         UniverseCollegeOrganization college = fakeCollege(nw, tags);
         college.setName("COE");
+
+        // auto fake a college with gameOfThrones character tags
+        for (int j = 0; j < 10; j++) {
+            String tagName = faker.gameOfThrones().character();
+            tags.add(nw.getVideoTagCatalog().getOrNewTag(tagName));
+        }
+        fakeCollege(nw, tags);
+
+        // auto fake a college with gameOfThrones city tags
+        tags = new HashSet<>();
+        for (int j = 0; j < 10; j++) {
+            String tagName = faker.gameOfThrones().city();
+            tags.add(nw.getVideoTagCatalog().getOrNewTag(tagName));
+        }
+        fakeCollege(nw, tags);
 
         // manual fake college CPS
         UniverseCollegeOrganization coe = nw.getUniversity().getCollegeCatalog().newOrganization("CPS");
@@ -119,124 +127,4 @@ public class EcoSystemHelper {
 
         return system;
     }
-
-    public static Person fakePerson(PersonCatalog personCatalog) {
-        String fName = faker.name().firstName();
-        String lName = faker.name().lastName();
-        Person p = personCatalog.newPerson(fName, lName);
-        p.setEmail(faker.internet().emailAddress());
-        return p;
-    }
-
-    public static Account fakeAccount(AccountCatalog accountCatalog, Person p, Role r) {
-        Account account = null;
-        try {
-            account = accountCatalog.newAccount(faker.name().username(),faker.internet().password(),r,p);;;;;;;
-        } catch (Exception ignored) {
-
-        }
-        return account;
-    }
-
-    public static UniverseCollegeOrganization fakeCollege(Network nw, HashSet<VideoTag> tags) {
-        String s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-        String collegeName = "C";
-        int num = faker.random().nextInt(2) + 2;
-        for (int i = 0; i < num; i++) {
-            collegeName += s.charAt(faker.random().nextInt(s.length()));
-        }
-        UniverseCollegeOrganization college = nw.getUniversity().getCollegeCatalog().newOrganization(collegeName);
-
-        Person p = null;
-        Account a = null;
-        Video v = null;
-
-        // 1. supervisor
-        num = faker.random().nextInt(3) + 1; // 1 ~ 4 supervisor
-        for (int i = 0; i < num; i++) {
-            p = fakePerson(college.getPersonCatalog());
-            fakeAccount(college.getAccountCatalog(), p, college.getUniversityDepartmentSupervisorRole());
-            if (i > 1) {  // some of them are also lecturer
-                fakeAccount(college.getAccountCatalog(), p, college.getCollegeLecturerRole());
-            }
-        }
-
-        // 2. lecturer
-        num = faker.random().nextInt(10) + 10; // 10 ~ 20 lecturer
-        for (int i = 0; i < num; i++) {
-            p = fakePerson(college.getPersonCatalog());
-            a = fakeAccount(college.getAccountCatalog(), p, college.getCollegeLecturerRole());
-            int numVideo = faker.random().nextInt(90) + 10; // 10 ~ 100 videos
-            for (int j = 0; j < numVideo; j++) {
-                fakeVideo(nw, a, tags);
-            }
-        }
-
-        // 3. viewer
-        num = faker.random().nextInt(500) + 20;  // 20 ~ 520 viewer
-        for (int i = 0; i < num; i++) {
-            p = fakePerson(college.getPersonCatalog());
-            a = fakeAccount(college.getAccountCatalog(), p, college.getViewerRole());
-            if (faker.random().nextInt(100) == 0) { // 1% of them are InActive
-                a.setActive(false);
-            }
-        }
-
-        return college;
-    }
-
-    private static Video fakeVideo(Network nw, Account account, HashSet<VideoTag> tags) {
-        Video v = nw.getVideoCatalog().newVideo(account);
-        v.setDescription(faker.shakespeare().hamletQuote());
-        v.setPicPath(picPaths[faker.random().nextInt(picPaths.length)]);
-        v.setUrl(videoURLs[faker.random().nextInt(videoURLs.length)]);
-
-        int val = faker.random().nextInt(10);
-        if (val < 5) {  // 50% ESApproved
-            v.setStatus(Video.VideoStatus.ESApproved);
-        } else if (val < 7) {  // 20% Uploaded
-            v.setStatus(Video.VideoStatus.Uploaded);
-        } else if (val < 9) {  // 20% DSApproved
-            v.setStatus(Video.VideoStatus.DSApproved);
-        } else {  // 10% Banned
-            v.setStatus(Video.VideoStatus.Banned);
-        }
-
-        val = faker.random().nextInt(4);  // 25% each ad type
-        switch (val) {
-            case 0:
-                v.setAdType(Video.VideoAdType.NoAdd);
-                break;
-            case 1:
-                v.setAdType(Video.VideoAdType.AnyAdd);
-                break;
-            case 2:
-                v.setAdType(Video.VideoAdType.CommOnly);
-                break;
-            case 3:
-                v.setAdType(Video.VideoAdType.PSAOnly);
-                break;
-        }
-
-        int numTags = faker.random().nextInt(4) + 1; // 1 ~ 4 tags;
-        for (int i = 0; i < numTags; i++) {
-            int item = faker.random().nextInt(tags.size());
-            int j = 0;
-            for (VideoTag tag: tags) {
-                if (item == j) {
-                    v.addTag(tag);
-                }
-                j++;
-            }
-        }
-
-        VideoTag tag = v.getTagHashSet().stream().findAny().orElse(null);
-
-        String title = faker.superhero().power();
-        v.setTitle(tag.getName() + " " + title);
-
-        return v;
-    }
-
 }
