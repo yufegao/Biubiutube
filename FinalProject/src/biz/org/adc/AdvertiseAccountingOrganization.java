@@ -14,9 +14,9 @@ import java.util.ArrayList;
  *
  * @author 79813
  */
-public class AdevertiseAccountingOrganization extends Organization {
+public class AdvertiseAccountingOrganization extends Organization {
 
-    public AdevertiseAccountingOrganization(String name, Enterprise enterprise) {
+    public AdvertiseAccountingOrganization(String name, Enterprise enterprise) {
        super(name,enterprise);
     }
 

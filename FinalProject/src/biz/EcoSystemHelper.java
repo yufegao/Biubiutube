@@ -2,6 +2,7 @@ package biz;
 
 import biz.account.Account;
 import biz.account.AccountCatalog;
+import biz.enterprises.AdCompanyEnterprise;
 import biz.nw.Network;
 import biz.org.unv.UniverseCollegeOrganization;
 import biz.person.Person;
@@ -36,8 +37,11 @@ public class EcoSystemHelper {
         UniverseCollegeOrganization college = fakeCollege(nw, tags);
         college.setName("COE");
 
-        // manual fake college CPS
+        // manual fake college COE
         UniverseCollegeOrganization coe = nw.getUniversity().getCollegeCatalog().newOrganization("CPS");
+        
+        // manual fake advertisement ADV
+        AdCompanyEnterprise nike = nw.getAdCompanyCatalog().newEnterprise("NIKE");
 
         Person person;
         Account account;
@@ -116,6 +120,8 @@ public class EcoSystemHelper {
             account.setActive(false);
         } catch (Exception ignored) {
         }
+        
+        
 
         return system;
     }
@@ -131,7 +137,7 @@ public class EcoSystemHelper {
     public static Account fakeAccount(AccountCatalog accountCatalog, Person p, Role r) {
         Account account = null;
         try {
-            account = accountCatalog.newAccount(faker.name().username(),faker.internet().password(),r,p);;;;;;;
+            account = accountCatalog.newAccount(faker.name().username(),faker.internet().password(),r,p);
         } catch (Exception ignored) {
 
         }
@@ -185,6 +191,9 @@ public class EcoSystemHelper {
 
         return college;
     }
+    
+    
+    
 
     private static Video fakeVideo(Network nw, Account account, HashSet<VideoTag> tags) {
         Video v = nw.getVideoCatalog().newVideo(account);
