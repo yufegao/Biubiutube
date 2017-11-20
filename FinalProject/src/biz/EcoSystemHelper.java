@@ -49,6 +49,7 @@ public class EcoSystemHelper {
                 v.setUrl(urls[i]);
                 v.addTag(nw.getVideoTagCatalog().getOrNewTag("Swing"));
                 v.addTag(nw.getVideoTagCatalog().getOrNewTag("Java"));
+                v.setDescription(String.format("Java Swing Tutorial %02d", i + 1));
             }
             coe.getAccountCatalog().newAccount("qlsa", "qlsa", coe.getUniversityDepartmentSupervisorRole(), person);
         } catch (Exception ignored) {}
