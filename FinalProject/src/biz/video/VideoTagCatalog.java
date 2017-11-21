@@ -19,7 +19,22 @@ public class VideoTagCatalog {
         return t;
     }
 
+    public HashMap<String, VideoTag> getVideoTagHashMap() {
+        return videoTagHashMap;
+    }
+
     public Network getNetwork() {
         return network;
+    }
+
+    public HashMap<VideoTag, Integer> countVideoByTag() {
+        HashMap<VideoTag, Integer> map = new HashMap<>();
+        for (Video video: network.getVideoCatalog().getVideoArrayList()) {
+            for (VideoTag tag: video.getTagHashSet()) {
+                int num = map.getOrDefault(tag, 0);
+                map.put(tag, num + 1);
+            }
+        }
+        return map;
     }
 }

@@ -12,13 +12,13 @@ import ui.components.ParentUI;
  *
  * @author hezj
  */
-public class HomePage extends javax.swing.JPanel implements HasTitle {
+public class AnonymousHomePage extends javax.swing.JPanel implements HasTitle {
     private ParentUI parent;
     
     /**
      * Creates new form HomePage
      */
-    public HomePage(ParentUI parent) {
+    public AnonymousHomePage(ParentUI parent) {
         this.parent = parent;
         initComponents();
     }

@@ -55,6 +55,7 @@ public class EcoSystemCollegeHelper {
                 a.setActive(false);
             }
         }
+        System.out.println(String.format("last viewer account username: %s", a.getUsername()));
 
         // 3. lecturer
         num = faker.random().nextInt(10) + 10; // 10 ~ 20 lecturer

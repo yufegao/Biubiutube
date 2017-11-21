@@ -21,7 +21,10 @@ public class EcoSystemCommonHelper {
     public static Account fakeAccount(AccountCatalog accountCatalog, Person p, Role r) {
         Account account = null;
         try {
-            account = accountCatalog.newAccount(faker.name().username(), faker.internet().password(), r, p);
+            String username = faker.name().username();
+//            String pwd = faker.internet().password();
+            String pwd = "1";
+            account = accountCatalog.newAccount(username, pwd, r, p);
         } catch (Exception ignored) {
 
         }
