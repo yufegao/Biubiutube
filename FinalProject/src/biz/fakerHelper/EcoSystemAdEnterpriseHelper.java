@@ -12,6 +12,8 @@ import static biz.fakerHelper.EcoSystemCommonHelper.fakePerson;
 import biz.nw.Network;
 import biz.person.Person;
 import com.github.javafaker.Faker;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -46,7 +48,14 @@ public class EcoSystemAdEnterpriseHelper {
             p = fakePerson(adcompany.getaSupervisor().getPersonCatalog());
             fakeAccount(adcompany.getaSupervisor().getAccountCatalog(), p, adcompany.getaSupervisor().getAdCompanySupervisorRole());
         }
-
+        // 2. admin
+        Person admin = adcompany.getaAdmin().getPersonCatalog().newPerson("Manager", "Wang");
+        try {
+            Account adminaccount = adcompany.getaAdmin().getAccountCatalog().newAccount("adadmin", "adadmin", adcompany.getaAdmin().getAdmin(), admin);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(EcoSystemAdEnterpriseHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return adcompany;
     }
 }
