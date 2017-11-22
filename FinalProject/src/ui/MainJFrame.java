@@ -5,7 +5,9 @@
  */
 package ui;
 
+import biz.EcoSystem;
 import biz.fakerHelper.EcoSystemHelper;
+import biz.fakerHelper.EcoSystemAdEnterpriseHelper;
 import ui.components.TopBar;
 import ui.components.ParentUI;
 import java.awt.BorderLayout;
@@ -79,6 +81,7 @@ public class MainJFrame extends javax.swing.JFrame implements ParentUI {
         }
         //</editor-fold>
         EcoSystemHelper.configure();
+        EcoSystemAdEnterpriseHelper.fakeAdEnterprise(EcoSystem.getInstance().getNetworkArrayList().get(0));
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
