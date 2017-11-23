@@ -22,6 +22,7 @@ public class AdvertiseAdminOrganization extends Organization {
     private ADCompanySupervisorRole supervisor;
     private AdvertisingAdminRole admin;
     private ArrayList<Role> roles;
+    
     public AdvertiseAdminOrganization(String name, Enterprise enterprise) {
         super(name, enterprise);
         producer = new AdvertisementProducerRole();
@@ -29,9 +30,11 @@ public class AdvertiseAdminOrganization extends Organization {
         admin = new AdvertisingAdminRole();
         roles = new ArrayList<>();
         
+        
         roles.add(admin);
         roles.add(supervisor);
         roles.add(producer);
+        
         
         
     }

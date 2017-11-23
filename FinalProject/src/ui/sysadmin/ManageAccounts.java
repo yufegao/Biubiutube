@@ -5,7 +5,9 @@
  */
 package ui.sysadmin;
 
+import biz.EcoSystem;
 import biz.account.Account;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import ui.components.HasTitle;
 import ui.components.ParentUI;
@@ -25,6 +27,7 @@ public class ManageAccounts extends javax.swing.JPanel implements TablePopulatab
         initComponents();
         this.account = account;
         this.parentUI = parentUI;
+        populateTable();
     }
 
     /**
@@ -37,74 +40,142 @@ public class ManageAccounts extends javax.swing.JPanel implements TablePopulatab
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        tblUserAccount = new javax.swing.JTable();
+        btnDelete = new javax.swing.JButton();
+        btnEnable = new javax.swing.JButton();
+        btnEnable1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblUserAccount.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Username", "Role", "Person", "Email"
+                "Username", "Person", "Email", "Status"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblUserAccount);
 
-        jButton1.setText("Delete");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
+
+        btnEnable.setText("Enable");
+        btnEnable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnableActionPerformed(evt);
+            }
+        });
+
+        btnEnable1.setText("Unable");
+        btnEnable1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnable1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Users:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(154, 154, 154)
-                .addComponent(jButton1)
-                .addGap(0, 317, Short.MAX_VALUE))
+                .addGap(235, 235, 235)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnEnable)
+                            .addComponent(btnEnable1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(174, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 407, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(202, 202, 202)
+                        .addComponent(btnEnable)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEnable1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDelete)))
+                .addContainerGap(268, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        
+        Account acc = getSelected();
+        if (acc == null) {
+            return;
+        }
+        EcoSystem.getInstance().getAllAccountArrayList().remove(acc);
+        JOptionPane.showMessageDialog(this, "You are all set");
+        populateTable();
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnEnableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnableActionPerformed
+        
+        Account acc = getSelected();
+        if (acc == null) {
+            return;
+        }
+        acc.setActive(true);
+        JOptionPane.showMessageDialog(this, "You are all set");
+        populateTable();
+    }//GEN-LAST:event_btnEnableActionPerformed
+
+    private void btnEnable1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnable1ActionPerformed
+        
+        Account acc = getSelected();
+        if (acc == null) {
+            return;
+        }
+        acc.setActive(false);
+        JOptionPane.showMessageDialog(this, "You are all set");
+        populateTable();
+    }//GEN-LAST:event_btnEnable1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnEnable;
+    private javax.swing.JButton btnEnable1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblUserAccount;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public JTable getTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return tblUserAccount;
     }
 
     @Override
     public Object[] populateRow(Account element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void populateTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new Object[]{account,account.getPerson(),account.getPerson().getEmail(),account.isActive()};
     }
 
     @Override
     public String getTitle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "ManageUserAccount";
+    }
+
+    @Override
+    public void populateTable() {
+        populateTable(EcoSystem.getInstance().getAllAccountArrayList());
     }
 }

@@ -5,6 +5,8 @@
  */
 package ui.network.extraCurricularOrganizationEnterprise.adminOrganization;
 
+import biz.account.Account;
+import ui.components.ParentUI;
 import ui.network.advertisementEnterprise.adminOrganization.*;
 
 /**
@@ -12,12 +14,15 @@ import ui.network.advertisementEnterprise.adminOrganization.*;
  * @author 79813
  */
 public class ECOManageAccounts extends javax.swing.JPanel {
-
+    private ParentUI parentUI;
+    private Account account;
     /**
      * Creates new form ManageAccounts
      */
-    public ECOManageAccounts() {
+    public ECOManageAccounts(ParentUI parentUI,Account account) {
         initComponents();
+        this.parentUI = parentUI;
+        this.account = account;
     }
 
     /**

@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-package ui.network.advertisementEnterprise.adminOrganization;
+package ui.network.nonprofitOrganizationEnterprise.adminDepartment;
 
+import ui.network.advertisementEnterprise.adminOrganization.*;
 import biz.account.Account;
-import biz.enterprises.AdCompanyEnterprise;
 import biz.enterprises.Enterprise;
 import biz.org.Organization;
 import javax.swing.JTable;
@@ -19,18 +19,18 @@ import ui.components.TablePopulatable;
  *
  * @author royn
  */
-public class ADManageOrganizations extends javax.swing.JPanel implements HasTitle,TablePopulatable<Organization>{
+public class NPManageOrganizations extends javax.swing.JPanel implements TablePopulatable<Organization>,HasTitle{
     private ParentUI parentUI;
     private Account account;
-    private AdCompanyEnterprise enterprise;
-    public ADManageOrganizations(ParentUI parent, Account account) {
+    private Enterprise enterprise;
+    public NPManageOrganizations(ParentUI parent, Account account) {
          initComponents();
          this.parentUI = parent;
          this.account = account;
-         this.enterprise = (AdCompanyEnterprise)account.getOrg().getEnterprise();
+         this.enterprise = account.getOrg().getEnterprise();
          populateTable();
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -106,23 +106,23 @@ public class ADManageOrganizations extends javax.swing.JPanel implements HasTitl
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public String getTitle() {
-        return "Manage Advertisement Organizations";
-    }
-
-    @Override
     public JTable getTable() {
         return tblOrg;
     }
 
     @Override
     public Object[] populateRow(Organization element) {
-        return new Object[]{element};
+        return new Object[]{};
+    }
+
+    @Override
+    public String getTitle() {
+        return "Manage Advertisement Organizations";
     }
 
     @Override
     public void populateTable() {
-        populateTable(enterprise.getOrganizations());
+        populateTable();
     }
 
 }

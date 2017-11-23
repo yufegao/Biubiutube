@@ -9,7 +9,8 @@ import biz.account.Account;
 import biz.role.Role;
 import javax.swing.JPanel;
 import ui.components.ParentUI;
-import ui.network.advertisementEnterprise.adminOrganization.ADWorkArea;
+//import ui.network.advertisementEnterprise.adminOrganization.ADWorkArea;
+import ui.network.advertisementEnterprise.adminOrganization.AdvertismentAdminWorkArea;
 
 /**
  *
@@ -19,7 +20,7 @@ public class AdvertisingAdminRole extends Role{
 
     @Override
     public JPanel createWorkArea(ParentUI parent, Account account) {
-        return new ADWorkArea(parent, account);
+        return new AdvertismentAdminWorkArea(parent, account);
     }    
     
     
