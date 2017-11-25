@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.extraCurricularOrganizationEnterprise.supervisorOrganization;
+package ui.network.extraCurricularOrganizationEnterprise.videoProduceOrganization;
 
 import biz.account.Account;
 import java.util.ArrayList;
