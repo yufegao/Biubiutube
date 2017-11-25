@@ -166,7 +166,7 @@ public class ManageAccounts extends javax.swing.JPanel implements TablePopulatab
 
     @Override
     public Object[] populateRow(Account element) {
-        return new Object[]{account,account.getPerson(),account.getPerson().getEmail(),account.isActive()};
+        return new Object[]{element,element.getPerson(),element.getPerson().getEmail(),element.isActive()};
     }
 
     @Override
@@ -176,6 +176,6 @@ public class ManageAccounts extends javax.swing.JPanel implements TablePopulatab
 
     @Override
     public void populateTable() {
-        populateTable(EcoSystem.getInstance().getAllAccountArrayList());
+        populateTable(EcoSystem.getInstance().getSystemAccountCatalog().getAccountArrayList());
     }
 }

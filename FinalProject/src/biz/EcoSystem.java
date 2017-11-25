@@ -113,7 +113,7 @@ public class EcoSystem {
         for (Person p: systemPersonCatalog.getPersonList()) {
             map.put(p, 0);
         }
-        for (Account account: EcoSystem.getInstance().getAllAccountArrayList()) {
+        for (Account account: systemAccountCatalog.getAccountArrayList()) {
             Person p = account.getPerson();
             int oldNumer = map.get(p);
             map.put(p, oldNumer + 1);
