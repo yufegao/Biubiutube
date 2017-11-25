@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.university.college.directorate;
+package ui.network.university.directorateOrganization.NetPerformance;
 
 /**
  *
  * @author royn
  */
-public class NewJPanel extends javax.swing.JPanel {
+public class NetPerformanceLandingPage extends javax.swing.JPanel {
 
     /**
-     * Creates new form NewJPanel
+     * Creates new form NetPerformanceLandingPage
      */
-    public NewJPanel() {
+    public NetPerformanceLandingPage() {
         initComponents();
     }
 

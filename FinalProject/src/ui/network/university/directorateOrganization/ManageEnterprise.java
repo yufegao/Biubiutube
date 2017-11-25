@@ -5,16 +5,20 @@
  */
 package ui.network.university.directorateOrganization;
 
+import biz.account.Account;
+import ui.components.ParentUI;
+
 /**
  *
  * @author royn
  */
-public class NewJPanel extends javax.swing.JPanel {
+public class ManageEnterprise extends javax.swing.JPanel {
 
     /**
-     * Creates new form NewJPanel
+     * Creates new form ManageEnterprises
      */
-    public NewJPanel() {
+
+    public ManageEnterprise(ParentUI parent, Account account) {
         initComponents();
     }
 
