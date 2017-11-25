@@ -9,6 +9,7 @@ package ui.network.nonprofitOrganizationEnterprise.adminDepartment;
 import ui.network.advertisementEnterprise.adminOrganization.*;
 import biz.account.Account;
 import biz.enterprises.Enterprise;
+import biz.enterprises.NPOEnterprise;
 import biz.org.Organization;
 import javax.swing.JTable;
 import ui.components.HasTitle;
@@ -22,12 +23,12 @@ import ui.components.TablePopulatable;
 public class NPManageOrganizations extends javax.swing.JPanel implements TablePopulatable<Organization>,HasTitle{
     private ParentUI parentUI;
     private Account account;
-    private Enterprise enterprise;
+    private NPOEnterprise enterprise;
     public NPManageOrganizations(ParentUI parent, Account account) {
          initComponents();
          this.parentUI = parent;
          this.account = account;
-         this.enterprise = account.getOrg().getEnterprise();
+         this.enterprise = (NPOEnterprise)account.getOrg().getEnterprise();
          populateTable();
     }
 
@@ -94,7 +95,7 @@ public class NPManageOrganizations extends javax.swing.JPanel implements TablePo
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        parentUI.pushComponent(new ADCreateProducer());
+        parentUI.pushComponent(new NPCreateProducer(parentUI, enterprise));
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
