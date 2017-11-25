@@ -8,11 +8,13 @@ package biz;
 import biz.account.Account;
 import biz.account.AccountCatalog;
 import biz.nw.Network;
+import biz.person.Person;
 import biz.person.PersonCatalog;
 import biz.role.adminRole.SystemAdminRole;
 import biz.role.customerServiceRole.CensorRole;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @author 79813
@@ -106,4 +108,17 @@ public class EcoSystem {
     public boolean isUsernameExist(String username) {
         return this.allAccountArrayList.stream().anyMatch(a -> a.getUsername().equals(username));
     }
+    public HashMap<Person, Integer> countSystemAccount() {
+        HashMap<Person, Integer> map = new HashMap<>();
+        for (Person p: systemPersonCatalog.getPersonList()) {
+            map.put(p, 0);
+        }
+        for (Account account: EcoSystem.getInstance().getAllAccountArrayList()) {
+            Person p = account.getPerson();
+            int oldNumer = map.get(p);
+            map.put(p, oldNumer + 1);
+        }
+        return map;
+    }
+    
 }

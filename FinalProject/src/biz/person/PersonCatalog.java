@@ -5,6 +5,7 @@
  */
 package biz.person;
 
+import biz.EcoSystem;
 import biz.account.Account;
 import biz.org.Organization;
 
@@ -19,6 +20,11 @@ public class PersonCatalog {
     private Organization org;
     private ArrayList<Person> personList;
     
+    
+    public PersonCatalog(Organization org){
+        this.org = org;
+        personList = new ArrayList<>();
+    }
     public HashMap<Person, Integer> countAccount() {
         HashMap<Person, Integer> map = new HashMap<>();
         for (Person p: personList) {
@@ -32,10 +38,6 @@ public class PersonCatalog {
         return map;
     }
     
-    public PersonCatalog(Organization org){
-        this.org = org;
-        personList = new ArrayList<>();
-    }
 
     public ArrayList<Person> getPersonList() {
         return personList;
