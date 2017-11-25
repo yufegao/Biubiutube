@@ -8,6 +8,7 @@ package ui.sysadmin;
 import biz.EcoSystem;
 import biz.account.Account;
 import biz.person.Person;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import ui.components.HasTitle;
 import ui.components.ParentUI;
@@ -45,7 +46,7 @@ public class ManagePerson extends javax.swing.JPanel implements TablePopulatable
         tblPerson = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
 
         tblPerson.setModel(new javax.swing.table.DefaultTableModel(
@@ -67,7 +68,12 @@ public class ManagePerson extends javax.swing.JPanel implements TablePopulatable
             }
         });
 
-        jButton2.setText("Delete Person");
+        btnDelete.setText("Delete Person");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnAdd.setText("Add Account");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +94,7 @@ public class ManagePerson extends javax.swing.JPanel implements TablePopulatable
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(278, Short.MAX_VALUE))
@@ -106,7 +112,7 @@ public class ManagePerson extends javax.swing.JPanel implements TablePopulatable
                         .addGap(185, 185, 185)
                         .addComponent(jButton1)
                         .addGap(33, 33, 33)
-                        .addComponent(jButton2)
+                        .addComponent(btnDelete)
                         .addGap(33, 33, 33)
                         .addComponent(btnAdd)))
                 .addContainerGap(109, Short.MAX_VALUE))
@@ -124,11 +130,23 @@ public class ManagePerson extends javax.swing.JPanel implements TablePopulatable
         parentUI.pushComponent(new CreateAccount(parentUI,account,p));
     }//GEN-LAST:event_btnAddActionPerformed
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        Person p = getSelected();
+        if(p == null) return;
+        if(p.getFullName().equals(account.getPerson().getFullName())){
+            JOptionPane.showMessageDialog(this, "You cannot delete your self!");
+            return;
+        }
+        JOptionPane.showConfirmDialog(jButton1,EcoSystem.getInstance().getSystemPersonCatalog().getPersonList().remove(p));
+        JOptionPane.showMessageDialog(this, "Your all set");
+        populateTable();
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblPerson;
@@ -141,7 +159,7 @@ public class ManagePerson extends javax.swing.JPanel implements TablePopulatable
 
     @Override
     public Object[] populateRow(Person element) {
-        return new Object[]{element,element.getEmail(),EcoSystem.getInstance().countSystemAccount()};
+        return new Object[]{element,element.getEmail(),EcoSystem.getInstance().countSystemAccount().get(element)};
     }
 
     @Override
