@@ -9,14 +9,8 @@ import biz.account.Account;
 import biz.ad.Ad;
 import biz.ad.AdCatalog;
 import biz.enterprises.Enterprise;
-import biz.org.Organization;
 import biz.role.supervisorRole.ADCompanySupervisorRole;
-import java.awt.image.BufferedImage;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Stream;
-import javax.imageio.ImageIO;
 import ui.components.HasTitle;
 import ui.components.TablePopulatable;
 

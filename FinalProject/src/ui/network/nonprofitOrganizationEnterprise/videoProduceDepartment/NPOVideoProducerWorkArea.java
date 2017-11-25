@@ -3,22 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.extraCurricularOrganizationEnterprise.supervisorOrganization;
+package ui.network.nonprofitOrganizationEnterprise.videoProduceDepartment;
 
+import ui.network.advertisementEnterprise.advertisementProduceOrganization.ManageAd;
 import biz.account.Account;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import ui.components.GeneralWorkArea;
 import ui.components.ParentUI;
-import ui.network.university.college.departmentSupervisor.CensorVideos;
-
 /**
  *
  * @author royn
  */
-public class ECOSupervisorWorkArea extends GeneralWorkArea{
-
-    public ECOSupervisorWorkArea(ParentUI parent, Account account) {
+public class NPOVideoProducerWorkArea extends GeneralWorkArea{
+    public NPOVideoProducerWorkArea(ParentUI parent, Account account) {
         super(parent, account);
     }
 
@@ -26,15 +24,15 @@ public class ECOSupervisorWorkArea extends GeneralWorkArea{
     protected ArrayList<JButton> getButtons() {
         ArrayList<JButton> buttons = new ArrayList<>();
         
-        JButton button = new JButton(String.format("Censor Video Uploaded in %s", account.getOrg().getEnterprise()));
-        button.addActionListener(e -> parent.pushComponent(new CensorVideos(parent, account)));
-        buttons.add(button);
+        JButton btn = new JButton("Manage Video");
+        btn.addActionListener(e -> parent.pushComponent(new ManageAd(parent, account)));
+        buttons.add(btn);
         
         return buttons;
     }
 
     @Override
     public String getTitle() {
-        return String.format("%s Video List", account.getOrg());
+        return "Producer Work Area";
     }
 }

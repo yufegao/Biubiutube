@@ -5,6 +5,9 @@
  */
 package ui.network.university.directorateOrganization.NetPerformance;
 
+import biz.account.Account;
+import ui.components.ParentUI;
+
 /**
  *
  * @author royn
@@ -14,7 +17,8 @@ public class NetPerformanceLandingPage extends javax.swing.JPanel {
     /**
      * Creates new form NetPerformanceLandingPage
      */
-    public NetPerformanceLandingPage() {
+
+    public NetPerformanceLandingPage(ParentUI parent, Account account) {
         initComponents();
     }
 

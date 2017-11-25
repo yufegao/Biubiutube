@@ -22,13 +22,13 @@ import ui.components.TablePopulatable;
  *
  * @author 79813
  */
-public class NPCreateProducer extends javax.swing.JPanel implements TablePopulatable<NonProPSAOrganization>,HasTitle{
+public class NPOCreateProducer extends javax.swing.JPanel implements TablePopulatable<NonProPSAOrganization>,HasTitle{
     private ParentUI parentUI;
     private NPOEnterprise enterprise;
     /**
      * Creates new form ADCreateOrganization
      */
-    public NPCreateProducer(ParentUI parentUI,NPOEnterprise enterprise) {
+    public NPOCreateProducer(ParentUI parentUI,NPOEnterprise enterprise) {
         initComponents();
         this.parentUI = parentUI;
         this.enterprise = enterprise;

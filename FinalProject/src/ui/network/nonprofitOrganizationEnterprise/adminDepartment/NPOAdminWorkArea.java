@@ -17,8 +17,8 @@ import ui.components.ParentUI;
  *
  * @author royn
  */
-public class NPAdminWorkArea extends GeneralWorkArea{
-    public NPAdminWorkArea(ParentUI parent, Account account) {
+public class NPOAdminWorkArea extends GeneralWorkArea{
+    public NPOAdminWorkArea(ParentUI parent, Account account) {
         super(parent, account);
     }
 
@@ -27,10 +27,10 @@ public class NPAdminWorkArea extends GeneralWorkArea{
         ArrayList<JButton> buttons = new ArrayList<>();
         
         JButton btnManageOrganization = new JButton("Manage Organization");
-        btnManageOrganization.addActionListener(e -> parent.pushComponent(new NPManageOrganizations(parent, account)));
+        btnManageOrganization.addActionListener(e -> parent.pushComponent(new NPOManageOrganizations(parent, account)));
         
         JButton btnManageAccount = new JButton("Manage Account");
-        btnManageAccount.addActionListener(e -> parent.pushComponent(new NPManageAccounts(parent, account)));
+        btnManageAccount.addActionListener(e -> parent.pushComponent(new NPOManageAccounts(parent, account)));
         buttons.add(btnManageOrganization);
         buttons.add(btnManageAccount);
         

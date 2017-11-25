@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.extraCurricularOrganizationEnterprise.supervisorOrganization;
+package ui.network.nonprofitOrganizationEnterprise.supervisorDepartment;
 
+import ui.network.advertisementEnterprise.supervisorOrganization.CensorAdvertisements;
 import biz.account.Account;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import ui.components.GeneralWorkArea;
 import ui.components.ParentUI;
-import ui.network.university.college.departmentSupervisor.CensorVideos;
 
 /**
  *
  * @author royn
  */
-public class ECOSupervisorWorkArea extends GeneralWorkArea{
+public class NPOSupervisorWorkArea extends GeneralWorkArea{
 
-    public ECOSupervisorWorkArea(ParentUI parent, Account account) {
+    public NPOSupervisorWorkArea(ParentUI parent, Account account) {
         super(parent, account);
     }
 
@@ -26,8 +26,8 @@ public class ECOSupervisorWorkArea extends GeneralWorkArea{
     protected ArrayList<JButton> getButtons() {
         ArrayList<JButton> buttons = new ArrayList<>();
         
-        JButton button = new JButton(String.format("Censor Video Uploaded in %s", account.getOrg().getEnterprise()));
-        button.addActionListener(e -> parent.pushComponent(new CensorVideos(parent, account)));
+        JButton button = new JButton(String.format("Censor Advertisement Uploaded by %s", account.getOrg().getEnterprise()));
+        button.addActionListener(e -> parent.pushComponent(new CensorAdvertisements(parent, account)));
         buttons.add(button);
         
         return buttons;
@@ -35,6 +35,7 @@ public class ECOSupervisorWorkArea extends GeneralWorkArea{
 
     @Override
     public String getTitle() {
-        return String.format("%s Video List", account.getOrg());
+        return String.format("%s Video List", account.getOrg().getEnterprise());
     }
+    
 }

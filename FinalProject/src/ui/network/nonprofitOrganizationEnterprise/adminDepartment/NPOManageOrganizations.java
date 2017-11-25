@@ -20,11 +20,11 @@ import ui.components.TablePopulatable;
  *
  * @author royn
  */
-public class NPManageOrganizations extends javax.swing.JPanel implements TablePopulatable<Organization>,HasTitle{
+public class NPOManageOrganizations extends javax.swing.JPanel implements TablePopulatable<Organization>,HasTitle{
     private ParentUI parentUI;
     private Account account;
     private NPOEnterprise enterprise;
-    public NPManageOrganizations(ParentUI parent, Account account) {
+    public NPOManageOrganizations(ParentUI parent, Account account) {
          initComponents();
          this.parentUI = parent;
          this.account = account;
@@ -95,7 +95,7 @@ public class NPManageOrganizations extends javax.swing.JPanel implements TablePo
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        parentUI.pushComponent(new NPCreateProducer(parentUI, enterprise));
+        parentUI.pushComponent(new NPOCreateProducer(parentUI, enterprise));
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

@@ -3,19 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.nonprofitOrganizationEnterprise.videoProduceDepartment;
+package ui.network.nonprofitOrganizationEnterprise.adminDepartment;
+
+import biz.account.Account;
+import ui.components.ParentUI;
 
 /**
  *
  * @author royn
  */
-public class NewJPanel extends javax.swing.JPanel {
-
+public class NPOManageAccounts extends javax.swing.JPanel {
+    private ParentUI parentUI;
+    private Account account;
     /**
      * Creates new form NewJPanel
      */
-    public NewJPanel() {
+    public NPOManageAccounts(ParentUI parent, Account account) {
         initComponents();
+        this.account = account;
+        this.parentUI = parent;
     }
 
     /**
