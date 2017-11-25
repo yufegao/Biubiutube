@@ -14,9 +14,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.stream.Stream;
 
@@ -40,7 +37,6 @@ public class HomePage extends JPanel {
 
     private void initComponents() {
         setSize(1000, 700);
-        setBackground(new Color(255, 255, 255));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         splitPane = new JSplitPane();
@@ -62,7 +58,7 @@ public class HomePage extends JPanel {
 
         rightContainer = new JPanel();
         JScrollPane rightScroll = new JScrollPane(rightContainer);
-        rightContainer.setBackground(Color.gray);
+        rightContainer.setBackground(new Color(102, 102, 102));
         rightContainer.setLayout(new BoxLayout(rightContainer, BoxLayout.Y_AXIS));
         splitPane.setRightComponent(rightScroll);
 

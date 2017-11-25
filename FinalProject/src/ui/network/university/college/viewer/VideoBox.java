@@ -9,7 +9,6 @@ import biz.account.Account;
 import biz.video.Video;
 import biz.video.VideoTag;
 import ui.components.ParentUI;
-import ui.network.university.college.departmentSupervisor.WatchVideo;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -18,6 +17,7 @@ import java.awt.image.BufferedImage;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -69,6 +69,7 @@ public class VideoBox extends JPanel {
     }
 
     private void initComponents() {
+        setBackground(new Color(204, 204, 204));
         setComponentSize(this, 700, 300);
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
@@ -109,10 +110,20 @@ public class VideoBox extends JPanel {
         JPanel rightFooter = new JPanel();
         rightFooter.setLayout(new BoxLayout(rightFooter, BoxLayout.X_AXIS));
         for (VideoTag tag: video.getTagHashSet()) {
-            rightFooter.add(new JLabel(tag.getName()));
+            JLabel tagLabel = new JLabel(tag.getName());
+            tagLabel.setBackground(new Color(153, 153, 153));
+            tagLabel.setOpaque(true);
+            tagLabel.setBorder(new EmptyBorder(0, 2, 0, 2));
+            rightFooter.add(tagLabel);
             rightFooter.add(Box.createRigidArea(new Dimension(5, 0)));
         }
-        rightFooter.add(Box.createHorizontalGlue());
+
+        int height = 25;
+        Dimension minSize = new Dimension(5, height);
+        Dimension prefSize = new Dimension(5, height);
+        Dimension maxSize = new Dimension(Short.MAX_VALUE, height);
+        rightFooter.add(new Box.Filler(minSize, prefSize, maxSize));
+
         rightFooter.add(new JLabel(String.format("Up Votes: %d", video.getVoteCatalog().getVoteArrayList().size())));
         rightFooter.add(Box.createRigidArea(new Dimension(5, 0)));
         rightFooter.add(new JLabel(String.format("Views: %d", video.getViewHistoryCatalog().getViewHistoryArrayList().size())));
