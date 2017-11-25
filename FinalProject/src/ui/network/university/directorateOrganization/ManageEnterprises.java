@@ -3,18 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.university.college.directorate;
+package ui.network.university.directorateOrganization;
+
+import biz.account.Account;
+import ui.components.ParentUI;
 
 /**
  *
  * @author royn
  */
-public class NewJPanel extends javax.swing.JPanel {
+public class ManageEnterprises extends javax.swing.JPanel {
 
     /**
-     * Creates new form NewJPanel
+     * Creates new form ManageEnterprises
      */
-    public NewJPanel() {
+
+    public ManageEnterprises(ParentUI parent, Account account) {
         initComponents();
     }
 
