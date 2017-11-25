@@ -3,12 +3,35 @@ package ui.network.university.college.viewer;
 import biz.account.Account;
 import biz.nw.Network;
 import biz.org.unv.UniverseCollegeOrganization;
+import biz.person.Person;
 import biz.role.producerRole.CollegeLecturerRole;
 
 import javax.swing.*;
 import javax.swing.tree.*;
+import java.util.HashSet;
+import java.util.Map;
 
 public class LecturerTree extends JTree {
+    class LecturerWithNumber {
+        private Person lecturer;
+        private long number;
+
+        public LecturerWithNumber(Person lecturer) {
+            this.lecturer = lecturer;
+            this.number = getVideoNumber(lecturer);
+        }
+
+        @Override
+        public String toString() {
+            return String.format("%s (%d)", lecturer, number);
+        }
+    }
+
+    private long getVideoNumber(Person lecturer) {
+        HashSet<Account> accountSet = lecturer.getOrg().getPersonCatalog().getPersonAccountMap().get(lecturer);
+        return lecturer.getOrg().getEnterprise().getNetwork().getVideoCatalog().getVideoArrayList().stream()
+                .filter(video -> accountSet.contains(video.getUploaderAccount())).count();
+    }
 
     public LecturerTree(Account account) {
         super();
@@ -26,9 +49,11 @@ public class LecturerTree extends JTree {
             DefaultMutableTreeNode collegeNode = new DefaultMutableTreeNode(nodeName);
             universityVideosNode.add(collegeNode);
             CollegeLecturerRole role = college.getCollegeLecturerRole();
-            for (Object lecturer: college.getAccountCatalog().getAccountArrayList().stream().filter(a -> a.getRole().equals(role)).toArray()) {
-                collegeNode.add(new DefaultMutableTreeNode(lecturer));
-            }
+            for (Map.Entry<Person, HashSet<Account>> e: college.getPersonCatalog().getPersonAccountMap().entrySet()) {
+                if (e.getValue().stream().anyMatch(a -> a.getRole().equals(role))) {
+                    collegeNode.add(new DefaultMutableTreeNode(new LecturerWithNumber(e.getKey())));
+                }
+            }  // TODO: order by video number
         }
 
         DefaultMutableTreeNode ECOVideoNode = new DefaultMutableTreeNode("EC Videos");
