@@ -46,7 +46,7 @@ public class EcoSystemHelper {
         fakeCollege(nw, tags);
 
         // manual fake college CPS
-        UniverseCollegeOrganization coe = nw.getUniversity().getCollegeCatalog().newOrganization("CPS");
+        UniverseCollegeOrganization cps = nw.getUniversity().getCollegeCatalog().newOrganization("CPS");
 
         Person person;
         Account account;
@@ -57,9 +57,9 @@ public class EcoSystemHelper {
         } catch (Exception ignored) {
         }
 
-        person = coe.getPersonCatalog().newPerson("Bruce", "Qian");
+        person = cps.getPersonCatalog().newPerson("Bruce", "Qian");
         try {
-            account = coe.getAccountCatalog().newAccount("qls", "qls", coe.getCollegeLecturerRole(), person);
+            account = cps.getAccountCatalog().newAccount("qls", "qls", cps.getCollegeLecturerRole(), person);
             String[] urls = new String[]{
                     "https://www.youtube.com/embed/3XB3in9Xqy8",
                     "https://www.youtube.com/embed/3ifwR5feRQI",
@@ -87,13 +87,13 @@ public class EcoSystemHelper {
                 v.addTag(nw.getVideoTagCatalog().getOrNewTag("Java"));
                 v.setDescription(String.format("Java Swing Tutorial %02d", i + 1));
             }
-            coe.getAccountCatalog().newAccount("qlsa", "qlsa", coe.getUniversityDepartmentSupervisorRole(), person);
+            cps.getAccountCatalog().newAccount("qlsa", "qlsa", cps.getUniversityDepartmentSupervisorRole(), person);
         } catch (Exception ignored) {
         }
 
-        person = coe.getPersonCatalog().newPerson("Cathy", "Sun");
+        person = cps.getPersonCatalog().newPerson("Cathy", "Sun");
         try {
-            account = coe.getAccountCatalog().newAccount("sls", "sls", coe.getCollegeLecturerRole(), person);
+            account = cps.getAccountCatalog().newAccount("sls", "sls", cps.getCollegeLecturerRole(), person);
             for (int i = 1; i < 9; i++) {
                 Video v = nw.getVideoCatalog().newVideo(account);
                 v.setTitle(String.format("INFO5100-Lab%d", i));
@@ -120,8 +120,9 @@ public class EcoSystemHelper {
         } catch (Exception ignored) {
         }
 
+        person = cps.getPersonCatalog().newPerson("Bad", "Guy");
         try {
-            account = coe.getAccountCatalog().newAccount("sxm", "sxm", coe.getViewerRole(), person);
+            account = cps.getAccountCatalog().newAccount("bad", "bad", cps.getViewerRole(), person);
             account.setActive(false);
         } catch (Exception ignored) {
         }
