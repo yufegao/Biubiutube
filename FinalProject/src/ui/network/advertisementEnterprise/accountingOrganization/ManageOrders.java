@@ -5,6 +5,9 @@
  */
 package ui.network.advertisementEnterprise.accountingOrganization;
 
+import biz.account.Account;
+import ui.components.ParentUI;
+
 /**
  *
  * @author royn
@@ -14,8 +17,9 @@ public class ManageOrders extends javax.swing.JPanel {
     /**
      * Creates new form NewJPanel
      */
-    public ManageOrders() {
-        initComponents();
+
+    public ManageOrders(ParentUI parent, Account account) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

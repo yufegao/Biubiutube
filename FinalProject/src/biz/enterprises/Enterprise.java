@@ -5,6 +5,7 @@ import biz.nw.Network;
 public abstract class Enterprise {
     private Network network;
     private String name;
+    
 
     public Enterprise(String name, Network network) {
         this.network = network;
