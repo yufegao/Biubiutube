@@ -6,6 +6,7 @@
 package ui.network.university.college.viewer;
 
 import biz.account.Account;
+import biz.video.Video;
 import ui.components.ParentUI;
 
 import javax.swing.*;
@@ -13,6 +14,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
+import java.util.Arrays;
 
 /**
  *
@@ -22,8 +24,7 @@ public class HomePage extends JPanel {
     private ParentUI parent;
     private Account account;
     private JSplitPane splitPane;
-    private JScrollPane left;
-    private JPanel right;
+    private JPanel rightContainer;
     private LecturerTree tree;
     private TagList tagList;
 
@@ -39,21 +40,35 @@ public class HomePage extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         splitPane = new JSplitPane();
+        splitPane.setEnabled(false);
+        splitPane.setDividerLocation(200);
         add(splitPane);
-
-        right = new JPanel();
-
+        
         tree = new LecturerTree(account);
         tagList = new TagList(account);
         JTabbedPane tab = new JTabbedPane();
         tab.addTab("Lecturer Tree", tree);
         tab.addTab("Tag List", tagList);
-        left = new JScrollPane(tab);
-        splitPane.setLeftComponent(left);
-        splitPane.setDividerLocation(200);
+        JScrollPane leftScroll = new JScrollPane(tab);
+        leftScroll.setMaximumSize(new Dimension((int) leftScroll.getMaximumSize().getWidth(), 650));
+        splitPane.setLeftComponent(leftScroll);
 
         tree.addTreeSelectionListener(this::treeNodeSelected);
         tagList.addListSelectionListener(this::tagSelected);
+
+        rightContainer = new JPanel();
+        JScrollPane rightScroll = new JScrollPane(rightContainer);
+        rightContainer.setBackground(Color.gray);
+        rightContainer.setLayout(new BoxLayout(rightContainer, BoxLayout.Y_AXIS));
+        splitPane.setRightComponent(rightScroll);
+        populateVideoBoxes(Arrays.asList(new Video[] {null, null, null, null, null}));  // TODO
+    }
+    
+    private void populateVideoBoxes(Iterable<Video> videos) {
+        for (Video video : videos) {
+            rightContainer.add(new VideoBox(video));
+            rightContainer.add(Box.createRigidArea(new Dimension(0, 10)));
+        }
     }
 
     private void treeNodeSelected(TreeSelectionEvent e) {
