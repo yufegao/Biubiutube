@@ -7,8 +7,7 @@ package ui.network.university.college.Lecturer;
 
 import biz.account.Account;
 import biz.video.Video;
-import com.teamdev.jxbrowser.chromium.Browser;
-import com.teamdev.jxbrowser.chromium.swing.BrowserView;
+
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.logging.Level;
@@ -267,7 +266,7 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
         populateTable(account.getOrg()
                 .getEnterprise().getNetwork().getVideoCatalog()
                 .getVideoArrayList().stream()
-                .filter(v -> v.getUploader().equals(account)));
+                .filter(v -> v.getUploaderAccount().equals(account)));
     }
 
     @Override
