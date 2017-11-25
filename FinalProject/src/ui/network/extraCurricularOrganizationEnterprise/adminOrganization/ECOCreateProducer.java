@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.advertisementEnterprise.adminOrganization;
+package ui.network.extraCurricularOrganizationEnterprise.adminOrganization;
 
+import ui.network.advertisementEnterprise.adminOrganization.*;
 import biz.enterprises.AdCompanyEnterprise;
+import biz.enterprises.ECOEnterprise;
 import biz.enterprises.Enterprise;
 import biz.org.Organization;
 import biz.org.adc.AdvertiseProduceOrganization;
+import biz.org.eco.ECOVideoProducerOrganization;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import ui.components.HasTitle;
@@ -19,13 +22,13 @@ import ui.components.TablePopulatable;
  *
  * @author 79813
  */
-public class ADCreateProducer extends javax.swing.JPanel implements TablePopulatable<AdvertiseProduceOrganization>,HasTitle{
+public class ECOCreateProducer extends javax.swing.JPanel implements TablePopulatable<ECOVideoProducerOrganization>,HasTitle{
     private ParentUI parentUI;
-    private AdCompanyEnterprise enterprise;
+    private ECOEnterprise enterprise;
     /**
      * Creates new form ADCreateOrganization
      */
-    public ADCreateProducer(ParentUI parentUI,AdCompanyEnterprise enterprise) {
+    public ECOCreateProducer(ParentUI parentUI,ECOEnterprise enterprise) {
         initComponents();
         this.parentUI = parentUI;
         this.enterprise = enterprise;
@@ -118,7 +121,7 @@ public class ADCreateProducer extends javax.swing.JPanel implements TablePopulat
             JOptionPane.showMessageDialog(this, "Please input anything");
             return;
         }
-        enterprise.getaPCatalog().newOrganization(txtName.getText());
+        enterprise.getEcovpoc().newOrganization(txtName.getText());
         JOptionPane.showMessageDialog(this, "Creat successfully");
         populateTable();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -139,17 +142,17 @@ public class ADCreateProducer extends javax.swing.JPanel implements TablePopulat
     }
 
     @Override
-    public Object[] populateRow(AdvertiseProduceOrganization element) {
-        return new Object[]{element};
-    }
-
-    @Override
     public void populateTable() {
-        populateTable(enterprise.getaPCatalog().getOrganizations());
+        populateTable(enterprise.getEcovpoc().getOrganizations());
     }
 
     @Override
     public String getTitle() {
         return "create advertisementProducer panel";
+    }
+
+    @Override
+    public Object[] populateRow(ECOVideoProducerOrganization element) {
+        return new Object[]{element};
     }
 }
