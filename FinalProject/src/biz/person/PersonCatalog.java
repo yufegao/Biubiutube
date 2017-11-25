@@ -5,9 +5,11 @@
  */
 package biz.person;
 
+import biz.account.Account;
 import biz.org.Organization;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -16,6 +18,19 @@ import java.util.ArrayList;
 public class PersonCatalog {
     private Organization org;
     private ArrayList<Person> personList;
+    
+    public HashMap<Person, Integer> countAccount() {
+        HashMap<Person, Integer> map = new HashMap<>();
+        for (Person p: personList) {
+            map.put(p, 0);
+        }
+        for (Account account: org.getAccountCatalog().getAccountArrayList()) {
+            Person p = account.getPerson();
+            int oldNumer = map.get(p);
+            map.put(p, oldNumer + 1);
+        }
+        return map;
+    }
     
     public PersonCatalog(Organization org){
         this.org = org;
