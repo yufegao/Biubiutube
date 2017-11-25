@@ -16,6 +16,15 @@ public class AdCompanyEnterprise extends Enterprise {
     private AdvertiseProduceOrganizationCatalog aPCatalog;
     private AdvertiseSupervisorOrganization aSupervisor;
     private ArrayList<Organization> organizations;
+    private int enterpriseValue;
+
+    public int getEnterpriseValue() {
+        return enterpriseValue;
+    }
+
+    public void setEnterpriseValue(int enterpriseValue) {
+        this.enterpriseValue = enterpriseValue;
+    }
     public AdCompanyEnterprise(String name, Network network) {
         super(name, network);
         this.aPCatalog = new AdvertiseProduceOrganizationCatalog(this);
