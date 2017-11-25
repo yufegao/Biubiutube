@@ -34,8 +34,8 @@ public class SysAdminWorkAreaJP extends javax.swing.JPanel {
     private void initComponents() {
 
         btnManageNetwork = new javax.swing.JButton();
-        btnAdd = new javax.swing.JButton();
         btnManageAccount = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         btnManageNetwork.setText(" Manage Network");
         btnManageNetwork.addActionListener(new java.awt.event.ActionListener() {
@@ -44,17 +44,17 @@ public class SysAdminWorkAreaJP extends javax.swing.JPanel {
             }
         });
 
-        btnAdd.setText("Add Admin");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
-
         btnManageAccount.setText("Manage Account");
         btnManageAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageAccountActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Manage Person");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -66,20 +66,20 @@ public class SysAdminWorkAreaJP extends javax.swing.JPanel {
                 .addContainerGap(409, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnManageNetwork, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnManageAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnManageAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(436, 436, 436))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(216, 216, 216)
-                .addComponent(btnAdd)
-                .addGap(32, 32, 32)
+                .addGap(277, 277, 277)
                 .addComponent(btnManageNetwork)
                 .addGap(29, 29, 29)
                 .addComponent(btnManageAccount)
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(jButton1)
+                .addContainerGap(193, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -89,20 +89,19 @@ public class SysAdminWorkAreaJP extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnManageNetworkActionPerformed
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        
-        parentUI.pushComponent(new CreateAdmin(parentUI,account));
-    }//GEN-LAST:event_btnAddActionPerformed
-
     private void btnManageAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageAccountActionPerformed
         
         parentUI.pushComponent(new ManageAccounts(parentUI,account));
     }//GEN-LAST:event_btnManageAccountActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       parentUI.pushComponent(new ManagePerson(parentUI, account));
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnManageAccount;
     private javax.swing.JButton btnManageNetwork;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

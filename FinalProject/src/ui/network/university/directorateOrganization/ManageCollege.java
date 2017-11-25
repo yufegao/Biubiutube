@@ -3,19 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.university.college.directorate;
+package ui.network.university.directorateOrganization;
+
+import biz.account.Account;
+import ui.components.ParentUI;
 
 /**
  *
  * @author royn
  */
-public class NewJPanel extends javax.swing.JPanel {
+public class ManageCollege extends javax.swing.JPanel {
 
     /**
-     * Creates new form NewJPanel
+     * Creates new form ManageColleges
      */
-    public NewJPanel() {
-        initComponents();
+
+    ManageCollege(ParentUI parent, Account account) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -31,11 +35,11 @@ public class NewJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

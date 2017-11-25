@@ -5,6 +5,7 @@
  */
 package biz.person;
 
+import biz.EcoSystem;
 import biz.account.Account;
 import biz.org.Organization;
 

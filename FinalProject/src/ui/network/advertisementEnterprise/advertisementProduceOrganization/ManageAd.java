@@ -29,7 +29,7 @@ public class ManageAd extends javax.swing.JPanel implements HasTitle, TablePopul
         initComponents();
     }
 
-    ManageAd(ParentUI parent, Account account) {
+    public ManageAd(ParentUI parent, Account account) {
         this.parent = parent;
         this.account = account;
         initComponents();

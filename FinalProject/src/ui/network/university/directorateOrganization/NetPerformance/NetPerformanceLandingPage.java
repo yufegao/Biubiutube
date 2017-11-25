@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.nonprofitOrganizationEnterprise.adminDepartment;
+package ui.network.university.directorateOrganization.NetPerformance;
 
 import biz.account.Account;
 import ui.components.ParentUI;
@@ -12,16 +12,14 @@ import ui.components.ParentUI;
  *
  * @author royn
  */
-public class NPManageAccounts extends javax.swing.JPanel {
-    private ParentUI parentUI;
-    private Account account;
+public class NetPerformanceLandingPage extends javax.swing.JPanel {
+
     /**
-     * Creates new form NewJPanel
+     * Creates new form NetPerformanceLandingPage
      */
-    public NPManageAccounts(ParentUI parent, Account account) {
+
+    public NetPerformanceLandingPage(ParentUI parent, Account account) {
         initComponents();
-        this.account = account;
-        this.parentUI = parent;
     }
 
     /**
