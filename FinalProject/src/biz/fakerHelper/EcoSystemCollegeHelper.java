@@ -154,7 +154,7 @@ public class EcoSystemCollegeHelper {
         UniverseCollegeOrganization college;
 
         if (faker.random().nextInt(2) == 0) {  // 50% chance from same college
-            college = (UniverseCollegeOrganization) video.getUploader().getOrg();
+            college = (UniverseCollegeOrganization) video.getUploaderAccount().getOrg();
         } else {  // 50% chance random
             ArrayList<UniverseCollegeOrganization> collegeArrayList = nw.getUniversity().getCollegeCatalog().getOrganizations();
             college = collegeArrayList.get(faker.random().nextInt(collegeArrayList.size()));

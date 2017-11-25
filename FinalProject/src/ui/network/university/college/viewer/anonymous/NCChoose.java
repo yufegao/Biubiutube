@@ -10,7 +10,6 @@ import biz.nw.Network;
 
 import javax.swing.JTable;
 
-import biz.org.eco.ECOVideoProducerOrganization;
 import biz.org.unv.UniverseCollegeOrganization;
 
 import javax.swing.table.DefaultTableModel;
@@ -157,7 +156,7 @@ public class NCChoose extends javax.swing.JPanel implements HasTitle, TablePopul
             Object[] row = new Object[]{
                     org,
                     network.getVideoCatalog().getVideoArrayList().stream().filter(
-                            v -> v.getUploader().getOrg().equals(org)
+                            v -> v.getUploaderAccount().getOrg().equals(org)
                     ).count(),
                     org.getAccountCatalog().getAccountArrayList().stream().filter(
                             a -> a.getRole() instanceof CollegeLecturerRole

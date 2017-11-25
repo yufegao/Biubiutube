@@ -3,47 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.university.college.Lecturer;
+package ui.network.advertisementEnterprise.advertisementProduceOrganization;
 
 import biz.account.Account;
-import biz.video.Video;
-
-import java.awt.image.BufferedImage;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
+import biz.ad.Ad;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import javax.swing.JTable;
-
 import ui.components.BiubiuBrowser;
 import ui.components.HasTitle;
-
 import ui.components.ParentUI;
 import ui.components.TablePopulatable;
-import ui.network.university.college.departmentSupervisor.CensorVideos;
 
 /**
+ *
  * @author royn
  */
-public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<Video>, HasTitle {
+public class ManageAd extends javax.swing.JPanel implements HasTitle, TablePopulatable<Ad>{
     private ParentUI parent;
-    private Account account;
-
+    private Account account;    
     /**
-     * Creates new form NewJPanel
+     * Creates new form ManageAccount
      */
-    public ManageVideo(ParentUI parent, Account account) {
+    public ManageAd() {
+        initComponents();
+    }
+
+    ManageAd(ParentUI parent, Account account) {
         this.parent = parent;
         this.account = account;
         initComponents();
         txtDescription.setEnabled(false);
         populateTable();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,23 +52,21 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
         btnAdd = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnDetail = new javax.swing.JButton();
-        jpPic = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
 
         tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title", "Ad Type", "Status", "View Count", "Comment Count", "Vote Count", "Prime Only"
+                "Title", "Status", "Created at"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -119,58 +110,49 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
             }
         });
 
-        jpPic.setBackground(new java.awt.Color(255, 255, 255));
-        jpPic.setLayout(new javax.swing.BoxLayout(jpPic, javax.swing.BoxLayout.LINE_AXIS));
-
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        jLabel1.setText("Selected Description");
-
-        jLabel2.setText("Selected Picture");
 
         txtDescription.setColumns(20);
         txtDescription.setRows(5);
         jScrollPane2.setViewportView(txtDescription);
+
+        jLabel1.setText("Selected Description");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+                .addGap(703, 703, 703)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDetail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jpPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                            .addComponent(btnDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(304, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpPic, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,53 +160,49 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
                         .addComponent(btnDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1)
+                    .addContainerGap()))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tblMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMouseReleased
+        Ad ad = getSelected();
+        if (ad == null) {
+            return;
+        }
+
+        txtDescription.setText(ad.getDescription());
+        validate();
+    }//GEN-LAST:event_tblMouseReleased
+
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        parent.pushComponent(new AddOrEditVideo(account));
+        parent.pushComponent(new AddOrEditAd(account));
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        Video selected = getSelected();
+        Ad selected = getSelected();
         if (selected == null) {
             return;
         }
-        parent.pushComponent(new AddOrEditVideo(selected, account));
+        parent.pushComponent(new AddOrEditAd(selected, account));
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
-        Video selected = getSelected();
+        Ad selected = getSelected();
         if (selected == null) {
             return;
         }
         JPanel jp = new JPanel();
         jp.setLayout(new BoxLayout(jp, BoxLayout.LINE_AXIS));
         jp.setSize(1000, 700);
-                
+
         jp.add(BiubiuBrowser.getInstance().view);
         BiubiuBrowser.getInstance().browser.loadURL(selected.getUrl());
         parent.pushComponent(jp);
     }//GEN-LAST:event_btnDetailActionPerformed
-
-    private void tblMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMouseReleased
-        Video video = getSelected();
-        if (video == null) {
-            return;
-        }
-        
-        try {
-            URL url = new URL(video.getPicPath());
-            BufferedImage image = ImageIO.read(url);
-            jpPic.removeAll();
-            jpPic.add(new JLabel(new ImageIcon(image)));
-        } catch (Exception ex) {
-            Logger.getLogger(CensorVideos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        txtDescription.setText(video.getDescription());
-        validate();
-
-    }//GEN-LAST:event_tblMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -232,14 +210,17 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
     private javax.swing.JButton btnDetail;
     private javax.swing.JButton btnEdit;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JPanel jpPic;
     private javax.swing.JTable tbl;
     private javax.swing.JTextArea txtDescription;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String getTitle() {
+        return String.format("%s's advertisements", account);
+    }
 
     @Override
     public JTable getTable() {
@@ -247,30 +228,20 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
     }
 
     @Override
-    public Object[] populateRow(Video v) {
+    public Object[] populateRow(Ad e) {
         return new Object[]{
-                v,
-                v.getAdType(),
-                v.getStatus(),
-                v.getViewHistoryCatalog().getViewHistoryArrayList().size(),
-                v.getCommentCatalog().getCommentArrayList().size(),
-                v.getVoteCatalog().getVoteArrayList().size(),
-                v.isPrimeOnly()
+            e,
+            e.getStatus(),
+            e.getCreatedAt()
         };
     }
 
     @Override
     public void populateTable() {
-        jpPic.removeAll();
         txtDescription.setText("");
         populateTable(account.getOrg()
-                .getEnterprise().getNetwork().getVideoCatalog()
-                .getVideoArrayList().stream()
-                .filter(v -> v.getUploaderAccount().equals(account)));
-    }
-
-    @Override
-    public String getTitle() {
-        return String.format("%s's videos", account);
+                .getEnterprise().getNetwork().getAdCatalog()
+                .getAdArrayList().stream()
+                .filter(v -> v.getProducer().equals(account)));
     }
 }

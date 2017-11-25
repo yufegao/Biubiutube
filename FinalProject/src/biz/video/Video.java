@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 public class Video {
     private Calendar createdAt;
-    private Account uploader;
+    private Account uploaderAccount;
     private VideoAdType adType;
     private VideoStatus status;
     private VoteCatalog voteCatalog;
@@ -81,8 +81,8 @@ public class Video {
         return adType;
     }
 
-    public Account getUploader() {
-        return uploader;
+    public Account getUploaderAccount() {
+        return uploaderAccount;
     }
 
     public void setAdType(VideoAdType adType) {
@@ -166,8 +166,8 @@ public class Video {
         return createdAt;
     }
 
-    Video(Account uploader) {
-        this.uploader = uploader;
+    Video(Account uploaderAccount) {
+        this.uploaderAccount = uploaderAccount;
         this.voteCatalog = new VoteCatalog(this);
         this.commentCatalog = new CommentCatalog(this);
         this.viewHistoryCatalog = new ViewHistoryCatalog(this);
