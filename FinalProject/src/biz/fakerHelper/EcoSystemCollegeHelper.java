@@ -75,7 +75,11 @@ public class EcoSystemCollegeHelper {
 
     private static Video fakeVideo(Network nw, Account account, HashSet<VideoTag> tags) {
         Video v = nw.getVideoCatalog().newVideo(account);
-        v.setDescription(faker.shakespeare().hamletQuote());
+        String desc = "";
+        for (int i = 0; i < 5; i++) {
+            desc += faker.shakespeare().hamletQuote() + "\n";
+        }
+        v.setDescription(desc);
         v.setPicPath(picPaths[faker.random().nextInt(picPaths.length)]);
         v.setUrl(videoURLs[faker.random().nextInt(videoURLs.length)]);
 
