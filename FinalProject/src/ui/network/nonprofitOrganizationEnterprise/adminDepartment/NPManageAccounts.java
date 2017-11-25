@@ -5,17 +5,23 @@
  */
 package ui.network.nonprofitOrganizationEnterprise.adminDepartment;
 
+import biz.account.Account;
+import ui.components.ParentUI;
+
 /**
  *
  * @author royn
  */
 public class NPManageAccounts extends javax.swing.JPanel {
-
+    private ParentUI parentUI;
+    private Account account;
     /**
      * Creates new form NewJPanel
      */
-    public NPManageAccounts() {
+    public NPManageAccounts(ParentUI parent, Account account) {
         initComponents();
+        this.account = account;
+        this.parentUI = parent;
     }
 
     /**
