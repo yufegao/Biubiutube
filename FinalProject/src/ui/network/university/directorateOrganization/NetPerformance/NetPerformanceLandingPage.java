@@ -3,22 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.university.directorateOrganization;
-
-import biz.account.Account;
-import ui.components.ParentUI;
+package ui.network.university.directorateOrganization.NetPerformance;
 
 /**
  *
  * @author royn
  */
-public class ManageEnterprises extends javax.swing.JPanel {
+public class NetPerformanceLandingPage extends javax.swing.JPanel {
 
     /**
-     * Creates new form ManageEnterprises
+     * Creates new form NetPerformanceLandingPage
      */
-
-    public ManageEnterprises(ParentUI parent, Account account) {
+    public NetPerformanceLandingPage() {
         initComponents();
     }
 

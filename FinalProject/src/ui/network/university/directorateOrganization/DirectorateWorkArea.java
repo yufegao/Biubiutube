@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import ui.components.GeneralWorkArea;
 import ui.components.ParentUI;
+import ui.network.university.directorateOrganization.NetPerformance.NetPerformanceLandingPage;
 
 /**
  *
@@ -25,15 +26,23 @@ public class DirectorateWorkArea extends GeneralWorkArea{
     protected ArrayList<JButton> getButtons() {
         ArrayList<JButton> buttons = new ArrayList<>();
         
-        JButton button = new JButton(String.format("Censor Video Uploaded in %s", account.getOrg()));
-        button.addActionListener(e -> parent.pushComponent(new ManageEnterprises(parent, account)));
-        buttons.add(button);
+        JButton button1 = new JButton(String.format("Manage Enterprises in %s", account.getOrg().getEnterprise().getNetwork()));
+        button1.addActionListener(e -> parent.pushComponent(new ManageEnterprise(parent, account)));
+        buttons.add(button1);
+        
+        JButton button2 = new JButton(String.format("Manage Colleges in %s", account.getOrg().getEnterprise().getNetwork()));
+        button2.addActionListener(e -> parent.pushComponent(new ManageCollege(parent, account)));
+        buttons.add(button2);
+        
+        JButton button3 = new JButton(String.format("Manage Performance of %s", account.getOrg().getEnterprise().getNetwork()));
+        button3.addActionListener(e -> parent.pushComponent(new NetPerformanceLandingPage(parent, account)));
+        buttons.add(button3);
         
         return buttons;
     }
 
     @Override
     public String getTitle() {
-        return String.format("%s Video List", account.getOrg());
+        return String.format("Manage Educational Platform of %s", account.getOrg().getEnterprise().getNetwork());
     }
 }
