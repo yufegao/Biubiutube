@@ -14,7 +14,11 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.stream.Stream;
 
 /**
  *
@@ -43,7 +47,7 @@ public class HomePage extends JPanel {
         splitPane.setEnabled(false);
         splitPane.setDividerLocation(200);
         add(splitPane);
-        
+
         tree = new LecturerTree(account);
         tagList = new TagList(account);
         JTabbedPane tab = new JTabbedPane();
@@ -61,14 +65,18 @@ public class HomePage extends JPanel {
         rightContainer.setBackground(Color.gray);
         rightContainer.setLayout(new BoxLayout(rightContainer, BoxLayout.Y_AXIS));
         splitPane.setRightComponent(rightScroll);
-        populateVideoBoxes(Arrays.asList(new Video[] {null, null, null, null, null}));  // TODO
+
+        Stream<Video> videoStream = account.getOrg().getEnterprise().getNetwork().getVideoCatalog().getVideoArrayList().stream()
+                .sorted(Comparator.comparingInt((Video v) -> v.getVoteCatalog().getVoteArrayList().size()).reversed()).limit(10);
+
+        populateVideoBoxes(videoStream);
     }
-    
-    private void populateVideoBoxes(Iterable<Video> videos) {
-        for (Video video : videos) {
-            rightContainer.add(new VideoBox(video));
+
+    private void populateVideoBoxes(Stream<Video> videos) {
+        videos.forEach(video -> {
+            rightContainer.add(new VideoBox(parent, video, account));
             rightContainer.add(Box.createRigidArea(new Dimension(0, 10)));
-        }
+        });
     }
 
     private void treeNodeSelected(TreeSelectionEvent e) {
