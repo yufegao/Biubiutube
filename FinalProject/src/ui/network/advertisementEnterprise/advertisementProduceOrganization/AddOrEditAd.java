@@ -5,16 +5,24 @@
  */
 package ui.network.advertisementEnterprise.advertisementProduceOrganization;
 
+import biz.account.Account;
+import biz.ad.Ad;
+
 /**
  *
  * @author royn
  */
-public class NewJPanel extends javax.swing.JPanel {
+public class AddOrEditAd extends javax.swing.JPanel {
 
     /**
-     * Creates new form NewJPanel
+     * Creates new form AddOrEditAd
      */
-    public NewJPanel() {
+
+    AddOrEditAd(Account account) {
+        initComponents();
+    }
+
+    AddOrEditAd(Ad selected, Account account) {
         initComponents();
     }
 
