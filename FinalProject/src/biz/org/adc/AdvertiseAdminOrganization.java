@@ -18,43 +18,21 @@ import java.util.ArrayList;
  * @author 79813
  */
 public class AdvertiseAdminOrganization extends Organization {
-    private AdvertisementProducerRole producer;
-    private ADCompanySupervisorRole supervisor;
     private AdvertisingAdminRole admin;
-    private ArrayList<Role> roles;
     
     public AdvertiseAdminOrganization(String name, Enterprise enterprise) {
         super(name, enterprise);
-        producer = new AdvertisementProducerRole();
-        supervisor = new ADCompanySupervisorRole();
-        admin = new AdvertisingAdminRole();
-        roles = new ArrayList<>();
-        
-        
-        roles.add(admin);
-        roles.add(supervisor);
-        roles.add(producer);
-        
-        
-        
+        this.admin = new AdvertisingAdminRole();  
     }
 
-    public AdvertisementProducerRole getProducer() {
-        return producer;
-    }
-
-    public ADCompanySupervisorRole getSupervisor() {
-        return supervisor;
-    }
-
-    public AdvertisingAdminRole getAdmin() {
+    public AdvertisingAdminRole getAdAdminRole() {
         return admin;
     }
-    
-    
 
     @Override
     public ArrayList<Role> getSupportedRoles() {
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(admin);
         return roles;
     }
     

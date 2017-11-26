@@ -41,21 +41,33 @@ public class EcoSystemAdEnterpriseHelper {
 
         Person p = null;
         Account a = null;
-
-        // 1. supervisor
+        
+        // 1.producer
         num = faker.random().nextInt(3) + 1; // 1 ~ 4 supervisor
         for (int i = 0; i < num; i++) {
             p = fakePerson(adcompany.getaSupervisor().getPersonCatalog());
-            fakeAccount(adcompany.getaSupervisor().getAccountCatalog(), p, adcompany.getaSupervisor().getAdCompanySupervisorRole());
+            a = fakeAccount(adcompany.getaSupervisor().getAccountCatalog(), p, adcompany);  
         }
-        // 2. admin
-        Person admin = adcompany.getaAdmin().getPersonCatalog().newPerson("Manager", "Wang");
-        try {
-            Account adminaccount = adcompany.getaAdmin().getAccountCatalog().newAccount("adadmin", "adadmin", adcompany.getaAdmin().getAdmin(), admin);
-            
-        } catch (Exception ex) {
-            Logger.getLogger(EcoSystemAdEnterpriseHelper.class.getName()).log(Level.SEVERE, null, ex);
+        System.out.println(String.format("last ad supervisor account username: %s", a.getUsername()));
+
+        // 2. supervisor
+        num = faker.random().nextInt(3) + 1; // 1 ~ 4 supervisor
+        for (int i = 0; i < num; i++) {
+            p = fakePerson(adcompany.getaSupervisor().getPersonCatalog());
+            a = fakeAccount(adcompany.getaSupervisor().getAccountCatalog(), p, adcompany.getaSupervisor().getAdCompanySupervisorRole());  
         }
+        System.out.println(String.format("last ad supervisor account username: %s", a.getUsername()));
+        
+        // 3. admin
+        num = faker.random().nextInt(3) + 1; // 1 ~ 4 supervisor
+        for (int i = 0; i < num; i++) {
+            p = fakePerson(adcompany.getaSupervisor().getPersonCatalog());
+            a = fakeAccount(adcompany.getaSupervisor().getAccountCatalog(), p, adcompany.getaSupervisor().getAdCompanySupervisorRole());  
+        }
+        System.out.println(String.format("last ad admin account username: %s", a.getUsername()));
+        
         return adcompany;
     }
+    
+    
 }
