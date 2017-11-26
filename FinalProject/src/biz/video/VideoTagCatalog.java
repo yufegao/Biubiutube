@@ -3,6 +3,7 @@ package biz.video;
 import biz.nw.Network;
 
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 public class VideoTagCatalog {
     private Network network;
@@ -29,12 +30,23 @@ public class VideoTagCatalog {
 
     public HashMap<VideoTag, Integer> countVideoByTag() {
         HashMap<VideoTag, Integer> map = new HashMap<>();
-        for (Video video: network.getVideoCatalog().getVideoArrayList()) {
-            for (VideoTag tag: video.getTagHashSet()) {
-                int num = map.getOrDefault(tag, 0);
-                map.put(tag, num + 1);
-            }
-        }
+        network.getVideoCatalog().getVideoArrayList()
+                .forEach(video -> video.getTagHashSet().forEach(tag -> {
+                    int num = map.getOrDefault(tag, 0);
+                    map.put(tag, num + 1);
+                }));
+        return map;
+    }
+
+    public HashMap<VideoTag, Integer> countCanViewVideoByTag() {
+        HashMap<VideoTag, Integer> map = new HashMap<>();
+        network.getVideoCatalog().getVideoArrayList()
+                .stream()
+                .filter(Video::canView)
+                .forEach(video -> video.getTagHashSet().forEach(tag -> {
+                    int num = map.getOrDefault(tag, 0);
+                    map.put(tag, num + 1);
+                }));
         return map;
     }
 }

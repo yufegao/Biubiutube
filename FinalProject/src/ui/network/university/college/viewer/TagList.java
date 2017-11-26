@@ -35,7 +35,7 @@ public class TagList extends JList<TagList.TagWithNumber> {
         super();
         setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         Network network = account.getOrg().getEnterprise().getNetwork();
-        HashMap<VideoTag, Integer> map = network.getVideoTagCatalog().countVideoByTag();
+        HashMap<VideoTag, Integer> map = network.getVideoTagCatalog().countCanViewVideoByTag();
         TagWithNumber[] tagArr = map.entrySet().stream().map(e -> new TagWithNumber(e.getKey(), e.getValue())).toArray(TagWithNumber[]::new);
         List<TagWithNumber> tagList =  Arrays.asList(tagArr);
         tagList.sort(Comparator.comparingInt(TagWithNumber::getNumber).reversed());
