@@ -1,9 +1,11 @@
 package biz.enterprises;
 
 import biz.nw.Network;
+import biz.org.Organization;
 import biz.org.npo.NPOOrganizationCatalog;
 import biz.org.npo.NonProAdminOrganization;
 import biz.org.npo.NonProSupervisorOrganization;
+import java.util.ArrayList;
 
 public class NPOEnterprise extends Enterprise {
 
@@ -17,6 +19,15 @@ public class NPOEnterprise extends Enterprise {
         this.nposo = new NonProSupervisorOrganization(name + "NonProSupervisorOrganization", this);
         this.npoa = new NonProAdminOrganization(name + "NonProAdminOrganization", this);
     }
+    
+    @Override
+    ArrayList<Organization> getOrganizationArrayList() {
+        ArrayList<Organization> organizationArrayList = new ArrayList<>();
+        organizationArrayList.addAll(npooc.getOrganizations());
+        organizationArrayList.add(npoa);
+        organizationArrayList.add(nposo);
+        return organizationArrayList;
+    }
 
     public NonProAdminOrganization getNpoa() {
         return npoa;
@@ -29,5 +40,6 @@ public class NPOEnterprise extends Enterprise {
     public NonProSupervisorOrganization getNposo() {
         return nposo;
     }
+
     
 }

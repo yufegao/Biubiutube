@@ -17,7 +17,7 @@ public class UniversityEnterprise extends Enterprise {
     public UniversityEnterprise(String name, Network network) {
         super(name, network);
         this.collegeCatalog = new UniverseCollegeOrganizationCatalog(this);
-
+//sole organizations
         this.supervisorOrganization = new UniverseSupervisorOrganization(name + " Supervisor Department", this);
         this.directorateOrganization = new UniverseDirectorateOrganization(name + " Board", this);
         this.salesDepartmentOrganization = new UniverseSalesDepartmentOrganization(name + " Sales", this);
