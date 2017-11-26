@@ -33,7 +33,7 @@ public class ECOEnterprise extends Enterprise {
     }
 
     @Override
-    ArrayList<Organization> getOrganizationArrayList() {
+    public ArrayList<Organization> getOrganizationArrayList() {
        ArrayList<Organization> organizationArrayList = new ArrayList<>();
         organizationArrayList.addAll(ecovpoc.getOrganizations());
         organizationArrayList.add(ecoso);

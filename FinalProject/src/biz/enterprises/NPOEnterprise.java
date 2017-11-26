@@ -21,7 +21,7 @@ public class NPOEnterprise extends Enterprise {
     }
     
     @Override
-    ArrayList<Organization> getOrganizationArrayList() {
+    public ArrayList<Organization> getOrganizationArrayList() {
         ArrayList<Organization> organizationArrayList = new ArrayList<>();
         organizationArrayList.addAll(npooc.getOrganizations());
         organizationArrayList.add(npoa);

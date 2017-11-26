@@ -27,7 +27,7 @@ public class UniversityEnterprise extends Enterprise {
     }
 
     @Override
-    ArrayList<Organization> getOrganizationArrayList() {
+    public ArrayList<Organization> getOrganizationArrayList() {
         ArrayList<Organization> organizationArrayList = new ArrayList<>();
         organizationArrayList.addAll(collegeCatalog.getOrganizations());
         organizationArrayList.add(supervisorOrganization);

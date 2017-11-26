@@ -27,7 +27,7 @@ public abstract class Enterprise {
         this.name = name;
     }
 
-    abstract ArrayList<Organization> getOrganizationArrayList();
+    public abstract ArrayList<Organization> getOrganizationArrayList();
 
     @Override
     public String toString() {

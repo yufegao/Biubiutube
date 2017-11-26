@@ -66,7 +66,7 @@ public class EcoSystemAdEnterpriseHelper {
         Person p = null;
         Account a = null;
         
-        num = faker.random().nextInt(5) + 1;  // 1 ~ 6 producer org
+        num = faker.random().nextInt(2) + 1;  // 1 ~ 3 producer org
         for (int i = 0; i < num; i++) {
             fakeProduceOrganization(adcompany);
         }
