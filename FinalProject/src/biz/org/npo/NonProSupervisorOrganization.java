@@ -8,22 +8,26 @@ package biz.org.npo;
 import biz.enterprises.Enterprise;
 import biz.org.Organization;
 import biz.role.Role;
+import biz.role.supervisorRole.NoneProSupervisorRole;
 import java.util.ArrayList;
 
-/**
- *
- * @author 79813
- */
 public class NonProSupervisorOrganization extends Organization {
-
+    private NoneProSupervisorRole nonProSupervisorRole;
 
     public NonProSupervisorOrganization(String name, Enterprise enterprise) {
         super(name, enterprise);
+        this.nonProSupervisorRole = new NoneProSupervisorRole();
     }
 
-    @Override
-    public ArrayList<Role> getSupportedRoles() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public NoneProSupervisorRole getNonProSupervisorRole() {
+        return nonProSupervisorRole;
     }
     
+    @Override
+    public ArrayList<Role> getSupportedRoles() {
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(nonProSupervisorRole);
+        return roles;
+    }
+
 }

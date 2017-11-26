@@ -18,11 +18,12 @@ import java.util.ArrayList;
  * @author 79813
  */
 public class AdvertiseAdminOrganization extends Organization {
+
     private AdvertiseAdminRole admin;
-    
+
     public AdvertiseAdminOrganization(String name, Enterprise enterprise) {
         super(name, enterprise);
-        this.admin = new AdvertiseAdminRole();  
+        this.admin = new AdvertiseAdminRole();
     }
 
     public AdvertiseAdminRole getAdAdminRole() {
@@ -35,5 +36,5 @@ public class AdvertiseAdminOrganization extends Organization {
         roles.add(admin);
         return roles;
     }
-    
+
 }

@@ -16,14 +16,14 @@ import java.util.ArrayList;
  * @author 79813
  */
 public class AdvertiseAccountingOrganization extends Organization {
+
     private AdvertiseAccountingRole advertiseAccountingRole;
 
-    
     public AdvertiseAccountingOrganization(String name, Enterprise enterprise) {
-       super(name,enterprise);
-       this.advertiseAccountingRole = new AdvertiseAccountingRole();
+        super(name, enterprise);
+        this.advertiseAccountingRole = new AdvertiseAccountingRole();
     }
-    
+
     public AdvertiseAccountingRole getAdvertiseAccountingRole() {
         return advertiseAccountingRole;
     }
@@ -34,5 +34,5 @@ public class AdvertiseAccountingOrganization extends Organization {
         roles.add(advertiseAccountingRole);
         return roles;
     }
-    
+
 }

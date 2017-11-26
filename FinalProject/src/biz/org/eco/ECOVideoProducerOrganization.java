@@ -8,22 +8,27 @@ package biz.org.eco;
 import biz.enterprises.Enterprise;
 import biz.org.Organization;
 import biz.role.Role;
+import biz.role.producerRole.ECOLecturerRole;
 import java.util.ArrayList;
 
-/**
- *
- * @author 79813
- */
 public class ECOVideoProducerOrganization extends Organization {
 
+    private ECOLecturerRole ecoLecturerRole;
 
     public ECOVideoProducerOrganization(String name, Enterprise enterprise) {
         super(name, enterprise);
+        this.ecoLecturerRole = new ECOLecturerRole();
+    }
+
+    public ECOLecturerRole getEcoLecturerRole() {
+        return ecoLecturerRole;
     }
 
     @Override
     public ArrayList<Role> getSupportedRoles() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(ecoLecturerRole);
+        return roles;
     }
-    
+
 }

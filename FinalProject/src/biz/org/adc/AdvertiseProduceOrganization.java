@@ -12,6 +12,7 @@ import biz.role.producerRole.AdvertisementProducerRole;
 import java.util.ArrayList;
 
 public class AdvertiseProduceOrganization extends Organization {
+
     private AdvertisementProducerRole adProducerRole;
 
     public AdvertisementProducerRole getAdProducerRole() {
@@ -29,5 +30,5 @@ public class AdvertiseProduceOrganization extends Organization {
         roles.add(adProducerRole);
         return roles;
     }
-    
+
 }

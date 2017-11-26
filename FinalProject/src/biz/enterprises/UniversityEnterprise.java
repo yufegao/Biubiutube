@@ -10,7 +10,7 @@ public class UniversityEnterprise extends Enterprise {
     private UniverseCollegeOrganizationCatalog collegeCatalog;
     private UniverseSupervisorOrganization supervisorOrganization;
     private UniverseDirectorateOrganization directorateOrganization;
-    private UniverseSalesDepartmentOrganization salesDepartmentOrganization;
+    private UniverseSalesOrganization salesDepartmentOrganization;
     private UniverseAdminOrganization adminOrganization;
     private UniverseAccountingOrganization accountingOrganization;
 
@@ -20,7 +20,7 @@ public class UniversityEnterprise extends Enterprise {
         //sole organizations
         this.supervisorOrganization = new UniverseSupervisorOrganization(name + " Supervisor Department", this);
         this.directorateOrganization = new UniverseDirectorateOrganization(name + " Board", this);
-        this.salesDepartmentOrganization = new UniverseSalesDepartmentOrganization(name + " Sales", this);
+        this.salesDepartmentOrganization = new UniverseSalesOrganization(name + " Sales", this);
         this.adminOrganization = new UniverseAdminOrganization(name + " Admin Organization", this);
         this.accountingOrganization = new UniverseAccountingOrganization(name + " Accounting Organization", this);
     }
@@ -51,7 +51,7 @@ public class UniversityEnterprise extends Enterprise {
         return adminOrganization;
     }
 
-    public UniverseSalesDepartmentOrganization getSalesDepartmentOrganization() {
+    public UniverseSalesOrganization getSalesDepartmentOrganization() {
 
         return salesDepartmentOrganization;
     }
