@@ -17,10 +17,15 @@ import static biz.fakerHelper.EcoSystemCommonHelper.fakePerson;
 public class EcoSystemCollegeHelper {
     private static Faker faker = new Faker();
     private static String[] videoURLs = new String[]{ // TODO: more video URL
-            "https://www.youtube.com/embed/RqvCNb7fKsg"
+            "https://www.youtube.com/embed/RqvCNb7fKsg",
+        
+        //Java Class
+            "https://www.youtube.com/embed/ZpBtDTCgalw",
+            
     };
     private static String[] picPaths = new String[]{ // TODO: more pic path
-            "https://i.imgur.com/ijtKGes.png"
+            "https://i.imgur.com/ijtKGes.png",
+            
     };
 
     public static UniverseCollegeOrganization fakeCollege(Network nw, HashSet<VideoTag> tags) {
