@@ -39,7 +39,7 @@ public class UniversityAdminWorkArea extends GeneralWorkArea{
 
     @Override
     public String getTitle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return String.format("Admin Person and Account of %s", account.getOrg().getEnterprise());
     }
     
 }

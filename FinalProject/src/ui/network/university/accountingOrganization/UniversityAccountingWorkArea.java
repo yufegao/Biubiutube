@@ -28,7 +28,7 @@ public class UniversityAccountingWorkArea extends GeneralWorkArea{
 
     @Override
     public String getTitle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return String.format("%s Accounting Summary", account.getOrg().getEnterprise().getNetwork());
     }
     
 }
