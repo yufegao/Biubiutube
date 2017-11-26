@@ -46,7 +46,7 @@ public class EcoSystemAdEnterpriseHelper {
         num = faker.random().nextInt(3) + 1; // 1 ~ 4 supervisor
         for (int i = 0; i < num; i++) {
             p = fakePerson(adcompany.getaSupervisor().getPersonCatalog());
-            a = fakeAccount(adcompany.getaSupervisor().getAccountCatalog(), p, adcompany);  
+            a = fakeAccount(adcompany.getaSupervisor().getAccountCatalog(), p,);  
         }
         System.out.println(String.format("last ad supervisor account username: %s", a.getUsername()));
 
