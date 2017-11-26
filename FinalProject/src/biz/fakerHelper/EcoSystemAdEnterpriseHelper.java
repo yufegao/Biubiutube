@@ -10,6 +10,9 @@ import biz.enterprises.AdCompanyEnterprise;
 import static biz.fakerHelper.EcoSystemCommonHelper.fakeAccount;
 import static biz.fakerHelper.EcoSystemCommonHelper.fakePerson;
 import biz.nw.Network;
+import biz.org.Organization;
+import biz.org.adc.AdvertiseAdminOrganization;
+import biz.org.adc.AdvertiseProduceOrganization;
 import biz.person.Person;
 import com.github.javafaker.Faker;
 import java.util.logging.Level;
@@ -30,6 +33,27 @@ public class EcoSystemAdEnterpriseHelper {
         "https://i.imgur.com/ijtKGes.png"
     };
 
+    private static AdvertiseProduceOrganization fakeProduceOrganization(AdCompanyEnterprise enterprise) {
+        AdvertiseProduceOrganization org =  enterprise.getaPCatalog().newOrganization("Random Name");
+        // 1.producer
+        Person p = null;
+        Account a = null;
+        
+        int num = faker.random().nextInt(3) + 1; // 1 ~ 4 producer
+        for (int i = 0; i < num; i++) {
+            p = fakePerson(org.getPersonCatalog());
+            a = fakeAccount(org.getAccountCatalog(), p, ((AdvertiseProduceOrganization) org).getAdProducerRole());  
+        }
+        System.out.println(String.format("last ad supervisor account username: %s", a.getUsername()));
+
+
+        // 2. ad
+        
+
+
+        return org;
+    }
+    
     public static AdCompanyEnterprise fakeAdEnterprise(Network nw) {
         String s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String companyName = "C";
@@ -42,14 +66,11 @@ public class EcoSystemAdEnterpriseHelper {
         Person p = null;
         Account a = null;
         
-        // 1.producer
-        num = faker.random().nextInt(3) + 1; // 1 ~ 4 supervisor
+        num = faker.random().nextInt(5) + 1;  // 1 ~ 6 producer org
         for (int i = 0; i < num; i++) {
-            p = fakePerson(adcompany.getaSupervisor().getPersonCatalog());
-            a = fakeAccount(adcompany.getaSupervisor().getAccountCatalog(), p,);  
+            fakeProduceOrganization(adcompany);
         }
-        System.out.println(String.format("last ad supervisor account username: %s", a.getUsername()));
-
+        
         // 2. supervisor
         num = faker.random().nextInt(3) + 1; // 1 ~ 4 supervisor
         for (int i = 0; i < num; i++) {

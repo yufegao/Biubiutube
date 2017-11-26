@@ -5,16 +5,20 @@
  */
 package ui.network.university.adminOrganization;
 
+import biz.account.Account;
+import ui.components.ParentUI;
+
 /**
  *
  * @author royn
  */
-public class UniversityWorkArea extends javax.swing.JPanel {
+public class ManageAccount extends javax.swing.JPanel {
 
     /**
-     * Creates new form NewJPanel
+     * Creates new form ManageAccount
      */
-    public UniversityWorkArea() {
+
+    ManageAccount(ParentUI parent, Account account) {
         initComponents();
     }
 
@@ -31,11 +35,11 @@ public class UniversityWorkArea extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 630, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

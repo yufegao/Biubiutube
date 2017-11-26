@@ -7,6 +7,7 @@ import biz.org.unv.*;
 import java.util.ArrayList;
 
 public class UniversityEnterprise extends Enterprise {
+
     private UniverseCollegeOrganizationCatalog collegeCatalog;
     private UniverseSupervisorOrganization supervisorOrganization;
     private UniverseDirectorateOrganization directorateOrganization;
@@ -37,7 +38,6 @@ public class UniversityEnterprise extends Enterprise {
         return organizationArrayList;
     }
 
-
     public UniverseSupervisorOrganization getSupervisorOrganization() {
         return supervisorOrganization;
     }
@@ -47,17 +47,14 @@ public class UniversityEnterprise extends Enterprise {
     }
 
     public UniverseAdminOrganization getAdminOrganization() {
-
         return adminOrganization;
     }
 
     public UniverseSalesOrganization getSalesDepartmentOrganization() {
-
         return salesDepartmentOrganization;
     }
 
     public UniverseDirectorateOrganization getDirectorateOrganization() {
-
         return directorateOrganization;
     }
 

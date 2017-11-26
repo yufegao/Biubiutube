@@ -9,16 +9,17 @@ import biz.account.Account;
 import biz.role.Role;
 import javax.swing.JPanel;
 import ui.components.ParentUI;
+import ui.network.nonprofitOrganizationEnterprise.adminDepartment.NPOAdminWorkArea;
 
 /**
  *
  * @author 79813
  */
-public class NoneProfitAdminRole extends Role{
+public class NoneProfitAdminRole extends Role {
 
     @Override
     public JPanel createWorkArea(ParentUI parent, Account account) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }    
-    
+        return new NPOAdminWorkArea(parent, account);
+    }
+
 }

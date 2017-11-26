@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.university.accountingOrganization;
+package ui.network.university.adminOrganization;
 
 import biz.account.Account;
 import java.util.ArrayList;
@@ -15,15 +15,26 @@ import ui.components.ParentUI;
  *
  * @author royn
  */
-public class UniversityAccountingWorkArea extends GeneralWorkArea{
+public class UniversityAdminWorkArea extends GeneralWorkArea{
 
-    public UniversityAccountingWorkArea(ParentUI parent, Account account) {
+    public UniversityAdminWorkArea(ParentUI parent, Account account) {
         super(parent, account);
     }
-    
+
     @Override
     protected ArrayList<JButton> getButtons() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<JButton> buttons = new ArrayList<>();
+        
+        JButton btn1 = new JButton("Manage Account");
+        btn1.addActionListener(e -> parent.pushComponent(new ManageAccount(parent, account)));
+        
+        JButton btn2 = new JButton("Manage Account");
+        btn1.addActionListener(e -> parent.pushComponent(new ManagePerson(parent, account)));
+        
+        buttons.add(btn1);
+        buttons.add(btn2);
+        
+        return buttons;
     }
 
     @Override
