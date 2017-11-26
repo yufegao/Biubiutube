@@ -12,6 +12,8 @@ import com.github.javafaker.Faker;
 import java.util.HashSet;
 
 import static biz.fakerHelper.EcoSystemCollegeHelper.fakeCollege;
+import static biz.fakerHelper.EcoSystemCommonHelper.fakeAccount;
+import static biz.fakerHelper.EcoSystemCommonHelper.fakePerson;
 
 public class EcoSystemHelper {
     private static Faker faker = new Faker();
@@ -19,6 +21,11 @@ public class EcoSystemHelper {
     public static EcoSystem configure() {
         EcoSystem system = EcoSystem.getInstance();
         Network nw = system.newNetwork("NEU");
+
+        // admin
+        Person adminPerson = fakePerson(nw.getUniversity().getAdminOrganization().getPersonCatalog());
+        Account adminAccount = fakeAccount(nw.getUniversity().getAdminOrganization().getAccountCatalog(), adminPerson, nw.getUniversity().getAdminOrganization().getAdmin());
+        System.out.printf("NEU Admin username: %s\n\n", adminAccount);
 
         // auto fake a college with hacker abbrev tags
         // and rename it to COE
