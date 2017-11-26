@@ -99,7 +99,7 @@ public class VideoBox extends JPanel {
         JTextArea txtDesc = new JTextArea(video.getDescription());
         txtDesc.setLineWrap(true);
         txtDesc.setEditable(false);
-        rightMiddle.add(txtDesc);
+        EventQueue.invokeLater(() -> rightMiddle.add(txtDesc));
 
         JButton btnWatch = new JButton("Watch >>");
         btnWatch.addActionListener(e -> parent.pushComponent(new ViewVideo(video, account)));
