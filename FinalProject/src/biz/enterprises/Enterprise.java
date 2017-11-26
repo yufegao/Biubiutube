@@ -1,6 +1,9 @@
 package biz.enterprises;
 
 import biz.nw.Network;
+import biz.org.Organization;
+
+import java.util.ArrayList;
 
 public abstract class Enterprise {
     private Network network;
@@ -23,6 +26,8 @@ public abstract class Enterprise {
     public void setName(String name) {
         this.name = name;
     }
+
+    public abstract ArrayList<Organization> getOrganizationArrayList();
 
     @Override
     public String toString() {

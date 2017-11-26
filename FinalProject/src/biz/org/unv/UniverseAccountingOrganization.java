@@ -8,6 +8,7 @@ package biz.org.unv;
 import biz.enterprises.Enterprise;
 import biz.org.Organization;
 import biz.role.Role;
+import biz.role.accountingRole.UniversityAccountingRole;
 import java.util.ArrayList;
 
 /**
@@ -15,15 +16,22 @@ import java.util.ArrayList;
  * @author 79813
  */
 public class UniverseAccountingOrganization extends Organization {
-
+    private UniversityAccountingRole universityAccountingRole;
 
     public UniverseAccountingOrganization(String name, Enterprise enterprise) {
         super(name, enterprise);
+        this.universityAccountingRole = new UniversityAccountingRole();
+    }
+
+    public UniversityAccountingRole getUniversityAccountingRole() {
+        return universityAccountingRole;
     }
 
     @Override
     public ArrayList<Role> getSupportedRoles() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Role> roles =  new ArrayList<>();
+        roles.add(universityAccountingRole);
+        return roles;
     }
-    
+
 }

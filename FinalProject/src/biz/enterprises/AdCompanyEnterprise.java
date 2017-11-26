@@ -32,14 +32,17 @@ public class AdCompanyEnterprise extends Enterprise {
         this.aAccount = new AdvertiseAccountingOrganization(name + "AdvertiseAccountingOrganization", this);
         this.aAdmin = new AdvertiseAdminOrganization(name + "AdvertiseAdminOrganization", this);
         this.aSupervisor = new AdvertiseSupervisorOrganization(name + "AdvertiseSupervisorOrganization", this);
-        this.organizations = new ArrayList<>();
-        organizations.add(aAdmin);
-        organizations.add(aSupervisor);
-        organizations.add(aAccount);
-        for(Organization o : aPCatalog.getOrganizations()){
-            organizations.add(o);
-        }
-        
+       
+    }
+    
+     @Override
+    public ArrayList<Organization> getOrganizationArrayList() {
+        ArrayList<Organization> organizationArrayList = new ArrayList<>();
+        organizationArrayList.addAll(aPCatalog.getOrganizations());
+        organizationArrayList.add(aAdmin);
+        organizationArrayList.add(aAccount);
+        organizationArrayList.add(aSupervisor);
+        return organizationArrayList;
     }
 
     public AdvertiseAccountingOrganization getaAccount() {

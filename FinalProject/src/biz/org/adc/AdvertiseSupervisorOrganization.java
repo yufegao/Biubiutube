@@ -11,21 +11,13 @@ import biz.role.Role;
 import biz.role.supervisorRole.ADCompanySupervisorRole;
 import java.util.ArrayList;
 
-/**
- *
- * @author 79813
- */
 public class AdvertiseSupervisorOrganization extends Organization {
-    private ArrayList<Role> supportedRoles;
-    
+
     private ADCompanySupervisorRole adCompanySupervisorRole;
 
     public AdvertiseSupervisorOrganization(String name, Enterprise enterprise) {
         super(name, enterprise);
-        supportedRoles = new ArrayList<>();
         adCompanySupervisorRole = new ADCompanySupervisorRole();
-        
-        supportedRoles.add(adCompanySupervisorRole);
     }
 
     public ADCompanySupervisorRole getAdCompanySupervisorRole() {
@@ -34,7 +26,9 @@ public class AdvertiseSupervisorOrganization extends Organization {
     
     @Override
     public ArrayList<Role> getSupportedRoles() {
-        return supportedRoles;
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(adCompanySupervisorRole);
+        return roles;
     }
     
 }

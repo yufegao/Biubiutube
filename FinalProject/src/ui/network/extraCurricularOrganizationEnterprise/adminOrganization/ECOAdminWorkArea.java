@@ -5,7 +5,6 @@
  */
 package ui.network.extraCurricularOrganizationEnterprise.adminOrganization;
 
-import ui.network.advertisementEnterprise.adminOrganization.*;
 import biz.account.Account;
 import java.util.ArrayList;
 import javax.swing.JButton;

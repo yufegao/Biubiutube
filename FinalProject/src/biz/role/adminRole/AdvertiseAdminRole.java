@@ -9,14 +9,13 @@ import biz.account.Account;
 import biz.role.Role;
 import javax.swing.JPanel;
 import ui.components.ParentUI;
-//import ui.network.advertisementEnterprise.adminOrganization.ADWorkArea;
 import ui.network.advertisementEnterprise.adminOrganization.AdvertismentAdminWorkArea;
 
 /**
  *
  * @author 79813
  */
-public class AdvertisingAdminRole extends Role{
+public class AdvertiseAdminRole extends Role{
 
     @Override
     public JPanel createWorkArea(ParentUI parent, Account account) {

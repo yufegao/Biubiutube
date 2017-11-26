@@ -8,22 +8,26 @@ package biz.org.eco;
 import biz.enterprises.Enterprise;
 import biz.org.Organization;
 import biz.role.Role;
+import biz.role.adminRole.ECOAdminRole;
 import java.util.ArrayList;
 
 /**
  *
- * @author 79813
+ * @author royn
  */
 public class ECOAdminOrganization extends Organization {
-
+    private ECOAdminRole admin;
 
     public ECOAdminOrganization(String name, Enterprise enterprise) {
         super(name, enterprise);
+        this.admin = new ECOAdminRole();
     }
 
     @Override
     public ArrayList<Role> getSupportedRoles() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(admin);
+        return roles;
     }
     
 }
