@@ -124,9 +124,9 @@ public class VideoBox extends JPanel {
         Dimension maxSize = new Dimension(Short.MAX_VALUE, height);
         rightFooter.add(new Box.Filler(minSize, prefSize, maxSize));
 
-        rightFooter.add(new JLabel(String.format("Up Votes: %d", video.getVoteCatalog().getVoteArrayList().size())));
-        rightFooter.add(Box.createRigidArea(new Dimension(5, 0)));
         rightFooter.add(new JLabel(String.format("Views: %d", video.getViewHistoryCatalog().getViewHistoryArrayList().size())));
+        rightFooter.add(Box.createRigidArea(new Dimension(5, 0)));
+        rightFooter.add(new JLabel(String.format("Up Votes: %d", video.getVoteCatalog().getVoteArrayList().size())));
 
         right.add(rightFooter, BorderLayout.PAGE_END);
     }
