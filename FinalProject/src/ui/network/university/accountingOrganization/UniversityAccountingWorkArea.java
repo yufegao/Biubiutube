@@ -5,16 +5,17 @@
  */
 package ui.network.university.accountingOrganization;
 
+import biz.account.Account;
+import ui.components.ParentUI;
+
 /**
  *
  * @author royn
  */
-public class NewJPanel extends javax.swing.JPanel {
+public class UniversityAccountingWorkArea extends javax.swing.JPanel {
 
-    /**
-     * Creates new form NewJPanel
-     */
-    public NewJPanel() {
+
+    public UniversityAccountingWorkArea(ParentUI parent, Account account) {
         initComponents();
     }
 

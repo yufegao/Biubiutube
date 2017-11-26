@@ -8,7 +8,7 @@ package biz.org.adc;
 import biz.enterprises.Enterprise;
 import biz.org.Organization;
 import biz.role.Role;
-import biz.role.adminRole.AdvertisingAdminRole;
+import biz.role.adminRole.AdvertiseAdminRole;
 import biz.role.producerRole.AdvertisementProducerRole;
 import biz.role.supervisorRole.ADCompanySupervisorRole;
 import java.util.ArrayList;
@@ -18,14 +18,14 @@ import java.util.ArrayList;
  * @author 79813
  */
 public class AdvertiseAdminOrganization extends Organization {
-    private AdvertisingAdminRole admin;
+    private AdvertiseAdminRole admin;
     
     public AdvertiseAdminOrganization(String name, Enterprise enterprise) {
         super(name, enterprise);
-        this.admin = new AdvertisingAdminRole();  
+        this.admin = new AdvertiseAdminRole();  
     }
 
-    public AdvertisingAdminRole getAdAdminRole() {
+    public AdvertiseAdminRole getAdAdminRole() {
         return admin;
     }
 

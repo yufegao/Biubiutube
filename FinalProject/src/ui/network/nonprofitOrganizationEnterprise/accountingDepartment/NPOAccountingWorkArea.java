@@ -9,12 +9,12 @@ package ui.network.nonprofitOrganizationEnterprise.accountingDepartment;
  *
  * @author royn
  */
-public class NewJPanel extends javax.swing.JPanel {
+public class NPOAccountingWorkArea extends javax.swing.JPanel {
 
     /**
      * Creates new form NewJPanel
      */
-    public NewJPanel() {
+    public NPOAccountingWorkArea() {
         initComponents();
     }
 

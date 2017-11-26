@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @author 79813
  */
 public class UniverseDirectorateOrganization extends Organization {
-
+    private UniversityDirectorateRoles
 
     public UniverseDirectorateOrganization(String name, Enterprise enterprise) {
         super(name, enterprise);
