@@ -36,13 +36,19 @@ public class EcoSystemCollegeHelper {
         Person p = null;
         Account a = null;
 
+        System.out.printf("Faking college %s...\n", college);
+
         // 1. supervisor
         num = faker.random().nextInt(3) + 1; // 1 ~ 4 supervisor
         for (int i = 0; i < num; i++) {
             p = fakePerson(college.getPersonCatalog());
-            fakeAccount(college.getAccountCatalog(), p, college.getUniversityDepartmentSupervisorRole());
+            a = fakeAccount(college.getAccountCatalog(), p, college.getUniversityDepartmentSupervisorRole());
+            if (i == num - 1) {
+                System.out.printf("Last supervisor account username in %s: %s\n", college, a.getUsername());
+            }
+
             if (i > 1) {  // some of them are also lecturer
-                fakeAccount(college.getAccountCatalog(), p, college.getCollegeLecturerRole());
+                a = fakeAccount(college.getAccountCatalog(), p, college.getCollegeLecturerRole());
             }
         }
 
@@ -55,7 +61,7 @@ public class EcoSystemCollegeHelper {
                 a.setActive(false);
             }
         }
-        System.out.println(String.format("last viewer account username: %s", a.getUsername()));
+        System.out.printf("Last viewer account username in %s: %s\n", college, a.getUsername());
 
         // 3. lecturer
         num = faker.random().nextInt(10) + 10; // 10 ~ 20 lecturer
@@ -67,7 +73,9 @@ public class EcoSystemCollegeHelper {
                 fakeVideo(nw, a, tags);
             }
         }
+        System.out.printf("Last lecturer account username in %s: %s\n", college, a.getUsername());
 
+        System.out.printf("College %s faked\n\n", college);
 
         return college;
     }
