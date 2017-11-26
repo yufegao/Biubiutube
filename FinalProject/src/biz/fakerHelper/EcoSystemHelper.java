@@ -81,7 +81,7 @@ public class EcoSystemHelper {
                 v.setTitle(String.format("Swing Tutorial %02d", i + 1));
                 v.setAdType(Video.VideoAdType.NoAdd);
                 v.setStatus(Video.VideoStatus.ESApproved);
-                v.setPicPath("https://i.imgur.com/ijtKGes.png");
+                v.setPicPath("https://imgur.com/a/tcTZC");
                 v.setUrl(urls[i]);
                 v.addTag(nw.getVideoTagCatalog().getOrNewTag("Swing"));
                 v.addTag(nw.getVideoTagCatalog().getOrNewTag("Java"));

@@ -206,8 +206,7 @@ public class NCChoose extends javax.swing.JPanel implements HasTitle, TablePopul
         return new Object[]{
                 network,
                 network.getVideoCatalog().getVideoArrayList().size(),
-                EcoSystem.getInstance().getAllAccountArrayList().stream().filter(
-                        a -> ((a.getRole() instanceof CollegeLecturerRole) || (a.getRole() instanceof ECOLecturerRole)) && a.getOrg().getEnterprise().getNetwork().equals(network)
+                EcoSystem.getInstance().getAllAccountArrayList().stream().filter(a -> ((a.getRole() instanceof CollegeLecturerRole) || (a.getRole() instanceof ECOLecturerRole)) && a.getOrg().getEnterprise().getNetwork().equals(network)
                 ).count()
         };
     }

@@ -9,17 +9,17 @@ import biz.account.Account;
 import biz.role.Role;
 import javax.swing.JPanel;
 import ui.components.ParentUI;
-import ui.network.university.adminOrganization.UniversityAdminWorkArea;
+import ui.network.university.directorateOrganization.DirectorateWorkArea;
 
 /**
  *
- * @author 79813
+ * @author royn
  */
-public class UniversityAdminRole extends Role{
+public class UniversityDirectorateRole extends Role{
 
     @Override
     public JPanel createWorkArea(ParentUI parent, Account account) {
-        return new UniversityAdminWorkArea(parent, account);
-    }    
+        return new DirectorateWorkArea(parent, account);
+    }
     
 }

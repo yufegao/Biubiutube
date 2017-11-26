@@ -19,22 +19,15 @@ import java.util.ArrayList;
  * @author 79813
  */
 public class UniverseCollegeOrganization extends Organization {
-    private ArrayList<Role> supportedRoles;
-
     private CollegeLecturerRole collegeLecturerRole;
     private UniversityDepartmentSupervisorRole universityDepartmentSupervisorRole;
     private ViewerRole viewerRole;
 
     public UniverseCollegeOrganization(String name, Enterprise enterprise) {
         super(name, enterprise);
-        supportedRoles = new ArrayList<>();
         collegeLecturerRole = new CollegeLecturerRole();
         universityDepartmentSupervisorRole = new UniversityDepartmentSupervisorRole();
         viewerRole = new ViewerRole();
-
-        supportedRoles.add(collegeLecturerRole);
-        supportedRoles.add(universityDepartmentSupervisorRole);
-        supportedRoles.add(viewerRole);
     }
 
     public CollegeLecturerRole getCollegeLecturerRole() {
@@ -51,7 +44,11 @@ public class UniverseCollegeOrganization extends Organization {
 
     @Override
     public ArrayList<Role> getSupportedRoles() {
-        return supportedRoles;
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(collegeLecturerRole);
+        roles.add(viewerRole);
+        roles.add(universityDepartmentSupervisorRole);
+        return roles;
     }
     
 }

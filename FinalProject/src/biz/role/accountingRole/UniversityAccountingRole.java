@@ -3,23 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package biz.role.adminRole;
+package biz.role.accountingRole;
 
 import biz.account.Account;
 import biz.role.Role;
 import javax.swing.JPanel;
 import ui.components.ParentUI;
-import ui.network.university.adminOrganization.UniversityAdminWorkArea;
+import ui.network.university.accountingOrganization.UniversityAccountingWorkArea;
 
 /**
  *
- * @author 79813
+ * @author royn
  */
-public class UniversityAdminRole extends Role{
+public class UniversityAccountingRole extends Role{
 
     @Override
     public JPanel createWorkArea(ParentUI parent, Account account) {
-        return new UniversityAdminWorkArea(parent, account);
-    }    
+        return new UniversityAccountingWorkArea(parent, account);
+    }
     
 }
