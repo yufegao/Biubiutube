@@ -5,6 +5,7 @@ import biz.nw.Network;
 import biz.org.unv.UniverseCollegeOrganization;
 import biz.person.Person;
 import biz.role.producerRole.CollegeLecturerRole;
+import biz.video.Video;
 
 import javax.swing.*;
 import javax.swing.tree.*;
@@ -25,11 +26,16 @@ public class LecturerTree extends JTree {
         public String toString() {
             return String.format("%s (%d)", lecturer, number);
         }
+
+        public Person getLecturer() {
+            return lecturer;
+        }
     }
 
     private long getVideoNumber(Person lecturer) {
         HashSet<Account> accountSet = lecturer.getOrg().getPersonCatalog().getPersonAccountMap().get(lecturer);
         return lecturer.getOrg().getEnterprise().getNetwork().getVideoCatalog().getVideoArrayList().stream()
+                .filter(Video::canView)
                 .filter(video -> accountSet.contains(video.getUploaderAccount())).count();
     }
 

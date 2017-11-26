@@ -164,8 +164,8 @@ public class HomePage extends JPanel {
         if (node == null) {
             return;
         }
-        if (node.getUserObject() instanceof Person) {
-            Person lecturer = (Person) node.getUserObject();
+        if (node.getUserObject() instanceof LecturerTree.LecturerWithNumber) {
+            Person lecturer = ((LecturerTree.LecturerWithNumber) node.getUserObject()).getLecturer();
             showLecturerVideos(lecturer);
         }
     }
