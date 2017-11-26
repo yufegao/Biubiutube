@@ -1,7 +1,10 @@
 package biz.enterprises;
 
 import biz.nw.Network;
+import biz.org.Organization;
 import biz.org.unv.*;
+
+import java.util.ArrayList;
 
 public class UniversityEnterprise extends Enterprise {
     private UniverseCollegeOrganizationCatalog collegeCatalog;
@@ -20,6 +23,18 @@ public class UniversityEnterprise extends Enterprise {
         this.salesDepartmentOrganization = new UniverseSalesDepartmentOrganization(name + " Sales", this);
         this.adminOrganization = new UniverseAdminOrganization(name + " Admin Organization", this);
         this.accountingOrganization = new UniverseAccountingOrganization(name + " Accounting Organization", this);
+    }
+
+    @Override
+    ArrayList<Organization> getOrganizationArrayList() {
+        ArrayList<Organization> organizationArrayList = new ArrayList<>();
+        organizationArrayList.addAll(collegeCatalog.getOrganizations());
+        organizationArrayList.add(supervisorOrganization);
+        organizationArrayList.add(directorateOrganization);
+        organizationArrayList.add(salesDepartmentOrganization);
+        organizationArrayList.add(adminOrganization);
+        organizationArrayList.add(accountingOrganization);
+        return organizationArrayList;
     }
 
 
