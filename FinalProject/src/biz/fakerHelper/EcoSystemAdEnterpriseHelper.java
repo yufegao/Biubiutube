@@ -6,6 +6,7 @@
 package biz.fakerHelper;
 
 import biz.account.Account;
+import biz.ad.Ad;
 import biz.enterprises.AdCompanyEnterprise;
 import static biz.fakerHelper.EcoSystemCommonHelper.fakeAccount;
 import static biz.fakerHelper.EcoSystemCommonHelper.fakePerson;
@@ -35,6 +36,7 @@ public class EcoSystemAdEnterpriseHelper {
 
     private static AdvertiseProduceOrganization fakeProduceOrganization(AdCompanyEnterprise enterprise) {
         AdvertiseProduceOrganization org =  enterprise.getaPCatalog().newOrganization("Random Name");
+        
         // 1.producer
         Person p = null;
         Account a = null;
@@ -42,16 +44,45 @@ public class EcoSystemAdEnterpriseHelper {
         int num = faker.random().nextInt(3) + 1; // 1 ~ 4 producer
         for (int i = 0; i < num; i++) {
             p = fakePerson(org.getPersonCatalog());
-            a = fakeAccount(org.getAccountCatalog(), p, ((AdvertiseProduceOrganization) org).getAdProducerRole());  
+            a = fakeAccount(org.getAccountCatalog(), p, ((AdvertiseProduceOrganization) org).getAdProducerRole());
+            int numAd = faker.random().nextInt(10) + 10; // 10 ~ 20 advertisements
+            for (int j = 0; j < numAd; j++) {
+                fakeAd(enterprise.getNetwork(), a);
+            }
+            
         }
-        System.out.println(String.format("last ad supervisor account username: %s", a.getUsername()));
-
-
-        // 2. ad
-        
-
+        System.out.println(String.format("last ad producer account username: %s", a.getUsername()));
 
         return org;
+    }
+    
+    //fake ad for every producer
+    
+    private static Ad fakeAd(Network nw, Account account) {
+        Ad ad = nw.getAdCatalog().newAd(account);
+        String desc = "";
+        for (int i = 0; i < 5; i++) {
+            desc += faker.shakespeare().romeoAndJulietQuote() + "\n";
+        }
+        
+        ad.setDescription(desc);
+        ad.setUrl(videoURLs[faker.random().nextInt(videoURLs.length)]);
+        
+        String title = faker.gameOfThrones().dragon();
+        ad.setTitle(title);
+        
+        int val = faker.random().nextInt(10);
+        if (val < 5) {  // 50% ESApproved
+            ad.setStatus(Ad.AdStatus.ESApproved);
+        } else if (val < 7) {  // 20% Produced
+            ad.setStatus(Ad.AdStatus.Produced);
+        } else if (val < 9) {  // 20% NSApproved
+            ad.setStatus(Ad.AdStatus.NSApproved);
+        } else {  // 10% Banned
+            ad.setStatus(Ad.AdStatus.Banned);
+        }
+        
+        return ad;
     }
     
     public static AdCompanyEnterprise fakeAdEnterprise(Network nw) {
@@ -82,8 +113,8 @@ public class EcoSystemAdEnterpriseHelper {
         // 3. admin
         num = faker.random().nextInt(3) + 1; // 1 ~ 4 supervisor
         for (int i = 0; i < num; i++) {
-            p = fakePerson(adcompany.getaSupervisor().getPersonCatalog());
-            a = fakeAccount(adcompany.getaSupervisor().getAccountCatalog(), p, adcompany.getaSupervisor().getAdCompanySupervisorRole());  
+            p = fakePerson(adcompany.getaAdmin().getPersonCatalog());
+            a = fakeAccount(adcompany.getaAdmin().getAccountCatalog(), p, adcompany.getaAdmin().getAdAdminRole());  
         }
         System.out.println(String.format("last ad admin account username: %s", a.getUsername()));
         
