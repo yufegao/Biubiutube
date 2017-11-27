@@ -39,6 +39,7 @@ public class CensorVideos extends javax.swing.JPanel implements TablePopulatable
         initComponents();
         populateTable();
         txtDescription.setEnabled(false);
+        txtDescription.setLineWrap(true);
     }
 
     /**

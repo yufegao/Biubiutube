@@ -33,6 +33,7 @@ public class CensorAdvertisements extends javax.swing.JPanel implements TablePop
         initComponents();
         populateTable();
         txtDescription.setEnabled(false);
+        txtDescription.setLineWrap(true);
     }
 
     /**

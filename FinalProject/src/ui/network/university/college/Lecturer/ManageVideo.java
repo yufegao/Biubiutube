@@ -42,6 +42,7 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
         this.account = account;
         initComponents();
         txtDescription.setEnabled(false);
+        txtDescription.setLineWrap(true);
         populateTable();
     }
 
