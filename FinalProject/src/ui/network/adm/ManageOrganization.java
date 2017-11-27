@@ -80,7 +80,7 @@ public class ManageOrganization extends javax.swing.JPanel implements HasTitle, 
 
             },
             new String [] {
-                "College", "Number of Person", "Number of Account"
+                keyWord, "Number of Person", "Number of Account"
             }
         ) {
             boolean[] canEdit = new boolean [] {
