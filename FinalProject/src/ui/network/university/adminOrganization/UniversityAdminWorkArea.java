@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import ui.components.GeneralWorkArea;
 import ui.components.ParentUI;
+import ui.network.university.directorateOrganization.ManageCollege;
 
 /**
  *
@@ -27,13 +28,17 @@ public class UniversityAdminWorkArea extends GeneralWorkArea{
         
         JButton btn1 = new JButton("Manage Account");
         btn1.addActionListener(e -> parent.pushComponent(new ManageAccount(parent, account)));
-        
+
         JButton btn2 = new JButton("Manage Account");
         btn1.addActionListener(e -> parent.pushComponent(new ManagePerson(parent, account)));
-        
+
+        JButton btnManageCollege = new JButton("Manage College");
+        btnManageCollege.addActionListener(e -> parent.pushComponent(new ManageOrganization(parent, account)));
+
         buttons.add(btn1);
         buttons.add(btn2);
-        
+        buttons.add(btnManageCollege);
+
         return buttons;
     }
 
