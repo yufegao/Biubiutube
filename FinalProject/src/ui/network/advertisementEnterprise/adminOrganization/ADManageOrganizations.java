@@ -122,7 +122,7 @@ public class ADManageOrganizations extends javax.swing.JPanel implements HasTitl
 
     @Override
     public void populateTable() {
-        populateTable(enterprise.getOrganizations());
+        populateTable(account.getOrg().getEnterprise().getOrganizationArrayList());
     }
 
 }

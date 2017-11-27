@@ -19,7 +19,7 @@ import ui.components.TablePopulatable;
 public class ADManageAccounts extends javax.swing.JPanel implements TablePopulatable<Account>,HasTitle{
     private ParentUI parentUI;
     private Account account;
-    private  ArrayList<Account> array;
+    
     /**
      * Creates new form ManageAccounts
      */
@@ -27,12 +27,6 @@ public class ADManageAccounts extends javax.swing.JPanel implements TablePopulat
         initComponents();
         this.account = account;
         this.parentUI = parentUI;
-        this.array = new ArrayList<>();
-        for(Account a : EcoSystem.getInstance().getAllAccountArrayList()){
-            if(a.getOrg().getName().equals("AdvertiseAccountingOrganization"))
-                array.add(a);
-            //TODO How to choose accounts
-        }
     }
 
     /**
@@ -112,7 +106,7 @@ public class ADManageAccounts extends javax.swing.JPanel implements TablePopulat
 
     @Override
     public void populateTable() {
-        populateTable(array);
+        populateTable(account.getOrg().getAccountCatalog().getAccountArrayList());
     }
 
     @Override

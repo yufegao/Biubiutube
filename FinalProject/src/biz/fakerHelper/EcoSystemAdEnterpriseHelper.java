@@ -41,6 +41,8 @@ public class EcoSystemAdEnterpriseHelper {
         Person p = null;
         Account a = null;
         
+        
+        
         int num = faker.random().nextInt(3) + 1; // 1 ~ 4 producer
         for (int i = 0; i < num; i++) {
             p = fakePerson(org.getPersonCatalog());
@@ -52,7 +54,7 @@ public class EcoSystemAdEnterpriseHelper {
             
         }
         System.out.println(String.format("last ad producer account username: %s", a.getUsername()));
-
+        
         return org;
     }
     
@@ -97,6 +99,8 @@ public class EcoSystemAdEnterpriseHelper {
         Person p = null;
         Account a = null;
         
+        System.out.printf("Faking advertisement company %s...\n", adcompany);
+        
         num = faker.random().nextInt(2) + 1;  // 1 ~ 3 producer org
         for (int i = 0; i < num; i++) {
             fakeProduceOrganization(adcompany);
@@ -117,6 +121,8 @@ public class EcoSystemAdEnterpriseHelper {
             a = fakeAccount(adcompany.getaAdmin().getAccountCatalog(), p, adcompany.getaAdmin().getAdAdminRole());  
         }
         System.out.println(String.format("last ad admin account username: %s", a.getUsername()));
+        
+        System.out.printf("Advertisement company %s faked\n\n", adcompany);
         
         return adcompany;
     }
