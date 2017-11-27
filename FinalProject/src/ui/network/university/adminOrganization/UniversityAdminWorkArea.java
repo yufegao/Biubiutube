@@ -5,7 +5,7 @@
  */
 package ui.network.university.adminOrganization;
 
-import ui.network.adm.ManageOrganization;
+import ui.network.commonadm.ManageAccount.ManageOrganization;
 import biz.account.Account;
 import java.util.ArrayList;
 import javax.swing.JButton;

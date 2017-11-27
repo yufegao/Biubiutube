@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.adm;
+package ui.network.commonadm.ManageAccount;
 
 import biz.account.Account;
 import biz.enterprises.AdCompanyEnterprise;
@@ -80,7 +80,7 @@ public class ManageOrganization extends javax.swing.JPanel implements HasTitle, 
 
             },
             new String [] {
-                keyWord, "Number of Person", "Number of Account"
+                "College", "Number of Person", "Number of Account"
             }
         ) {
             boolean[] canEdit = new boolean [] {
