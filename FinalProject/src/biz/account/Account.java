@@ -5,11 +5,12 @@
  */
 package biz.account;
 
-import biz.enterprises.Enterprise;
+import biz.fnc.PrimeMembership;
 import biz.orders.OrderCatalog;
 import biz.org.Organization;
 import biz.person.Person;
 import biz.role.Role;
+import biz.role.consumerRole.ViewerRole;
 
 /**
  * @author 79813
@@ -24,6 +25,8 @@ public class Account {
     private Person person;
     private boolean isActive;
     private Role role;
+    private Wallet wallet;
+    private PrimeMembership primeMembership;
 
     public Account(Organization organization, String username, String password, Role role, Person person) {
         this.person = person;
@@ -32,6 +35,11 @@ public class Account {
         this.role = role;
         this.org = organization;
         this.isActive = true;
+
+        if (role instanceof ViewerRole) {
+            this.wallet = new Wallet(this);
+            this.primeMembership = new PrimeMembership(this);
+        }
     }
 
     public OrderCatalog getOrderCatalog() {
@@ -93,5 +101,13 @@ public class Account {
     @Override
     public String toString() {
         return username;
+    }
+
+    public Wallet getWallet() {
+        return wallet;
+    }
+
+    public PrimeMembership getPrimeMembership() {
+        return primeMembership;
     }
 }
