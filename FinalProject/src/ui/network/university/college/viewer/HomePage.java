@@ -9,6 +9,7 @@ import biz.account.Account;
 import biz.person.Person;
 import biz.video.Video;
 import biz.video.VideoTag;
+import ui.components.ChildComponent;
 import ui.components.ParentUI;
 
 import javax.swing.*;
@@ -24,7 +25,7 @@ import java.util.stream.Stream;
 /**
  * @author hezj
  */
-public class HomePage extends JPanel {
+public class HomePage extends JPanel implements ChildComponent {
     private ParentUI parent;
     private Account account;
     private JSplitPane splitPane;
@@ -32,6 +33,13 @@ public class HomePage extends JPanel {
     private LecturerTree tree;
     private TagList tagList;
     private JButton btnShowTop;
+    private State state;
+    private VideoTag showingTag;
+    private Person showingLecturer;
+
+    private enum State {
+        LecturerVideos, TagVideos, TopVideos
+    }
 
     public HomePage(ParentUI parent, Account account) {
         this.parent = parent;
@@ -106,6 +114,7 @@ public class HomePage extends JPanel {
                         .limit(10),
                 mostUpVotes
         );
+        state = State.TopVideos;
     }
 
     private void showVideos(Predicate<Video> p, String title) {
@@ -131,8 +140,6 @@ public class HomePage extends JPanel {
                 .filter(p);
         populateVideoBoxes(videoStream, boxContainer);
 
-
-
         JScrollPane rightScroll = new JScrollPane(boxContainer);
         rightContainer.add(rightScroll);
 
@@ -145,11 +152,15 @@ public class HomePage extends JPanel {
     private void showLecturerVideos(Person lecturer) {
         String title = String.format("%s's Videos", lecturer);
         showVideos(v -> v.getUploaderAccount().getPerson().equals(lecturer), title);
+        state = State.LecturerVideos;
+        showingLecturer = lecturer;
     }
 
     private void showTagVideos(VideoTag tag) {
         String title = String.format("%s Videos", tag);
         showVideos(v -> v.getTagHashSet().contains(tag), title);
+        state = State.TagVideos;
+        showingTag = tag;
     }
 
     private void populateVideoBoxes(Stream<Video> videos, JPanel boxContainer) {
@@ -177,6 +188,21 @@ public class HomePage extends JPanel {
         TagList.TagWithNumber tn = tagList.getSelectedValue();
         if (tn != null) {
             showTagVideos(tn.getTag());
+        }
+    }
+
+    @Override
+    public void exposed() {
+        switch (state) {
+            case TopVideos:
+                showTopVideos();
+                break;
+            case TagVideos:
+                showTagVideos(showingTag);
+                break;
+            case LecturerVideos:
+                showLecturerVideos(showingLecturer);
+                break;
         }
     }
 }

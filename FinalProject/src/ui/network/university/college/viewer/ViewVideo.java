@@ -12,9 +12,12 @@ public class ViewVideo extends JPanel implements HasTitle {
     private Account account;
     private Video video;
 
+    private JSplitPane jSplitPane;
+
     public ViewVideo(Video video, Account account) {
         this.account = account;
         this.video = video;
+        video.getViewHistoryCatalog().newViewHistory(account);
         initComponents();
     }
 
@@ -29,10 +32,13 @@ public class ViewVideo extends JPanel implements HasTitle {
         removeAll();
 
         // jSplitPane
-        JSplitPane jSplitPane = new JSplitPane();
+        jSplitPane = new JSplitPane();
         jSplitPane.setDividerLocation(720);
         jSplitPane.setEnabled(false);
         add(jSplitPane);
+
+        // rightPanel
+        populateCommentList();
 
         // leftPanel
         JPanel leftPanel = new JPanel();
@@ -98,21 +104,35 @@ public class ViewVideo extends JPanel implements HasTitle {
             video.getCommentCatalog().newComment(account, comment);
             txtComment.setText("");
             JOptionPane.showMessageDialog(this, "Comment Success!");
-            // TODO: populate all comment list
+            populateCommentList();
         });
         commentPanel.add(btnComment, BorderLayout.PAGE_END);
         leftPanel.add(commentPanel);
     }
 
-//    private void populateCommentList() {
-//        JPanel commentContainer = new JPanel();
-//        commentContainer.setLayout(new BorderLayout());
-//        commentContainer.add(new JLabel("Comments"), BorderLayout.PAGE_START);
-//        JPanel commentPanel = new JPanel();
-//        commentPanel.setLayout(new BoxLayout(commentPanel, BoxLayout.set));
-//        JScrollPane jScrollPane = new JScrollPane(commentPanel);
-//
-//    }
+    private void populateCommentList() {
+        JPanel commentContainer = new JPanel();
+        commentContainer.setBackground(Color.white);
+        commentContainer.setLayout(new BorderLayout());
+        JLabel lblComment = new JLabel("Comments");
+        Font f = lblComment.getFont();
+        lblComment.setFont(new Font(f.getName(), Font.BOLD, 22));
+        commentContainer.add(lblComment, BorderLayout.PAGE_START);
+
+        JPanel commentPanel = new JPanel();
+        commentPanel.setBackground(Color.white);
+        commentPanel.setLayout(new BoxLayout(commentPanel, BoxLayout.Y_AXIS));
+        commentContainer.add(commentPanel);
+
+        video.getCommentCatalog().getCommentArrayList().forEach(c -> {
+            commentPanel.add(new CommentBox(c));
+            commentPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        });
+
+        JScrollPane jScrollPane = new JScrollPane(commentContainer);
+        jScrollPane.setMaximumSize(new Dimension(240, 650));
+        jSplitPane.setRightComponent(jScrollPane);
+    }
 
     @Override
     public String getTitle() {

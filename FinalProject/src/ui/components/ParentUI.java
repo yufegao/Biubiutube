@@ -35,8 +35,8 @@ public interface ParentUI {
             Component component = containerJPanel.getComponent(componentCount - 1);  // get the last Component
 
             for (Component c : ((JPanel) component).getComponents()) {
-                if (c instanceof TablePopulatable) {
-                    ((TablePopulatable) c).populateTable();
+                if (c instanceof ChildComponent) {
+                    ((ChildComponent) c).exposed();
                 }
             }
 
