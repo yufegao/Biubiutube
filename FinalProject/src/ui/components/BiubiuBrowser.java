@@ -14,8 +14,15 @@ import com.teamdev.jxbrowser.chromium.swing.BrowserView;
  */
 public class BiubiuBrowser {
     private static BiubiuBrowser biubiuBrowser = new BiubiuBrowser();
-    public Browser browser = new Browser();
-    public BrowserView view = new BrowserView(browser);
+    public Browser browser;
+    public BrowserView view;
+
+    private BiubiuBrowser() {
+        browser = new Browser();
+        browser.loadURL("about:blank");
+        view = new BrowserView(browser);
+        browser.setPopupHandler(e -> null);
+    }
 
     public static BiubiuBrowser getInstance() {
         return biubiuBrowser;
