@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import ui.components.GeneralWorkArea;
 import ui.components.ParentUI;
+import ui.network.adm.ManageOrganization;
 
 /**
  *
@@ -25,7 +26,7 @@ public class ECOAdminWorkArea extends GeneralWorkArea{
         ArrayList<JButton> buttons = new ArrayList<>();
         
         JButton btnManageOrganization = new JButton("Manage Organization");
-        btnManageOrganization.addActionListener(e -> parent.pushComponent(new ECOManageOrganizations(parent, account)));
+        btnManageOrganization.addActionListener(e -> parent.pushComponent(new ManageOrganization(parent, account)));
         
         JButton btnManageAccount = new JButton("Manage Account");
         btnManageAccount.addActionListener(e -> parent.pushComponent(new ECOManageAccounts(parent, account)));

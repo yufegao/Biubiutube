@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.university.adminOrganization;
+package ui.network.adm;
 
+import biz.org.Organization;
 import biz.org.OrganizationCatalog;
 import javax.swing.JOptionPane;
 import ui.components.HasTitle;
@@ -13,17 +14,27 @@ import ui.components.HasTitle;
  *
  * @author hezj
  */
-public class AddOrganization extends javax.swing.JPanel implements HasTitle {
+public class AddOrEditOrganization extends javax.swing.JPanel implements HasTitle {
     private OrganizationCatalog catalog;
     private String keyWord;
+    private Organization org;
     
     /**
      * Creates new form AddOrganization
      */
-    public AddOrganization(OrganizationCatalog catalog, String keyWord) {
+    public AddOrEditOrganization(OrganizationCatalog catalog, String keyWord) {
+        this(catalog, keyWord, null);
+    }
+    
+    public AddOrEditOrganization(OrganizationCatalog catalog, String keyWord, Organization org) {
         this.keyWord = keyWord;
         this.catalog = catalog;
+        this.org = org;
         initComponents();
+        if (org != null) {
+            txtName.setText(org.getName());
+            btnAdd.setText("Save");
+        }
     }
 
     /**
@@ -82,8 +93,12 @@ public class AddOrganization extends javax.swing.JPanel implements HasTitle {
             return;
         }
         
-        catalog.newOrganization(name);
-        txtName.setText("");
+        if (org != null) {
+            org.setName(name);
+        } else {
+            catalog.newOrganization(name);
+            txtName.setText("");
+        }        
         JOptionPane.showMessageDialog(this, "Success!");
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -96,6 +111,7 @@ public class AddOrganization extends javax.swing.JPanel implements HasTitle {
 
     @Override
     public String getTitle() {
-        return "Add " + keyWord;
+        String action = org == null ? "Add " : "Edit ";
+        return action + keyWord;
     }
 }

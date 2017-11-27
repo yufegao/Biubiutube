@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.university.adminOrganization;
+package ui.network.adm;
 
 import biz.account.Account;
 import biz.enterprises.AdCompanyEnterprise;
@@ -13,6 +13,7 @@ import biz.enterprises.NPOEnterprise;
 import biz.enterprises.UniversityEnterprise;
 import biz.org.Organization;
 import biz.org.OrganizationCatalog;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import ui.components.HasTitle;
 import ui.components.ParentUI;
@@ -76,17 +77,14 @@ public class ManageOrganization extends javax.swing.JPanel implements HasTitle, 
 
         tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
-                "College"
+                "College", "Number of Person", "Number of Account"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false
+                false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -103,8 +101,18 @@ public class ManageOrganization extends javax.swing.JPanel implements HasTitle, 
         });
 
         btnEdit.setText("Edit Selected");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         btnRemove.setText("Remove Selected");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -138,8 +146,31 @@ public class ManageOrganization extends javax.swing.JPanel implements HasTitle, 
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        parent.pushComponent(new AddOrganization(catalog, keyWord));
+        parent.pushComponent(new AddOrEditOrganization(catalog, keyWord));
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+       Organization org = getSelected();
+       if (org == null) {
+           return;
+       }
+       parent.pushComponent(new AddOrEditOrganization(catalog, keyWord, org));
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        Organization org = getSelected();
+       if (org == null) {
+           return;
+       }
+       if (!org.getPersonCatalog().getPersonList().isEmpty()) {
+           String msg = String.format("Cannot remove this %s, there are %d person in it.", keyWord, org.getPersonCatalog().getPersonList().size());
+           JOptionPane.showMessageDialog(this, msg, "Warning", JOptionPane.WARNING_MESSAGE);
+           return;
+       }
+       catalog.removeOrganization(org);
+       populateTable();
+       JOptionPane.showMessageDialog(null, "Success");
+    }//GEN-LAST:event_btnRemoveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -161,9 +192,11 @@ public class ManageOrganization extends javax.swing.JPanel implements HasTitle, 
     }
 
     @Override
-    public Object[] populateRow(Organization element) {
+    public Object[] populateRow(Organization org) {
         return new Object[] {
-            element
+            org,
+            org.getPersonCatalog().getPersonList().size(),
+            org.getAccountCatalog().getAccountArrayList().size(),
         };
     }
 
