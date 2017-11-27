@@ -12,6 +12,7 @@ import ui.components.TopBar;
 import ui.components.ParentUI;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import ui.components.BiubiuBrowser;
 import ui.network.university.college.viewer.anonymous.AnonymousHomePage;
 
 
@@ -26,6 +27,7 @@ public class MainJFrame extends javax.swing.JFrame implements ParentUI {
      * Creates new form MainJFrame
      */
     public MainJFrame() {
+        BiubiuBrowser.getInstance().browser.loadURL("about:blank");
         topBar = new TopBar(this);
         initComponents();
         this.add(topBar, BorderLayout.PAGE_START);
