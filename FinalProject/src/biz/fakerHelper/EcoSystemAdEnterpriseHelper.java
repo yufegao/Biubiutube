@@ -30,8 +30,46 @@ public class EcoSystemAdEnterpriseHelper {
         "https://www.youtube.com/embed/K9vFWA1rnWc",
         "https://www.youtube.com/embed/R59TevgzN3k"
     };
-    private static String[] picPaths = new String[]{ // TODO: more pic path
-        "https://i.imgur.com/ijtKGes.png"
+    private static String[] picPaths = new String[]{ 
+        "https://i.imgur.com/ijtKGes.png",
+        "https://imgur.com/ePLB9mY.jpg",
+        "https://imgur.com/jbR9Lw7.jpg",
+        "https://imgur.com/4InctY4.jpg",
+        "https://imgur.com/rhxICN9.jpg",
+        "https://imgur.com/ffKJaQF.jpg",
+        "https://imgur.com/0F552hw.jpg",
+        "https://imgur.com/sccXANz.jpg",
+        "https://imgur.com/fq0RKPt.jpg",
+        "https://imgur.com/oa0lD02.jpg",
+        "https://imgur.com/EtrK23p.jpg",
+        "https://imgur.com/Ui2KfOy.jpg",
+        "https://imgur.com/zPN4w2M.jpg",
+        "https://imgur.com/hbKEzFN.jpg",
+        "https://imgur.com/G6u4Eqr.jpg",
+        "https://imgur.com/RRjaRaR.jpg",
+        "https://imgur.com/LUYyYmq.jpg",
+        "https://imgur.com/FOcx22R.jpg",
+        "https://imgur.com/JlVFryF.jpg",
+        "https://imgur.com/MfEJc1w.jpg",
+        "https://imgur.com/268T8Ts.jpg",
+        "https://imgur.com/akMraub.jpg",
+        "https://imgur.com/QW9d7p9.jpg",
+        "https://imgur.com/AVltpoU.jpg",
+        "https://imgur.com/TEKozgO.jpg",
+        "https://imgur.com/9hEuQRD.jpg",
+        "https://imgur.com/LO9zjVK.jpg",
+        "https://imgur.com/W6pKYWt.jpg",
+        "https://imgur.com/CEm661Y.jpg",
+        "https://imgur.com/GeCU1qF.jpg",
+        "https://imgur.com/ng6V3kP.jpg",
+        "https://imgur.com/rS8VNPs.jpg",
+        "https://imgur.com/LpWaeXV.jpg",
+        "https://imgur.com/O0xkVN4.jpg",
+        "https://imgur.com/FyH2gr4.jpg",
+        "https://imgur.com/RUg26i4.jpg",
+        "https://imgur.com/PdVPJVd.jpg",
+        "https://imgur.com/MqFvlbe.jpg",
+       
     };
 
     private static AdvertiseProduceOrganization fakeProduceOrganization(AdCompanyEnterprise enterprise) {
