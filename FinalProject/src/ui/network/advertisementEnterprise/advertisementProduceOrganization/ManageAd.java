@@ -34,6 +34,7 @@ public class ManageAd extends javax.swing.JPanel implements HasTitle, TablePopul
         this.account = account;
         initComponents();
         txtDescription.setEnabled(false);
+        txtDescription.setLineWrap(true);
         populateTable();
     }
 
