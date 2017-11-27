@@ -8,9 +8,9 @@ package ui.network.university.college.departmentSupervisor;
 import biz.account.Account;
 import biz.role.supervisorRole.UniversityDepartmentSupervisorRole;
 import biz.video.Video;
-import com.teamdev.jxbrowser.chromium.Browser;
-import com.teamdev.jxbrowser.chromium.swing.BrowserView;
 import javax.swing.JOptionPane;
+
+import ui.components.BiubiuBrowser;
 import ui.components.ParentUI;
 
 /**
@@ -31,10 +31,8 @@ public class WatchVideo extends javax.swing.JPanel {
         this.account = account;
         initComponents();
         
-        Browser browser = new Browser();
-        BrowserView view = new BrowserView(browser);
-        jpWatch.add(view);
-        browser.loadURL(video.getUrl());
+        jpWatch.add(BiubiuBrowser.getInstance().view);
+        BiubiuBrowser.getInstance().browser.loadURL(video.getUrl());
     }
 
     /**

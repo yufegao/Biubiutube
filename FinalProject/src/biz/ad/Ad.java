@@ -3,16 +3,22 @@ package biz.ad;
 import biz.account.Account;
 import biz.role.producerRole.AdvertisementProducerRole;
 import biz.role.producerRole.NoneProfitProducerRole;
+import java.util.Calendar;
 
 public class Ad {
+    private String title;
     private Account producer;
     private AdStatus status;
     private AdType type;
+    private String description;
+    private String url;
+    private Calendar createdAt;
 
     public enum AdStatus {
-        Produced("Produced", "Ad is produced, waiting organization supervisor to approve."),
-        OSApproved("Organization Supervisor Approved", "Ad is approved by department supervisor, waiting enterprise supervisor to approve."),
-        ESApproved("Enterprise Supervisor Approved", "Ad is approved by enterprise supervisor, ready to go.");
+        Produced("Produced", "Advertisement is produced, waiting organization supervisor to approve."),
+        ESApproved("Enterprise Supervisor Approved", "Advertisement is approved by enterprise supervisor, waiting university supervisor to approve."),
+        NSApproved("Network Supervisor Approved", "Advertisement is approved by network supervisor, ready to go."),
+        Banned("Banned", "Advertisement is banned according to censorship");
 
         private String name;
         private String description;
@@ -42,6 +48,18 @@ public class Ad {
             return this.name;
         }
     }
+    
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+    
+    public Calendar getCreatedAt() {
+        return createdAt;
+    }
 
     Ad(Account account) {
         this.producer = account;
@@ -51,8 +69,18 @@ public class Ad {
         } else if (account.getRole() instanceof AdvertisementProducerRole) {
             this.type = AdType.CommercialAd;
         }
+        this.description = "";
+        this.createdAt = Calendar.getInstance();
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    
     public AdStatus getStatus() {
         return status;
     }
@@ -67,5 +95,18 @@ public class Ad {
 
     public AdType getType() {
         return type;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    @Override
+    public String toString() {
+        return title;
     }
 }

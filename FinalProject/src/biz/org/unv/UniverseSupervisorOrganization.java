@@ -12,10 +12,6 @@ import biz.role.supervisorRole.UniversitySupervisorRole;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author 79813
- */
 public class UniverseSupervisorOrganization extends Organization {
 
     private UniversitySupervisorRole universitySupervisorRole;

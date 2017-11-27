@@ -42,6 +42,8 @@ public class LoginArea extends javax.swing.JPanel {
         txtPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
 
+        setMinimumSize(new java.awt.Dimension(450, 29));
+        setPreferredSize(new java.awt.Dimension(450, 29));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel1.setText("Username");

@@ -20,6 +20,8 @@ public interface ParentUI {
     JPanel getContainerJPanel();
 
     default void popComponent() {
+        BiubiuBrowser.getInstance().browser.loadURL("about:blank");
+
         JPanel containerJPanel = getContainerJPanel();
         if (containerJPanel.getComponentCount() <= 0) {
             return;
@@ -33,8 +35,8 @@ public interface ParentUI {
             Component component = containerJPanel.getComponent(componentCount - 1);  // get the last Component
 
             for (Component c : ((JPanel) component).getComponents()) {
-                if (c instanceof TablePopulatable) {
-                    ((TablePopulatable) c).populateTable();
+                if (c instanceof ChildComponent) {
+                    ((ChildComponent) c).exposed();
                 }
             }
 

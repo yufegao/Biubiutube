@@ -7,8 +7,7 @@ package ui.network.university.college.Lecturer;
 
 import biz.account.Account;
 import biz.video.Video;
-import com.teamdev.jxbrowser.chromium.Browser;
-import com.teamdev.jxbrowser.chromium.swing.BrowserView;
+
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.logging.Level;
@@ -20,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import javax.swing.JTable;
+
+import ui.components.BiubiuBrowser;
 import ui.components.HasTitle;
 
 import ui.components.ParentUI;
@@ -41,6 +42,7 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
         this.account = account;
         initComponents();
         txtDescription.setEnabled(false);
+        txtDescription.setLineWrap(true);
         populateTable();
     }
 
@@ -201,10 +203,8 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
         jp.setLayout(new BoxLayout(jp, BoxLayout.LINE_AXIS));
         jp.setSize(1000, 700);
                 
-        Browser browser = new Browser();
-        BrowserView view = new BrowserView(browser);
-        jp.add(view);
-        browser.loadURL(selected.getUrl());
+        jp.add(BiubiuBrowser.getInstance().view);
+        BiubiuBrowser.getInstance().browser.loadURL(selected.getUrl());
         parent.pushComponent(jp);
     }//GEN-LAST:event_btnDetailActionPerformed
 
@@ -267,7 +267,7 @@ public class ManageVideo extends javax.swing.JPanel implements TablePopulatable<
         populateTable(account.getOrg()
                 .getEnterprise().getNetwork().getVideoCatalog()
                 .getVideoArrayList().stream()
-                .filter(v -> v.getUploader().equals(account)));
+                .filter(v -> v.getUploaderAccount().equals(account)));
     }
 
     @Override

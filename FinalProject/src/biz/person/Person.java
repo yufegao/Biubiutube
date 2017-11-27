@@ -7,6 +7,7 @@ public class Person {
     private String lastName;
     private Organization org;
     private String email;
+    private String avatarPath; // TODO: avatar management
 
     Person(String firstName, String lastName, Organization org) {
         this.firstName = firstName;

@@ -5,12 +5,15 @@
  */
 package ui;
 
-import biz.EcoSystemHelper;
+import biz.EcoSystem;
+import biz.fakerHelper.EcoSystemHelper;
+import biz.fakerHelper.EcoSystemAdEnterpriseHelper;
 import ui.components.TopBar;
 import ui.components.ParentUI;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import ui.network.university.college.viewer.anonymous.HomePage;
+import ui.components.BiubiuBrowser;
+import ui.network.university.college.viewer.anonymous.AnonymousHomePage;
 
 
 /**
@@ -24,10 +27,11 @@ public class MainJFrame extends javax.swing.JFrame implements ParentUI {
      * Creates new form MainJFrame
      */
     public MainJFrame() {
+        BiubiuBrowser.getInstance().browser.loadURL("about:blank");
         topBar = new TopBar(this);
         initComponents();
         this.add(topBar, BorderLayout.PAGE_START);
-        this.pushComponent(new HomePage(this));
+        this.pushComponent(new AnonymousHomePage(this));
     }
 
     /**
@@ -79,6 +83,7 @@ public class MainJFrame extends javax.swing.JFrame implements ParentUI {
         }
         //</editor-fold>
         EcoSystemHelper.configure();
+        EcoSystemAdEnterpriseHelper.fakeAdEnterprise(EcoSystem.getInstance().getNetworkArrayList().get(0));
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -105,13 +110,13 @@ public class MainJFrame extends javax.swing.JFrame implements ParentUI {
         }
         
         if (this.container.getComponentCount() <= 0) {
-            this.pushComponent(new HomePage(this));
+            this.pushComponent(new AnonymousHomePage(this));
         }
     }
 
     @Override
     public void allComponentsPoped() {
-        this.pushComponent(new HomePage(this));
+        this.pushComponent(new AnonymousHomePage(this));
     }
 
     }

@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author hezj
  */
-public interface TablePopulatable<Element> {
+public interface TablePopulatable<Element> extends ChildComponent {
     JTable getTable();
 
     default DefaultTableModel clearTable() {
@@ -59,8 +59,13 @@ public interface TablePopulatable<Element> {
     }
 
     void populateTable();
-    
-//    default boolean removeSelected(AbstractCatalog<Element> catalog) {
+
+    @Override
+    default void exposed() {
+        populateTable();
+    }
+
+    //    default boolean removeSelected(AbstractCatalog<Element> catalog) {
 //        Element selected = getSelected();
 //        if (selected == null) {
 //            return false;

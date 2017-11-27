@@ -39,6 +39,7 @@ public class CensorVideos extends javax.swing.JPanel implements TablePopulatable
         initComponents();
         populateTable();
         txtDescription.setEnabled(false);
+        txtDescription.setLineWrap(true);
     }
 
     /**
@@ -240,7 +241,7 @@ public class CensorVideos extends javax.swing.JPanel implements TablePopulatable
     public Object[] populateRow(Video video) {
         return new Object[] {
             video,
-            video.getUploader(),
+            video.getUploaderAccount(),
             video.isPrimeOnly(),
             video.getAdType(),
             video.getCreatedAt().getTime(),
@@ -255,7 +256,7 @@ public class CensorVideos extends javax.swing.JPanel implements TablePopulatable
         VideoCatalog ctlg = org.getEnterprise().getNetwork().getVideoCatalog();
         Stream<Video> s = ctlg.getVideoArrayList().stream();
         if (account.getRole() instanceof UniversityDepartmentSupervisorRole) {
-            s = s.filter(v -> v.getUploader().getOrg().equals(org) && v.getStatus().equals(Video.VideoStatus.Uploaded));
+            s = s.filter(v -> v.getUploaderAccount().getOrg().equals(org) && v.getStatus().equals(Video.VideoStatus.Uploaded));
         } else {
             s = s.filter(v -> v.getStatus().equals(Video.VideoStatus.DSApproved));
         }

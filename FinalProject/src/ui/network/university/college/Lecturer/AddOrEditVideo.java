@@ -11,6 +11,8 @@ import biz.video.Video;
 import javax.swing.*;
 
 import biz.video.VideoTag;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import ui.components.HasTitle;
 
@@ -56,7 +58,7 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
             txtDescription.setText(video.getDescription());
             txtPicPath.setText(video.getPicPath());
             cbPrimeOnly.setSelectedItem(video.isPrimeOnly());
-
+            txtUrl.setText(video.getUrl());
             
             video.getTagHashSet().forEach(tag -> {
                 listModel.addElement(tag);
@@ -241,9 +243,21 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
             JOptionPane.showMessageDialog(this, "Invalid, Pic Path cannot be empty!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
+        try {
+            new URL(picPath);
+        } catch (MalformedURLException e) {
+            JOptionPane.showMessageDialog(this, "Invalid, Pic Path is not a valid URL!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
                 
         if (url.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Invalid, URL cannot be empty!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        try {
+            new URL(url);
+        } catch (MalformedURLException e) {
+            JOptionPane.showMessageDialog(this, "Invalid, URL is not a valid URL!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         
@@ -270,6 +284,7 @@ public class AddOrEditVideo extends javax.swing.JPanel implements HasTitle {
             txtTitle.setText("");
             txtDescription.setText("");
             txtPicPath.setText("");
+            txtUrl.setText("");
             txtTag.setText("");
             lstTag.setModel(new DefaultListModel());
             JOptionPane.showMessageDialog(this, "Added");
