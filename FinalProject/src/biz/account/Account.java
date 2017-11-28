@@ -6,7 +6,6 @@
 package biz.account;
 
 import biz.fnc.PrimeMembership;
-import biz.orders.OrderCatalog;
 import biz.org.Organization;
 import biz.person.Person;
 import biz.role.Role;
@@ -17,8 +16,6 @@ import biz.role.consumerRole.ViewerRole;
  */
 public class Account {
 
-    private OrderCatalog orderCatalog;
-    private int money;
     private Organization org;
     private String username;
     private String passwordHash;
@@ -40,22 +37,6 @@ public class Account {
             this.wallet = new Wallet(this);
             this.primeMembership = new PrimeMembership(this);
         }
-    }
-
-    public OrderCatalog getOrderCatalog() {
-        return orderCatalog;
-    }
-
-    public void setOrderCatalog(OrderCatalog orderCatalog) {
-        this.orderCatalog = orderCatalog;
-    }
-
-    public int getMoney() {
-        return money;
-    }
-
-    public void setMoney(int money) {
-        this.money = money;
     }
 
     public Organization getOrg() {

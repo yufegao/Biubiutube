@@ -14,8 +14,8 @@ public class RollUpOrderCatalog {
         this.universityEnterprise = universityEnterprise;
     }
 
-    public RollUpOrder newRollUpOrder(Account account, int amount) {
-        RollUpOrder o = new RollUpOrder(account, amount);
+    public RollUpOrder newRollUpOrder(Account account, int amount, String payment) {
+        RollUpOrder o = new RollUpOrder(account, amount, payment);
         this.rollUpOrderArrayList.add(o);
         return o;
     }

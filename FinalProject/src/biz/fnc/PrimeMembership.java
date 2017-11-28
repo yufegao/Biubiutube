@@ -14,7 +14,7 @@ public class PrimeMembership {
 
     public boolean isExpired() {
         Calendar now = Calendar.getInstance();
-        return (expiration != null) && expiration.before(now);
+        return (expiration == null) || expiration.before(now);
     }
 
     public void redeem(int weeks) {

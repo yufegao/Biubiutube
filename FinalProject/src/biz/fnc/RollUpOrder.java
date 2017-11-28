@@ -10,16 +10,19 @@ public class RollUpOrder {
     private Account viewer;
     private Status status;
     private int amount;
+    private String payment;
 
     public Status getStatus() {
         return status;
     }
 
-    RollUpOrder(Account viewer, int amount) {
+    RollUpOrder(Account viewer, int amount, String payment) {
         this.viewer = viewer;
         this.createdAt = Calendar.getInstance();
         this.updatedAt = Calendar.getInstance();
         this.amount = amount;
+        this.payment = payment;
+        this.status = Status.Submitted;
     }
 
     public Calendar getCreatedAt() {
@@ -38,7 +41,15 @@ public class RollUpOrder {
         return updatedAt;
     }
 
-    enum Status {
+    public String getPayment() {
+        return payment;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
+    public enum Status {
         Submitted("Submitted", "You've submitted the roll up request and should have paid the bill."),
         Approved("Approved", "Your order has been approved and the coin has been added."),
         Canceled("Canceled", "The order is canceled due to some reason.");
@@ -80,5 +91,10 @@ public class RollUpOrder {
         }
         status = Status.Canceled;
         updatedAt = Calendar.getInstance();
+    }
+
+    @Override
+    public String toString() {
+        return createdAt.getTime().toString();
     }
 }
