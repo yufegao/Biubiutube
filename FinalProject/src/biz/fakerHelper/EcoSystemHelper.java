@@ -230,9 +230,9 @@ public class EcoSystemHelper {
             account = cps.getAccountCatalog().newAccount("xiaoming.li", "1", cps.getViewerRole(), person);
         } catch (Exception ignored) {
         }
-        person = cps.getPersonCatalog().newPerson("Laowu", "Wang");
+        person = cps.getPersonCatalog().newPerson("Dachui", "Wang");
         try {
-            account = cps.getAccountCatalog().newAccount("laowu.wang", "1", cps.getViewerRole(), person);
+            account = cps.getAccountCatalog().newAccount("dachui.wang", "1", cps.getViewerRole(), person);
             university.getRollUpOrderCatalog().newRollUpOrder(account, 100, "AliPay 12345");
             account.getWallet().modifyCoin(35);
         } catch (Exception ignored) {
