@@ -4,7 +4,6 @@ import biz.enterprises.Enterprise;
 import biz.org.OrganizationCatalog;
 
 public class UniverseCollegeOrganizationCatalog extends OrganizationCatalog<UniverseCollegeOrganization> {
-
     public UniverseCollegeOrganizationCatalog(Enterprise enterprise) {
         super(enterprise);
     }

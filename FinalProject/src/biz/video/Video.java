@@ -1,6 +1,10 @@
 package biz.video;
 
 import biz.account.Account;
+import biz.ad.Ad;
+import biz.ad.AdCatalog;
+import biz.nw.Network;
+
 import java.util.Calendar;
 import java.util.HashSet;
 
@@ -183,5 +187,18 @@ public class Video {
     @Override
     public String toString() {
         return title;
+    }
+
+    public Ad getAd() {
+        AdCatalog adCatalog = uploaderAccount.getOrg().getEnterprise().getNetwork().getAdCatalog();
+        switch (adType) {
+            case AnyAdd:
+                return adCatalog.randomAd();
+            case PSAOnly:
+                return adCatalog.randomAd(Ad.AdType.PSAd);
+            case CommOnly:
+                return adCatalog.randomAd(Ad.AdType.CommercialAd);
+        }
+        return null;
     }
 }

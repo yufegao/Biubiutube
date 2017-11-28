@@ -1,5 +1,6 @@
 package biz.enterprises;
 
+import biz.fnc.RollUpOrderCatalog;
 import biz.nw.Network;
 import biz.org.Organization;
 import biz.org.unv.*;
@@ -14,6 +15,7 @@ public class UniversityEnterprise extends Enterprise {
     private UniverseSalesOrganization salesDepartmentOrganization;
     private UniverseAdminOrganization adminOrganization;
     private UniverseAccountingOrganization accountingOrganization;
+    private RollUpOrderCatalog rollUpOrderCatalog;
 
     public UniversityEnterprise(String name, Network network) {
         super(name, network);
@@ -24,6 +26,8 @@ public class UniversityEnterprise extends Enterprise {
         this.salesDepartmentOrganization = new UniverseSalesOrganization(name + " Sales", this);
         this.adminOrganization = new UniverseAdminOrganization(name + " Admin Organization", this);
         this.accountingOrganization = new UniverseAccountingOrganization(name + " Accounting Organization", this);
+
+        this.rollUpOrderCatalog = new RollUpOrderCatalog(this);
     }
 
     @Override
@@ -59,7 +63,10 @@ public class UniversityEnterprise extends Enterprise {
     }
 
     public UniverseCollegeOrganizationCatalog getCollegeCatalog() {
-
         return collegeCatalog;
+    }
+
+    public RollUpOrderCatalog getRollUpOrderCatalog() {
+        return rollUpOrderCatalog;
     }
 }

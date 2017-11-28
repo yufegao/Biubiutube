@@ -23,7 +23,11 @@ public class UniversityAccountingWorkArea extends GeneralWorkArea{
     
     @Override
     protected ArrayList<JButton> getButtons() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<JButton> arrayList = new ArrayList<>();
+        JButton btnRollUpOrder = new JButton("Manage Roll Up Order");
+        btnRollUpOrder.addActionListener(e -> parent.pushComponent(new ManageRollUpOrder(account)));
+        arrayList.add(btnRollUpOrder);
+        return arrayList;
     }
 
     @Override

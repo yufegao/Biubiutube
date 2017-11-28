@@ -28,7 +28,7 @@ public class MainJFrame extends javax.swing.JFrame implements ParentUI {
      */
     public MainJFrame() {
         BiubiuBrowser.getInstance().browser.loadURL("about:blank");
-        topBar = new TopBar(this);
+        topBar = TopBar.getInstance(this);
         initComponents();
         this.add(topBar, BorderLayout.PAGE_START);
         this.pushComponent(new AnonymousHomePage(this));

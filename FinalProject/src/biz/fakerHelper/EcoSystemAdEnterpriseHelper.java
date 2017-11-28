@@ -27,8 +27,8 @@ public class EcoSystemAdEnterpriseHelper {
 
     private static Faker faker = new Faker();
     private static String[] videoURLs = new String[]{
-        "https://www.youtube.com/embed/K9vFWA1rnWc",
-        "https://www.youtube.com/embed/R59TevgzN3k"
+        "https://www.youtube.com/embed/K9vFWA1rnWc?autoplay=1",
+        "https://www.youtube.com/embed/R59TevgzN3k?autoplay=1"
     };
     private static String[] picPaths = new String[]{ 
         "https://i.imgur.com/ijtKGes.png",
