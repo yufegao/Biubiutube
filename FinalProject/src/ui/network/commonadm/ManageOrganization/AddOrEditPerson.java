@@ -15,25 +15,29 @@ import ui.components.HasTitle;
  * @author hezj
  */
 public class AddOrEditPerson extends javax.swing.JPanel implements HasTitle {
-    private String keyWord;
     private Person person;
+    private Organization organization;
     
     /**
      * Creates new form AddOrganization
      */
-    public AddOrEditPerson(Organization organization, String keyWord) {
-        this(organization, keyWord, null);
+    public AddOrEditPerson(Organization organization) {
+        this(organization, null);
     }
     
-    public AddOrEditPerson(Organization organization, String keyWord, Person person) {
-        this.keyWord = keyWord;
+    public AddOrEditPerson(Organization organization, Person person) {
         this.person = person;
+        this.organization = organization;
+        
         initComponents();
         
         if (person != null) {
             txtFirstName.setText(person.getFirstName());
+            txtLastName.setText(person.getLastName());
+            txtEmail.setText(person.getEmail());
             btnAdd.setText("Save");
         }
+        
     }
 
     /**
@@ -116,15 +120,22 @@ public class AddOrEditPerson extends javax.swing.JPanel implements HasTitle {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         String firstName = txtFirstName.getText();
-        if (firstName.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please Input Name", "Warning", JOptionPane.WARNING_MESSAGE);
+        String lastName = txtLastName.getText();
+        String email = txtEmail.getText();
+        
+        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please Input All Required fields",
+                    "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         
         if (person != null) {
-            org.setName(firstName);
+            person.setFirstName(firstName);
+            person.setLastName(lastName);
+            person.setEmail(email);
         } else {
-            catalog.newOrganization(firstName);
+            Person p = organization.getPersonCatalog().newPerson(firstName, lastName);
+            p.setEmail(email);
             txtFirstName.setText("");
         }        
         JOptionPane.showMessageDialog(this, "Success!");
@@ -143,7 +154,7 @@ public class AddOrEditPerson extends javax.swing.JPanel implements HasTitle {
 
     @Override
     public String getTitle() {
-        String action = org == null ? "Add " : "Edit ";
-        return action + keyWord;
+        String action = person == null ? "Add " : "Edit ";
+        return action + "person";
     }
 }

@@ -122,7 +122,7 @@ public class ManagePerson extends javax.swing.JPanel implements HasTitle, TableP
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        parent.pushComponent(new AddOrEditPerson(organization, keyWord));
+        parent.pushComponent(new AddOrEditPerson(organization));
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
@@ -130,7 +130,7 @@ public class ManagePerson extends javax.swing.JPanel implements HasTitle, TableP
        if (person == null) {
            return;
        }
-       parent.pushComponent(new AddOrEditPerson(organization ,keyWord, person));
+       parent.pushComponent(new AddOrEditPerson(organization, person));
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
@@ -154,7 +154,7 @@ public class ManagePerson extends javax.swing.JPanel implements HasTitle, TableP
 
     @Override
     public String getTitle() {
-        return String.format("Manage %s in %s", organization.getName(), keyWord);
+        return String.format("Manage persons in %s", organization.getName());
     }
 
     @Override

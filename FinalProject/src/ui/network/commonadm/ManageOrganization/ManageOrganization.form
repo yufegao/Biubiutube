@@ -26,7 +26,7 @@
                       <Component id="btnEdit" min="-2" pref="200" max="-2" attributes="0"/>
                       <Component id="btnRemove" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="btnRemove1" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Component id="btnManagePerson" min="-2" pref="200" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -44,7 +44,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnRemove" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnRemove1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnManagePerson" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" pref="638" max="32767" attributes="0"/>
@@ -121,12 +121,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnRemove1">
+    <Component class="javax.swing.JButton" name="btnManagePerson">
       <Properties>
         <Property name="text" type="java.lang.String" value="Manage Person"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemove1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManagePersonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

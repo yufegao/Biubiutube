@@ -13,6 +13,7 @@ import biz.enterprises.NPOEnterprise;
 import biz.enterprises.UniversityEnterprise;
 import biz.org.Organization;
 import biz.org.OrganizationCatalog;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import ui.components.HasTitle;
@@ -29,6 +30,7 @@ public class ManageOrganization extends javax.swing.JPanel implements HasTitle, 
     private Enterprise enterprise;
     private String keyWord;
     private OrganizationCatalog catalog;
+    private ArrayList<Organization> organizations;
     
     /**
      * Creates new form ManageCollege
@@ -37,6 +39,7 @@ public class ManageOrganization extends javax.swing.JPanel implements HasTitle, 
         this.parent = parent;
         this.account = account;
         enterprise = account.getOrg().getEnterprise();
+        organizations = enterprise.getOrganizationArrayList();
         
         if (enterprise instanceof UniversityEnterprise) {
             keyWord = "College";
@@ -74,7 +77,7 @@ public class ManageOrganization extends javax.swing.JPanel implements HasTitle, 
         btnAdd = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnRemove = new javax.swing.JButton();
-        btnRemove1 = new javax.swing.JButton();
+        btnManagePerson = new javax.swing.JButton();
 
         tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -115,10 +118,10 @@ public class ManageOrganization extends javax.swing.JPanel implements HasTitle, 
             }
         });
 
-        btnRemove1.setText("Manage Person");
-        btnRemove1.addActionListener(new java.awt.event.ActionListener() {
+        btnManagePerson.setText("Manage Person");
+        btnManagePerson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemove1ActionPerformed(evt);
+                btnManagePersonActionPerformed(evt);
             }
         });
 
@@ -135,7 +138,7 @@ public class ManageOrganization extends javax.swing.JPanel implements HasTitle, 
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnRemove, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnRemove1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnManagePerson, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -150,7 +153,7 @@ public class ManageOrganization extends javax.swing.JPanel implements HasTitle, 
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRemove)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRemove1)
+                        .addComponent(btnManagePerson)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE))
                 .addContainerGap())
@@ -184,20 +187,20 @@ public class ManageOrganization extends javax.swing.JPanel implements HasTitle, 
        JOptionPane.showMessageDialog(null, "Success");
     }//GEN-LAST:event_btnRemoveActionPerformed
 
-    private void btnRemove1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemove1ActionPerformed
-       Organization org = getSelected();
-       if (org == null) {
+    private void btnManagePersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePersonActionPerformed
+        Organization org = getSelected();
+        if (org == null) {
            return;
-       }
-       parent.pushComponent(new ManagePerson(parent, account, org));
-    }//GEN-LAST:event_btnRemove1ActionPerformed
+        }
+         parent.pushComponent(new ManagePerson(parent, account, org));
+    }//GEN-LAST:event_btnManagePersonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnManagePerson;
     private javax.swing.JButton btnRemove;
-    private javax.swing.JButton btnRemove1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl;
     // End of variables declaration//GEN-END:variables
@@ -223,6 +226,6 @@ public class ManageOrganization extends javax.swing.JPanel implements HasTitle, 
 
     @Override
     public void populateTable() {
-        populateTable(catalog.getOrganizations());
+        populateTable(organizations);
     }
 }
