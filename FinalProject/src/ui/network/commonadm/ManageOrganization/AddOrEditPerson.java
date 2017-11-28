@@ -137,6 +137,8 @@ public class AddOrEditPerson extends javax.swing.JPanel implements HasTitle {
             Person p = organization.getPersonCatalog().newPerson(firstName, lastName);
             p.setEmail(email);
             txtFirstName.setText("");
+            txtLastName.setText("");
+            txtEmail.setText("");
         }        
         JOptionPane.showMessageDialog(this, "Success!");
     }//GEN-LAST:event_btnAddActionPerformed

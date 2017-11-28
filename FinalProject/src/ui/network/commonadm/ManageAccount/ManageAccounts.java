@@ -9,6 +9,7 @@ import biz.EcoSystem;
 import biz.account.Account;
 import biz.enterprises.AdCompanyEnterprise;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import ui.components.HasTitle;
 import ui.components.ParentUI;
@@ -127,7 +128,7 @@ public class ManageAccounts extends javax.swing.JPanel implements TablePopulatab
         if (a == null) {
             return;
         }
-        parent.pushComponent(new AddOrEditPerson(catalog, keyWord, org));
+        parent.pushComponent(new AddOrEditAccounts());
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
@@ -167,6 +168,6 @@ public class ManageAccounts extends javax.swing.JPanel implements TablePopulatab
 
     @Override
     public String getTitle() {
-        return "Manage Advertisement Accounts";
+        return String.format("Manage Accounts in %s", account.getOrg().getEnterprise());
     }
 }
