@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.advertisementEnterprise.adminOrganization;
+package ui.network.commonadm.ManageAccount;
+
 import biz.EcoSystem;
 import biz.account.Account;
 import biz.enterprises.AdCompanyEnterprise;
@@ -12,18 +13,21 @@ import javax.swing.JTable;
 import ui.components.HasTitle;
 import ui.components.ParentUI;
 import ui.components.TablePopulatable;
+
 /**
  *
- * @author 79813
+ * @author royn
  */
-public class ADManageAccounts extends javax.swing.JPanel implements TablePopulatable<Account>,HasTitle{
+public class ManageAccounts extends javax.swing.JPanel implements TablePopulatable<Account>, HasTitle {
+
     private ParentUI parentUI;
     private Account account;
-    
+    private EcoSystem ecoSystem;
+
     /**
      * Creates new form ManageAccounts
      */
-    public ADManageAccounts(ParentUI parentUI, Account account) {
+    public ManageAccounts(ParentUI parentUI, Account account) {
         initComponents();
         this.account = account;
         this.parentUI = parentUI;
@@ -101,12 +105,14 @@ public class ADManageAccounts extends javax.swing.JPanel implements TablePopulat
 
     @Override
     public Object[] populateRow(Account element) {
-        return new Object[]{element,element.getPerson()};
+        return new Object[]{element, element.getPerson()};
     }
 
     @Override
     public void populateTable() {
-        populateTable(account.getOrg().getAccountCatalog().getAccountArrayList());
+        populateTable(ecoSystem.getAllAccountArrayList()
+                .stream().filter(v -> v.getOrg().getEnterprise()
+                .equals(account.getOrg().getEnterprise())));
     }
 
     @Override

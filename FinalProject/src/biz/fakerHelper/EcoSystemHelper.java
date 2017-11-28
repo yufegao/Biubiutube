@@ -2,6 +2,7 @@ package biz.fakerHelper;
 
 import biz.EcoSystem;
 import biz.account.Account;
+import biz.enterprises.UniversityEnterprise;
 import biz.nw.Network;
 import biz.org.unv.UniverseCollegeOrganization;
 import biz.person.Person;
@@ -21,11 +22,17 @@ public class EcoSystemHelper {
     public static EcoSystem configure() {
         EcoSystem system = EcoSystem.getInstance();
         Network nw = system.newNetwork("NEU");
+        UniversityEnterprise university = nw.getUniversity();
 
         // admin
-        Person adminPerson = fakePerson(nw.getUniversity().getAdminOrganization().getPersonCatalog());
-        Account adminAccount = fakeAccount(nw.getUniversity().getAdminOrganization().getAccountCatalog(), adminPerson, nw.getUniversity().getAdminOrganization().getAdmin());
-        System.out.printf("NEU Admin username: %s\n\n", adminAccount);
+        Person adminPerson = fakePerson(university.getAdminOrganization().getPersonCatalog());
+        Account adminAccount = fakeAccount(university.getAdminOrganization().getAccountCatalog(), adminPerson, university.getAdminOrganization().getAdmin());
+        System.out.printf("NEU Admin username: %s\n", adminAccount);
+
+        // accounting
+        Person acPerson = fakePerson(university.getAccountingOrganization().getPersonCatalog());
+        Account acAccount = fakeAccount(university.getAccountingOrganization().getAccountCatalog(), acPerson, university.getAccountingOrganization().getUniversityAccountingRole());
+        System.out.printf("NEU Accounting username: %s\n\n", acAccount);
 
         // auto fake a college with hacker abbrev tags
         // and rename it to COE
@@ -53,7 +60,7 @@ public class EcoSystemHelper {
         fakeCollege(nw, tags);
 
         // manual fake college CPS
-        UniverseCollegeOrganization cps = nw.getUniversity().getCollegeCatalog().newOrganization("CPS");
+        UniverseCollegeOrganization cps = university.getCollegeCatalog().newOrganization("CPS");
 
         Person person;
         Account account;
@@ -205,9 +212,9 @@ public class EcoSystemHelper {
         } catch (Exception ignored) {
         }
 
-        person = nw.getUniversity().getSupervisorOrganization().getPersonCatalog().newPerson("David", "Li");
+        person = university.getSupervisorOrganization().getPersonCatalog().newPerson("David", "Li");
         try {
-            nw.getUniversity().getSupervisorOrganization().getAccountCatalog().newAccount("li", "li", nw.getUniversity().getSupervisorOrganization().getUniversitySupervisorRole(), person);
+            university.getSupervisorOrganization().getAccountCatalog().newAccount("li", "li", university.getSupervisorOrganization().getUniversitySupervisorRole(), person);
         } catch (Exception ignored) {
         }
 
@@ -218,6 +225,18 @@ public class EcoSystemHelper {
         } catch (Exception ignored) {
         }
 
+        person = cps.getPersonCatalog().newPerson("Xiaoming", "Li");
+        try {
+            account = cps.getAccountCatalog().newAccount("xiaoming.li", "1", cps.getViewerRole(), person);
+        } catch (Exception ignored) {
+        }
+        person = cps.getPersonCatalog().newPerson("Dachui", "Wang");
+        try {
+            account = cps.getAccountCatalog().newAccount("dachui.wang", "1", cps.getViewerRole(), person);
+            university.getRollUpOrderCatalog().newRollUpOrder(account, 100, "AliPay 12345");
+            account.getWallet().modifyCoin(35);
+        } catch (Exception ignored) {
+        }
         return system;
     }
 }

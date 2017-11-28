@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.commonadm.ManageAccount;
+package ui.network.commonadm.ManagePerson;
 
+import ui.network.commonadm.ManageOrganization.*;
 import biz.org.Organization;
 import biz.org.OrganizationCatalog;
 import javax.swing.JOptionPane;
@@ -14,7 +15,7 @@ import ui.components.HasTitle;
  *
  * @author hezj
  */
-public class AddOrEditOrganization extends javax.swing.JPanel implements HasTitle {
+public class AddOrEditPerson extends javax.swing.JPanel implements HasTitle {
     private OrganizationCatalog catalog;
     private String keyWord;
     private Organization org;
@@ -22,11 +23,11 @@ public class AddOrEditOrganization extends javax.swing.JPanel implements HasTitl
     /**
      * Creates new form AddOrganization
      */
-    public AddOrEditOrganization(OrganizationCatalog catalog, String keyWord) {
+    public AddOrEditPerson(OrganizationCatalog catalog, String keyWord) {
         this(catalog, keyWord, null);
     }
     
-    public AddOrEditOrganization(OrganizationCatalog catalog, String keyWord, Organization org) {
+    public AddOrEditPerson(OrganizationCatalog catalog, String keyWord, Organization org) {
         this.keyWord = keyWord;
         this.catalog = catalog;
         this.org = org;
