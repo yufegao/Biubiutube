@@ -37,7 +37,7 @@ public class Network {
 
     @Override
     public String toString() {
-        return name + " Network";
+        return name;
     }
 
     public VideoCatalog getVideoCatalog() {

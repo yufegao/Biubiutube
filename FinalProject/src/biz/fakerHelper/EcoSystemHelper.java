@@ -2,6 +2,7 @@ package biz.fakerHelper;
 
 import biz.EcoSystem;
 import biz.account.Account;
+import biz.enterprises.UniversityEnterprise;
 import biz.nw.Network;
 import biz.org.unv.UniverseCollegeOrganization;
 import biz.person.Person;
@@ -21,11 +22,17 @@ public class EcoSystemHelper {
     public static EcoSystem configure() {
         EcoSystem system = EcoSystem.getInstance();
         Network nw = system.newNetwork("NEU");
+        UniversityEnterprise university = nw.getUniversity();
 
         // admin
-        Person adminPerson = fakePerson(nw.getUniversity().getAdminOrganization().getPersonCatalog());
-        Account adminAccount = fakeAccount(nw.getUniversity().getAdminOrganization().getAccountCatalog(), adminPerson, nw.getUniversity().getAdminOrganization().getAdmin());
-        System.out.printf("NEU Admin username: %s\n\n", adminAccount);
+        Person adminPerson = fakePerson(university.getAdminOrganization().getPersonCatalog());
+        Account adminAccount = fakeAccount(university.getAdminOrganization().getAccountCatalog(), adminPerson, university.getAdminOrganization().getAdmin());
+        System.out.printf("NEU Admin username: %s\n", adminAccount);
+
+        // accounting
+        Person acPerson = fakePerson(university.getAccountingOrganization().getPersonCatalog());
+        Account acAccount = fakeAccount(university.getAccountingOrganization().getAccountCatalog(), acPerson, university.getAccountingOrganization().getUniversityAccountingRole());
+        System.out.printf("NEU Accounting username: %s\n\n", acAccount);
 
         // auto fake a college with hacker abbrev tags
         // and rename it to COE
@@ -53,7 +60,7 @@ public class EcoSystemHelper {
         fakeCollege(nw, tags);
 
         // manual fake college CPS
-        UniverseCollegeOrganization cps = nw.getUniversity().getCollegeCatalog().newOrganization("CPS");
+        UniverseCollegeOrganization cps = university.getCollegeCatalog().newOrganization("CPS");
 
         Person person;
         Account account;
@@ -81,7 +88,91 @@ public class EcoSystemHelper {
                     "https://www.youtube.com/embed/wFgeUC5dw_4",
                     "https://www.youtube.com/embed/mSbFrQfgq7A",
                     "https://www.youtube.com/embed/j-zAbYs9J7w",
-                    "https://www.youtube.com/embed/iZcfMa2Fagg"
+                    "https://www.youtube.com/embed/iZcfMa2Fagg",
+//                  machine learning
+                    "https://www.youtube.com/embed/OGxgnH8y2NM",     
+                    "https://www.youtube.com/embed/JcI5Vnw0b2c",    
+                    "https://www.youtube.com/embed/lN5jesocJjk",     
+                    "https://www.youtube.com/embed/r4mwkS2T9aI",    
+                    "https://www.youtube.com/embed/QLVMqwpOLPk",     
+                    "https://www.youtube.com/embed/za5s7RB_VLw",     
+                    "https://www.youtube.com/embed/V59bYfIomVk",     
+                    "https://www.youtube.com/embed/SvmueyhSkgQ",     
+                    "https://www.youtube.com/embed/KLGfMGsgP34",     
+                    "https://www.youtube.com/embed/-fgYp74SNtk",     
+                    "https://www.youtube.com/embed/QUyAFokOmow",     
+                    "https://www.youtube.com/embed/Kpxwl2u-Wgk",     
+                    "https://www.youtube.com/embed/44jq6ano5n0",     
+                    "https://www.youtube.com/embed/1i0zu9jHN6U",     
+                    "https://www.youtube.com/embed/hl3bQySs8sM",     
+                    "https://www.youtube.com/embed/n3RqsMz3-0A",     
+                    "https://www.youtube.com/embed/GWHG3cS2PKc",     
+                    "https://www.youtube.com/embed/3XPhmnf96s0",     
+                    "https://www.youtube.com/embed/r_D5TTV9-2c",     
+                    "https://www.youtube.com/embed/mA5nwGoRAOo",
+//                  java tutorial
+                    "https://www.youtube.com/embed/Hl-zzrqQoSE",     
+                    "https://www.youtube.com/embed/5u8rFbpdvds",    
+                    "https://www.youtube.com/embed/CE8UIbb_4iM",     
+                    "https://www.youtube.com/embed/SHIT5VkNrCg",     
+                    "https://www.youtube.com/embed/gtQJXzi3Yns",     
+                    "https://www.youtube.com/embed/5DdacOkrTgo",     
+                    "https://www.youtube.com/embed/ANuuSFY2BbY",     
+                    "https://www.youtube.com/embed/8ZaTSedtf9M",     
+                    "https://www.youtube.com/embed/ydcTx6idTs0",     
+                    "https://www.youtube.com/embed/iMeaovDbgkQ",     
+                    "https://www.youtube.com/embed/PAaqgTr7Cx4",     
+                    "https://www.youtube.com/embed/RVRPmeccFT0",     
+                    "https://www.youtube.com/embed/8ZuWD2CBjgs",     
+                    "https://www.youtube.com/embed/XqTg2buXS5o",     
+                    "https://www.youtube.com/embed/7MBgaF8wXls",     
+                    "https://www.youtube.com/embed/9t78g0U8VyQ",     
+                    "https://www.youtube.com/embed/tPFuVRbUTwA",     
+                    "https://www.youtube.com/embed/Y4xFGCyt1ww",     
+                    "https://www.youtube.com/embed/C0YRYVn_BeI",     
+                    "https://www.youtube.com/embed/Y6NheSwTsDs",
+//                  NASA
+                    "https://www.youtube.com/embed/FMhSbdoamYY",     
+                    "https://www.youtube.com/embed/dp4efcbqLzM",     
+                    "https://www.youtube.com/embed/EkbUffRtjXk",     
+                    "https://www.youtube.com/embed/8e4PHUByX6k",     
+                    "https://www.youtube.com/embed/VM5nOaLU7XM",     
+                    "https://www.youtube.com/embed/jWtLYScfKR0",     
+                    "https://www.youtube.com/embed/NeGXO01ILVA",     
+                    "https://www.youtube.com/embed/t21PiEIBhgs",     
+                    "https://www.youtube.com/embed/TDyeJ3hcCZY",     
+                    "https://www.youtube.com/embed/NyVz2IniF3U",     
+                    "https://www.youtube.com/embed/M8M9A_sV3As",     
+                    "https://www.youtube.com/embed/T9lh6xrPw1A",     
+                    "https://www.youtube.com/embed/0WZS1FMyiU8",     
+                    "https://www.youtube.com/embed/vKdxnSLlAcs",     
+                    "https://www.youtube.com/embed/p1mrhLQCJO4",     
+                    "https://www.youtube.com/embed/y9OZ4_T7udQ",     
+                    "https://www.youtube.com/embed/O1s64UGUn2k",     
+                    "https://www.youtube.com/embed/P6sCjXISmEU",     
+                    "https://www.youtube.com/embed/GR3fuigi1_g",     
+                    "https://www.youtube.com/embed/_ulv65FoMoc",     
+//                  RedCross
+                    "https://www.youtube.com/embed/AFQpa2kURas",     
+                    "https://www.youtube.com/embed/Dm3qwVw0K-0",     
+                    "https://www.youtube.com/embed/ZcI3eJ3ePWY",     
+                    "https://www.youtube.com/embed/E1qOO-Q1iNw",     
+                    "https://www.youtube.com/embed/5wa-SYwgSaM",     
+                    "https://www.youtube.com/embed/ob5ZT-_-TFo",     
+                    "https://www.youtube.com/embed/28qTNTymfWY",     
+                    "https://www.youtube.com/embed/9nV4atXhWII",     
+                    "https://www.youtube.com/embed/KOlM-UkmobI",     
+                    "https://www.youtube.com/embed/kZqFSN2c7TA",     
+                    "https://www.youtube.com/embed/Y-ggSmxjhIo",     
+                    "https://www.youtube.com/embed/OoYnZw9Anv4",     
+                    "https://www.youtube.com/embed/c8ek_2oH_AY",     
+                    "https://www.youtube.com/embed/tWJjAlLb7KU",     
+                    "https://www.youtube.com/embed/iSIK7dnBEfQ",     
+                    "https://www.youtube.com/embed/gpH0JpevWDE",     
+                    "https://www.youtube.com/embed/PdgEJ6sLL0Y",     
+                    "https://www.youtube.com/embed/U1WF-Irwlf4",     
+                    "https://www.youtube.com/embed/Uclmq-mqrn8",     
+                    "https://www.youtube.com/embed/ZUWUllYtVWo"                
             };
             for (int i = 0; i < urls.length; i++) {
                 Video v = nw.getVideoCatalog().newVideo(account);
@@ -121,9 +212,9 @@ public class EcoSystemHelper {
         } catch (Exception ignored) {
         }
 
-        person = nw.getUniversity().getSupervisorOrganization().getPersonCatalog().newPerson("David", "Li");
+        person = university.getSupervisorOrganization().getPersonCatalog().newPerson("David", "Li");
         try {
-            nw.getUniversity().getSupervisorOrganization().getAccountCatalog().newAccount("li", "li", nw.getUniversity().getSupervisorOrganization().getUniversitySupervisorRole(), person);
+            university.getSupervisorOrganization().getAccountCatalog().newAccount("li", "li", university.getSupervisorOrganization().getUniversitySupervisorRole(), person);
         } catch (Exception ignored) {
         }
 
@@ -134,6 +225,18 @@ public class EcoSystemHelper {
         } catch (Exception ignored) {
         }
 
+        person = cps.getPersonCatalog().newPerson("Xiaoming", "Li");
+        try {
+            account = cps.getAccountCatalog().newAccount("xiaoming.li", "1", cps.getViewerRole(), person);
+        } catch (Exception ignored) {
+        }
+        person = cps.getPersonCatalog().newPerson("Dachui", "Wang");
+        try {
+            account = cps.getAccountCatalog().newAccount("dachui.wang", "1", cps.getViewerRole(), person);
+            university.getRollUpOrderCatalog().newRollUpOrder(account, 100, "AliPay 12345");
+            account.getWallet().modifyCoin(35);
+        } catch (Exception ignored) {
+        }
         return system;
     }
 }

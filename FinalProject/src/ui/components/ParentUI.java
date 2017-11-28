@@ -19,6 +19,24 @@ import javax.swing.JPanel;
 public interface ParentUI {
     JPanel getContainerJPanel();
 
+    default boolean isTop(Component component) {
+        JPanel containerJPanel = getContainerJPanel();
+        if (containerJPanel.getComponentCount() <= 0) {
+            return false;
+        }
+
+        int componentCount = containerJPanel.getComponentCount();
+        Component topComponent = containerJPanel.getComponent(componentCount - 1);  // get the last Component
+
+        for (Component c : ((JPanel) topComponent).getComponents()) {
+            if (c.equals(component)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     default void popComponent() {
         BiubiuBrowser.getInstance().browser.loadURL("about:blank");
 

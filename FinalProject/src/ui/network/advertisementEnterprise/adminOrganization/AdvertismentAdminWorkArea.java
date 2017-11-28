@@ -5,11 +5,13 @@
  */
 package ui.network.advertisementEnterprise.adminOrganization;
 
+import ui.network.commonadm.ManageAccount.ManageAccounts;
 import biz.account.Account;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import ui.components.GeneralWorkArea;
 import ui.components.ParentUI;
+import ui.network.commonadm.ManageOrganization.ManageOrganization;
 
 /**
  *
@@ -25,10 +27,10 @@ public class AdvertismentAdminWorkArea extends GeneralWorkArea{
         ArrayList<JButton> buttons = new ArrayList<>();
         
         JButton btnManageOrganization = new JButton("Manage Organization");
-        btnManageOrganization.addActionListener(e -> parent.pushComponent(new ADManageOrganizations(parent, account)));
+        btnManageOrganization.addActionListener(e -> parent.pushComponent(new ManageOrganization(parent, account)));
         
         JButton btnManageAccount = new JButton("Manage Account");
-        btnManageAccount.addActionListener(e -> parent.pushComponent(new ADManageAccounts(parent, account)));
+        btnManageAccount.addActionListener(e -> parent.pushComponent(new ManageAccounts(parent, account)));
         buttons.add(btnManageOrganization);
         buttons.add(btnManageAccount);
         

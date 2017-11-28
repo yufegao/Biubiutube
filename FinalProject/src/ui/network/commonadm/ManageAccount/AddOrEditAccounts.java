@@ -3,25 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.nonprofitOrganizationEnterprise.adminDepartment;
-
-import biz.account.Account;
-import ui.components.ParentUI;
+package ui.network.commonadm.ManageAccount;
 
 /**
  *
  * @author royn
  */
-public class NPOManageAccounts extends javax.swing.JPanel {
-    private ParentUI parentUI;
-    private Account account;
+public class AddOrEditAccounts extends javax.swing.JPanel {
+
     /**
-     * Creates new form NewJPanel
+     * Creates new form AddOrEditAccounts
      */
-    public NPOManageAccounts(ParentUI parent, Account account) {
+    public AddOrEditAccounts() {
         initComponents();
-        this.account = account;
-        this.parentUI = parent;
     }
 
     /**
@@ -37,11 +31,11 @@ public class NPOManageAccounts extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
