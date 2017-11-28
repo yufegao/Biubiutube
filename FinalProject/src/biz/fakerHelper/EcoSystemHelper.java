@@ -234,6 +234,7 @@ public class EcoSystemHelper {
         try {
             account = cps.getAccountCatalog().newAccount("laowu.wang", "1", cps.getViewerRole(), person);
             university.getRollUpOrderCatalog().newRollUpOrder(account, 100, "AliPay 12345");
+            account.getWallet().modifyCoin(35);
         } catch (Exception ignored) {
         }
         return system;

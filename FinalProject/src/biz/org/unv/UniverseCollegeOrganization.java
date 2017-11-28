@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * @author 79813
  */
 public class UniverseCollegeOrganization extends Organization {
-    private int primeCostPerMonth;
+    private int primeCostPerWeek;
     private CollegeLecturerRole collegeLecturerRole;
     private UniversityDepartmentSupervisorRole universityDepartmentSupervisorRole;
     private ViewerRole viewerRole;
@@ -29,7 +29,7 @@ public class UniverseCollegeOrganization extends Organization {
         collegeLecturerRole = new CollegeLecturerRole();
         universityDepartmentSupervisorRole = new UniversityDepartmentSupervisorRole();
         viewerRole = new ViewerRole();
-        primeCostPerMonth = 10;
+        primeCostPerWeek = 10;
     }
 
     public CollegeLecturerRole getCollegeLecturerRole() {
@@ -53,11 +53,11 @@ public class UniverseCollegeOrganization extends Organization {
         return roles;
     }
 
-    public int getPrimeCostPerMonth() {
-        return primeCostPerMonth;
+    public int getPrimeCostPerWeek() {
+        return primeCostPerWeek;
     }
 
-    public void setPrimeCostPerMonth(int primeCostPerMonth) {
-        this.primeCostPerMonth = primeCostPerMonth;
+    public void setPrimeCostPerWeek(int primeCostPerWeek) {
+        this.primeCostPerWeek = primeCostPerWeek;
     }
 }

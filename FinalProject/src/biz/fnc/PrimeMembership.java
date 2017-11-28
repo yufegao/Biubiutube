@@ -1,6 +1,7 @@
 package biz.fnc;
 
 import biz.account.Account;
+import biz.org.unv.UniverseCollegeOrganization;
 
 import java.util.Calendar;
 
@@ -22,9 +23,16 @@ public class PrimeMembership {
             expiration = Calendar.getInstance();
         }
         expiration.add(Calendar.WEEK_OF_YEAR, weeks);
+
+        int cost = ((UniverseCollegeOrganization) account.getOrg()).getPrimeCostPerWeek();
+        account.getWallet().modifyCoin(-cost * weeks);
     }
 
     public Account getAccount() {
         return account;
+    }
+
+    public Calendar getExpiration() {
+        return expiration;
     }
 }

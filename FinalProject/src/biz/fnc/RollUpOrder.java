@@ -82,7 +82,7 @@ public class RollUpOrder {
         }
         status = Status.Approved;
         updatedAt = Calendar.getInstance();
-        viewer.getWallet().addCoin(amount);
+        viewer.getWallet().modifyCoin(amount);
     }
 
     public void cancel() throws Exception {

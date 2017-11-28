@@ -17,7 +17,7 @@ public class Wallet {
         return historyArrayList;
     }
 
-    public void addCoin(int amount) {
+    public void modifyCoin(int amount) {
         historyArrayList.add(new WalletHistory(amount));
         coin += amount;
     }

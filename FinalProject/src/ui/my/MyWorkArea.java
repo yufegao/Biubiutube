@@ -30,10 +30,6 @@ public class MyWorkArea extends GeneralWorkArea {
             JButton btnCoins = new JButton("Manage Coins");
             btnCoins.addActionListener(e -> parent.pushComponent(new ManageCoinJPanel(parent, account)));
             arr.add(btnCoins);
-
-            JButton btnPrime = new JButton("Manage Prime Membership");
-//            btnPrime.addActionListener(e -> parent.pushComponent(new PrimeMembershipJPanel(account)));
-            arr.add(btnPrime);
         }
 
         return arr;

@@ -110,7 +110,7 @@ public class RollUpJPanel extends javax.swing.JPanel implements HasTitle {
 
         txtAmount.setText("");
         txtPayment.setText("");
-        JOptionPane.showMessageDialog(this, "Success!");
+        JOptionPane.showMessageDialog(this, "Submitted, Please wait.");
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     @Override

@@ -24,9 +24,23 @@ public class ManageCoinJPanel extends JPanel implements HasTitle, ChildComponent
 
     private void initComponents() {
         setLayout(new BorderLayout());
-        JButton btn = new JButton("Order More Coins >>");
-        btn.addActionListener(e -> parent.pushComponent(new RollUpJPanel(account)));
-        add(btn, BorderLayout.PAGE_END);
+        JPanel footer = new JPanel();
+        add(footer, BorderLayout.PAGE_END);
+        footer.setLayout(new GridBagLayout());
+        GridBagConstraints footerConstraints = new GridBagConstraints();
+        footerConstraints.fill = GridBagConstraints.HORIZONTAL;
+        footerConstraints.gridx = 0;
+        footerConstraints.gridy = 0;
+        footerConstraints.weightx = 1.0;
+
+        JButton btnRollUp = new JButton("Order More Coins >>");
+        btnRollUp.addActionListener(e -> parent.pushComponent(new RollUpJPanel(account)));
+        footer.add(btnRollUp, footerConstraints);
+
+        JButton btnRedeem = new JButton("Redeem  >>");
+        btnRedeem.addActionListener(e -> parent.pushComponent(new RedeemJPanel(parent, account)));
+        footerConstraints.gridy = 1;
+        footer.add(btnRedeem, footerConstraints);
 
         JSplitPane splitPane = new JSplitPane();
 //        splitPane.setEnabled(false);
@@ -113,7 +127,7 @@ public class ManageCoinJPanel extends JPanel implements HasTitle, ChildComponent
         dtm.setRowCount(0);
         account.getWallet().getHistoryArrayList().forEach(history -> dtm.addRow(new Object[] {
                 history.getCalendar().getTime(),
-                history.getAmount()
+                String.format("%+d", history.getAmount()),
         }));
     }
 
