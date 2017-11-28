@@ -37,7 +37,7 @@ public class VideoBox extends JPanel {
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                parent.pushComponent(new ViewVideo(video, account));
+                parent.pushComponent(new ViewVideo(parent, video, account));
             }
 
             @Override
@@ -102,7 +102,7 @@ public class VideoBox extends JPanel {
         EventQueue.invokeLater(() -> rightMiddle.add(txtDesc));
 
         JButton btnWatch = new JButton("Watch >>");
-        btnWatch.addActionListener(e -> parent.pushComponent(new ViewVideo(video, account)));
+        btnWatch.addActionListener(e -> parent.pushComponent(new ViewVideo(parent, video, account)));
         rightMiddle.add(btnWatch, BorderLayout.PAGE_END);
 
         right.add(rightMiddle);
