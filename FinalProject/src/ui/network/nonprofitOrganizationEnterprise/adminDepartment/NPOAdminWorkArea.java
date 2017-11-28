@@ -14,7 +14,7 @@ import ui.components.GeneralWorkArea;
 import ui.components.ParentUI;
 import ui.network.commonadm.ManageAccount.ManageAccounts;
 import ui.network.commonadm.ManageOrganization.ManageOrganization;
-import ui.network.commonadm.ManagePerson.ManagePerson;
+import ui.network.commonadm.ManageOrganization.ManagePerson;
 
 /**
  *
@@ -35,12 +35,8 @@ public class NPOAdminWorkArea extends GeneralWorkArea{
         JButton btnManageAccount = new JButton("Manage Account");
         btnManageAccount.addActionListener(e -> parent.pushComponent(new ManageAccounts(parent, account)));
         
-        JButton btnPerson = new JButton("Manage Person");
-        btnManageAccount.addActionListener(e -> parent.pushComponent(new ManagePerson(parent, account)));
-        
         buttons.add(btnManageOrganization);
         buttons.add(btnManageAccount);
-        buttons.add(btnPerson);
         
         return buttons;
     }

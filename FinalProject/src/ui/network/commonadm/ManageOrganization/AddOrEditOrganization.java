@@ -89,7 +89,7 @@ public class AddOrEditOrganization extends javax.swing.JPanel implements HasTitl
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         String name = txtName.getText();
         if (name.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please Input Name", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please Input Organization Name", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         

@@ -3,61 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.commonadm.ManagePerson;
+package ui.network.commonadm.ManageOrganization;
 
-import ui.network.commonadm.ManageOrganization.*;
 import biz.account.Account;
-import biz.enterprises.AdCompanyEnterprise;
-import biz.enterprises.ECOEnterprise;
 import biz.enterprises.Enterprise;
-import biz.enterprises.NPOEnterprise;
-import biz.enterprises.UniversityEnterprise;
 import biz.org.Organization;
-import biz.org.OrganizationCatalog;
+import biz.person.Person;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import ui.components.HasTitle;
 import ui.components.ParentUI;
 import ui.components.TablePopulatable;
 
-/**
- *
- * @author hezj
- */
-public class ManagePerson extends javax.swing.JPanel implements HasTitle, TablePopulatable<Organization>{
+public class ManagePerson extends javax.swing.JPanel implements HasTitle, TablePopulatable<Person>{
     private ParentUI parent;
     private Account account;
-    private Enterprise enterprise;
     private String keyWord;
-    private OrganizationCatalog catalog;
+    private Organization organization;
     
     /**
      * Creates new form ManageCollege
      */
-    public ManagePerson(ParentUI parent, Account account) {
+    public ManagePerson(ParentUI parent, Account account, Organization organization) {
         this.parent = parent;
         this.account = account;
-        enterprise = account.getOrg().getEnterprise();
+        this.organization = organization;
+        keyWord =organization.getEnterprise().getName();
         
-        if (enterprise instanceof UniversityEnterprise) {
-            keyWord = "College";
-            catalog = ((UniversityEnterprise) enterprise).getCollegeCatalog();
-        }
-        if (enterprise instanceof AdCompanyEnterprise) {
-            keyWord = "Ad Producer";
-            catalog = ((AdCompanyEnterprise) enterprise).getaPCatalog();
-        }
-        if (enterprise instanceof ECOEnterprise) {
-            keyWord = "Video Producer";
-            catalog = ((ECOEnterprise) enterprise).getEcovpoc();
-        }
-        if (enterprise instanceof NPOEnterprise) {
-            keyWord = "PSA Producer";
-            catalog = ((NPOEnterprise) enterprise).getNpooc();
-        }
         
         initComponents();
-        btnAdd.setText("Add " + keyWord);
+        btnAdd.setText("Add Persons");
         populateTable();
     }
 
@@ -70,31 +45,13 @@ public class ManagePerson extends javax.swing.JPanel implements HasTitle, TableP
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbl = new javax.swing.JTable();
         btnAdd = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnRemove = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblUser = new javax.swing.JTable();
 
-        tbl.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "College", "Number of Person", "Number of Account"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tbl);
-
-        btnAdd.setText("Add Account");
+        btnAdd.setText("Add Person");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -115,14 +72,32 @@ public class ManagePerson extends javax.swing.JPanel implements HasTitle, TableP
             }
         });
 
+        tblUser.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "E-mail"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblUser);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 782, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,41 +109,36 @@ public class ManagePerson extends javax.swing.JPanel implements HasTitle, TableP
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAdd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEdit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRemove)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE))
+                        .addGap(0, 539, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        parent.pushComponent(new AddOrEditPerson(catalog, keyWord));
+        parent.pushComponent(new AddOrEditPerson(organization, keyWord));
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-       Organization org = getSelected();
-       if (org == null) {
+       Person person = getSelected();
+       if (person == null) {
            return;
        }
-       parent.pushComponent(new AddOrEditPerson(catalog, keyWord, org));
+       parent.pushComponent(new AddOrEditPerson(organization ,keyWord, person));
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        Organization org = getSelected();
-       if (org == null) {
+       Person person = getSelected();
+       if (person == null) {
            return;
        }
-       if (!org.getPersonCatalog().getPersonList().isEmpty()) {
-           String msg = String.format("Cannot remove this %s, there are %d person in it.", keyWord, org.getPersonCatalog().getPersonList().size());
-           JOptionPane.showMessageDialog(this, msg, "Warning", JOptionPane.WARNING_MESSAGE);
-           return;
-       }
-       catalog.removeOrganization(org);
+       person.getOrg().getPersonCatalog().getPersonList().remove(person);
        populateTable();
        JOptionPane.showMessageDialog(null, "Success");
     }//GEN-LAST:event_btnRemoveActionPerformed
@@ -179,30 +149,29 @@ public class ManagePerson extends javax.swing.JPanel implements HasTitle, TableP
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnRemove;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbl;
+    private javax.swing.JTable tblUser;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public String getTitle() {
-        return String.format("Manage %s in %s", keyWord, enterprise.getName());
+        return String.format("Manage %s in %s", organization.getName(), keyWord);
     }
 
     @Override
     public JTable getTable() {
-        return tbl;
+        return tblUser;
     }
 
     @Override
-    public Object[] populateRow(Organization org) {
+    public Object[] populateRow(Person person) {
         return new Object[] {
-            org,
-            org.getPersonCatalog().getPersonList().size(),
-            org.getAccountCatalog().getAccountArrayList().size(),
+            person,
+            person.getEmail(),
         };
     }
 
     @Override
     public void populateTable() {
-        populateTable(catalog.getOrganizations());
+        populateTable(organization.getPersonCatalog().getPersonList());
     }
 }
