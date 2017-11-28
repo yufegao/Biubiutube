@@ -1,31 +1,107 @@
 package ui.network.university.college.viewer;
 
 import biz.account.Account;
+import biz.ad.Ad;
 import biz.video.Video;
 import ui.components.BiubiuBrowser;
+import ui.components.ChildComponent;
 import ui.components.HasTitle;
+import ui.components.ParentUI;
+import ui.my.RedeemJPanel;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ViewVideo extends JPanel implements HasTitle {
+public class ViewVideo extends JPanel implements HasTitle, ChildComponent {
     private Account account;
     private Video video;
+    private ParentUI parent;
 
     private JSplitPane jSplitPane;
 
-    public ViewVideo(Video video, Account account) {
+    private int countDown;
+    private JButton btnSkip;
+
+    public ViewVideo(ParentUI parent, Video video, Account account) {
         this.account = account;
         this.video = video;
+        this.parent = parent;
         video.getViewHistoryCatalog().newViewHistory(account);
-        initComponents();
-    }
 
-    private void initComponents() {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
-        // TODO: play ad and prime
-        loadVideo();
+        Ad ad = video.getAd();
+        if (ad == null) {
+            System.out.println("no ad");
+            System.out.println(video.getAdType());
+            loadVideo();
+        } else {
+            loadAd(ad);
+        }
+    }
+
+    private void setTimeout(Runnable runnable, int delay) {
+        new Thread(() -> {
+            try {
+                Thread.sleep(delay);
+                runnable.run();
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        }).start();
+    }
+
+    private void updateBtnSkip() {
+        if (countDown > 0) {
+            countDown -= 1;
+            btnSkip.setText(String.format("Skip  Ad(%d) >>", countDown));
+        }
+    }
+
+    private void loadAd(Ad ad) {
+        removeAll();
+        JPanel adPanel = new JPanel();
+        adPanel.setLayout(new BorderLayout());
+        EventQueue.invokeLater(() -> {
+            BiubiuBrowser.getInstance().browser.loadURL(ad.getUrl());
+            adPanel.add(BiubiuBrowser.getInstance().view);
+
+            setTimeout(() -> {
+                if (parent.isTop(this)) {
+                    loadVideo();
+                }
+            }, 15000);
+
+            for (int i = 1; i < 16; i++) {
+                setTimeout(this::updateBtnSkip, 1000 * i);
+            }
+            revalidate();
+            repaint();
+        });
+
+        countDown = 15;
+        btnSkip = new JButton(String.format("Skip  Ad(%d) >>", countDown));
+        btnSkip.addActionListener(e -> {
+            if (account.getPrimeMembership().isExpired()) {
+                int res = JOptionPane.showConfirmDialog(
+                        this,
+                        "Only Prime member can skip ad, Redeem?",
+                        "Error",
+                        JOptionPane.YES_NO_OPTION
+                );
+                if (res == JOptionPane.YES_OPTION) {
+                    parent.pushComponent(new RedeemJPanel(parent, account));
+                }
+                return;
+            }
+            countDown = 0;
+            loadVideo();
+        });
+        adPanel.add(btnSkip, BorderLayout.PAGE_END);
+        add(adPanel);
+
+        revalidate();
+        repaint();
     }
 
     private void loadVideo() {
@@ -42,7 +118,6 @@ public class ViewVideo extends JPanel implements HasTitle {
 
         // leftPanel
         JPanel leftPanel = new JPanel();
-        leftPanel.setBackground(Color.orange);
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
         jSplitPane.setLeftComponent(leftPanel);
 
@@ -57,6 +132,8 @@ public class ViewVideo extends JPanel implements HasTitle {
         EventQueue.invokeLater(() -> {
             watchJPanel.add(BiubiuBrowser.getInstance().view);
             BiubiuBrowser.getInstance().browser.loadURL(video.getUrl());
+            revalidate();
+            repaint();
         });
         leftPanel.add(watchJPanel);
 
@@ -108,6 +185,9 @@ public class ViewVideo extends JPanel implements HasTitle {
         });
         commentPanel.add(btnComment, BorderLayout.PAGE_END);
         leftPanel.add(commentPanel);
+
+        revalidate();
+        repaint();
     }
 
     private void populateCommentList() {
@@ -137,5 +217,10 @@ public class ViewVideo extends JPanel implements HasTitle {
     @Override
     public String getTitle() {
         return String.format("%s - %s", video.getUploaderAccount().getPerson(), video);
+    }
+
+    @Override
+    public void exposed() {
+        loadVideo();
     }
 }
