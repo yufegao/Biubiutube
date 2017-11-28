@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import ui.components.GeneralWorkArea;
 import ui.components.ParentUI;
-import ui.network.commonadm.ManageAccount.ManageOrganization;
+import ui.network.commonadm.ManageOrganization.ManageOrganization;
 
 /**
  *
