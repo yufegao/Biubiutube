@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.commonadm.ManageAccount;
+package ui.network.commonadm.ManageOrganization;
 
 import biz.account.Account;
 import biz.enterprises.AdCompanyEnterprise;
