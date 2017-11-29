@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.commonadm.ManageOrganization;
+package ui.network.commonadm.ManagePerson;
 
-import biz.org.Organization; 
+import biz.enterprises.Enterprise;
+import biz.org.Organization;
 import biz.person.Person;
 import javax.swing.JOptionPane;
 import ui.components.HasTitle;
@@ -15,29 +16,46 @@ import ui.components.HasTitle;
  * @author hezj
  */
 public class AddOrEditPerson extends javax.swing.JPanel implements HasTitle {
+
     private Person person;
     private Organization organization;
-    
+    private Enterprise enterprise;
+
     /**
      * Creates new form AddOrganization
      */
-    public AddOrEditPerson(Organization organization) {
-        this(organization, null);
+
+    public AddOrEditPerson(Enterprise enterprise) {
+        this(enterprise, null, null);
     }
-    
-    public AddOrEditPerson(Organization organization, Person person) {
+
+    public AddOrEditPerson(Enterprise enterprise, Organization organization) {
+        this(enterprise, organization, null);
+    }
+
+    public AddOrEditPerson(Enterprise enterprise, Organization organization, Person person) {
         this.person = person;
         this.organization = organization;
-        
+        this.enterprise = enterprise;
+
         initComponents();
         
-        if (person != null) {
-            txtFirstName.setText(person.getFirstName());
-            txtLastName.setText(person.getLastName());
-            txtEmail.setText(person.getEmail());
-            btnAdd.setText("Save");
+        cbOrganization.removeAllItems();
+        enterprise.getOrganizationArrayList().forEach((organization1) -> {
+            cbOrganization.addItem(organization1);
+        });
+
+        if (organization != null) {
+            if (person != null) {
+                txtFirstName.setText(person.getFirstName());
+                txtLastName.setText(person.getLastName());
+                txtEmail.setText(person.getEmail());  
+                btnAdd.setText("Save");
+            }
+            cbOrganization.setSelectedItem(organization);
+            cbOrganization.setEnabled(false);
         }
-        
+
     }
 
     /**
@@ -56,6 +74,8 @@ public class AddOrEditPerson extends javax.swing.JPanel implements HasTitle {
         txtLastName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        cbOrganization = new javax.swing.JComboBox();
 
         jLabel1.setText("First Name");
 
@@ -70,32 +90,38 @@ public class AddOrEditPerson extends javax.swing.JPanel implements HasTitle {
 
         jLabel3.setText("E-mail");
 
+        jLabel4.setText("Organization");
+
+        cbOrganization.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(339, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(319, 319, 319)
-                        .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                .addComponent(cbOrganization, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(288, 288, 288)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(357, Short.MAX_VALUE))
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(111, 111, 111)))
+                .addContainerGap(312, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,9 +138,13 @@ public class AddOrEditPerson extends javax.swing.JPanel implements HasTitle {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(125, 125, 125)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(cbOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(79, 79, 79)
                 .addComponent(btnAdd)
-                .addContainerGap(327, Short.MAX_VALUE))
+                .addContainerGap(314, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -123,30 +153,42 @@ public class AddOrEditPerson extends javax.swing.JPanel implements HasTitle {
         String lastName = txtLastName.getText();
         String email = txtEmail.getText();
         
+
         if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please Input All Required fields",
+            JOptionPane.showMessageDialog(this, "Invaild! Please Input All Fields",
                     "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+
         if (person != null) {
             person.setFirstName(firstName);
             person.setLastName(lastName);
             person.setEmail(email);
-        } else {
+        } else if (organization != null){
             Person p = organization.getPersonCatalog().newPerson(firstName, lastName);
             p.setEmail(email);
             txtFirstName.setText("");
-        }        
+            txtLastName.setText("");
+            txtEmail.setText("");
+        }else{
+            Organization o = (Organization) cbOrganization.getSelectedItem();
+            Person p = o.getPersonCatalog().newPerson(firstName, lastName);
+            p.setEmail(email);
+            txtFirstName.setText("");
+            txtLastName.setText("");
+            txtEmail.setText("");
+        }
         JOptionPane.showMessageDialog(this, "Success!");
     }//GEN-LAST:event_btnAddActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JComboBox cbOrganization;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;

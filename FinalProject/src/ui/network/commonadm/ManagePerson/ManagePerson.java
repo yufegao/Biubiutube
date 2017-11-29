@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui.network.commonadm.ManageOrganization;
+package ui.network.commonadm.ManagePerson;
 
 import biz.account.Account;
 import biz.enterprises.Enterprise;
 import biz.org.Organization;
 import biz.person.Person;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import ui.components.HasTitle;
@@ -18,17 +19,22 @@ import ui.components.TablePopulatable;
 public class ManagePerson extends javax.swing.JPanel implements HasTitle, TablePopulatable<Person>{
     private ParentUI parent;
     private Account account;
-    private String keyWord;
     private Organization organization;
+    private Enterprise enterprise;
     
     /**
      * Creates new form ManageCollege
      */
+    public ManagePerson(ParentUI parent, Account account){
+        this(parent, account, null);
+    }
+    
     public ManagePerson(ParentUI parent, Account account, Organization organization) {
         this.parent = parent;
         this.account = account;
         this.organization = organization;
-        keyWord =organization.getEnterprise().getName();
+        this.enterprise = account.getOrg().getEnterprise();
+        
         
         
         initComponents();
@@ -77,11 +83,11 @@ public class ManagePerson extends javax.swing.JPanel implements HasTitle, TableP
 
             },
             new String [] {
-                "Name", "E-mail"
+                "Name", "E-mail", "Organization"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -122,15 +128,20 @@ public class ManagePerson extends javax.swing.JPanel implements HasTitle, TableP
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        parent.pushComponent(new AddOrEditPerson(organization));
+        if(organization != null){
+            parent.pushComponent(new AddOrEditPerson(enterprise, organization));
+        }else{
+            parent.pushComponent(new AddOrEditPerson(enterprise));
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
        Person person = getSelected();
+       Organization organizationofSelected = person.getOrg();
        if (person == null) {
            return;
        }
-       parent.pushComponent(new AddOrEditPerson(organization, person));
+       parent.pushComponent(new AddOrEditPerson(enterprise, organizationofSelected, person));
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
@@ -154,7 +165,7 @@ public class ManagePerson extends javax.swing.JPanel implements HasTitle, TableP
 
     @Override
     public String getTitle() {
-        return String.format("Manage persons in %s", organization.getName());
+        return String.format("Manage persons in %s", enterprise.getName());
     }
 
     @Override
@@ -167,11 +178,21 @@ public class ManagePerson extends javax.swing.JPanel implements HasTitle, TableP
         return new Object[] {
             person,
             person.getEmail(),
+            person.getOrg(),
         };
     }
 
     @Override
     public void populateTable() {
-        populateTable(organization.getPersonCatalog().getPersonList());
+        if(organization != null){
+            populateTable(organization.getPersonCatalog().getPersonList());
+        }
+        else{
+            ArrayList<Person> persons = new ArrayList<>();
+            enterprise.getOrganizationArrayList().forEach((o) -> {
+                persons.addAll(o.getPersonCatalog().getPersonList());
+            });
+            populateTable(persons);
+        }
     }
 }

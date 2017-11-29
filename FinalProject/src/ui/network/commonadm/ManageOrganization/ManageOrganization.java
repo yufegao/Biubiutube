@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import ui.components.HasTitle;
 import ui.components.ParentUI;
 import ui.components.TablePopulatable;
+import ui.network.commonadm.ManagePerson.ManagePerson;
 
 /**
  *

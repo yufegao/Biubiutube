@@ -7,8 +7,8 @@ package ui.network.commonadm.ManageAccount;
 
 import biz.EcoSystem;
 import biz.account.Account;
-import biz.enterprises.AdCompanyEnterprise;
-import java.util.ArrayList;
+import biz.enterprises.Enterprise;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import ui.components.HasTitle;
 import ui.components.ParentUI;
@@ -20,17 +20,21 @@ import ui.components.TablePopulatable;
  */
 public class ManageAccounts extends javax.swing.JPanel implements TablePopulatable<Account>, HasTitle {
 
-    private ParentUI parentUI;
+    private ParentUI parent;
     private Account account;
     private EcoSystem ecoSystem;
+    private Enterprise enterprise;
 
     /**
      * Creates new form ManageAccounts
      */
-    public ManageAccounts(ParentUI parentUI, Account account) {
+    public ManageAccounts(ParentUI parent, Account account) {
         initComponents();
         this.account = account;
-        this.parentUI = parentUI;
+        this.parent = parent;
+        ecoSystem = EcoSystem.getInstance();
+        enterprise = account.getOrg().getEnterprise();
+        populateTable();
     }
 
     /**
@@ -53,11 +57,11 @@ public class ManageAccounts extends javax.swing.JPanel implements TablePopulatab
 
             },
             new String [] {
-                "Name", "Organization", "E-mail"
+                "User Name", "Owner", "Role", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -119,7 +123,7 @@ public class ManageAccounts extends javax.swing.JPanel implements TablePopulatab
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        parent.pushComponent(new AddOrEditAccounts(catalog, keyWord));
+        parent.pushComponent(new AddOrEditAccounts(enterprise));
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
@@ -127,7 +131,7 @@ public class ManageAccounts extends javax.swing.JPanel implements TablePopulatab
         if (a == null) {
             return;
         }
-        parent.pushComponent(new AddOrEditPerson(catalog, keyWord, org));
+        parent.pushComponent(new AddOrEditAccounts(enterprise, a));
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
@@ -154,19 +158,22 @@ public class ManageAccounts extends javax.swing.JPanel implements TablePopulatab
     }
 
     @Override
-    public Object[] populateRow(Account element) {
-        return new Object[]{element, element.getPerson()};
+    public Object[] populateRow(Account a) {
+        return new Object[]{a,
+            a.getPerson(),
+            a.getRole(),
+            a.isActive()};
     }
 
     @Override
     public void populateTable() {
         populateTable(ecoSystem.getAllAccountArrayList()
-                .stream().filter(v -> v.getOrg().getEnterprise()
+                .stream().filter(v -> (v.getOrg() != null) && v.getOrg().getEnterprise()
                 .equals(account.getOrg().getEnterprise())));
     }
 
     @Override
     public String getTitle() {
-        return "Manage Advertisement Accounts";
+        return String.format("Manage Accounts in %s", account.getOrg().getEnterprise());
     }
 }
