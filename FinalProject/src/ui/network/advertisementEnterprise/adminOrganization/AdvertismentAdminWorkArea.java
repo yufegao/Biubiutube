@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import ui.components.GeneralWorkArea;
 import ui.components.ParentUI;
 import ui.network.commonadm.ManageOrganization.ManageOrganization;
+import ui.network.commonadm.ManagePerson.ManagePerson;
 
 /**
  *
@@ -31,8 +32,13 @@ public class AdvertismentAdminWorkArea extends GeneralWorkArea{
         
         JButton btnManageAccount = new JButton("Manage Account");
         btnManageAccount.addActionListener(e -> parent.pushComponent(new ManageAccounts(parent, account)));
+        
+        JButton btnManagePerson = new JButton("Manage Person");
+        btnManagePerson.addActionListener(e -> parent.pushComponent(new ManagePerson(parent, account)));
+        
         buttons.add(btnManageOrganization);
         buttons.add(btnManageAccount);
+        buttons.add(btnManagePerson);
         
         return buttons;
     }
